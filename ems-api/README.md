@@ -2,7 +2,7 @@
 This is a monolithic service serve for event management system.
 
 ## Run the service
-```
+```bash
 # activate database
 $ cd ./deploy/dev/db/
 $ docker-compose up -d
