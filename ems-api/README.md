@@ -1,3 +1,17 @@
+# EMS-API
+This is a monolithic service serve for event management system.
+
+## Run the service
+```
+# activate database
+$ cd ./deploy/dev/db/
+$ docker-compose up -d
+
+# run the service
+$ npm run start
+```
+
+# NestJS
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
