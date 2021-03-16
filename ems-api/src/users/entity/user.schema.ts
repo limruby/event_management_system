@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import { Role } from '../../utils/role/role.enum';
 
 export type UserDocument = User & Document;
@@ -11,25 +11,31 @@ export class User {
   }
 
   @Prop()
-  _id: string; // max 12 char
+  readonly _id: string; // max 12 char
 
-  @Prop()
+  @Prop({ required: true })
   name: string;
+
+  @Prop({ required: true })
+  ic: string;
 
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop()
+  @Prop({ required: true })
   hash: string;
 
-  @Prop({ required: true })
-  gender: string;
+  // @Prop({ required: true })
+  // gender: string;
+
+  @Prop({ required: true, unique: true })
+  mobile: string;
 
   @Prop({ required: true })
   birthday: Date;
 
   @Prop()
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @Prop()
   updatedAt: Date;
@@ -39,6 +45,14 @@ export class User {
 
   @Prop({ required: true })
   roles: Role[];
+
+  @Prop()
+  paymentId: string;
+
+  @Prop()
+  organization: string;
+  @Prop()
+  position: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -94,11 +108,16 @@ export function removeSecret(user: User) {
   return new User({
     _id: user._id,
     name: user.name,
+    ic: user.ic,
     email: user.email,
-    gender: user.gender,
+    // gender: user.gender,
+    mobile: user.mobile,
     birthday: user.birthday,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
-    roles: user.roles
+    roles: user.roles,
+    paymentId: user.paymentId,
+    organization: user.organization,
+    position: user.position
   });
 }

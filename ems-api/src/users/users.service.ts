@@ -21,17 +21,19 @@ export class UsersService {
         @InjectConnection() private connection: Connection
     ) {}
 
-    async create(registerDto: RegisterUserDto): Promise<User> {
+    async create(registerDto: RegisterUserDto, role: Role): Promise<User> {
         // TODO: email regex
         let user = new User({
             _id: randomString(12),
             email: registerDto.email,
             hash: await getHash(registerDto.password),
             name: registerDto.name,
+            ic: registerDto.ic,
             birthday: registerDto.birthday,
-            gender: registerDto.gender,
             createdAt: new Date(),
-            roles: [ Role.User ]
+            organization: registerDto.organization,
+            position: registerDto.position,
+            roles: [ role ]
         });
         const createdUser = new this.UserModel(user);
         return await createdUser.save();
