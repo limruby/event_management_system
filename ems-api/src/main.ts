@@ -41,12 +41,12 @@ import { writeSwaggerJson } from './utils/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.use(helmet());
+  // app.use(helmet());
   // app.use(csurf());
 
   const config = new DocumentBuilder()
     .setTitle('EMS API')
-    .setDescription('The ems API description')
+    .setDescription('The ems-api serve for the endpoint of event management system, it will be consist of auth, user, chat, pbooth, sbooth and event modules.')
     .setVersion('1.0')
     .addBearerAuth()
     .addTag('ems')

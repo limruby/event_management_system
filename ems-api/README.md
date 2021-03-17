@@ -3,11 +3,21 @@ This is a monolithic service serve for event management system.
 
 ## Run the service
 ```bash
+# run the docker-compose
+$ docker-compose up -d --build
+
+# close the docker-compose
+$ docker-compose down
+```
+
+## Run for development and debugging
+```bash
 # activate database
 $ cd ./deploy/dev/db/
 $ docker-compose up -d
 
 # run the service
+$ cd ../../../
 $ npm run start
 ```
 
