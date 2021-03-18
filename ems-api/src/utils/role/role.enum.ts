@@ -1,5 +1,10 @@
 
 export enum Role {
-    User = 'user',
+    // User = 'user',
     Admin = 'admin',
+    Participant = 'participant',
+    Visitor = 'visitor',
+    Sponsor = 'sponsor',
+    Judge = 'judge',
+    Speaker = 'speaker'
 }

@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { randomString } from '../utils/string';
 import { User } from '../users/entity/user.schema';
+import { TokenDto } from './dto/token.dto';
 
 @Injectable()
 export class AuthService {
@@ -22,13 +23,13 @@ export class AuthService {
         const payload = { email: user.email, sub: user._id };
         const refresh = { key: randomString(12), sub: user._id };
         await this.usersService.setRefreshKey(refresh.sub, refresh.key);
-        return {
+        return new TokenDto({
             access_token: this.jwtService.sign(payload),
             refresh_token: this.jwtService.sign(refresh, {
                 secret: jwtConstants.refreshSecret,
                 expiresIn: jwtConstants.refreshExpiresIn
             })
-        };
+        });
     }
 
     async refresh(user: any) {
