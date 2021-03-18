@@ -29,6 +29,7 @@ export class UsersService {
             hash: await getHash(registerDto.password),
             name: registerDto.name,
             ic: registerDto.ic,
+            mobile: registerDto.mobile,
             birthday: registerDto.birthday,
             createdAt: new Date(),
             organization: registerDto.organization,

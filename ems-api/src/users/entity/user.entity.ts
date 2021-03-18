@@ -5,6 +5,7 @@ export class User extends Document {
     readonly name: string;
     readonly ic: string;
     readonly email: string;
+    mobile: string;
     password: string;
     readonly admin?: boolean;
     readonly created_at: Date;

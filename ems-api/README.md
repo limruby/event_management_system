@@ -5,10 +5,13 @@ This is a monolithic service serve for event management system.
 ```bash
 # run the docker-compose
 $ docker-compose up -d --build
+# or run it without rebuild service
+$ docker-compose up -d
 
 # close the docker-compose
 $ docker-compose down
 ```
+The service is hosted at `http://localhost:9000`
 
 ## Run for development and debugging
 ```bash
@@ -20,6 +23,7 @@ $ docker-compose up -d
 $ cd ../../../
 $ npm run start
 ```
+The service is hosted at `http://localhost:3000`
 
 # NestJS
 <p align="center">

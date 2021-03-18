@@ -2,6 +2,8 @@ import { Document } from 'mongoose';
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import { Role } from '../../utils/role/role.enum';
 
+import { ApiProperty } from '@nestjs/swagger';
+
 export type UserDocument = User & Document;
 
 @Schema()

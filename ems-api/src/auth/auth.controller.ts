@@ -8,6 +8,8 @@ import { JwtRefreshAuthGuard } from './guard/jwtr-auth.guard';
 
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
+import { TokenDto } from './dto/token.dto';
+import { ErrorResponse } from 'src/utils/dto/error-response.dto';
   
 
 @Controller('auth')
@@ -20,6 +22,13 @@ export class AuthController {
     @Post('login')
     @ApiResponse({
         status: HttpStatus.OK,
+        description: 'Success login',
+        type: TokenDto,
+    })
+    @ApiResponse({
+        status: HttpStatus.UNAUTHORIZED,
+        description: `Fail login`,
+        type: ErrorResponse,
     })
     @ApiOperation({
         operationId: 'login',
@@ -36,6 +45,13 @@ export class AuthController {
     @ApiBearerAuth()
     @ApiResponse({
         status: HttpStatus.OK,
+        description: 'Refresh token obtain',
+        type: TokenDto,
+    })
+    @ApiResponse({
+        status: HttpStatus.UNAUTHORIZED,
+        description: `Invalid refresh token`,
+        type: ErrorResponse,
     })
     @ApiOperation({
         operationId: 'refresh',
