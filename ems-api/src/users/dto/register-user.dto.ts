@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Role } from 'src/utils/role/role.enum';
+import { CreateUserDto } from './create-user.dto';
 
 export class RegisterUserDto {
     @ApiProperty({description: 'Email', required: true, type: 'string', format: 'email'})
@@ -17,5 +19,19 @@ export class RegisterUserDto {
     organization: string;
     @ApiProperty({description: 'Position', required: true, type: 'string'})
     position: string;
+
+    // toCreateUserDto(role: Role) : CreateUserDto {
+    //     return new CreateUserDto({
+    //         roles: [ role ],
+    //         email: this.email,
+    //         mobile: this.mobile,
+    //         password: this.password,
+    //         name: this.name,
+    //         ic: this.ic,
+    //         birthday: this.birthday,
+    //         organization: this.organization,
+    //         position: this.position,
+    //     });
+    // }
 }
   

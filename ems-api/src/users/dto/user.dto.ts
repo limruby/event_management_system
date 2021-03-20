@@ -50,7 +50,6 @@ export class UserDto {
             name: user.name,
             ic: user.ic,
             email: user.email,
-            // gender: user.gender,
             mobile: user.mobile,
             birthday: user.birthday,
             roles: user.roles,

@@ -1,4 +1,4 @@
-import { Controller, Get, Request, Post, UseGuards, Body, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Request, Post, Put, UseGuards, Body, HttpStatus } from '@nestjs/common';
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
@@ -7,12 +7,12 @@ import { Roles } from './utils/role/roles.decorator';
 import { Role } from './utils/role/role.enum';
 import { RolesGuard } from './utils/role/role.guard';
 
-import { RegisterUserDto } from './users/dto/register-user.dto';
 import { ApiBearerAuth, ApiInternalServerErrorResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User, UserSchema } from './users/entity/user.schema';
 import { TokenDto } from './auth/dto/token.dto';
 import { UserDto } from './users/dto/user.dto';
 import { ErrorResponse } from './utils/dto/error-response.dto';
+import { CreateUserDto, RegisterUserDto, UpdateUserDto } from './users/dto/dto';
 
 @Controller('')
 @ApiTags('Base')
@@ -51,6 +51,31 @@ export class AppController {
     return UserDto.fromUserSchema(req.user);
   }
 
+  @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Put('profile')
+    @ApiOperation({
+        operationId: 'update profile',
+        description: 'Update own profile',
+        summary: 'Update own profile',
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Success update profile',
+        type: UserDto,
+    })
+    @ApiResponse({
+        status: HttpStatus.UNAUTHORIZED,
+        description: `Unauthorized`,
+        type: ErrorResponse,
+    })
+    async updateUser(@Request() req, @Body() body: UpdateUserDto) {
+        body.id = req.user._id;
+        // TODO: need checking and restriction
+        const user = await this.usersService.update(body);
+        return UserDto.fromUserSchema(user);
+    }
+
   @Post('register/participant')
   @ApiOperation({
     operationId: 'registerParticipant',
@@ -68,9 +93,8 @@ export class AppController {
       type: ErrorResponse,
   })
   async registerParticipant(@Request() req, @Body() body: RegisterUserDto) {
-    const user = await this.usersService.create(body, Role.Participant);
+    const user = await this.usersService.create(CreateUserDto.fromRegisterUserDto(body, Role.Participant));
     return this.authService.login(user);
-    return req.body;
   }
 
   @Post('register/visitor')
@@ -90,9 +114,8 @@ export class AppController {
       type: ErrorResponse,
   })
   async registerVisitor(@Request() req, @Body() body: RegisterUserDto) {
-    const user = await this.usersService.create(body, Role.Visitor);
+    const user = await this.usersService.create(CreateUserDto.fromRegisterUserDto(body, Role.Visitor));
     return this.authService.login(user);
-    return req.body;
   }
   // curl -X POST http://localhost:3000/register -d '{ "email": "waixiong@gmail.com", "password": "password", "name": "Chee Wai Xiong", "birthday": "Fri Jan 03 1997 00:00:00 GMT+0800"}' -H "Content-Type: application/json"
 }

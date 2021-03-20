@@ -25,6 +25,13 @@ $ npm run start
 ```
 The service is hosted at `http://localhost:3000`
 
+## Default Database
+If where is no database created before, initiate the default database
+```bash
+cp ./deploy/dev/db/default/_mongo-volume ./mongo-volume
+cp ./deploy/dev/db/default/_init-mongo.js ./init-mongo.js
+```
+
 # NestJS
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
