@@ -10,8 +10,13 @@ import ProfileForm from './components/site/profileForm'
 //test to be delete
 import testsignup from './components/site/login/testsignup';
 
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+const queryClient = new QueryClient()
+
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <Router>
       
       <Switch>
@@ -31,6 +36,7 @@ function App() {
       
 
     </Router>
+    </QueryClientProvider>
   );
 }
 

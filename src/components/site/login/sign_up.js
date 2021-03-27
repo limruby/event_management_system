@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 
@@ -14,7 +14,7 @@ function SignUp()
     const handleSubmit=(e)=>{
         e.preventDefault();
 
-        const { password, confirmPassword } = this.state;
+        // const { password, confirmPassword } = this.state;
         // perform all neccassary validations
         if (password !== confirmPassword) {
             alert("Passwords don't match");   //MAKE A DIV SOMEWHERE
@@ -53,7 +53,6 @@ function SignUp()
                     data-validation-required-message="Please enter your e-mail."
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
-
                     />
 
                     <label htmlFor="password_id">Password <span>*</span></label>
@@ -67,7 +66,9 @@ function SignUp()
                     <label htmlFor="confirmPassword_id">Confirm Password <span>*</span></label>
                     <input className="form-input" type='password'name='confirmPassword' id="confirmPassword_id"
                     placeholder='re-enter password' required="required"
-                    data-validation-required-message="Please enter your password."/>
+                    data-validation-required-message="Please enter your password."
+                    value={confirmPassword}
+                    onChange={(e)=>setConfirmPassword(e.target.value)}/>
 
 
                     <input className="submit-btn" type="submit" value="Submit" />
