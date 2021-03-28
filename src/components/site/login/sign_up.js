@@ -32,8 +32,8 @@ function SignUp()
 
             }
             //PUT IN ${API_URL}
-            axios.post('http://localhost:5000/users/add', user)
-            .then(res=>console.log(res.data));
+            // axios.post('http://localhost:5000/users/add', user)
+            // .then(res=>console.log(res.data));
 
             this.props.history.push("/profile/");
         }

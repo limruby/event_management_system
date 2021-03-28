@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 import { useLogin } from './auth.queries';
+import { AuthService } from '../../../auth.service';
  
 function Login()
 {
@@ -13,8 +14,13 @@ function Login()
         e.preventDefault();
         console.log("submiting")
         login({email, password}, {
-            onSuccess: (data) => {
+            onSuccess: (response) => {
                 // success action
+                console.log(response.data)
+                AuthService.getInstance().setJwtToken(
+                    response.data['access_token'],
+                    response.data['refresh_token']
+                );
                 alert('success');
             },
             onError: (e) => {
