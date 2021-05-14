@@ -41,6 +41,10 @@ const hideDropdown = e => {
     setShow(false);
 }
 
+const logout=()=>{
+	localStorage.clear();
+	window.location.href = '/';
+};
 
 window.addEventListener('resize', showButton);
 
@@ -116,10 +120,10 @@ window.addEventListener('resize', showButton);
               </NavDropdown>
           </li>
           <li className="nav-item">
-            <Nav.Link href="#">UserDashboard</Nav.Link>
+            <Nav.Link href="/user_dashboard">UserDashboard</Nav.Link>
           </li>
           <li className="nav-item">
-            <Nav.Link href="#">Log Out</Nav.Link>
+            <Nav.Link onClick={logout}>Log Out</Nav.Link>
           </li>
         </ul>
       
