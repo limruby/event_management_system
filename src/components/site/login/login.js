@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 import "../../../assets/css/agency.min.css";
-import NavBar from './../navbar';
+//import NavBar from './../navbar';
 
 import Footer from './../footer';
 import axiosInstance from '../../../utils/axiosConfig.js';
@@ -43,7 +43,6 @@ function Login()
 
   return (
     <>
-        <NavBar/>
 
         <div className="login-main-container">
             <div className="login-form-container">

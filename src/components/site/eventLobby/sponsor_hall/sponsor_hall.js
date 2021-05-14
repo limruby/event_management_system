@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "./../../../../assets/css/agency.min.css";
-import NavBar from './../../navbar';
 import Footer from './../../footer';
 import {Image} from 'react-bootstrap';
 import sponsor_hall from "./../../../../assets/img/sponsor_hall.jpg";
@@ -17,7 +16,6 @@ function Sponsor_hall() {
 
   return (
     <div className="sponsor_hall">
-      <NavBar/>
   
 		<div className="sponsorhall-main-container row justify-content-center">
             <div className="sponsorhall-container col-lg-8">

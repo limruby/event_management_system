@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "../../../assets/css/agency.min.css";
-import NavBar from './../navbar';
 import Footer from './../footer';
 
 function LandingPage() {
 
   return (
     <div className="LandingPage">
-      <NavBar/>
-
       <header className="masthead">
         <div className="container">
           <div className="intro-text">

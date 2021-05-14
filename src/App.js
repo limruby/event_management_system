@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {isAuth} from './utils/isAuth'
@@ -12,6 +12,7 @@ import EditUserDetails from './components/site/userDashboard/edit';
 import eventLobby from './components/site/eventLobby/eventLobby';
 import sponsor_hall from './components/site/eventLobby/sponsor_hall/sponsor_hall';
 import competition_hall from './components/site/eventLobby/competition_hall/competition_hall';
+import Navbar from './components/site/navbar';
 // import AdminDashboard from './components/site/adminDashboard';
 import PageNotFound from './components/PageNotFound.js';
 
@@ -31,10 +32,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
   return (
     <QueryClientProvider client={queryClient}>
     <Router>
-      
+    <Navbar isAuth={loggedIn} />
       <Switch>
         <Route exact path='/' component={Landing}/>
         <Route exact path='/sign_in'  component={SignIn}/>

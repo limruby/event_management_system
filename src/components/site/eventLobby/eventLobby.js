@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from "react";
 import { useHistory,Link } from 'react-router-dom';
 import "../../../assets/css/agency.min.css";
-import NavBar from './../navbar';
 import Footer from './../footer';
 import './eventLobby.css';
 import sponsor_hall from "../../../assets/img/sponsor_hall.jpg";
@@ -15,7 +14,7 @@ function EventLobby() {
 const history = useHistory();
   return (
     <div className="eventLobby">
-      <NavBar/>
+  
   
 		<div className="eventLobby-main-container row justify-content-center">
             <div onClick={()=> history.push("/sponsor_hall")} className="eventLobby-container col-lg-4 zoom">
