@@ -17,7 +17,6 @@ const register = (req, res, next)=>{
     const email = req.body.email;
     const password = hashedPassword;
     
-
     const newAccount = new Account({
       role, 
       email,

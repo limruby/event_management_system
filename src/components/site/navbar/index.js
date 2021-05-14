@@ -41,6 +41,10 @@ const hideDropdown = e => {
     setShow(false);
 }
 
+const logout=()=>{
+	localStorage.clear();
+	window.location.href = '/';
+};
 
 window.addEventListener('resize', showButton);
 
@@ -53,7 +57,7 @@ window.addEventListener('resize', showButton);
     <IconContext.Provider value={{color:'#000'}}>
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home"> <Link to='home_section_id' className="navbar-logo" onClick={closeMobileMenu}>
+      <Navbar.Brand href="#home"> <Link to='#' className="navbar-logo" onClick={closeMobileMenu}>
            <img src={logo} height="50px" width="200px" alt="" />
         </Link></Navbar.Brand>
       <Nav className="ml-auto">    
@@ -116,10 +120,10 @@ window.addEventListener('resize', showButton);
               </NavDropdown>
           </li>
           <li className="nav-item">
-            <Nav.Link href="#">UserDashboard</Nav.Link>
+            <Nav.Link href="/user_dashboard">UserDashboard</Nav.Link>
           </li>
           <li className="nav-item">
-            <Nav.Link href="#">Log Out</Nav.Link>
+            <Nav.Link onClick={logout}>Log Out</Nav.Link>
           </li>
         </ul>
       
