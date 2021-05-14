@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+
+  mongodb:
+    image: mongo
+    restart: always
+    networks:
+      - server
+    ports:
+      - 27017:27017 # unsecure port, might not be needed as secure port 2096 is accessible
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+    labels:
+      - traefik.enable=true
+      - traefik.backend=mongodb
+      - traefik.tcp.routers.mongodb.rule=HostSNI(`url.for.db.domain`)
+      - traefik.docker.network=server
+      - traefik.tcp.routers.mongodb.entrypoints=mongo #mongo
+      - traefik.tcp.routers.mongodb.service=mongodb
+      - traefik.tcp.services.mongodb.loadbalancer.server.port=27017
+    container_name: mongodb
+  
+  emsapi:
+    build: .
+    depends_on:
+      - mongodb
+    restart: always
+    environment:
+      MONGODB_URL: mongodb://user:pass@mongodb:27017/db?authSource=admin&readPreference=primary
+      # MONGODB_URL: mongodb+srv://sudo:sudo@cluster0.konox.mongodb.net/db?authSource=admin&replicaSet=atlas-irsy7d-shard-0&readPreference=primary&appname=emsapi&ssl=true               
+    networks:
+      - server
+    ports:
+      - 9000:3000
+    container_name: emsapi
+
+networks:
+  server:
+    external: true

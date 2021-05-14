@@ -1,0 +1,52 @@
+.hide {
+display:none;
+}
+
+label{
+	display: block;
+}
+
+.form-input{
+	display: block;
+}
+
+.signup-main-container{
+  margin: 5%;
+  min-height: 420px;
+}
+
+.signup-form-container{
+  margin: auto;
+  width: 50%;
+  min-height: 100%;
+  background:rgb(255, 255,255, 0.7);
+  padding: 3%;
+  border-radius: 10px;
+}
+.signup-form-container p{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.category-dropdown{
+  text-align: center;
+}
+.category-dropdown button {
+    background: #343a40;
+    width: 200px;
+}
+
+.empty-container {
+    height: 300px;
+}
+
+.form-group{
+  margin-bottom: 5%;
+}
+.form-group p{
+  font-size: 15px;
+  color: red;
+}
+.form-group span{
+  color: red;
+}
