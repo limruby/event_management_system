@@ -79,13 +79,10 @@ const inputChange = input => e => {
 
                 <div className="form-group">
                     <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
-                    <img src={data.company_logo } alt="" />
+                    <img src={data.company_logo} alt="" />
                     <input type="file" onChange={inputChange('company_logo')} name="upload_file"/>
                 </div>
-	    
-
                 <br />
-
                <div className="col-4 btn-group">
                     <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
@@ -95,9 +92,7 @@ const inputChange = input => e => {
             </div>
             </form>
          </>
-
 		)
-
 }
 
 export default EditProfile;

@@ -72,11 +72,6 @@ export class Profiles extends Component {
                     />
                 </div>
 
-                <div className="form-group">
-                    <p>Please upload company logo with transparent background.</p>
-                    <input type="file" onChange={inputChange('company_logo')} />
-                </div>
-
                 <br />
 
                 <div className="row">

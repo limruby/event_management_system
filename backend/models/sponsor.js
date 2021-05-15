@@ -56,7 +56,7 @@ const sponsorSchema = new Schema({
     required: true
   }, 
   company_logo: {
-    type: Binary,
+    type: Buffer,
     required: false
   }, 
 
