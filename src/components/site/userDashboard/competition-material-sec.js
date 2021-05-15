@@ -1,20 +1,47 @@
+import React, {useState, useEffect} from 'react';
+
+
 const PromoContent = ({user}) =>  {
 
-/*
+ 
+console.log(user);
+
 function displayPoster(){
-  if(user.poster[0]){
-    return (<p>{user.poster[0].name}</p>)
-  }  
-}
-*/
-function displayAchievement(){
-  if(user.achievement){
+
+  // if(user.poster!=undefined){  //after mount
+  //     if(user.poster.length){
+  //       return (<p>{user.poster[0].name}</p>)
+  //     }
+  //     else{
+  //       return (<p>empty</p>)
+  //     }
+  // }  
+
+  if(user.poster){
     var section = [];
 
-    for (var i=0; i<user.achievement.length; i++){
+    for (var i=0; i<user.poster.length; i++){
         section.push(
             <li>
-                Name: {user.achievement.name}
+                Name: {user.poster.name}
+            </li>
+        );
+    }
+    return section;
+
+  }
+
+}
+
+
+function displayAchievement(){
+  if(user.achievements){
+    var section = [];
+
+    for (var i=0; i<user.achievements.length; i++){
+        section.push(
+            <li>
+                Name: {user.achievements.name}
             </li>
         );
     }
@@ -62,11 +89,11 @@ function displayVideo(){
 }
 
 
-
   return (       
     <div>
+
     <h5>Poster</h5>
-     {/*displayPoster()*/} 
+    {displayPoster()}
     <hr/>
     <h5>Achievements</h5>    
     <ul>
@@ -90,8 +117,6 @@ function displayVideo(){
   );
  
 }
-
-
 
 
 export default PromoContent;

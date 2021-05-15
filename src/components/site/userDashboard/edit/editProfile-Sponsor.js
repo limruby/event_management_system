@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
+
 function EditProfile({data, setData}) {
 
 /////////////////////get login user (REPLACE THIS) ////////////////
@@ -23,7 +24,7 @@ const inputChange = input => e => {
         }
         else{
         	 ///////update to db /////////////
-             axiosInstance.post("/competitors/update", data)
+             axiosInstance.post("/sponsors/update", data)
              .then(function(response) {
                window.location.href = '/user_dashboard';
              }).catch(function(error) {
@@ -31,20 +32,6 @@ const inputChange = input => e => {
              })
         }
     }
-/////////////////////////////////////////////////////////////
-const uploadFileHandler = (e) => {
-    const file = e.target.files[0];
-    const bodyFormData = new FormData();
-    bodyFormData.append('image', file);
-    try {
-    axiosInstance.post("/uploads", bodyFormData, {
-        headers: { 'Content-Type': 'multipart/form-data'}
-    })
-
-    }catch(error){
-        console.log(error);
-    }
-}
 
 /////////////////////////////////////////////////////////////
 	return(
@@ -93,7 +80,7 @@ const uploadFileHandler = (e) => {
                 <div className="form-group">
                     <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
                     <img src={data.company_logo } alt="" />
-                    <input type="file" name={data.company_name +" logo"} onChange={uploadFileHandler} />
+                    <input type="file" onChange={inputChange('company_logo')} name="upload_file"/>
                 </div>
 	    
 
