@@ -97,13 +97,11 @@ const competitorSchema = new Schema({
     required: true
   },
 
-  poster:{
-    type: Buffer,
-    default: null
-  },
-  achievement:[subSchema],
-  publication:[subSchema],
-  grant:[subSchema],
+  poster:[subSchema],
+  achievements:[subSchema],
+  publications:[subSchema],
+  grants:[subSchema],
+  
   video:[subSchema],
 
   abstract:[abstractSchema],

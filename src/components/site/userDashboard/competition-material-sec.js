@@ -119,6 +119,4 @@ function displayVideo(){
 }
 
 
-
-
 export default PromoContent;

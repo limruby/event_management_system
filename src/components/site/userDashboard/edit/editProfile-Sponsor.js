@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
+
 function EditProfile({data, setData}) {
 
 /////////////////////get login user (REPLACE THIS) ////////////////
@@ -31,8 +32,8 @@ const inputChange = input => e => {
              })
         }
     }
-/////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////
 	return(
 		<>
 		<form onSubmit={handleForm}>
@@ -77,9 +78,9 @@ const inputChange = input => e => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="company_website"><span>*</span>Company Logo</label><br />
+                    <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
                     <img src={data.company_logo } alt="" />
-                    <input type="file" onChange={inputChange('company_logo')} />
+                    <input type="file" onChange={inputChange('company_logo')} name="upload_file"/>
                 </div>
 	    
 

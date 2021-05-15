@@ -1,3 +1,4 @@
+const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -55,8 +56,8 @@ const sponsorSchema = new Schema({
     required: true
   }, 
   company_logo: {
-    type: Buffer,
-    required: true
+    type: Binary,
+    required: false
   }, 
 
   poster:[subSchema],
