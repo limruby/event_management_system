@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-var multer  = require('multer');
+const multer  = require('multer');
+const path = require ('path');
 
 require('dotenv').config();
 
@@ -37,27 +38,4 @@ app.use('/sponsors', sponsorsRouter)
 app.listen(port, () => {
 	console.log('Now starting at port: 5000');
 });
-
-var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-	  cb(null, 'uploads')
-	},
-	filename: function (req, file, cb) {
-	  cb(null, file.fieldname + '-' + Date.now())
-	}
-  })
-   
-  var upload = multer({ storage: storage })
-  
-app.post('/uploadfile', upload.single('company_logo'), (req, res, next) => {
-  const file = req.file
-  if (!file) {
-    const error = new Error('Please upload a file')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-    res.send(file)
-  
-})
-
 

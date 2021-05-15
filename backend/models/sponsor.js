@@ -55,11 +55,8 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
-  company_logo: {
-    type: Binary,
-    required: false
-  }, 
 
+  company_logo:[subSchema],
   poster:[subSchema],
   video:[subSchema],
 
