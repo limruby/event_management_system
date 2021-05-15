@@ -2,17 +2,6 @@ const Sponsor = require('../models/sponsor');
 // const mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectId;
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-})
- 
-var upload = multer({ storage: storage })
-
 const create = (req, res, next)=>{
 
   const account_id = req.body.account_id;
