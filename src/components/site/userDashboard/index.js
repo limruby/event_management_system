@@ -51,6 +51,26 @@ function UserDashboard() {
 
     }, [account_id]);
 //////////////////////////////////////////////////////////////////////////////////
+ function welcome(role){
+	switch(role){
+		case 'Sponsor':
+        return (
+			<div className="row-username">
+				<p>Welcome {user.company_name}</p>
+			</div>);
+
+		case 'Competitor':
+		return (
+			<div className="row-username">
+				<p>Welcome {user.name}</p>
+			</div>);
+		default:
+        return (
+			<div className="row-username">
+				<p>Welcome back</p>
+			</div>);
+	}
+ }
 
   function TabTitles(role){
     switch(role){
@@ -97,10 +117,7 @@ function UserDashboard() {
   return (
    <>
 
-   <div className="row-username">
-       <p>Welcome {user.name}</p>
-
-   </div>  
+   {welcome(account.role)} 
 
    <div className="wrapper">
        <Tab.Container id="left-tabs-example" defaultActiveKey="Account-Profiles">
