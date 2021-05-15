@@ -23,7 +23,7 @@ const inputChange = input => e => {
         }
         else{
         	 ///////update to db /////////////
-             axiosInstance.post("/competitors/update", data)
+             axiosInstance.post("/sponsors/update", data)
              .then(function(response) {
                window.location.href = '/user_dashboard';
              }).catch(function(error) {
