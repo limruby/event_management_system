@@ -133,16 +133,5 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 			<></>
 		)
 	}
-
-
-
-
-
-
-
-
-
 }
-
-
 export default FormNavigator;
