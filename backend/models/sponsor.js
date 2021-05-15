@@ -56,7 +56,7 @@ const sponsorSchema = new Schema({
   }, 
   company_logo: {
     type: Buffer,
-    required: true
+    required: false
   }, 
 
   poster:[subSchema],

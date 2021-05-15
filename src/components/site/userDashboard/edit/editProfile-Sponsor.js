@@ -32,7 +32,21 @@ const inputChange = input => e => {
         }
     }
 /////////////////////////////////////////////////////////////
+const uploadFileHandler = (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+    try {
+    axiosInstance.post("/uploads", bodyFormData, {
+        headers: { 'Content-Type': 'multipart/form-data'}
+    })
 
+    }catch(error){
+        console.log(error);
+    }
+}
+
+/////////////////////////////////////////////////////////////
 	return(
 		<>
 		<form onSubmit={handleForm}>
@@ -77,16 +91,16 @@ const inputChange = input => e => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="company_website"><span>*</span>Company Logo</label><br />
+                    <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
                     <img src={data.company_logo } alt="" />
-                    <input type="file" onChange={inputChange('company_logo')} />
+                    <input type="file" name={data.company_name +" logo"} onChange={uploadFileHandler} />
                 </div>
 	    
 
                 <br />
 
                <div className="col-4 btn-group">
-                    <Link to="/data_dashboard">
+                    <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>
                     <input className="btn btn-primary" type="submit" value="Update" />
