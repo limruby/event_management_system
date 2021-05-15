@@ -1,8 +1,25 @@
-import React from 'react';
-
-
 const Profiles = ({user,role}) =>  {
 
+function display(){
+var section =[];
+if(user.company_logo){
+
+    for (var i=0; i<user.company_logo.length; i++){
+	const imageBuffer = Buffer.from(user.company_logo[0].source.data); 
+        section.push(
+            <li>
+			<img src={imageBuffer} alt={user.company_logo[0].name}/>
+           
+            </li>
+        );
+    }
+	}else{
+	console.log("no data");
+	
+	}
+    return section;
+
+  }
    
   if(role === 'Competitor'){
     return ( 
@@ -51,7 +68,7 @@ const Profiles = ({user,role}) =>  {
           </li>
           <li>
             <p> Company Logo: </p>
-              <img src={user.company_logo } alt="" />
+              {display()}
           </li>
           <li>
             <p> Company Website URL: <a href={user.company_website}>{user.company_website}</a></p>
@@ -69,11 +86,6 @@ const Profiles = ({user,role}) =>  {
       );
     }
  
-
-
 }
-
-
-
 
 export default Profiles;

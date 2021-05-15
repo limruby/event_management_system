@@ -1,12 +1,11 @@
-
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
-
-
+ 
+ 
 function EditProfile({data, setData}) {
-
+ 
 /////////////////////get login user (REPLACE THIS) ////////////////
 const inputChange = input => e => {
     setData({
@@ -14,7 +13,7 @@ const inputChange = input => e => {
         [input]: e.target.value
     });
 };
-
+ 
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
@@ -23,7 +22,7 @@ const inputChange = input => e => {
             alert("Form not fill");
         }
         else{
-        	 ///////update to db /////////////
+             ///////update to db /////////////
              axiosInstance.post("/sponsors/update", data)
              .then(function(response) {
                window.location.href = '/user_dashboard';
@@ -32,14 +31,43 @@ const inputChange = input => e => {
              })
         }
     }
-
+    const uploadLogoHandler = (element, index) => e => {
+	console.log("asd");
+        if(element == 'company_logo'){
+          let selectedFile = e.target.files;
+            let file = null;
+            let fileName = "";
+            //Check File is not Empty
+            if (selectedFile.length > 0) {
+                // Select the very first file from list
+                let fileToLoad = selectedFile[0];
+                fileName = fileToLoad.name;
+                // FileReader function for read the file.
+                let fileReader = new FileReader();
+                // Onload of file read the file content
+                fileReader.onload = function(fileLoadedEvent) {
+                    file = fileLoadedEvent.target.result;
+                    // Print data in console
+                  //data.company_logo[0]['name'] = fileName;
+                  //data.company_logo[0]['source'] = fileReader.result;
+				data.company_logo={
+				'name':fileName,
+				'source':fileReader.result
+				}
+                  //data.company_logo.push({'name':fileName,'source':fileReader.result})
+                };
+            // Convert data to base64
+                 var baseFile = fileReader.readAsDataURL(fileToLoad);
+            }
+        }
+    }
 /////////////////////////////////////////////////////////////
-	return(
-		<>
-		<form onSubmit={handleForm}>
-		<div className="form-container">
+    return(
+        <>
+        <form onSubmit={handleForm} action="/uploadfile" enctype="multipart/form-data" method="POST">
+        <div className="form-container">
                 <h1 className="mb-5">Edit Profile Info</h1>
-
+ 
               
                  <div className="form-group">
                     <label htmlFor="company_name"><span>*</span>Company Name (as per SME license)</label>
@@ -61,14 +89,14 @@ const inputChange = input => e => {
                     onChange={inputChange('company_contact')} value={data.company_contact} 
                     />
                 </div>
-
+ 
                 <div className="form-group">
                     <label htmlFor="company_address"><span>*</span>Company Address</label>
                     <textarea className="form-control" id="company_address" cols="30" rows="10"
                     onChange={inputChange('company_address')} value={data.company_address} 
                     ></textarea>
                 </div>
-
+ 
                 <div className="form-group">
                     <label htmlFor="company_website"><span>*</span>Company Website</label>
                     <input className="form-control" type='text' name='company_website' id="company_website"
@@ -76,11 +104,10 @@ const inputChange = input => e => {
                     onChange={inputChange('company_website')} value={data.company_website} 
                     />
                 </div>
-
+ 
                 <div className="form-group">
                     <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
-                    <img src={data.company_logo} alt="" />
-                    <input type="file" onChange={inputChange('company_logo')} name="upload_file"/>
+                    <input type="file" onChange={uploadLogoHandler('company_logo', 0)} />
                 </div>
                 <br />
                <div className="col-4 btn-group">
@@ -92,7 +119,8 @@ const inputChange = input => e => {
             </div>
             </form>
          </>
-		)
+        )
 }
-
+ 
 export default EditProfile;
+ 
