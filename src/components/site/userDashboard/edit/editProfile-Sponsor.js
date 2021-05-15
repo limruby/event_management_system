@@ -79,7 +79,7 @@ const inputChange = input => e => {
                 <div className="form-group">
                     <label htmlFor="company_website"><span>*</span>Company Logo</label><br />
                     <img src={data.company_logo } alt="" />
-                    <input type="file" onChange={inputChange('company_logo')} />
+                    <input type="file" onChange={inputChange('company_logo')} name="upload_file"/>
                 </div>
 	    
 

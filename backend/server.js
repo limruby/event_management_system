@@ -35,3 +35,14 @@ app.listen(port, () => {
 	console.log('Now starting at port: 5000');
 });
 
+
+app.post('/uploadfile', upload.single('upload_file'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+    res.send(file)
+  
+})
