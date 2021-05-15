@@ -54,11 +54,12 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
-
-  poster:{
+  company_logo: {
     type: Buffer,
-    default: null
-  },
+    required: true
+  }, 
+
+  poster:[subSchema],
   video:[subSchema],
 
 }, {

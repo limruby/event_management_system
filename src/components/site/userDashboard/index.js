@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axiosInstance from '../../../utils/axiosConfig.js';
 
-import Navbar from './../navbar';
 import Footer from './../footer';
 import {Link} from 'react-router-dom';
 import './userDashboard.css';
@@ -28,21 +27,29 @@ function UserDashboard() {
   const account_id = localStorage.getItem('user_id');
 
   useEffect(() => {
-      axiosInstance .get("/competitors/read", {params:{account_id:account_id}})
+      axiosInstance.get("/competitors/read", {params:{account_id:account_id}})
+        .then(function(response) {
+          setUser(response.data.data);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      
+      axiosInstance.get("/sponsors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
 
-      axiosInstance .get("/accounts/read", {params:{account_id:account_id}})
+      axiosInstance.get("/accounts/read", {params:{account_id:account_id}})
         .then(function(response) {
           setAccount(response.data.data);
         }).catch(function(error) {
           console.log(error);
         })
 
-    }, []);
+
+    }, [account_id]);
 //////////////////////////////////////////////////////////////////////////////////
 
   function TabTitles(role){
@@ -89,7 +96,6 @@ function UserDashboard() {
 
   return (
    <>
-   <Navbar/>
 
    <div className="row-username">
        <p>Welcome {user.name}</p>
@@ -115,7 +121,7 @@ function UserDashboard() {
           <Card.Body>
           <div className="sec-container">
                     <Link to='/user_dashboard/edit_account'>
-                      <a className="edit" href=""><FaEdit/> Edit Email</a>
+                      <a className="edit" href="/user_dashboard/edit_account"><FaEdit/> Edit Email</a>
                     </Link>
                     <h2> Account Details</h2>     
                     <ul>
@@ -152,7 +158,7 @@ function UserDashboard() {
 
                   <div className="sec-container">
                     <Link to='/user_dashboard/edit_content'>
-                      <a className="edit" href=""><FaEdit/> Edit</a>
+                      <a className="edit" href="/user_dashboard/edit_content"><FaEdit/> Edit</a>
                     </Link>
                     <h5> Promotional Content</h5>     
                     <PromoContent user={user}/>

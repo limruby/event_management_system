@@ -2,41 +2,35 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import axiosInstance from '../../../../utils/axiosConfig.js';
 
-function EditAccount() {
+function EditProfile({data, setData}) {
 
 /////////////////////get login user (REPLACE THIS) ////////////////
-const [user, setState] = useState({
-    
-      company_name:'UM',
-      PIC_name: 'PICUser',
-      phone: '011111111111',
-      company_address: 'UM, Jln Uni, 560000',
-      company_website: 'https://www.youtube.com/',
-      company_logo:'https://www.w3schools.com/images/w3schools_green.jpg',   
-
-});
-
-    const inputChange = input => e => {
-        setState({
-        	...user,
-            [input]: e.target.value
-        });
-    };
+const inputChange = input => e => {
+    setData({
+        ...data,
+        [input]: e.target.value
+    });
+};
 
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
-          if (user.company_name ==""||user.PIC_name==""||user.phone==""||user.company_address==""
-            ||user.company_website==""|| user.company_logo==""){
+          if (data.company_name === ""||data.company_pic_name ===""||data.company_contact ===""||data.company_address===""
+            ||data.company_website===""|| data.company_logo===""){
             alert("Form not fill");
         }
         else{
-        	///////update to db /////////////
-        	console.log(user);
+        	 ///////update to db /////////////
+             axiosInstance.post("/competitors/update", data)
+             .then(function(response) {
+               window.location.href = '/user_dashboard';
+             }).catch(function(error) {
+               console.log(error);
+             })
         }
     }
-
 /////////////////////////////////////////////////////////////
 
 	return(
@@ -50,27 +44,27 @@ const [user, setState] = useState({
                     <label htmlFor="company_name"><span>*</span>Company Name (as per SME license)</label>
                     <input type="text" className="form-control" name="company_name" id="company_name"
                     placeholder='Company Name' required
-                    onChange={inputChange('company_name')} value={user.company_name} />
+                    onChange={inputChange('company_name')} value={data.company_name} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="PIC_name"><span>*</span>Company Person In Charge (PIC)</label>
-                    <input className="form-control" type='text' name='PIC_name' id="PIC_name"
+                    <label htmlFor="company_pic_name"><span>*</span>Full Name of Person In Charge (PIC)</label>
+                    <input className="form-control" type='text' name='company_pic_name' id="company_pic_name"
                     placeholder='Full Name of PIC' required
-                    onChange={inputChange('PIC_name')} value={user.PIC_name} 
+                    onChange={inputChange('company_pic_name')} value={data.company_pic_name} 
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone"><span>*</span>Phone Number</label>
-                    <input className="form-control" type='text' name='phone' id="phone"
-                    placeholder='Phone Number' required
-                    onChange={inputChange('phone')} value={user.phone} 
+                    <label htmlFor="company_contact"><span>*</span>Contact Number</label>
+                    <input className="form-control" type='text' name='company_contact' id="company_contact"
+                    placeholder='Contact Number' required
+                    onChange={inputChange('company_contact')} value={data.company_contact} 
                     />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="company_address"><span>*</span>Company Address</label>
                     <textarea className="form-control" id="company_address" cols="30" rows="10"
-                    onChange={inputChange('company_address')} value={user.company_address} 
+                    onChange={inputChange('company_address')} value={data.company_address} 
                     ></textarea>
                 </div>
 
@@ -78,13 +72,13 @@ const [user, setState] = useState({
                     <label htmlFor="company_website"><span>*</span>Company Website</label>
                     <input className="form-control" type='text' name='company_website' id="company_website"
                     placeholder='URL' required
-                    onChange={inputChange('company_website')} value={user.company_website} 
+                    onChange={inputChange('company_website')} value={data.company_website} 
                     />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="company_website"><span>*</span>Company Logo</label><br />
-                    <img src={user.company_logo } alt="" />
+                    <img src={data.company_logo } alt="" />
                     <input type="file" onChange={inputChange('company_logo')} />
                 </div>
 	    
@@ -92,7 +86,7 @@ const [user, setState] = useState({
                 <br />
 
                <div className="col-4 btn-group">
-                    <Link to="/user_dashboard">
+                    <Link to="/data_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>
                     <input className="btn btn-primary" type="submit" value="Update" />
@@ -105,4 +99,4 @@ const [user, setState] = useState({
 
 }
 
-export default EditAccount;
+export default EditProfile;

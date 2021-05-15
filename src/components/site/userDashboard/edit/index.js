@@ -25,14 +25,20 @@ function FormNavigator() {
   const account_id = localStorage.getItem('user_id');
 
   useEffect(() => {
-      axiosInstance .get("/competitors/read", {params:{account_id:account_id}})
+      axiosInstance.get("/competitors/read", {params:{account_id:account_id}})
+        .then(function(response) {
+          setUser(response.data.data);
+        }).catch(function(error) {
+          console.log(error);
+        });
+	axiosInstance.get("/sponsors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
 
-      axiosInstance .get("/accounts/read", {params:{account_id:account_id}})
+      axiosInstance.get("/accounts/read", {params:{account_id:account_id}})
         .then(function(response) {
           setAccount(response.data.data);
         }).catch(function(error) {
@@ -46,26 +52,26 @@ const thePath = location.pathname;
 const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 
 
-	if(lastPath =='edit_account'){
+	if(lastPath === 'edit_account'){
 		return( 
 		    <div className="form-main-container">
 				<EditAccount data={account} setData={setAccount}/>
 			</div>
 		)
 	}
-	else if(lastPath =='edit_password'){
+	else if(lastPath === 'edit_password'){
 		return( 
 		    <div className="form-main-container">
 				<EditPassword data={account} setData={setAccount}/>
 			</div>
 		)
 	}
-	else if (account.role=='Sponsor'){
+	else if (account.role === 'Sponsor'){
 		switch(lastPath){
 			case 'edit_profile':
 				return( 
 				    <div className="form-main-container">
-						<EditProfile_S/>
+						<EditProfile_S data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -73,7 +79,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 			case 'edit_content':
 				return( 
 				    <div className="form-main-container">
-						<EditPromoContent/>
+						<EditPromoContent data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -82,7 +88,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				
 		}
 	}
-	else if (account.role=='Competitor'){
+	else if (account.role === 'Competitor'){
 		switch(lastPath){
 			case 'edit_profile':
 				return( 

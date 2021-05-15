@@ -1,15 +1,12 @@
-import React from 'react';
-
-
 const PromoContent = ({user}) =>  {
 
-
+/*
 function displayPoster(){
   if(user.poster[0]){
     return (<p>{user.poster[0].name}</p>)
   }  
 }
-
+*/
 function displayAchievement(){
   if(user.achievement){
     var section = [];
@@ -69,7 +66,7 @@ function displayVideo(){
   return (       
     <div>
     <h5>Poster</h5>
-    {displayPoster()}
+     {/*displayPoster()*/} 
     <hr/>
     <h5>Achievements</h5>    
     <ul>

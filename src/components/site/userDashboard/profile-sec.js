@@ -4,7 +4,7 @@ import React from 'react';
 const Profiles = ({user,role}) =>  {
 
    
-  if(role=='Competitor'){
+  if(role === 'Competitor'){
     return ( 
           
       <div>
@@ -28,7 +28,7 @@ const Profiles = ({user,role}) =>  {
       </div>
      );
    }
-  else if(role=='Sponsor'){
+  else if(role === 'Sponsor'){
 
 
     return (       
@@ -41,20 +41,20 @@ const Profiles = ({user,role}) =>  {
             <p> Company Name: {user.company_name} </p>
           </li>
           <li>
-            <p> Company PIC Fulle Name: {user.PIC_name} </p>
+            <p> Person In Charge's Full Name: {user.company_pic_name} </p>
           </li>
           <li>
-            <p> Phone No: {user.phone}</p>
+            <p> Contact Number: {user.company_contact}</p>
           </li>
           <li>
             <p> Company Address: {user.company_address}</p>
           </li>
           <li>
-            <p> Compamy Logo: </p>
+            <p> Company Logo: </p>
               <img src={user.company_logo } alt="" />
           </li>
           <li>
-            <p> Company URL: <a href={user.company_website}>{user.company_website}</a></p>
+            <p> Company Website URL: <a href={user.company_website}>{user.company_website}</a></p>
           </li>
         </ul>
       </div>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditAccount({data, setData}) {
@@ -15,7 +14,7 @@ function EditAccount({data, setData}) {
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
-       if (data.email ==""){
+       if (data.email === ""){
             alert("Form not fill");
         }
         else{
