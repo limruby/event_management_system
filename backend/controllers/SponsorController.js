@@ -11,6 +11,7 @@ const create = (req, res, next)=>{
   const company_contact = req.body.company_contact;
   const company_address = req.body.company_address;
   const company_website = req.body.company_website;
+  const company_logo = req.body.company_logo;
 
     const newSponsor = new Sponsor({
     account_id, 
@@ -20,6 +21,7 @@ const create = (req, res, next)=>{
     company_contact, 
     company_address, 
     company_website, 
+    company_logo
     });
 
     newSponsor.save()
@@ -55,6 +57,7 @@ const update = (req, res, next)=>{
     const company_contact = req.body.company_contact;
     const company_address = req.body.company_address;
     const company_website = req.body.company_website;
+    const company_logo = req.body.company_logo;
     const poster = req.body.poster;
     const video = req.body.video;
 
@@ -66,6 +69,7 @@ const update = (req, res, next)=>{
     company_contact, 
     company_address, 
     company_website, 
+    company_logo,
     poster,
     video,
     });

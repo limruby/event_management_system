@@ -1,12 +1,9 @@
-
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditAccount({data, setData}) {
-
-console.log(data)
 
     const inputChange = input => e => {
         setData({
@@ -25,7 +22,7 @@ console.log(data)
             ///////update to db /////////////
             axiosInstance.post("/accounts/update", data)
             .then(function(response) {
-              // window.location.href = '/user_dashboard';
+              window.location.href = '/user_dashboard';
             }).catch(function(error) {
               console.log(error);
             })

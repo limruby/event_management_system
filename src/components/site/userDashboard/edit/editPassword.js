@@ -1,20 +1,22 @@
-
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import axiosInstance from '../../../../utils/axiosConfig.js';
 
-function EditAccount() {
+function EditAccount({data, setData}) {
 
 /////////////////////get login user (REPLACE THIS) ////////////////
 const [user, setState] = useState({
+      _id: '',
       newPassword: '',
       confirmPassword:''
 
 });
+    
 
     const inputChange = input => e => {
         setState({
-        	...user,
+            ...user,
             [input]: e.target.value
         });
     };
@@ -22,43 +24,53 @@ const [user, setState] = useState({
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
-        if (user.password !== user.confirmPassword) {
+        if (user.newPassword !== user.confirmPassword) {
             alert("Password don't match");  
         }
-        else if (user.password=="" || user.confirmPassword==""){
+        else if (user.newPassword=="" || user.confirmPassword==""){
             alert("Form not fill");
         }
         else{
-        	///////update to db /////////////
-        	console.log(user);
+            setState({
+                ...user,
+                '_id': data._id
+            });
+             console.log(user);   
+            ///////update to db /////////////
+             axiosInstance.post("/accounts/update", user)
+            .then(function(response) {
+              // window.location.href = '/user_dashboard';
+            }).catch(function(error) {
+              console.log(error);
+            })
         }
     }
 
 /////////////////////////////////////////////////////////////
 
-	return(
-		<>
+    return(
+        <>
             <form onSubmit={handleForm}>
-			<div className="form-container">
+            <div className="form-container">
                 <h1 className="mb-5">Edit Password</h1>
                 <span>(Min 8 characters)</span>
-	            <div className="form-group">
-	                <label htmlFor="password">New Password </label>
-	                <input className="form-control" type='password'name='password' id="password"
-	                placeholder='password' required
-	                minLength="8"
-	                onChange={inputChange('newPassword')} value={user.newPassword} />
-	            </div>
+                <div className="form-group">
+                    <label htmlFor="password">New Password </label>
+                    <input className="form-control" type='password'name='password' id="password"
+                    placeholder='password' required
+                    minLength="8"
+                    onChange={inputChange('newPassword')} value={user.newPassword} />
+                </div>
 
-	            <div className="form-group">
-	                <label htmlFor="confirmPassword">Confirm New Password </label>
-	                <input className="form-control" type='password'name='confirmPassword' id="confirmPassword"
-	                placeholder='password' required
-	                minLength="8"
-	                onChange={inputChange('confirmPassword')} value={user.confirmPassword} />
-	                
-	            </div>
-	    
+                <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirm New Password </label>
+                    <input className="form-control" type='password'name='confirmPassword' id="confirmPassword"
+                    placeholder='password' required
+                    minLength="8"
+                    onChange={inputChange('confirmPassword')} value={user.confirmPassword} />
+                    
+                </div>
+        
 
                 <br />
 
@@ -72,7 +84,7 @@ const [user, setState] = useState({
             </form>
          </>
 
-		)
+        )
 
 }
 

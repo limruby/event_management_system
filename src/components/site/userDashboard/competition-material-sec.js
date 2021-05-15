@@ -1,101 +1,93 @@
 import React from 'react';
 
 
-////////////////////////////get logined user promotional content or competition material///////////////////////////////////
+const PromoContent = ({user}) =>  {
 
 
-  const result = {
-    poster:{
-      name: "competition.jpg",
-      path: "https://www.w3schools.com/images/w3schools_green.jpg",
-    },
-    achievements: [
-      {
-        name: 'first sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },
-      {
-        name: 'second sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },{
-        name: 'third sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },
-    ],
+function displayPoster(){
+  if(user.poster[0]){
+    return (<p>{user.poster[0].name}</p>)
+  }  
+}
 
-    publications: [
-      {
-        name: 'first sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },
-      {
-        name: 'second sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },{
-        name: 'third sample',
-        path: 'https://www.w3schools.com/images/w3schools_green.jpg'
-      },
-    ],
-    grants: [
-        {
-          name: 'first sample'          
-        },
-        {
-          name: 'second sample'
-        }
-      ],
-    video: {
-      name: "Video Title",
-      path: "https://www.w3schools.com/images/w3schools_green.jpg",
+function displayAchievement(){
+  if(user.achievement){
+    var section = [];
+
+    for (var i=0; i<user.achievement.length; i++){
+        section.push(
+            <li>
+                Name: {user.achievement.name}
+            </li>
+        );
     }
+    return section;
 
   }
+}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+function displayPublication(){
+  if(user.publication){
+    var section = [];
+
+    for (var i=0; i<user.publication.length; i++){
+        section.push(
+            <li>
+                Name: {user.publication.name}
+            </li>
+        );
+    }
+    return section;
+
+  }
+}
+
+function displayGrant(){
+  if(user.grant){
+    var section = [];
+
+    for (var i=0; i<user.grant.length; i++){
+        section.push(
+            <li>
+                Name: {user.grant.name}
+            </li>
+        );
+    }
+    return section;
+
+  }
+}
+
+function displayVideo(){
+  if(user.poster){
+    return (<a href="{user.video.name}">{user.video.name}</a>)
+  }  
+}
 
 
-const PromoContent = ({user}) =>  {
 
   return (       
     <div>
     <h5>Poster</h5>
-    <p>{result.poster.name}</p>
-
+    {displayPoster()}
+    <hr/>
     <h5>Achievements</h5>    
     <ul>
-      {result.achievements.map((achievement)=>(
-
-        <li>
-          Name: {achievement.name}
-        </li>
-
-        ))}
+      {displayAchievement()}
     </ul>
-
+    <hr/>
     <h5>Publications</h5>    
     <ul>
-      {result.publications.map((publication)=>(
-
-        <li>
-          Name: {publication.name}
-        </li>
-
-        ))}
+      {displayPublication()}
     </ul>
-
+    <hr/>
     <h5>Grants</h5>    
     <ul>
-      {result.grants.map((grant)=>(
-
-        <li>
-          Name: {grant.name}
-        </li>
-
-        ))}
+      {displayGrant()}
     </ul>
-
+    <hr/>
     <h5>Video</h5>
-    <a href="{result.video.name}">{result.video.name}</a>
+     {displayVideo()}
     
     </div>
   );

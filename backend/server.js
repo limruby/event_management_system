@@ -31,6 +31,9 @@ app.use('/competitors', competitorsRouter)
 const sponsorsRouter = require('./routes/sponsors');
 app.use('/sponsors', sponsorsRouter)
 
+const uploadRouter = require('./routes/upload');
+app.use('/upload', uploadRouter)
+
 
 
 

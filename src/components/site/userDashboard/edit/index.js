@@ -39,14 +39,12 @@ function FormNavigator() {
           console.log(error);
         })
 
-    }, []);
-
-
+    },[]);
 //////////////////////////////////////////////////////////////////////////////////
 const location = useLocation();
 const thePath = location.pathname;
-const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1)
-	
+const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
+
 
 	if(lastPath =='edit_account'){
 		return( 
@@ -58,7 +56,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1)
 	else if(lastPath =='edit_password'){
 		return( 
 		    <div className="form-main-container">
-				<EditPassword/>
+				<EditPassword data={account} setData={setAccount}/>
 			</div>
 		)
 	}
@@ -89,7 +87,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1)
 			case 'edit_profile':
 				return( 
 				    <div className="form-main-container">
-						<EditProfile_C/>
+						<EditProfile_C data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -105,7 +103,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1)
 			case 'edit_content':
 				return( 
 				    <div className="form-main-container">
-						<EditCompetitionMaterial/>
+						<EditCompetitionMaterial data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -129,6 +127,11 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1)
 			default:
 				
 		}
+	}
+	else{
+		return(
+			<></>
+		)
 	}
 
 
