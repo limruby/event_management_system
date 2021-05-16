@@ -1,21 +1,56 @@
-import React, {useState, useEffect} from 'react';
-import axiosInstance from '../../../utils/axiosConfig.js';
 
 
 
-const PromoContent = () =>  {
+const AbstractContent = ({user}) =>  {
 
-  const [result, setResult]=useState([]);
+  console.log(user);
 
+  function displayTitle(){
 
-
-  function displayResult(){
+    if(user.abstract!==undefined){
     var section = [];
-    if(result.keywords){
+
+    for (var i=0; i<user.abstract.length; i++){
+        section.push(
+            <p>
+                <b>Title</b>: {user.abstract[0].title}
+            </p>
+        );
+    }
+
+    return section;
+  }
+  }
+
+  
+  function displayContent(){
+      var section = [];
+
+    if(user.abstract!=null){
+      for (var i=0; i<user.abstract.length; i++){
+        section.push(
+            <p>
+                <b>Content</b>: {user.abstract[0].content}
+            </p>
+        );
+    }
+    }
+    return section;
+    
+  }
+
+
+
+  function displayKeywords(){
+    var section = [];
+    if(user.abstract!=null){
+
+    if(user.abstract[0]!=null){
+      if(user.abstract[0]['keywords']!=undefined){
         section.push(
             <div>
-                <ul>
-                  {result.keywords.map((keyword)=>(
+                <ul> <b>Keywords</b>:
+                  {user.abstract[0]['keywords'].map((keyword)=>(
                     <li>
                      {keyword}
                     </li>
@@ -24,19 +59,19 @@ const PromoContent = () =>  {
             </div>
         );
     }
+  }
+ }
     return section;
   }
-
 
   return (       
     <div>
       <div id="pdfAbstract">
-        <p>{result.title}</p>
-        <p>{result.author}</p>
-        <p>{result.affiliation}</p>
-        <p>{result.abstract}</p>
+       
 
-        {displayResult()}
+        {displayTitle()}
+        {displayContent()}
+        {displayKeywords()}
         
       </div>  
       
@@ -48,4 +83,4 @@ const PromoContent = () =>  {
 
 
 
-export default PromoContent;
+export default AbstractContent;

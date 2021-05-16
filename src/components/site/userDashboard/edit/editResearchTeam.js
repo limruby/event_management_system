@@ -2,176 +2,169 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import axiosInstance from '../../../../utils/axiosConfig.js';
 
-function EditTeam() {
+function EditTeam({data, setData}) {
 
 /////////////////////get login user (REPLACE THIS) ////////////////
-const [result, setState] = useState({
-	members:[
-	    { 
-	      name: 'John Doe',
-	      affiliation: 'asdasd',
-	      email: 'asd@gmail.com'
-	    },
-	    { 
-	      name: 'Marry Jane',
-	      affiliation: 'qweqwe',
-	      email: 'qwe@gmail.com'
-	    }
-	],
+const [tempData, setTemp] = useState({
+	tempName : "",
+    tempAff : "",
+    tempEmail: ""
 });
-
-
+const showUpload=(e)=>{
+    if(data.members.length < 5){
+        e.preventDefault();
+    if(tempData.tempName!==""){
+      if(tempData.tempName===""){
+        alert("Incomplete Form");
+      }
+    }
+    else if(tempData.tempAff===""){
+      if(tempData.tempAff===""){
+        alert("Incomplete Form");
+      }
+    }
+    else if(tempData.tempEmail===""){
+        if(tempData.tempEmail===""){
+          alert("Incomplete Form");
+        }
+      }
+    if (tempData.tempName!=="" && tempData.tempAff!=="" && tempData.tempEmail!==""){
+      data.members.push({'name':tempData.tempName,'affiliation':tempData.tempAff, 'email':tempData.tempEmail})
+       
+    }
+    setData({
+        ...data,
+      })
+          tempData.tempName="";
+          tempData.tempAff="";
+          tempData.tempEmail="";
+ 
+          setTemp({
+                ...tempData,
+          });
+    }
+    else {
+        window.alert("You've exceeded the limit of members!");
+    }
+       
+}
+var obj =[];
+  const deleteFile = (element,index) => e => {
+    if(element==='members'){
+      let obj = data.members;
+      obj.splice(index,1);
+    } 
+      setData({
+          ...data,
+         
+      });
+      console.log(data);
+  }
+ 
 const inputChange = (element, index) => e => {
-    if(!result.members[index]){
-        //not exist thus add 
-        if(element=='name'){
-            result.members.push({'name':e.target.value, 'affiliation':'', 'email':''});
-        }
-        else if(element=='affiliation'){
-            result.members.push({'name':'', 'affiliation':e.target.value, 'email':''});
-        }
-        else if(element=='email'){
-            result.members.push({'name':'', 'affiliation':'', 'email':e.target.value});
-        }
+   
+    if(element === 'name'){
+        tempData.tempName=e.target.value;
+            }
+    if(element === 'affiliation'){
+        tempData.tempAff=e.target.value;
     }
-    else{
-        //if exist then update
-        if(element=='name'){
-            result.members[index].name = e.target.value;
-        }
-        else if(element=='affiliation'){
-            result.members[index].affiliation = e.target.value;
-        } 
-        else if(element=='email'){
-            result.members[index].email = e.target.value;
-        }
+    if(element === 'email'){
+        tempData.tempEmail=e.target.value;
     }
-    setState({
-        ...result,
-        
+    setTemp({
+      ...tempData
     });
+    setData({
+        ...data,
+      })
+     console.log(data);
 };
 
 	const handleForm=(e)=>{
-		e.preventDefault();
-		// perform all neccassary validations
-		
-	   for(var i=0; i<result.members.length; i++){
-	        
-	        let obj = result.members[i];
-	        if(obj.name ==''&& obj.affiliation==''&& obj.email==''){
-	            //remove empty
-	            result.members.splice(i,1);	        
-	        }
-	    }
-	    for(var i=0; i<result.members.length; i++){
-	    	let obj = result.members[i];
-	        if(obj.name =='' || obj.affiliation==''||obj.email==''){
-	            alert('Incomplete form.')         
-	        }
-	    }
+        if(tempData.tempName!==""){
+            if(tempData.tempName===""){
+              alert("Incomplete Form");
+            }
+          }
+          else if(tempData.tempAff!==""){
+            if(tempData.tempAff===""){
+              alert("Incomplete Form");
+            }
+          }
+          else if(tempData.tempEmail!==""){
+            if(tempData.tempEmail===""){
+              alert("Incomplete Form");
+            }
+          }
+          if (tempData.tempName!=="" && tempData.tempAff!=="" && tempData.tempEmail!==""){
+            data.members.push({'name':tempData.tempName,'email':tempData.tempEmail, 'affiliation':tempData.tempAff})
+             
+          }
+          setData({
+              ...data,
+            })
+       
+       
+           console.log(data);
+       
+           axiosInstance.post("/competitors/update", data)
+                  .then(function(response) {
+                     window.location.href = '/user_dashboard';
+                  }).catch(function(error) {
+                    console.log(error);
+                  })
+       
+       
+        };
 
-	    setState({
-	        ...result,
-	        
-	    });
-	    ///////replace row in db /////////////
-	   	console.log(result);
-    }
-
-
-    function displayExistedForm (){
+///////display forms//////
+    function displayMembers(){
         var section = [];
-
-        for (var i=0; i<result.members.length; i++){
+        if(data.members==null||data.members[0]==null||data.members.length<5){
+        
             section.push(
                 <div>
                     <div className="form-group">
-                        <h5>Team Member {i+1}</h5>
                         <label htmlFor="name">Name</label>
                         <input type="text" className="form-control" name="name" id="name"
-                        onChange={inputChange('name', i)} value={result.members[i].name} />
+                        onChange={inputChange('name', 0)} value={tempData.tempName} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="affiliation">Affiliation</label>
                         <input type="text" className="form-control" name="affiliation" id="affiliation"
-                        onChange={inputChange('affiliation', i)} value={result.members[i].affiliation} />
+                        onChange={inputChange('affiliation', 0)} value={tempData.tempAff} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="text" className="form-control" name="email" id="email"
-                        onChange={inputChange('email', i)} value={result.members[i].email} />
+                        onChange={inputChange('email', 0)} value={tempData.tempEmail} />
                     </div>
-
+                    <div>
+                    <button onClick={showUpload} className="btn btn-primary">Add</button>
+                </div>  
                 </div>
             );
         }
-
+     if(data.members!==undefined) {
+        for (var i=0; i<data.members.length; i++){
+        section.push(
+            <div>    
+                <p><b>Team Member {i+1}</b></p>
+                       <p>{data.members[i].name}</p>
+                       <p>{data.members[i].affiliation}</p>
+                       <p>{data.members[i].email}</p>
+                        <button className="deleteBtn" type="button" onClick={deleteFile('members',i)}> delete</button>
+                  </div>
+          )
+        }
+    }
         return section;
 
-    }
-
-    function displayAddBtn (){
-        var section = [];
-        var i = result.members.length + tempState.counter;
-
-        if (i<=5){
-            section.push(
-                <div>
-                    <button className="addBtn" type="button" onClick={tempInput()}> Add</button>
-                </div>
-            );
-        i++;
-        }
-
-        return section;
-
-    }
-
-    const [tempState, setTempt] = useState({
-        counter:0,
-        defaultLength: result.members.length
-    });
-
-    const tempInput = () => e => {
-        var temp = tempState.counter;
-        setTempt({
-            ...tempState,
-            counter: temp+1
-        });
-    };
-
-    function displayEmptyForm (){
-        var section = [];
-
-        if(result.members.length<5){
-        for (var i=result.members.length; i<tempState.defaultLength+tempState.counter; i++){
-            section.push(
-                <div>
-                    <div className="form-group">
-                        <h5>Team Member {i+1}</h5>
-                        <label htmlFor="name">Name</label>
-                        <input type="text" className="form-control" name="name" id="name"
-                        onChange={inputChange('name', i)} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="affiliation">Affiliation</label>
-                        <input type="text" className="form-control" name="affiliation" id="affiliation"
-                        onChange={inputChange('affiliation', i)}  />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" className="form-control" name="email" id="email"
-                        onChange={inputChange('email', i)}  />
-                    </div>
-
-                </div>
-            );
-        }
-        }
-        return section;
-    }
+    
+}
 
 /////////////////////////////////////////////////////////////
 
@@ -180,12 +173,10 @@ const inputChange = (element, index) => e => {
             <form onSubmit={handleForm}>
 			<div className="form-container">
                 <h5>Team Members</h5>
-
-               	{displayExistedForm()}
-
-                {displayEmptyForm()}
-                 
-                {displayAddBtn()}
+                
+               	{displayMembers()} 
+                               
+              
 
                 <div className="col-4 btn-group">
                     <Link to="/user_dashboard">

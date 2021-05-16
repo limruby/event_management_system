@@ -203,15 +203,15 @@ function UserDashboard() {
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
                     <h5> Abstract </h5>    
-                    <Abstract/>
+                    <Abstract user={user}/>
                   </div>  
                   <div className="sec-container">
                    <Link to='/user_dashboard/edit_book_chapter'>
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
                     <h5> BookChapter </h5>    
-                    <BookChapter/>
-                     <PdfAbstract/>
+                    <BookChapter user={user}/>
+                     <PdfAbstract user = {user}/>
                   </div>
  
                 </Tab.Pane>
@@ -225,7 +225,7 @@ function UserDashboard() {
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
                     <h5> Research Team</h5>    
-                    <ResearchTeam/>
+                    <ResearchTeam user={user}/>
                   </div>  
  
                 </Tab.Pane>
@@ -246,9 +246,6 @@ function UserDashboard() {
  
           </Row>
         </Tab.Container>
- 
- 
- 
  
     </div>
  

@@ -54,7 +54,7 @@ function EditAbstract({data, setData}) {
 	function displayKeywordsForm(){
 	    var section = [];
 
-	    if(!data.abstract!=undefined||data.abstract.keywords.length<5){
+	    if(data.abstract.keywords!==null||data.abstract.keywords.length<5){
 	        section.push(
 	            <div>
 	                <div className="form-group">
@@ -89,6 +89,9 @@ function EditAbstract({data, setData}) {
 	
 		if(!data.abstract[0]){
 			data.abstract.push({'keywords': []})
+		}
+		else if(data.abstract[0]&&!data.abstract[0]['keywords']){
+			data.abstract[0]['keywords']=[];
 		}
 
 	    data.abstract[0]['keywords'].push(tempState.keyword);

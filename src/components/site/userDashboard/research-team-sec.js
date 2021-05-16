@@ -1,40 +1,29 @@
 import React from 'react';
 import PdfDownloader from './../../PdfDownloader';
 
-const result = {
-    members:[
-        { 
-          name: 'John Doe',
-          affiliation: 'competitor',
-          email: 'asd@gmail.com'
-        },
-        { 
-          name: 'Mary Jane',
-          affiliation: 'competitor',
-          email: 'ert@gmail.com'
-        }
-    ]
+const Members = ({user}) =>  {
+  function displayMembers(){
+    var section = [];
+
+  if(user.members!=null){
+    for (var i=0; i<user.members.length; i++){
+      section.push(
+          <p>
+              <b>Name:</b> {user.members[i].name} &nbsp;
+              <b>Affiliation</b>: {user.members[i].affiliation}&nbsp;&nbsp;
+              <b>Email</b>: {user.members[i].email}
+          </p>              
+      );
+  }
+  }
+  return section;
+  
 }
-
-
-// pdf output based on div id=pdf...
-
-
-const Content = () =>  {
-
   return (       
     <div>
-        <ul>
-          {result.members.map((member)=>(
-
-            <li>
-             Name: {member.name}  <br/>
-             Affiliation: {member.affiliation} <br/>
-             Email: {member.email} <br/><br/>
-            </li>
-            
-            ))}
-        </ul>
+         <div>
+        {displayMembers()}
+      </div> 
       </div>  
   );
  
@@ -43,4 +32,4 @@ const Content = () =>  {
 
 
 
-export default Content;
+export default Members;

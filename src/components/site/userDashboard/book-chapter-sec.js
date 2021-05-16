@@ -1,50 +1,94 @@
 import React, {useState, useEffect} from 'react';
-import axiosInstance from '../../../utils/axiosConfig.js';
 
 
-const Content = () =>  {
+const Content = ({user}) =>  {
 
-  const [result, setResult]=useState([]);
+  function displayIntroduction(){
+      var section = [];
 
-   const account_id = localStorage.getItem('user_id');
+    if(user.bookChapter!=null){
+      for (var i=0; i<user.bookChapter.length; i++){
+        section.push(
+            <p>
+                <b>Introduction</b>: {user.bookChapter[0].introduction}
+            </p>              
+        );
+    }
+    }
+    return section;
+    
+  }
+  function displayContent(){
+      var section = [];
 
-   
+    if(user.bookChapter!=null){
+      for (var i=0; i<user.bookChapter.length; i++){
+        section.push(
+            <p>
+                <b>Content</b>: {user.bookChapter[0].content}
+            </p>
+        );
+    }
+    }
+    return section;
+    
+  }
 
 
-  function displayResult(){
+  function displayConclusion(){
+      var section = [];
+
+    if(user.bookChapter!=null){
+      for (var i=0; i<user.bookChapter.length; i++){
+        section.push(
+            <p>
+                <b>Conclusion</b>: {user.bookChapter[0].conclusion}
+            </p>
+        );
+    }
+    }
+    return section;
+    
+  }
+
+
+function displayReference(){
     var section = [];
-    if(result.keywords){
+    if(user.bookChapter!=null){
+
+    if(user.bookChapter[0]!=null){
+      if(user.bookChapter[0]['references']!=undefined){
         section.push(
             <div>
-                <ul>
-                  {result.keywords.map((keyword)=>(
+                <ul> <b>References</b>:
+                  {user.bookChapter[0]['references'].map((reference)=>(
                     <li>
-                     {keyword}
+                     {reference}
                     </li>
                     ))}
                 </ul>
             </div>
         );
     }
+  }
+ }
     return section;
   }
 
   return (       
     <div>
       <div>
-        <p>{result.inroduction}</p>
-        <p>{result.content}</p>
-        <p>{result.conclusion}</p>
+        {displayIntroduction()}
+        {displayContent()}
+        {displayConclusion()}
 
-        {displayResult()}
+        {displayReference()}
       </div>  
       
     </div>
   );
  
 }
-
-
 
 
 export default Content;

@@ -101,7 +101,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 			case 'edit_researchTeam':
 				return( 
 				    <div className="form-main-container">
-						<EditResearchTeam/>
+						<EditResearchTeam data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -117,7 +117,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 			case 'edit_abstract':
 				return( 
 				    <div className="form-main-container">
-						<EditAbstract/>
+						<EditAbstract data={user} setData={setUser}/>
 					</div>
 				)
 			break;
@@ -125,7 +125,7 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 			case 'edit_book_chapter':
 				return( 
 				    <div className="form-main-container">
-						<EditBookChapter/>
+						<EditBookChapter data={user} setData={setUser}/>
 					</div>
 				)
 			break;

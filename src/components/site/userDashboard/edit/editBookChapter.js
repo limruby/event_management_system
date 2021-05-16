@@ -63,7 +63,7 @@ function EditBookChapter({data, setData}) {
             <div>
                 <div className="form-group">
                     <input type="text" className="form-control" name="reference" id="reference"
-                    placeholder='reference' required                    
+                    placeholder='reference'                    
                     onChange={tempInput('reference')} value={tempState.reference}/>
                 	<button className="addBtn" type="button" onClick={addReference()}> Add</button>
                 </div>
@@ -94,6 +94,9 @@ function EditBookChapter({data, setData}) {
 		if(!data.bookChapter[0]){
 			data.abstract.push({'references': []})
 			
+		}
+		else if(data.bookChapter[0]&&!data.bookChapter[0]['references']){
+			data.bookChapter[0]['references']=[];
 		}
 			data.bookChapter[0]['references'].push(tempState.reference);
 		

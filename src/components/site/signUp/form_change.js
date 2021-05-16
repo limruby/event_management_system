@@ -43,8 +43,6 @@ const SectionChange = () =>  {
         
         );
     }
- 
-
 
 }
 
