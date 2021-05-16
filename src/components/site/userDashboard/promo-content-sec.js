@@ -1,80 +1,53 @@
-import React from 'react';
+const PromoContent = ({user}) =>  {
+ 
+function displayVideo(){
+  if(user.video){
+    var section = [];
 
-
-////////////////////////////get logined user promotional content or competition material///////////////////////////////////
-
-
-  const result = {
-    videos: [
-      {
-        name: 'first video',
-        path: 'video url1'
-      },
-      {
-        name: 'second video',
-        path: 'video url2'
-      },{
-        name: 'third video',
-        path: 'video url3'
-      },
-    ],
-    flyers: [
-      {
-        name: 'first flyer.jpg'
-      },
-      {
-        name: 'second flyer.jpg'
-      }
-
-      // {
-      //   "_id" : <ObjectId>,
-      //   "length" : <num>,
-      //   "chunkSize" : <num>,
-      //   "uploadDate" : <timestamp>,
-      //   "md5" : <hash>,
-      //   "filename" : <string>,
-      //   "contentType" : <string>,
-      //   "aliases" : <string array>,
-      //   "metadata" : <any>,
-      // }
-
-    ]
+    for (var i=0; i<user.video.length; i++){
+        section.push(
+            <li>
+              <a href={user.video[i].source}>{user.video[i].name}</a>
+            </li>
+        );
+    }
+    return section;
 
   }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-const PromoContent = ({user}) =>  {
-
-  return (       
+}
+function displayPoster(){
+  if(user.poster){
+    var section = [];
+ 
+    for (var i=0; i<user.poster.length; i++){
+      const imageBuffer = Buffer.from(user.poster[0].source.data); 
+        section.push(
+          <li>
+          <img src={imageBuffer} alt={user.poster[0].name}/>
+       </li>
+        );
+    }
+    return section;
+ 
+  }
+}
+ 
+  return (      
     <div>
       <h2>Videos</h2>
       <ul>
-        {result.videos.map((video)=>(
-
-          <li>
-            Name: {video.name}<br/> Url: {video.path}
-          </li>
-
-          ))}
+        {displayVideo()}
       </ul>
-      <h2>Flyers</h2>
+      <h2>Poster</h2>
       <ul>
-        {result.flyers.map((flyer)=>(
-
-          <li>
-            Name: {flyer.name}<br/>
-          </li>
-
-          ))}
+        {displayPoster()}
       </ul>
     </div>
   );
  
 }
-
-
-
-
+ 
+ 
+ 
+ 
 export default PromoContent;

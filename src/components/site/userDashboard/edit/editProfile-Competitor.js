@@ -16,8 +16,8 @@ function EditProfile({data, setData}) {
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
-        if (data.name ==""||data.affiliation==""||data.nric_passport_selection==""||data.nric_passport_no==""
-            ||data.address==""||data.gender==""){
+        if (data.name ===""||data.affiliation===""||data.nric_passport_selection===""||data.nric_passport_no===""
+            ||data.address===""||data.gender===""){
             alert("Form not fill");
         }
         else{

@@ -4,29 +4,27 @@ import Form from 'react-bootstrap/Form';
 
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
-function EditAbstract() {
+function EditAbstract({data, setData}) {
 
-	/////////////////////get login user (REPLACE THIS) ////////////////
-	const [result, setResult]=useState([]);
-
-	useEffect(() => {
-	    
-		const account_id = localStorage.getItem('user_id');
-		
-	    // axiosInstance .get("/competitors/read/:"+account_id)
-	    //   .then(function(response) {
-	    //     setResult(response.data.data);
-	    //   }).catch(function(error) {
-	    //     console.log(error);
-	    //   })
-
-
-	  }, []);
-
+    console.log(data.abstract)
 	const inputChange = input => e => {
-	    setResult({
-	    	...result,
-	        [input]: e.target.value
+
+		if(input=='title'){
+			if(!data.abstract[0]){
+				data.abstract.push({'title': e.target.value})			}
+			else{
+				data.abstract[0].title = e.target.value;
+			}
+		}
+		if(input=='content'){
+			if(!data.abstract[0]){
+				data.abstract.push({'content': e.target.value})			}
+			else{
+				data.abstract[0].content = e.target.value;
+			}
+		}
+	    setData({
+	    	...data,
 	    });
 	};
 
@@ -34,11 +32,11 @@ function EditAbstract() {
 	function displayKeywords(){
 	    var section = [];
 
-	    if(result.keywords){
+	    if(data.abstract!=undefined&&data.abstract[0]!=undefined&&data.abstract[0]['keywords']!=undefined){
 	        section.push(
 	            <div>
 	                <ul>
-	                    {result.keywords.map((keyword, index)=>(
+	                    {data.abstract[0]['keywords'].map((keyword, index)=>(
 
 	                    <li>
 	                      {keyword}
@@ -56,7 +54,7 @@ function EditAbstract() {
 	function displayKeywordsForm(){
 	    var section = [];
 
-	    if(!result.keywords||result.keywords.length<5){
+	    if(!data.abstract!=undefined||data.abstract.keywords.length<5){
 	        section.push(
 	            <div>
 	                <div className="form-group">
@@ -88,15 +86,17 @@ function EditAbstract() {
 
 	//////// add keyword ////////////
 	const addKeyword = () => e => {
-		if(!result.keywords){
-			result.keywords=[]}
+	
+		if(!data.abstract[0]){
+			data.abstract.push({'keywords': []})
+		}
 
-	    result.keywords.push(tempState.keyword);
-	    setResult({
-	        ...result,
+	    data.abstract[0]['keywords'].push(tempState.keyword);
+	    setData({
+	        ...data,
 	        
 	    });
-	    console.log(result);
+	    console.log(data.abstract);
 	    //clear tempStateKeyword
 	    setTempt({
 	    	...tempState,
@@ -108,29 +108,57 @@ function EditAbstract() {
 
 	//////// remove keyword ////////////
 	const deleteKeyword = (index) => e => {
-	    result.keywords.splice(index,1);
-	    setResult({
-	        ...result,
+		console.log(index)
+		console.log(data.abstract[0]['keywords'][index])
+
+	    data.abstract[0]['keywords'].splice(index,1);
+
+	    console.log(index)
+	    setData({
+	        ...data,
 	        
 	    });
-	    console.log(result);
+	    console.log(data.abstract);
 	}
 
 
 	const handleForm=(e)=>{
-	e.preventDefault();
+		e.preventDefault();
 	// perform all neccassary validations
-	   if (result.abstract ==""){
-	        alert("Form not fill");
-	    }
-	    else{
+	   
 	    	
-	    	axiosInstance.post('/competitors/update', result)
-            .then(res=> console.log('Success'));
-	    }
+	    	axiosInstance.post("/competitors/update", data)
+            .then(function(response) {
+              window.location.href = '/user_dashboard';
+            }).catch(function(error) {
+              console.log(error);
+            })
+	    
 	}
 
+
+
 	/////////////////////////////////////////////////////////////
+
+		
+//load data to input field value
+function checkExist(element, index){
+    var value="";
+    if(data.abstract==undefined ||data.abstract[0]==undefined){
+        return ' ';
+    }
+    else if(data.abstract[0].title && element==="title"){
+    	return data.abstract[0].title;
+    }
+    else if(data.abstract[0].content && element==="content"){
+    	return data.abstract[0].content;
+    }    
+   
+
+    console.log(data.abstract)
+}
+
+
 
 		return(
 			<>
@@ -142,13 +170,13 @@ function EditAbstract() {
 	                    <label htmlFor="name"><span>*</span>Project Title</label>
 	                    <input type="text" className="form-control" name="title" id="title"
 	                    placeholder='project title' required                    
-	                    onChange={inputChange('title')} value={result.title} />
+	                    onChange={inputChange('title')} value={checkExist('title', 0)} />
 	                </div>
 
 	                <div className="form-group">
 	                    <label htmlFor="abstract">Abstract </label>
 	                    <textarea className="form-control" id="abstract" cols="30" rows="10"
-                    	onChange={inputChange('abstract')} value={result.abstract} />
+                    	onChange={inputChange('content')} value={checkExist('content', 0)}/>
 	                </div>
 
 

@@ -2,26 +2,59 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
-function EditBookChapter() {
+import axiosInstance from '../../../../utils/axiosConfig.js';
 
-	/////////////////////get login user (REPLACE THIS) ////////////////
-	const [result, setState] = useState({
-	    introduction : "intro for bookChapter",
-	    content: "paragraph for bookChapter",
-	    conclusion: "conclusion for bookChapter",
-	    references: [
-	      "REF sample 1",
-	      "REF sample 2"
-	    ]
-	})
+function EditBookChapter({data, setData}) {
 
-	const inputChange = input => e => {
-	    setState({
-	    	...result,
-	        [input]: e.target.value
+
+    const inputChange = input => e => {
+	    if(input=='introduction'){
+			if(!data.bookChapter[0]){
+				data.bookChapter.push({'introduction': e.target.value})			}
+			else{
+				data.bookChapter[0].introduction = e.target.value;
+			}
+		}
+		if(input=='content'){
+			if(!data.bookChapter[0]){
+				data.bookChapter.push({'content': e.target.value})			}
+			else{
+				data.bookChapter[0].content = e.target.value;
+			}
+		}
+		if(input=='conclusion'){
+			if(!data.bookChapter[0]){
+				data.bookChapter.push({'conclusion': e.target.value})			}
+			else{
+				data.bookChapter[0].conclusion = e.target.value;
+			}
+		}
+	    setData({
+	    	...data,
 	    });
 	};
+		//display Reference
+	function displayReferences(){
+	    var section = [];
 
+	    if(data.bookChapter!=undefined&&data.bookChapter[0]!=undefined&&data.bookChapter[0]['references']!=undefined){
+	        section.push(
+	            <div>
+	                <ul>
+	                    {data.bookChapter[0]['references'].map((reference, index)=>(
+
+	                    <li>
+	                      {reference}
+	                      <button className="deleteBtn" type="button" onClick={deleteReference(index)}> delete</button>
+	                    </li>
+	                    ))}
+	                </ul>
+	            </div>
+	        );
+	    }
+
+	    return section;
+	}
 	//display empty Reference field
 	function displayReferencesForm(){
 	    var section = [];
@@ -58,42 +91,65 @@ function EditBookChapter() {
 
 	//////// add reference ////////////
 	const addReference = () => e => {
-	    result.references.push(tempState.reference);
-	    setState({
-	        ...result,
+		if(!data.bookChapter[0]){
+			data.abstract.push({'references': []})
+			
+		}
+			data.bookChapter[0]['references'].push(tempState.reference);
+		
+	    setData({
+	        ...data,
 	        
 	    });
-	    console.log(result);
+	    console.log(data.bookChapter);
 	    //clear tempStateReference
 	    setTempt({
 	    	...tempState,
 	    	reference: ""
 	    });
-
 	}
-
 
 	//////// remove reference ////////////
 	const deleteReference = (index) => e => {
-	    result.references.splice(index,1);
-	    setState({
-	        ...result,
+	    data.bookChapter[0]['references'].splice(index,1);
+	    setData({
+	        ...data,
 	        
 	    });
-	    console.log(result);
+	    console.log(data.bookChapter);
 	}
 
 	const handleForm=(e)=>{
 	e.preventDefault();
 	// perform all neccassary validations
-	   if (result.bookChapter ==""){
-	        alert("Form not fill");
-	    }
-	    else{
-	    	///////update to db /////////////
-	    	console.log(result);
-	    }
+	   axiosInstance.post("/competitors/update", data)
+            .then(function(response) {
+              window.location.href = '/user_dashboard';
+            }).catch(function(error) {
+              console.log(error);
+            })
 	}
+
+
+//load data to input field value
+	function checkExist(element, index){
+	    var value="";
+	    if(data.bookChapter==undefined ||data.bookChapter[0]==undefined){
+	        return ' ';
+	    }
+	    else if(data.bookChapter[0].introduction && element==="introduction"){
+	    	return data.bookChapter[0].introduction;
+	    }
+	    else if(data.bookChapter[0].content && element==="content"){
+	    	return data.bookChapter[0].content;
+	    }    
+	   	else if(data.bookChapter[0].conclusion && element==="conclusion"){
+	    	return data.bookChapter[0].conclusion;
+	    }  
+
+	    console.log(data.bookChapter)
+	}
+
 
 	/////////////////////////////////////////////////////////////
 
@@ -106,31 +162,23 @@ function EditBookChapter() {
 	                <div className="form-group">
 	                    <label htmlFor="introduction">Introduction</label>
 	                    <textarea className="form-control" id="introduction" cols="30" rows="10"
-                    	onChange={inputChange('introduction')} value={result.introduction} />
+                    	onChange={inputChange('introduction')} value={checkExist('introduction', 0)} />
 	                </div>
 
 	                <div className="form-group">
 	                    <label htmlFor="content">Content </label>
 	                    <textarea className="form-control" id="content" cols="30" rows="10"
-                    	onChange={inputChange('content')} value={result.content} />
+                    	onChange={inputChange('content')} value={checkExist('content', 0)} />
 	                </div>
 					
 					 <div className="form-group">
 	                    <label htmlFor="conclusion">Conclusion </label>
 	                    <textarea className="form-control" id="conclusion" cols="30" rows="10"
-                    	onChange={inputChange('conclusion')} value={result.conclusion} />
+                    	onChange={inputChange('conclusion')} value={checkExist('conclusion', 0)} />
 	                </div>
 
                    	<h5>References</h5>
-	                <ul>
-	                    {result.references.map((reference, index)=>(
-
-	                    <li>
-	                      {reference}
-	                      <button className="deleteBtn" type="button" onClick={deleteReference('reference',index)}> delete</button>
-	                    </li>
-	                    ))}
-	                </ul>
+	                {displayReferences()}
 	                {displayReferencesForm()}
 
 	                <br />

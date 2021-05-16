@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-const PromoContent = ({user}) =>  {
+const CompetitionMaterial = ({user}) =>  {
 
  
 console.log(user);
@@ -23,7 +23,7 @@ function displayPoster(){
     for (var i=0; i<user.poster.length; i++){
         section.push(
             <li>
-                Name: {user.poster.name}
+               {user.poster[i].name}
             </li>
         );
     }
@@ -41,7 +41,7 @@ function displayAchievement(){
     for (var i=0; i<user.achievements.length; i++){
         section.push(
             <li>
-                Name: {user.achievements.name}
+              {user.achievements[i].name}
             </li>
         );
     }
@@ -51,13 +51,13 @@ function displayAchievement(){
 }
 
 function displayPublication(){
-  if(user.publication){
+  if(user.publications){
     var section = [];
 
-    for (var i=0; i<user.publication.length; i++){
+    for (var i=0; i<user.publications.length; i++){
         section.push(
             <li>
-                Name: {user.publication.name}
+               {user.publications[i].name}
             </li>
         );
     }
@@ -67,13 +67,13 @@ function displayPublication(){
 }
 
 function displayGrant(){
-  if(user.grant){
+  if(user.grants){
     var section = [];
 
-    for (var i=0; i<user.grant.length; i++){
+    for (var i=0; i<user.grants.length; i++){
         section.push(
             <li>
-                Name: {user.grant.name}
+               {user.grants[i].name}
             </li>
         );
     }
@@ -83,9 +83,20 @@ function displayGrant(){
 }
 
 function displayVideo(){
-  if(user.poster){
-    return (<a href="{user.video.name}">{user.video.name}</a>)
-  }  
+  if(user.video){
+    var section = [];
+
+    for (var i=0; i<user.video.length; i++){
+        section.push(
+            <li>
+               return (<a href={user.video[0].source}>{user.video[0].name}</a>)
+            </li>
+        );
+    }
+    return section;
+
+  }
+
 }
 
 
@@ -119,4 +130,4 @@ function displayVideo(){
 }
 
 
-export default PromoContent;
+export default CompetitionMaterial;

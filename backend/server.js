@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 
 const uri =process.env.ATLAS_URI;
 mongoose.connect(uri, {useFindAndModify: false, useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true  });

@@ -58,7 +58,7 @@ const sponsorSchema = new Schema({
 
   company_logo:[subSchema],
   poster:[subSchema],
-  video:[subSchema],
+  video:[videoSchema],
 
 }, {
   timestamps: true,

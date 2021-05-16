@@ -27,7 +27,7 @@ const [user, setState] = useState({
         if (user.newPassword !== user.confirmPassword) {
             alert("Password don't match");  
         }
-        else if (user.newPassword=="" || user.confirmPassword==""){
+        else if (user.newPassword==="" || user.confirmPassword===""){
             alert("Form not fill");
         }
         else{
@@ -39,7 +39,7 @@ const [user, setState] = useState({
             ///////update to db /////////////
              axiosInstance.post("/accounts/update", user)
             .then(function(response) {
-              // window.location.href = '/user_dashboard';
+               window.location.href = '/user_dashboard';
             }).catch(function(error) {
               console.log(error);
             })

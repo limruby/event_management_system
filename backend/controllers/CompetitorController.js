@@ -48,6 +48,29 @@ const read = (req, res, next)=>{
 const update = (req, res, next)=>{
 
   var updateCompetitor = {};
+  if(req.body.name){
+    updateCompetitor['name'] = req.body.name;
+  }
+ 
+  if(req.body.affiliation){
+    updateCompetitor['affiliation'] = req.body.affiliation;
+  }
+ 
+  if(req.body.nric_passport_selection){
+    updateCompetitor['nric_passport_selection'] = req.body.nric_passport_selection;
+  }
+ 
+  if(req.body.nric_passport_no){
+    updateCompetitor['nric_passport_no'] = req.body.nric_passport_no;
+  }
+ 
+  if(req.body.gender){
+    updateCompetitor['gender'] = req.body.gender;
+  }
+ 
+  if(req.body.address){
+    updateCompetitor['address'] = req.body.address;
+  }
 
   if(req.body.members){
     updateCompetitor['members'] = req.body.members;
@@ -56,14 +79,14 @@ const update = (req, res, next)=>{
     updateCompetitor['poster'] = req.body.poster;
   }
 
-  if(req.body.achievement){
-    updateCompetitor['achievement'] = req.body.achievement;
-  }
-  if(req.body.publication){
-    updateCompetitor['publication'] = req.body.publication
+  if(req.body.achievements){
+    updateCompetitor['achievements'] = req.body.achievements;
+  } 
+  if(req.body.publications){
+    updateCompetitor['publications'] = req.body.publications
   }  
-  if(req.body.grant){
-    updateCompetitor['grant'] = req.body.grant;
+  if(req.body.grants){
+    updateCompetitor['grants'] = req.body.grants;
   }
   if(req.body.video){
     updateCompetitor['video'] = req.body.video;

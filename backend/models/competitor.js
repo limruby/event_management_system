@@ -102,7 +102,7 @@ const competitorSchema = new Schema({
   publications:[subSchema],
   grants:[subSchema],
   
-  video:[subSchema],
+  video:[videoSchema],
 
   abstract:[abstractSchema],
 
