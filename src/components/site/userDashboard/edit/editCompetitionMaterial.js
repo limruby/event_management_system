@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
-import { FaTrashAlt } from 'react-icons/fa';
  
 function EditAccount({data, setData}) {
  
@@ -45,13 +44,14 @@ console.log(data)
     }
     else{
      
-      
+      const imageBuffer = Buffer.from(data.poster[0].source.data);
+      console.log(imageBuffer)
       section.push(
         <div>
-                   <p>{data.poster[0].name}
-				   <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
-				   </p>
-                    
+          <img src={imageBuffer} alt=""/>
+                     
+                   <p>{data.poster[0].name}</p>
+                    <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> delete</button>
               </div>
       )
     }
@@ -65,8 +65,8 @@ function displayAchievementForm(){
     for(var i=0; i<data.achievements.length; i++){  
       section.push(
         <p>
-                    FileName: {data.achievements[i].name}
-                    <button className="deleteBtn" type="button" onClick={deleteFile('achievement',i)}> <FaTrashAlt/></button>
+                    Name: {data.achievements[i].name}
+                    <button className="deleteBtn" type="button" onClick={deleteFile('achievement',i)}> delete</button>
                   </p>
           );
       }      
@@ -87,8 +87,8 @@ function displayAchievementForm(){
       for(var i=0; i<data.publications.length; i++){  
         section.push(
           <p>
-                      FileName: {data.publications[i].name}
-                      <button className="deleteBtn" type="button" onClick={deleteFile('publication',i)}> <FaTrashAlt/></button>
+                      Name: {data.publications[i].name}
+                      <button className="deleteBtn" type="button" onClick={deleteFile('publication',i)}> delete</button>
                     </p>
             );
       }
@@ -110,8 +110,8 @@ function displayAchievementForm(){
       for(var i=0; i<data.grants.length; i++){  
         section.push(
           <p>
-                      FileName: {data.grants[i].name}
-                      <button className="deleteBtn" type="button" onClick={deleteFile('grant',i)}> <FaTrashAlt/></button>
+                      Name: {data.grants[i].name}
+                      <button className="deleteBtn" type="button" onClick={deleteFile('grant',i)}> delete</button>
                     </p>
             );
       }
@@ -147,10 +147,8 @@ function displayAchievementForm(){
     else{
       section.push(
         <div className="form-group">
-                  <p>{data.video[0].name}
-				  <button className="deleteBtn" type="button" onClick={deleteFile('video',0)}> <FaTrashAlt/></button>
-				  </p>
-                    
+                  <p>{data.video[0].name}</p>
+                    <button className="deleteBtn" type="button" onClick={deleteFile('video',0)}> delete</button>
               </div>
       )
     }

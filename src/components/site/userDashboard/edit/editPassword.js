@@ -2,25 +2,26 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
-
+ 
 function EditAccount({data, setData}) {
-
+ 
 /////////////////////get login user (REPLACE THIS) ////////////////
 const [user, setState] = useState({
       _id: '',
       newPassword: '',
       confirmPassword:''
-
+ 
 });
-    
-
+   
+ 
     const inputChange = input => e => {
         setState({
             ...user,
+                        _id:data._id,
             [input]: e.target.value
         });
     };
-
+ 
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
@@ -31,11 +32,8 @@ const [user, setState] = useState({
             alert("Form not fill");
         }
         else{
-            setState({
-                ...user,
-                '_id': data._id
-            });
-             console.log(user);   
+           
+             console.log(data);  
             ///////update to db /////////////
              axiosInstance.post("/accounts/update", user)
             .then(function(response) {
@@ -45,9 +43,9 @@ const [user, setState] = useState({
             })
         }
     }
-
+ 
 /////////////////////////////////////////////////////////////
-
+ 
     return(
         <>
             <form onSubmit={handleForm}>
@@ -61,19 +59,19 @@ const [user, setState] = useState({
                     minLength="8"
                     onChange={inputChange('newPassword')} value={user.newPassword} />
                 </div>
-
+ 
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm New Password </label>
                     <input className="form-control" type='password'name='confirmPassword' id="confirmPassword"
                     placeholder='password' required
                     minLength="8"
                     onChange={inputChange('confirmPassword')} value={user.confirmPassword} />
-                    
+                   
                 </div>
-        
-
+       
+ 
                 <br />
-
+ 
                 <div className="col-4 btn-group">
                     <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
@@ -83,9 +81,9 @@ const [user, setState] = useState({
             </div>
             </form>
          </>
-
+ 
         )
-
+ 
 }
-
+ 
 export default EditAccount;
