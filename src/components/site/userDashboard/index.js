@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axiosInstance from '../../../utils/axiosConfig.js';
  
-import Footer from './../footer';
 import {Link} from 'react-router-dom';
 import './userDashboard.css';
  
@@ -148,7 +147,7 @@ function UserDashboard() {
                       </li>
                       <li>
                         <Link to='/user_dashboard/edit_password'>
-                        <button className="edit-password"><FaEdit/> Edit Password</button>
+                        <button className="edit-button"><FaEdit/> Edit Password</button>
                         </Link>
                       </li>
                     </ul>
@@ -173,72 +172,91 @@ function UserDashboard() {
                 </Tab.Pane>
  
                 <Tab.Pane eventKey="Promo-Content">
- 
+		<Card>
+			<Card.Body>
                   <div className="sec-container">
                     <Link to='/user_dashboard/edit_content'>
                       <a className="edit" href="/user_dashboard/edit_content"><FaEdit/> Edit</a>
                     </Link>
-                    <h5> Promotional Content</h5>    
+                    <h2> Promotional Content</h2>    
                     <PromoContent user={user}/>
                   </div>  
- 
+			</Card.Body>
+        </Card>
                 </Tab.Pane>
  
                 <Tab.Pane eventKey="Competition-Material">
- 
+			<Card>
+			<Card.Body>
                   <div className="sec-container">
                     <Link to='/user_dashboard/edit_content'>
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
-                    <h5> Competition Material</h5>    
+                    <h2> Competition Material</h2>    
                     <CompetitionMaterial user={user}/>
                   </div>  
- 
+			</Card.Body>
+        </Card>
                 </Tab.Pane>
  
                 <Tab.Pane eventKey="Abstract">
- 
+		<Card>
+			<Card.Body>
                   <div className="sec-container">
                    <Link to='/user_dashboard/edit_abstract'>
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
-                    <h5> Abstract </h5>    
+                    <h2> Abstract </h2>    
                     <Abstract user={user}/>
-                  </div>  
+                  </div> 
+			</Card.Body>
+        </Card>
+
+		<p/>
+
+		<Card>
+			<Card.Body>
                   <div className="sec-container">
                    <Link to='/user_dashboard/edit_book_chapter'>
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
-                    <h5> BookChapter </h5>    
+                    <h2> BookChapter </h2>    
                     <BookChapter user={user}/>
-                     <PdfAbstract user = {user}/>
                   </div>
- 
+			</Card.Body>
+        </Card>
+		<p/>
+		<PdfAbstract user = {user}/>
                 </Tab.Pane>
  
                
  
                 <Tab.Pane eventKey="Research-Team">
  
+		<Card>
+			<Card.Body>
                   <div className="sec-container">
                    <Link to='/user_dashboard/edit_researchTeam'>
                       <a className="edit" href=""><FaEdit/> Edit</a>
                     </Link>
-                    <h5> Research Team</h5>    
+                    <h2> Research Team</h2>    
                     <ResearchTeam user={user}/>
                   </div>  
- 
+			</Card.Body>
+        </Card>
                 </Tab.Pane>
  
                 <Tab.Pane eventKey="Cert">
- 
+		<Card>
+			<Card.Body>
                   <div className="sec-container">
-                    <h5> Download Certification</h5>    
+                    <h2> Download Certification</h2>    
                    
-                    <h2>Coming Soon</h2>
+                    <h5>Coming Soon</h5>
                    
                   </div>  
- 
+			</Card.Body>
+        </Card>
                 </Tab.Pane>
  
               </Tab.Content>
@@ -250,7 +268,7 @@ function UserDashboard() {
     </div>
  
    
-    <Footer/>
+    
    
   </>
   );

@@ -1,53 +1,53 @@
 const PromoContent = ({user}) =>  {
  
-function displayVideo(){
-  if(user.video){
-    var section = [];
-
-    for (var i=0; i<user.video.length; i++){
-        section.push(
+  function displayVideo(){
+    if(user.video){
+      var section = [];
+  
+      for (var i=0; i<user.video.length; i++){
+          section.push(
+              <li>
+                <a href={user.video[i].source}>{user.video[i].name}</a>
+              </li>
+          );
+      }
+      return section;
+  
+    }
+  }
+  function displayPoster(){
+    if(user.poster){
+      var section = [];
+   
+      for (var i=0; i<user.poster.length; i++){
+        const imageBuffer = Buffer.from(user.poster[0].source.data); 
+          section.push(
             <li>
-              <a href={user.video[i].source}>{user.video[i].name}</a>
-            </li>
-        );
+            <img src={imageBuffer} alt={user.poster[0].name}/>
+         </li>
+          );
+      }
+      return section;
+   
     }
-    return section;
-
   }
-}
-function displayPoster(){
-  if(user.poster){
-    var section = [];
- 
-    for (var i=0; i<user.poster.length; i++){
-      const imageBuffer = Buffer.from(user.poster[0].source.data); 
-        section.push(
-          <li>
-          <img src={imageBuffer} alt={user.poster[0].name}/>
-       </li>
-        );
-    }
-    return section;
- 
+   
+    return (      
+      <div>
+        <h4>Videos</h4>
+        <ul>
+          {displayVideo()}
+        </ul>
+        <h4>Poster</h4>
+        <ul>
+          {displayPoster()}
+        </ul>
+      </div>
+    );
+   
   }
-}
- 
-  return (      
-    <div>
-      <h2>Videos</h2>
-      <ul>
-        {displayVideo()}
-      </ul>
-      <h2>Poster</h2>
-      <ul>
-        {displayPoster()}
-      </ul>
-    </div>
-  );
- 
-}
- 
- 
- 
- 
-export default PromoContent;
+   
+   
+   
+   
+  export default PromoContent;

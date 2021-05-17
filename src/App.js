@@ -13,6 +13,7 @@ import eventLobby from './components/site/eventLobby/eventLobby';
 import sponsor_hall from './components/site/eventLobby/sponsor_hall/sponsor_hall';
 import competition_hall from './components/site/eventLobby/competition_hall/competition_hall';
 import Navbar from './components/site/navbar';
+import Footer from './components/site/footer';
 // import AdminDashboard from './components/site/adminDashboard';
 import PageNotFound from './components/PageNotFound.js';
 
@@ -59,7 +60,7 @@ function App() {
 
         <Route component={PageNotFound} />
       </Switch>
-
+	  <Footer/>
       
 
     </Router>
@@ -68,4 +69,3 @@ function App() {
 }
 
 export default App;
-

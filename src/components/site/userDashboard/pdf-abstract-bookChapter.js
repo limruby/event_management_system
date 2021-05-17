@@ -179,7 +179,7 @@ const Content = ({user, account}) =>  {
   return (       
     <div>
             
-        <button onClick={generatePDF} type="primary">Download PDF</button> 
+        <button className="edit-button" onClick={generatePDF} type="primary">Download PDF</button> 
 
     </div>
   );

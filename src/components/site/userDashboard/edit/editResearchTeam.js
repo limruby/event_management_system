@@ -1,8 +1,8 @@
-
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
+import { FaTrashAlt } from 'react-icons/fa';
 
 function EditTeam({data, setData}) {
 
@@ -156,7 +156,7 @@ const inputChange = (element, index) => e => {
                        <p>{data.members[i].name}</p>
                        <p>{data.members[i].affiliation}</p>
                        <p>{data.members[i].email}</p>
-                        <button className="deleteBtn" type="button" onClick={deleteFile('members',i)}> delete</button>
+                        <button className="deleteBtn" type="button" onClick={deleteFile('members',i)}> <FaTrashAlt/></button>
                   </div>
           )
         }

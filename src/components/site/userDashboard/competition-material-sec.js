@@ -89,7 +89,7 @@ function displayVideo(){
     for (var i=0; i<user.video.length; i++){
         section.push(
             <li>
-               return (<a href={user.video[0].source}>{user.video[0].name}</a>)
+               <a href={user.video[0].source}>{user.video[0].name}</a>
             </li>
         );
     }

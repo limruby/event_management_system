@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
+import { FaTrashAlt } from 'react-icons/fa';
  
 function EditAccount({data, setData}) {
  
@@ -58,8 +59,10 @@ console.log(data)
    
       section.push(
         <div>          
-                   <p>{data.poster[0].name}</p>
-                    <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> delete</button>
+                   <p>{data.poster[0].name}
+				    <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
+				   </p>
+                   
               </div>
       )
     }
@@ -75,7 +78,7 @@ console.log(data)
             section.push(
               <p>
                           {data.video[i].name}
-                          <button className="deleteBtn" type="button" onClick={deleteFile('video',i)}> delete</button>
+                          <button className="deleteBtn" type="button" onClick={deleteFile('video',i)}> <FaTrashAlt/></button>
                         </p>
 
                         

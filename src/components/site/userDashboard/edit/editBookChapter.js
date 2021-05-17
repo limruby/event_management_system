@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import { FaTrashAlt } from 'react-icons/fa';
 
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
@@ -45,7 +46,7 @@ function EditBookChapter({data, setData}) {
 
 	                    <li>
 	                      {reference}
-	                      <button className="deleteBtn" type="button" onClick={deleteReference(index)}> delete</button>
+	                      <button className="deleteBtn" type="button" onClick={deleteReference(index)}> <FaTrashAlt/></button>
 	                    </li>
 	                    ))}
 	                </ul>

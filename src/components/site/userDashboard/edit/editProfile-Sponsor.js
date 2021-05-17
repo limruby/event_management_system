@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
+import { FaTrashAlt } from 'react-icons/fa';
  
  
 function EditProfile({data, setData}) {
@@ -32,7 +33,6 @@ const inputChange = input => e => {
         }
     }
     const uploadLogoHandler = (element, index) => e => {
-	console.log("asd");
         if(element == 'company_logo'){
           let selectedFile = e.target.files;
             let file = null;
@@ -61,6 +61,48 @@ const inputChange = input => e => {
             }
         }
     }
+	
+
+var obj =[];
+  const deleteFile = (element,index) => e => {
+    if(element==='company_logo'){
+      let obj = data.company_logo;
+      obj.splice(index,1);
+    }
+
+      setData({
+          ...data,
+      });
+      
+  }
+///////Display company logo//////
+function displayLogo(){
+    var section = [];
+    if(data.company_logo==null||data.company_logo[0]==null){
+      section.push(
+            <div className="form-group">                
+                <input type="file" onChange={uploadLogoHandler('company_logo', 0)} />
+            </div>
+          );
+    }
+    else{
+      
+      const imageBuffer = Buffer.from(data.company_logo[0].source.data); 
+      
+      section.push(
+        <div>
+          <img src={imageBuffer} alt={data.company_logo[0].name} width="150" height="150" responsive/>
+                      
+                   <p>
+				   {data.company_logo[0].name}
+				   <button className="deleteBtn " type="button" onClick={deleteFile('company_logo',0)}><FaTrashAlt/></button>
+				   </p>
+				   
+              </div>
+      )
+    }
+    return section;
+  }
 /////////////////////////////////////////////////////////////
     return(
         <>
@@ -107,8 +149,9 @@ const inputChange = input => e => {
  
                 <div className="form-group">
                     <label htmlFor="company_logo"><span>*</span>Company Logo With Transparent Background</label><br />
-                    <input type="file" onChange={uploadLogoHandler('company_logo', 0)} />
+                    {displayLogo()}
                 </div>
+
                 <br />
                <div className="col-4 btn-group">
                     <Link to="/user_dashboard">
