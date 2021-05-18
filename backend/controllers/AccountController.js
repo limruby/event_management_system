@@ -16,18 +16,30 @@ const register = (req, res, next)=>{
     const role = req.body.role;
     const email = req.body.email;
     const password = hashedPassword;
-    
 
-    const newAccount = new Account({
-      role, 
-      email,
-      password
+     Account.findOne({ email:req.body.email}, function(err, result) {
+    if(err) throw err;
+    if(result){
+        res.json('Email existed');
+    }
+    else{
+
+        const newAccount = new Account({
+          role, 
+          email,
+          password
+        });
+
+        newAccount.save()
+          .then(() => res.json(newAccount))
+          .catch(err => res.status(400).json('Error: ' + err));
+    }
+
+      
     });
 
-    newAccount.save()
-      .then(() => res.json(newAccount))
-      .catch(err => res.status(400).json('Error: ' + err));
-    })
+  });
+    
 };
 
 

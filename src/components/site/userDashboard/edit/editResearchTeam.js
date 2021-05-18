@@ -13,28 +13,11 @@ const [tempData, setTemp] = useState({
     tempEmail: ""
 });
 const showUpload=(e)=>{
-    if(data.members.length < 5){
+    if(data.members.length < 4){
         e.preventDefault();
-    if(tempData.tempName!==""){
-      if(tempData.tempName===""){
-        alert("Incomplete Form");
-      }
-    }
-    else if(tempData.tempAff===""){
-      if(tempData.tempAff===""){
-        alert("Incomplete Form");
-      }
-    }
-    else if(tempData.tempEmail===""){
-        if(tempData.tempEmail===""){
-          alert("Incomplete Form");
-        }
-      }
     if (tempData.tempName!=="" && tempData.tempAff!=="" && tempData.tempEmail!==""){
-      data.members.push({'name':tempData.tempName,'affiliation':tempData.tempAff, 'email':tempData.tempEmail})
-       
-    }
-    setData({
+      data.members.push({'name':tempData.tempName,'affiliation':tempData.tempAff, 'email':tempData.tempEmail})   
+      setData({
         ...data,
       })
           tempData.tempName="";
@@ -45,10 +28,23 @@ const showUpload=(e)=>{
                 ...tempData,
           });
     }
-    else {
-        window.alert("You've exceeded the limit of members!");
+    if(tempData.tempName!==""){
+      if(tempData.tempAff===""||tempData.tempEmail===""){
+        alert("Incomplete Form");
+      }
     }
-       
+    else if(tempData.tempAff!==""){
+      if(tempData.tempName===""||tempData.tempEmail===""){
+        alert("Incomplete Form");
+      }
+    }
+    else if(tempData.tempEmail!==""){
+        if(tempData.tempName===""||tempData.tempAff===""){
+          alert("Incomplete Form");
+        }
+      }
+ 
+    }   
 }
 var obj =[];
   const deleteFile = (element,index) => e => {
@@ -77,13 +73,12 @@ const inputChange = (element, index) => e => {
     setTemp({
       ...tempData
     });
-    setData({
-        ...data,
-      })
+
      console.log(data);
 };
 
 	const handleForm=(e)=>{
+    {/* 
         if(tempData.tempName!==""){
             if(tempData.tempName===""){
               alert("Incomplete Form");
@@ -106,9 +101,10 @@ const inputChange = (element, index) => e => {
           setData({
               ...data,
             })
+            */}
        
        
-           console.log(data);
+           e.preventDefault();
        
            axiosInstance.post("/competitors/update", data)
                   .then(function(response) {
@@ -123,7 +119,7 @@ const inputChange = (element, index) => e => {
 ///////display forms//////
     function displayMembers(){
         var section = [];
-        if(data.members==null||data.members[0]==null||data.members.length<5){
+        if(data.members==null||data.members[0]==null||data.members.length<4){
         
             section.push(
                 <div>

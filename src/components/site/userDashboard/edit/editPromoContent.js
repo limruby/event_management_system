@@ -7,35 +7,30 @@ import { FaTrashAlt } from 'react-icons/fa';
 function EditAccount({data, setData}) {
  
 const showUpload=(e)=>{
+  e.preventDefault();
     if(data.video.length < 5){
-        e.preventDefault();
-        if(tempData.tempVidName!==""){
-      if(tempData.tempVidPath===""){
-        alert("Incomplete Form");
+      if (tempData.tempVidName!=="" && tempData.tempVidPath!==""){
+        data.video.push({'name':tempData.tempVidName,'source':tempData.tempVidPath})
+        setData({
+          ...data,
+        })
+            tempData.tempVidName="";
+            tempData.tempVidPath="";
+   
+            setTemp({
+                  ...tempData,
+            });
+      }  
+      else if(tempData.tempVidName!=="" && tempData.tempVidPath===""){
+          alert("Incomplete Form");  
       }
-    }
-    else if(tempData.tempVidPath!==""){
-      if(tempData.tempVidName===""){
+      else if(tempData.tempVidName==="" && tempData.tempVidPath!==""){
+          alert("Incomplete Form");
+      }  
+      else if(tempData.tempVidName==="" && tempData.tempVidPath===""){
         alert("Incomplete Form");
+    }
       }
-    }
-    if (tempData.tempVidName!=="" && tempData.tempVidPath!==""){
-      data.video.push({'name':tempData.tempVidName,'source':tempData.tempVidPath})
-       
-    }
-    setData({
-        ...data,
-      })
-          tempData.tempVidName="";
-          tempData.tempVidPath="";
- 
-          setTemp({
-                ...tempData,
-          });
-    }
-    else {
-        window.alert("You've exceeded the limit of upload videos!");
-    }
        
 }
 const [tempData, setTemp] = useState({
@@ -60,8 +55,8 @@ console.log(data)
       section.push(
         <div>          
                    <p>{data.poster[0].name}
-				    <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
-				   </p>
+            <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
+           </p>
                    
               </div>
       )
@@ -100,8 +95,12 @@ console.log(data)
                     <input type="text" className="form-control" name="videoPath" id="videoPath"
                     onChange={inputChange('vidPath', 0)} value={tempData.tempVidPath} />
                 </div>
+                <div>
+                                        <button onClick={showUpload} className="btn btn-primary">Add</button>
+                                </div>
               </div>            
-          )               
+          )         
+               
     }
     return section;
   }
@@ -141,6 +140,9 @@ console.log(data)
         fileReader.onload = function(fileLoadedEvent) {
             file = fileLoadedEvent.target.result;
               data.poster.push({'name':fileName,'source':fileReader.result})
+              setData({
+                ...data
+          })
                              
         };
     // Convert data to base64
@@ -166,36 +168,12 @@ console.log(data)
  
   const handleForm=(e)=>{
       e.preventDefault();
-      // perform all neccassary validations
-    // video: if name !null, path must !null
-    if(tempData.tempVidName!==""){
-      if(tempData.tempVidPath===""){
-        alert("Incomplete Form");
-      }
-    }
-    else if(tempData.tempVidPath!==""){
-      if(tempData.tempVidName===""){
-        alert("Incomplete Form");
-      }
-    }
-    if (tempData.tempVidName!=="" && tempData.tempVidPath!==""){
-      data.video.push({'name':tempData.tempVidName,'source':tempData.tempVidPath})
-       
-    }
-    setData({
-        ...data,
-      })
- 
- 
-     console.log(data);
- 
      axiosInstance.post("/sponsors/update", data)
             .then(function(response) {
                window.location.href = '/user_dashboard';
             }).catch(function(error) {
               console.log(error);
             })
- 
  
   };
  
@@ -213,9 +191,6 @@ console.log(data)
  
                  <h5>Video</h5>
                  {displayVideoForm()}
-                                <div>
-                                        <button onClick={showUpload} className="btn btn-primary">Add</button>
-                                </div>
                
                 <br />
                
