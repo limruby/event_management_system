@@ -36,6 +36,15 @@ services:
       - server
     ports:
       - 5000:5000
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=server
+
+      - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
+      - traefik.http.routers.vexs_backend.service=vexs_backend
+      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.getitqec.com`) # && PathPrefix(`/`)
+      - traefik.http.routers.vexs_backend.entrypoints=https
+      - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
     container_name: backend
 
 networks:
