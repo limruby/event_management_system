@@ -32,8 +32,8 @@ console.log(data)
 //     return value;
 //   }
 // }
- 
- 
+
+
 ///////display forms//////
 //poster form
   function displayPosterForm(){
@@ -47,13 +47,13 @@ console.log(data)
     }
     else{
      
-     
+      
       section.push(
         <div>
                    <p>{data.poster[0].name}
-                                   <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
-                                   </p>
-                   
+				   <button className="deleteBtn" type="button" onClick={deleteFile('poster',0)}> <FaTrashAlt/></button>
+				   </p>
+                    
               </div>
       )
     }
@@ -150,9 +150,9 @@ function displayAchievementForm(){
       section.push(
         <div className="form-group">
                   <p>{data.video[0].name}
-                                  <button className="deleteBtn" type="button" onClick={deleteFile('video',0)}> <FaTrashAlt/></button>
-                                  </p>
-                   
+				  <button className="deleteBtn" type="button" onClick={deleteFile('video',0)}> <FaTrashAlt/></button>
+				  </p>
+                    
               </div>
       )
     }
@@ -209,27 +209,27 @@ function displayAchievementForm(){
  
            if(element === 'poster'){
               data.poster.push({'name':fileName,'source':fileReader.result})
-                          setData({
-                                ...data
-                          })
+			  setData({
+				...data
+			  })
             }
             else if(element === 'achievement'){
                         data.achievements.push({'name':fileName,'source':fileReader.result});
-                                                setData({
-                                ...data
-                          })
+						setData({
+				...data
+			  })
                     }
             else if(element==='publication'){
                       data.publications.push({'name':fileName,'source':fileReader.result});
-                                          setData({
-                                ...data
-                          })
+					  setData({
+				...data
+			  })
                     }
             else if(element==='grant'){
                       data.grants.push({'name':fileName,'source':fileReader.result});
-                                          setData({
-                                ...data
-                          })
+					  setData({
+				...data
+			  })
                     }
                    
         };
@@ -250,7 +250,7 @@ function displayAchievementForm(){
     setData({
         ...data,
       })
-        setData({
+	setData({
         ...data,
       })
      console.log(data);
@@ -291,7 +291,7 @@ function displayAchievementForm(){
  
  
   };
- 
+
   return(
     <>
             <form onSubmit={handleForm}>
@@ -301,7 +301,7 @@ function displayAchievementForm(){
                 <h5>Poster</h5>    
                            
                 {displayPosterForm()}
-                               
+				
                 <hr/>
  
                 <h5>Achievements</h5>
@@ -309,7 +309,7 @@ function displayAchievementForm(){
               <div className="form-group">
                    {displayAchievementForm()}
                  </div>
-                       
+			
                  <hr/>
  
                 <h5>Publications</h5>
@@ -317,16 +317,16 @@ function displayAchievementForm(){
               <div className="form-group">
                    {displayPublicationForm()}
                  </div>
-                               
+				
                  <h5>Grants</h5>
                
               <div className="form-group">
                    {displayGrantForm()}
                  </div>
-                               
+				
                  <h5>Video</h5>
                  {displayVideoForm()}
-                               
+				
            
                
                 <br />
