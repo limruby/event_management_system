@@ -166,4 +166,3 @@ function displayLogo(){
 }
  
 export default EditProfile;
- 
