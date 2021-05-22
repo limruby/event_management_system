@@ -9,7 +9,7 @@ var data;
 const submit=(e)=>{
     e.preventDefault();
     console.log(data)
-
+	
 //     var postData = {
 
 //         bookChapter : {
@@ -20,12 +20,12 @@ const submit=(e)=>{
 
 //     }
 //  console.log(postData);
-//     axiosInstance.post("/competitors/update", postData)
-//             .then(function(response) {
-//               // window.location.href = '/user_dashboard';
-//             }).catch(function(error) {
-//               console.log(error);
-//             })
+     axiosInstance.post("/competitors/update", data)
+             .then(function(response) {
+               // window.location.href = '/user_dashboard';
+             }).catch(function(error) {
+               console.log(error);
+             })
 }
 
 const editorConfiguration = {
@@ -91,7 +91,7 @@ class EditorSec extends Component {
                     //     console.log( 'Focus.',  editor.getData() );
                     // } }
                 />
-                <p>Click "Set" to save the data</p>
+                <br/>
                 <button className="btn btn-primary" onClick={submit}>Set</button>
 
             </div>

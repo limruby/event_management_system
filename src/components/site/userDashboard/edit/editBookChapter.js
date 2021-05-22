@@ -4,13 +4,14 @@ import Form from 'react-bootstrap/Form';
 import { FaTrashAlt } from 'react-icons/fa';
 import Editor from './editor';
 
+
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditBookChapter({data, setData}) {
 
 
     const inputChange = input => e => {
-	    if(input=='introduction'){
+        if(input=='introduction'){
 			if(!data.bookChapter[0]){
 				data.bookChapter.push({'introduction': e.target.value})			}
 			else{
@@ -67,7 +68,8 @@ function EditBookChapter({data, setData}) {
                     <input type="text" className="form-control" name="reference" id="reference"
                     placeholder='reference'                    
                     onChange={tempInput('reference')} value={tempState.reference}/>
-                	<button className="addBtn" type="button" onClick={addReference()}> Add</button>
+					<br/>
+                	<button className="addBtn btn-primary btn" type="button" onClick={addReference()}> Add</button>
                 </div>
 
                 <hr/>
