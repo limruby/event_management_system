@@ -12,6 +12,7 @@ import EditPromoContent from './editPromoContent.js';
 import EditCompetitionMaterial from './editCompetitionMaterial.js';
 import EditAbstract from './editAbstract.js';
 import EditBookChapter from './editBookChapter.js';
+import Content from './editContent.js';
 
 
 
@@ -126,6 +127,14 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				return( 
 				    <div className="form-main-container">
 						<EditBookChapter data={user} setData={setUser}/>
+					</div>
+				)
+			break;
+
+			case 'edit_book_chapter_content':
+				return( 
+				    <div className="form-main-container">
+						<Content data={user} setData={setUser}/>
 					</div>
 				)
 			break;
