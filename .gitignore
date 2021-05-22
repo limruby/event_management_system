@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /build
-/node_modules
+node_modules
 
 # Logs
 logs
@@ -36,3 +36,6 @@ lerna-debug.log*
 
 .env
 .eslintcache
+
+deploy-staging.sh
+*.tar
