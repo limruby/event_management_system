@@ -3,30 +3,7 @@ import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 
 import axiosInstance from '../../../../utils/axiosConfig.js';
-var data;
 
-
-const submit=(e)=>{
-    e.preventDefault();
-    console.log(data)
-	
-//     var postData = {
-
-//         bookChapter : {
-//             0  : {
-//                 'content' : data
-//             } 
-//         }
-
-//     }
-//  console.log(postData);
-     axiosInstance.post("/competitors/update", data)
-             .then(function(response) {
-               // window.location.href = '/user_dashboard';
-             }).catch(function(error) {
-               console.log(error);
-             })
-}
 
 const editorConfiguration = {
     toolbar: {
@@ -66,10 +43,32 @@ const editorConfiguration = {
 };
 
 class EditorSec extends Component {
-
-
-
     render() {
+
+        var data;
+
+
+        const submit=(e)=>{
+            e.preventDefault();
+            console.log(data)
+
+            var postData = {
+                _id : this.props.id
+                ,
+                bookChapter : this.props.bookChapter_data
+            }
+
+            postData.bookChapter[0]['content'] = data
+
+         // console.log(postData);
+            // axiosInstance.post("/competitors/update", postData)
+            //         .then(function(response) {
+            //           // window.location.href = '/user_dashboard';
+            //         }).catch(function(error) {
+            //           console.log(error);
+            //         })
+        }
+
         return (
             <div className="EditorSec">                
                 <CKEditor
@@ -78,6 +77,7 @@ class EditorSec extends Component {
                     data="<p>Hello from CKEditor 5!</p>"
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
+                        data = editor.getData();
                         console.log( 'Editor is ready to use!', editor );
                     } }
                     onChange={ ( event, editor ) => {
@@ -91,7 +91,7 @@ class EditorSec extends Component {
                     //     console.log( 'Focus.',  editor.getData() );
                     // } }
                 />
-                <br/>
+                <p>Click "Set" to save the data</p>
                 <button className="btn btn-primary" onClick={submit}>Set</button>
 
             </div>

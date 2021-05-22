@@ -24,7 +24,17 @@ const inputChange = input => e => {
         }
         else{
              ///////update to db /////////////
-             axiosInstance.post("/sponsors/update", data)
+              var postData = {
+                _id : data._id,
+                company_name : data.company_name,
+                company_pic_name : data.company_pic_name,
+                company_contact : data.company_contact,
+                company_address : data.company_address,
+                company_website : data.company_website,
+                company_logo : data.company_logo
+            }
+
+             axiosInstance.post("/sponsors/update", postData)
              .then(function(response) {
                window.location.href = '/user_dashboard';
              }).catch(function(error) {
@@ -166,3 +176,4 @@ function displayLogo(){
 }
  
 export default EditProfile;
+ 
