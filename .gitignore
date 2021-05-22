@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /build
-/node_modules
+node_modules
 
 # Logs
 logs
@@ -36,3 +36,10 @@ lerna-debug.log*
 
 .env
 .eslintcache
+
+deploy-staging.sh
+*.tar
+.vs/event_management_system/v16/.suo
+.vs/slnx.sqlite
+backend/env
+package-lock.json

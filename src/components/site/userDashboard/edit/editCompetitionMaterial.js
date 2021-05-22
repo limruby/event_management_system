@@ -280,9 +280,16 @@ function displayAchievementForm(){
       })
  
  
-     console.log(data);
+    var postData = {
+      _id : data._id,
+      poster : data.poster,
+      achievements : data.achievements,
+      publication : data.publication,
+      grants : data.grants,
+      video : data.video,
+    }
  
-     axiosInstance.post("/competitors/update", data)
+     axiosInstance.post("/competitors/update", postData)
             .then(function(response) {
                window.location.href = '/user_dashboard';
             }).catch(function(error) {
