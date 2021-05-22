@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { FaTrashAlt } from 'react-icons/fa';
+import Editor from './editor';
 
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
@@ -126,7 +127,13 @@ function EditBookChapter({data, setData}) {
 	const handleForm=(e)=>{
 	e.preventDefault();
 	// perform all neccassary validations
-	   axiosInstance.post("/competitors/update", data)
+		var postData = {
+                _id : data._id,                
+                bookChapter : data.bookChapter
+            }
+
+
+	   axiosInstance.post("/competitors/update", postData)
             .then(function(response) {
               window.location.href = '/user_dashboard';
             }).catch(function(error) {
@@ -171,8 +178,7 @@ function EditBookChapter({data, setData}) {
 
 	                <div className="form-group">
 	                    <label htmlFor="content">Content </label>
-	                    <textarea className="form-control" id="content" cols="30" rows="10"
-                    	onChange={inputChange('content')} value={checkExist('content', 0)} />
+	                    <Editor id = {data._id} bookChapter_data = {data.bookChapter}/>
 	                </div>
 					
 					 <div className="form-group">
