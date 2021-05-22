@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { FaTrashAlt } from 'react-icons/fa';
+import Editor from './editor';
 
 
 import axiosInstance from '../../../../utils/axiosConfig.js';
@@ -173,11 +174,7 @@ function EditBookChapter({data, setData}) {
 
 	                <div className="form-group">
 	                    <label htmlFor="content">Content </label>
-						<br/>
-						<Link to="/user_dashboard/edit_chapter_content">
-	                        <button className="btn btn-primary">Edit Content</button>
-	                    </Link>
- 
+	                    <Editor/>
 	                </div>
 					
 					 <div className="form-group">
