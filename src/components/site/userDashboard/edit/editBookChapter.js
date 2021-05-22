@@ -67,7 +67,8 @@ function EditBookChapter({data, setData}) {
                     <input type="text" className="form-control" name="reference" id="reference"
                     placeholder='reference'                    
                     onChange={tempInput('reference')} value={tempState.reference}/>
-                	<button className="addBtn" type="button" onClick={addReference()}> Add</button>
+					<br/>
+                	<button className="addBtn btn btn-primary" type="button" onClick={addReference()}> Add</button>
                 </div>
 
                 <hr/>
