@@ -105,8 +105,14 @@ const inputChange = (element, index) => e => {
        
        
            e.preventDefault();
+
+
+           var postData = {
+                _id : data._id,
+                members : data.members
+              }
        
-           axiosInstance.post("/competitors/update", data)
+           axiosInstance.post("/competitors/update", postData)
                   .then(function(response) {
                      window.location.href = '/user_dashboard';
                   }).catch(function(error) {

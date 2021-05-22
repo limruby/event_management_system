@@ -168,7 +168,14 @@ console.log(data)
  
   const handleForm=(e)=>{
       e.preventDefault();
-     axiosInstance.post("/sponsors/update", data)
+
+      var postData = {
+          _id : data._id,
+          poster : data.poster,
+          video : data.video
+      }
+
+     axiosInstance.post("/sponsors/update", postData)
             .then(function(response) {
                window.location.href = '/user_dashboard';
             }).catch(function(error) {
