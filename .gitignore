@@ -43,3 +43,4 @@ deploy-staging.sh
 .vs/slnx.sqlite
 backend/env
 package-lock.json
+*.sqlite
