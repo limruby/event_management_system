@@ -12,6 +12,7 @@ import BookChapter from './book-chapter-sec';
 import ResearchTeam from './research-team-sec';
  
 import PdfAbstract from './pdf-abstract-bookChapter';
+import Preview from './preview-sec';
  
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab, Nav, Row, Col,Card} from "react-bootstrap";
@@ -222,6 +223,15 @@ function UserDashboard() {
                     </Link>
                     <h2> BookChapter </h2>    
                     <BookChapter user={user}/>
+                  </div>
+			</Card.Body>
+        </Card>
+        <p/>
+        <Card>
+			<Card.Body>
+                  <div className="sec-container">
+                    <h2> Preview </h2>    
+                    <Preview user={user}/>
                   </div>
 			</Card.Body>
         </Card>

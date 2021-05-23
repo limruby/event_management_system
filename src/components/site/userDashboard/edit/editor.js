@@ -14,15 +14,11 @@ const editorConfiguration = {
             'bulletedList',
             'numberedList',
             '|',
-            'outdent',
-            'indent',
-            '|',
             'imageUpload',
             'blockQuote',
             'insertTable',
             'mediaEmbed',
-            'undo',
-            'redo'
+            
         ]
     },
     language: 'en',
@@ -30,7 +26,6 @@ const editorConfiguration = {
         toolbar: [
             'imageTextAlternative',
             'imageStyle:full',
-            'imageStyle:side'
         ]
     },
     table: {
@@ -42,11 +37,18 @@ const editorConfiguration = {
     }
 };
 
+
 class EditorSec extends Component {
     render() {
 
         var data;
-
+    	var initialData;
+		
+		if(this.props.bookChapter_data==null||this.props.bookChapter_data[0]==undefined||this.props.bookChapter_data[0]['content']==null){
+				initialData="";
+			}else{
+				initialData = this.props.bookChapter_data[0]['content'];
+			}
 
         const submit=(e)=>{
             e.preventDefault();
@@ -57,8 +59,12 @@ class EditorSec extends Component {
                 ,
                 bookChapter : this.props.bookChapter_data
             }
-
-            postData.bookChapter[0]['content'] = data
+			if(postData.bookChapter==null||postData.bookChapter[0]==undefined||postData.bookChapter[0]['content']==null){
+				postData.bookChapter.push({'content':data})
+			}else{
+				postData.bookChapter[0]['content'] = data;
+			}
+            
 
          // console.log(postData);
             // axiosInstance.post("/competitors/update", postData)
@@ -74,7 +80,7 @@ class EditorSec extends Component {
                 <CKEditor
                     editor={ Editor }
                     config={ editorConfiguration }
-                    data="<p>Hello from CKEditor 5!</p>"
+                    data={initialData}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
                         data = editor.getData();
@@ -82,7 +88,17 @@ class EditorSec extends Component {
                     } }
                     onChange={ ( event, editor ) => {
                         data = editor.getData();
-                        console.log( { event, editor, data } );
+						var postData = {
+						_id : this.props.id,
+						bookChapter : this.props.bookChapter_data
+						}
+			
+					if(postData.bookChapter==null||postData.bookChapter[0]==undefined||postData.bookChapter[0]['content']==null){
+						postData.bookChapter.push({'content':data})
+					}else{
+						postData.bookChapter[0]['content'] = data;
+					}
+                    //console.log( { event, editor, data } );
                     } }
                     // onBlur={ ( event, editor ) => {
                     //     console.log( 'Blur.', editor.getData() );

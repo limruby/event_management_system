@@ -178,7 +178,7 @@ function EditBookChapter({data, setData}) {
 
 	                <div className="form-group">
 	                    <label htmlFor="content">Content </label>
-	                    <Editor id = {data._id} bookChapter_data = {data.bookChapter}/>
+						<Editor id = {data._id} bookChapter_data = {data.bookChapter}/>
 	                </div>
 					
 					 <div className="form-group">
