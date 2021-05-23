@@ -68,6 +68,10 @@ function EditBookChapter({data, setData}) {
                     placeholder='reference'                    
                     onChange={tempInput('reference')} value={tempState.reference}/>
                 	<button className="btn btn-primary" type="button" onClick={addReference()}> Add</button>
+
+					<br/>
+                	
+
                 </div>
 
                 <hr/>
