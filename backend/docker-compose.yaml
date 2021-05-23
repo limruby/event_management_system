@@ -42,7 +42,7 @@ services:
 
       - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
       - traefik.http.routers.vexs_backend.service=vexs_backend
-      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.getitqec.com`) # && PathPrefix(`/`)
+      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.getitqec.com`) && PathPrefix(`/api/`)
       - traefik.http.routers.vexs_backend.entrypoints=https
       - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
     container_name: backend
