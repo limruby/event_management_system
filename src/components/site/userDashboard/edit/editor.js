@@ -14,15 +14,11 @@ const editorConfiguration = {
             'bulletedList',
             'numberedList',
             '|',
-            'outdent',
-            'indent',
-            '|',
             'imageUpload',
             'blockQuote',
             'insertTable',
             'mediaEmbed',
-            'undo',
-            'redo'
+            
         ]
     },
     language: 'en',
@@ -30,7 +26,6 @@ const editorConfiguration = {
         toolbar: [
             'imageTextAlternative',
             'imageStyle:full',
-            'imageStyle:side'
         ]
     },
     table: {
@@ -47,7 +42,7 @@ class EditorSec extends Component {
     render() {
 
         var data;
-		var initialData;
+    	var initialData;
 		
 		if(this.props.bookChapter_data==null||this.props.bookChapter_data[0]==undefined||this.props.bookChapter_data[0]['content']==null){
 				initialData="";

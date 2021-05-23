@@ -67,11 +67,7 @@ const AbstractContent = ({user}) =>  {
   return (       
     <div>
       <div id="pdfAbstract">
-       
 
-        {displayTitle()}
-        {displayContent()}
-        {displayKeywords()}
         
       </div>  
       
