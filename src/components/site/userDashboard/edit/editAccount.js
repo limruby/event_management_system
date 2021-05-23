@@ -19,7 +19,7 @@ function EditAccount({data, setData}) {
         }
         else{
             ///////update to db /////////////
-            axiosInstance.post("/accounts/update", data)
+            axiosInstance.post("/api/accounts/update", data)
             .then(function(response) {
               window.location.href = '/user_dashboard';
             }).catch(function(error) {

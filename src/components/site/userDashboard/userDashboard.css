@@ -63,7 +63,7 @@
   
   .sec-container{
 	  display: block;
-	  max-height: 550px;
+	  max-height: 100%;
   }
 
   .btn-group a{
