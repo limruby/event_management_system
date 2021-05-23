@@ -27,21 +27,21 @@ function UserDashboard() {
  
  
   useEffect(() => {
-      axiosInstance.get("/competitors/read", {params:{account_id:account_id}})
+      axiosInstance.get("/api/competitors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
      
-      axiosInstance.get("/sponsors/read", {params:{account_id:account_id}})
+      axiosInstance.get("/api/sponsors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
  
-      axiosInstance.get("/accounts/read", {params:{account_id:account_id}})
+      axiosInstance.get("/api/accounts/read", {params:{account_id:account_id}})
         .then(function(response) {
           setAccount(response.data.data);
         }).catch(function(error) {

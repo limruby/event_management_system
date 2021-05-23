@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import parse from 'html-react-parser';
 
 const Content = ({user}) =>  {
 
@@ -20,12 +20,13 @@ const Content = ({user}) =>  {
   }
   function displayContent(){
       var section = [];
+     
 
     if(user.bookChapter!=null){
       for (var i=0; i<user.bookChapter.length; i++){
         section.push(
             <p>
-                <b>Content</b>: {user.bookChapter[0].content}
+                <b>Content</b>: {parse(user.bookChapter[0].content)}
             </p>
         );
     }
@@ -81,7 +82,6 @@ function displayReference(){
         {displayIntroduction()}
         {displayContent()}
         {displayConclusion()}
-
         {displayReference()}
       </div>  
       

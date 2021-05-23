@@ -2,6 +2,7 @@ import React from 'react';
 import pdfMake from "pdfmake/build/pdfmake";
 import axiosInstance from '../../../utils/axiosConfig.js';
 import pdfFonts from "./../../../assets/vfs_fonts_times";
+import parse from 'html-react-parser';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 
@@ -69,7 +70,7 @@ const Content = ({user, account}) =>  {
   function appendbookChapterContent(){
     if(user.bookChapter[0]===undefined){return ''}
     else if(user.bookChapter[0].content===undefined){return ''}
-    else {return user.bookChapter[0].content}
+    else {return parse(user.bookChapter[0].content)}
   }
 
   function appendConclusion(){

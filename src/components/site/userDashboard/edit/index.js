@@ -12,9 +12,6 @@ import EditPromoContent from './editPromoContent.js';
 import EditCompetitionMaterial from './editCompetitionMaterial.js';
 import EditAbstract from './editAbstract.js';
 import EditBookChapter from './editBookChapter.js';
-import Content from './editContent.js';
-
-
 
 
 function FormNavigator() {
@@ -26,20 +23,20 @@ function FormNavigator() {
   const account_id = localStorage.getItem('user_id');
 
   useEffect(() => {
-      axiosInstance.get("/competitors/read", {params:{account_id:account_id}})
+      axiosInstance.get("/api/competitors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
-	axiosInstance.get("/sponsors/read", {params:{account_id:account_id}})
+	axiosInstance.get("/api/sponsors/read", {params:{account_id:account_id}})
         .then(function(response) {
           setUser(response.data.data);
         }).catch(function(error) {
           console.log(error);
         });
 
-      axiosInstance.get("/accounts/read", {params:{account_id:account_id}})
+      axiosInstance.get("/api/accounts/read", {params:{account_id:account_id}})
         .then(function(response) {
           setAccount(response.data.data);
         }).catch(function(error) {
@@ -127,14 +124,6 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				return( 
 				    <div className="form-main-container">
 						<EditBookChapter data={user} setData={setUser}/>
-					</div>
-				)
-			break;
-
-			case 'edit_book_chapter_content':
-				return( 
-				    <div className="form-main-container">
-						<Content data={user} setData={setUser}/>
 					</div>
 				)
 			break;

@@ -34,7 +34,7 @@ const inputChange = input => e => {
                 company_logo : data.company_logo
             }
 
-             axiosInstance.post("/sponsors/update", postData)
+             axiosInstance.post("/api/sponsors/update", postData)
              .then(function(response) {
                window.location.href = '/user_dashboard';
              }).catch(function(error) {

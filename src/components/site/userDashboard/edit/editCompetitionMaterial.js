@@ -289,7 +289,7 @@ function displayAchievementForm(){
       video : data.video,
     }
  
-     axiosInstance.post("/competitors/update", postData)
+     axiosInstance.post("/api/competitors/update", postData)
             .then(function(response) {
                window.location.href = '/user_dashboard';
             }).catch(function(error) {
