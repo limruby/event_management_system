@@ -20,7 +20,7 @@ function Login()
             password: password
         }
         
-        axiosInstance.post('/accounts/login', data)
+        axiosInstance.post('/api/accounts/login', data)
         .then(res=> {
 
             localStorage.clear();

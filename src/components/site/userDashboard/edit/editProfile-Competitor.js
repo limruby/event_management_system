@@ -22,7 +22,18 @@ function EditProfile({data, setData}) {
         }
         else{
             ///////update to db /////////////
-            axiosInstance.post("/competitors/update", data)
+            var postData = {
+                _id : data._id,
+                name : data.name,
+                affiliation : data.affiliation,
+                nric_passport_selection : data.nric_passport_selection,
+                nric_passport_no : data.nric_passport_no,
+                address : data.address,
+                gender : data.gender
+            }
+
+
+            axiosInstance.post("/api/competitors/update", postData)
             .then(function(response) {
               window.location.href = '/user_dashboard';
             }).catch(function(error) {

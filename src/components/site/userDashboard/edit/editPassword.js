@@ -35,7 +35,7 @@ const [user, setState] = useState({
            
              console.log(data);  
             ///////update to db /////////////
-             axiosInstance.post("/accounts/update", user)
+             axiosInstance.post("/api/accounts/update", user)
             .then(function(response) {
                window.location.href = '/user_dashboard';
             }).catch(function(error) {

@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {isAuth} from './utils/isAuth'
 
-
+//
 import Landing from './components/site/landingPage';
 import SignIn from './components/site/login/login';
 import SignUp from './components/site/signUp'
@@ -51,6 +51,7 @@ function App() {
         <PrivateRoute exact path='/user_dashboard/edit_researchTeam' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_abstract' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_book_chapter' component={EditUserDetails}/>
+        <PrivateRoute exact path='/user_dashboard/edit_book_chapter_content' component={EditUserDetails}/>
 
         {/* <Route exact path='/admin_dashboard'  component={AdminDashboard}/>   */}
 
