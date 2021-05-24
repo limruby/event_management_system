@@ -1,21 +1,33 @@
 import React from 'react';
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
+import html2pdf from "html2pdf.js";
 
 const PdfDownloader = ({rootElementId , downloadFileName}) => {
-
-    const downloadPdfDocument = () => {
-        const input = document.getElementById(rootElementId);
-        html2canvas(input)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF();
-                pdf.addImage(imgData, 'JPEG', 0, 0);
-                pdf.save(`${downloadFileName}.pdf`);
-            })
+    function addScript(url) {
+        var script = document.createElement('script');
+        script.type = 'application/javascript';
+        script.src = url;
+        document.head.appendChild(script);
     }
-
-    return <button onClick={downloadPdfDocument}>Download Pdf</button>
+    addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
+    const submitHandler = (e) => {
+        window.scrollTo(0, 0);
+        var element = document.getElementById(rootElementId);
+        var opt = {
+          margin:       1,
+          filename:    downloadFileName,
+          image:        { type: 'png', quality: 0.98 },
+          html2canvas:  { scale: 1 },
+          jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+   
+  
+   // New Promise-based usage:
+   //html2pdf().set(opt).from(element).save();
+   
+   // Old monolithic-style usage:
+   html2pdf(element, opt);
+}
+    return <button className="btn btn-primary" onClick={submitHandler}>Download PDF</button>
 
 }
 

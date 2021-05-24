@@ -79,10 +79,7 @@ function displayReference(){
   return (       
     <div>
       <div>
-        {displayIntroduction()}
-        {displayContent()}
-        {displayConclusion()}
-        {displayReference()}
+
       </div>  
       
     </div>

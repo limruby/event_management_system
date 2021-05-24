@@ -1,0 +1,48 @@
+.preview-section {
+    font-family: "Times New Roman", Times, serif;
+    /*margin: 74px;*/
+}
+
+    .preview-section #abstract_title h1 {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .preview-section #body_content #subtitle {
+        font-size: 12px;
+        text-align: center !important;
+        font-weight: bold;
+    }
+
+    .preview-section #body_content p {
+        font-size: 11px;
+        text-align: justify;
+    }
+
+    .preview-section #body_content img,figcaption {
+        width: 50%;
+        height:auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .preview-section #author p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .preview-section #aff p {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .preview-section #keywords p {
+        font-size: 12px;
+        font-style: italic;
+        text-align: left;
+    }
+    .preview-section #body_content li {
+        font-size: 11px;
+        text-align: justify;
+    }
