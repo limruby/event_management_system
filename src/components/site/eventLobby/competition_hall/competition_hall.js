@@ -10,7 +10,7 @@ function Competition_hall() {
 
   return (
     <div className="Competition_hall">
-      <Footer/>
+  
 
     </div>
   );

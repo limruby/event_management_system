@@ -6,47 +6,7 @@ export class Confirm extends Component {
 
     continue = async (e) => {
         e.preventDefault();
-        const { 
-            values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
-                , no_of_team_members,members}
-        } = this.props;
-
-        var data = {
-            role:"Competitor",
-            email: email,
-            password: password,
-            name: name,
-            category: category,
-            nric_passport_selection:ic_passport_selection,
-            nric_passport_no: ic_passport_number,
-            affiliation: affiliation,
-            address:address,
-            gender:gender
-        };
-        
-        var account_id="";
-
-        axiosInstance.post('/accounts/signUp', data)
-            .then(res=> {
-               
-                 
-            if(res.data._id){
-                this.account_id = res.data._id;
-                data["account_id"] = this.account_id;
-
-                axiosInstance.post('/competitors/create', data)
-                .then(res=>{
-                    console.log(res.data)
-                    this.props.nextStep();
-                });
-             }
-             else{
-                 alert('Email existed')
-             }
-
-        });
-                                   
-       
+        this.props.nextStep();
     };
 
     back = e => {
