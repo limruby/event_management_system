@@ -5,6 +5,7 @@ import Profiles from './Profiles';
 import TeamProfiles from './TeamProfiles';
 import Confirm from './Confirm';
 import Success from './Success';
+import CompPay from './competitor_payment';
 
 export class CompetitorForm extends Component {
     state = {
@@ -121,7 +122,15 @@ export class CompetitorForm extends Component {
                         values={values}
                     />
                 );
-            case 5:
+                case 5:
+                return (
+                    <CompPay 
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    values={values}
+                    />
+                );
+            case 6:
                 return (
                     <Success />
                 );
