@@ -46,6 +46,9 @@ services:
       - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.getitqec.com`) && PathPrefix(`/api/`)
       - traefik.http.routers.vexs_backend.entrypoints=https
       - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
+      - traefik.http.routers.vexs_backend-unsecured.service=vexs_backend
+      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.getitqec.com`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend-unsecured.entrypoints=http
     container_name: backend
 
 networks:

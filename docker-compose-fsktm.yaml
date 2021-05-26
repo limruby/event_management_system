@@ -15,7 +15,7 @@ services:
 
       - traefik.http.routers.vexs_server.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_server.entrypoints=http
-      - traefik.http.routers.vexs_server.middlewares=redirect@file
+      # - traefik.http.routers.vexs_server.middlewares=redirect@file
       - traefik.http.routers.vexs_server-secured.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_server-secured.entrypoints=https
       - traefik.http.routers.vexs_server-secured.tls.certresolver=mytlschallenge
