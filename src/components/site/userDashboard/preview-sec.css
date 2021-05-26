@@ -25,6 +25,9 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        page-break-before: auto; 
+        page-break-after: auto; 
+        page-break-inside: avoid;
     }
 
     .preview-section #author p {
@@ -45,4 +48,5 @@
     .preview-section #body_content li {
         font-size: 11px;
         text-align: justify;
+        list-style-type:none;
     }
