@@ -23,6 +23,7 @@ export class CompetitorForm extends Component {
         name:'',
         ic_passport_selection:'',
         ic_passport_number: '',
+		phone_no:'',
         affiliation:'',
         address: '',
         gender: '',
@@ -67,10 +68,10 @@ export class CompetitorForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { email, password, confirmPassword, role, category,  name, ic_passport_selection, ic_passport_number, affiliation, address, gender
+        const { email, password, confirmPassword, role, category,  name, ic_passport_selection, ic_passport_number,phone_no, affiliation, address, gender
             , no_of_team_members,members, name_2, ic_passport_selection_2, ic_passport_number_2, name_3, ic_passport_selection_3, ic_passport_number_3, name_4, ic_passport_selection_4, ic_passport_number_4
             , name_5, ic_passport_selection_5, ic_passport_number_5} = this.state;
-        const values = { email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
+        const values = { email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number,phone_no, affiliation, address, gender
             , no_of_team_members,members, name_2, ic_passport_selection_2, ic_passport_number_2, name_3, ic_passport_selection_3, ic_passport_number_3, name_4, ic_passport_selection_4, ic_passport_number_4
             , name_5, ic_passport_selection_5, ic_passport_number_5};
 

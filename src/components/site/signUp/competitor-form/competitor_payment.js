@@ -8,7 +8,7 @@ export class Confirm extends Component {
         e.preventDefault();
         const { 
             values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
-                , no_of_team_members,members, contact}
+                , no_of_team_members,members, phone_no}
         } = this.props;
 
         var amount="";
@@ -21,7 +21,7 @@ export class Confirm extends Component {
         else if (category === "Junior Innovator"){
             amount = 190.00;
         }
-        var contactEx ="0123456789";
+        
 
         var cmpy_code = "AA04";
         var zone ="02";
@@ -35,7 +35,7 @@ export class Confirm extends Component {
             name: name,
             ic: ic_passport_number,
             email:email,
-            phone:contactEx,
+            phone:phone_no,
             designation: affiliation,
             address:address,
             hash_value: hash_value,

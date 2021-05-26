@@ -18,7 +18,7 @@ export class Profiles extends Component {
         const handleForm=(e)=>{
         e.preventDefault();
         // perform all neccassary validations
-            if (values.name ==""||values.affiliation==""||values.ic_passport_selection==""||values.ic_passport_number==""
+            if (values.name ==""||values.affiliation==""||values.ic_passport_selection==""||values.ic_passport_number==""||values.phone_no==""
                 ||values.address==""||values.gender==""){
                 alert("Form not fill");
             }
@@ -57,6 +57,13 @@ export class Profiles extends Component {
                     <input className="form-control" type='text'name='ic_passport_number' id="ic_passport_number"
                     placeholder='NRIC / Passport Number' required
                     onChange={inputChange('ic_passport_number')} value={values.ic_passport_number} />
+                </div>
+				<div className="form-group">
+                    <label htmlFor="phone_no"><span>*</span>Phone Number</label>
+                    <input className="form-control" type='text'name='phone_no' id="phone_no"
+                    placeholder='Phone Number' required
+                    onChange={inputChange('phone_no')} value={values.phone_no} 
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="address"><span>*</span>Address</label>

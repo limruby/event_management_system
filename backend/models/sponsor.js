@@ -35,6 +35,10 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
+  phone_no:{
+	type:String,
+	required:true
+  }
   company_name: {
     type: String,
     required: true

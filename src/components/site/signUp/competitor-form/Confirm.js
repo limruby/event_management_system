@@ -16,7 +16,7 @@ export class Confirm extends Component {
 
     render() {
         const { 
-            values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
+            values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, phone_no, affiliation, address, gender
             , no_of_team_members,members}
         } = this.props;
 
@@ -29,7 +29,8 @@ export class Confirm extends Component {
                     <li class="list-group-item">Name: {name}</li>
                     <li class="list-group-item">Email: {email}</li>
                     <li class="list-group-item">Affiliation: {affiliation}</li>
-                    <li class="list-group-item">NRIC/Passport Number: {ic_passport_number}</li>                    
+                    <li class="list-group-item">NRIC/Passport Number: {ic_passport_number}</li>   
+					<li class="list-group-item">Phone Number: {phone_no}</li> 
                     <li class="list-group-item">Address: {address}</li>
                     <li class="list-group-item">Gender: {gender}</li>
                     <li class="list-group-item">Selected Category: {category}</li>
