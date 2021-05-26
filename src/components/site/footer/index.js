@@ -13,43 +13,32 @@ function Footer(){
 						Copyright &copy; DInoWex2021 | <a href="https://www.fsktm.edu.my">FSKTM</a> | <a href="https://www.um.edu.my">UM</a>
 					</span>
 				</div>
+
 				<div className="col-md-4">
-					<ul className="list-inline social-buttons">
+					
+				</div>
+
+				<div className="col-md-4">
+					<ul className="list-inline quicklinks social-buttons">
 						<li className="list-inline-item">
-						<a href="https://www.twitter.com">
-						<i className="fa fa-twitter"></i>
-						</a>
-						</li>
-						<li className="list-inline-item">
-						<a href="https://www.facebook.com">
+						<a href="https://www.facebook.com/DInoWex.FSKTM">
 						<i className="fa fa-facebook-f"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href="https://www.instagram.com">
+						<a href="https://www.instagram.com/dinowexofficial/">
 						<i className="fa fa-instagram"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href="https://www.plus.google.com">
-						<i className="fa fa-google-plus"></i>
+						<a href = "mailto: dinowex-list@um.edu.my">
+						<i className="fa fa-envelope"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href="https://www.linkedin.com">
-						<i className="fa fa-linkedin"></i>
+						<a href="tel:+603-7967 6313">
+						<i className="fa fa-phone"></i>
 						</a>
-						</li>
-					</ul>
-				</div>
-				<div className="col-md-4">
-					<ul className="list-inline quicklinks">
-						<li className="list-inline-item">
-						<a href="#something">Privacy Policy</a>
-						</li>
-						<a className="white-straight-line">| </a>
-						<li className="list-inline-item">
-						<a href="#something">Terms of Use</a>
 						</li>
 					</ul>
 				</div>
