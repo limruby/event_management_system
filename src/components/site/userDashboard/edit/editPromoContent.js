@@ -190,13 +190,13 @@ console.log(data)
       <div className="form-container">
                 <h1 className="mb-5">Edit Promotional content</h1>
  
-                <h5>Poster</h5>    
+                <h5>Poster<i className="caution"> (*Max 1)</i></h5>    
                            
                 {displayPosterForm()}
                                
                 <hr/>
  
-                 <h5>Video</h5>
+                 <h5>Video<i className="caution"> (*Max 5)</i></h5>
                  {displayVideoForm()}
                
                 <br />

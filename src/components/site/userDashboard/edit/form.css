@@ -1,11 +1,16 @@
-body{
-  background: url('/src/assets/img/header-bg.jpg');
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  align-items: center;
+.caution {
+    color:red;
+    font-size:14px;
+}
+
+body {
+    background: url('/src/assets/img/header-bg.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    align-items: center;
 }
 label{
   display: block;
