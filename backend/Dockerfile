@@ -7,11 +7,8 @@ RUN apk update && apk upgrade && apk add --no-cache bash git
 
 COPY package*.json ./
 
-# RUN npm install
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
-
-EXPOSE 5000
 
 CMD ["npm", "start"]
