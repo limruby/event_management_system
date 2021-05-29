@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://localhost:3000/",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.2",
@@ -40,13 +39,14 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-scroll": "^1.8.2",
+    "sha1": "^1.1.1",
     "slate": "^0.63.0",
     "slate-react": "^0.63.0",
     "typescript": "^4.2.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon server.js",
     "test": "react-scripts test",

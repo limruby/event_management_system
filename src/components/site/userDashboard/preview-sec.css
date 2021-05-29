@@ -54,11 +54,6 @@
     .preview-section #body_content li {
         font-size: 11px;
         text-align: justify;
-<<<<<<< HEAD
         break-inside: avoid;
         list-style-type:none;
     }
-=======
-        list-style-type:none;
-    }
->>>>>>> origin/alexia

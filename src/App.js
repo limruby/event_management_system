@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {isAuth, isAdmin} from './utils/isAuth'
 
-//
 import Landing from './components/site/landingPage';
 import SignIn from './components/site/login/login';
 import SignUp from './components/site/signUp'
@@ -14,7 +13,7 @@ import sponsor_hall from './components/site/eventLobby/sponsor_hall/sponsor_hall
 import competition_hall from './components/site/eventLobby/competition_hall/competition_hall';
 import Navbar from './components/site/navbar';
 import Footer from './components/site/footer';
-import AdminDashboard from './components/site/adminDashboard';
+//import AdminDashboard from './components/site/adminDashboard';
 import PageNotFound from './components/PageNotFound.js';
 
 
@@ -63,7 +62,7 @@ function App() {
         <PrivateRoute exact path='/user_dashboard/edit_abstract' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_book_chapter' component={EditUserDetails}/>
 
-        <AdminRoute exact path='/admin_dashboard'  component={AdminDashboard}/>
+        {/*<AdminRoute exact path='/admin_dashboard'  component={AdminDashboard}/>*/}
 
 		    <Route exact path='/eventLobby'  component={eventLobby}/>  
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 
