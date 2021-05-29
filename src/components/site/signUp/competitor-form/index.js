@@ -26,7 +26,11 @@ export class CompetitorForm extends Component {
         address: '',
         gender: '',
 
+<<<<<<< HEAD
         amount: "150.00",
+=======
+        
+>>>>>>> origin/main
         phone_no: "123123123",
         cmpy_code : "AA04",
         zone :"02",
