@@ -47,6 +47,7 @@ const read = (req, res, next)=>{
 
 const update = (req, res, next)=>{
 
+
   var updateCompetitor = {};
   if(req.body.name){
     updateCompetitor['name'] = req.body.name;
