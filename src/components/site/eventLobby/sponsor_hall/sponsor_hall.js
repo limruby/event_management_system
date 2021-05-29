@@ -48,7 +48,6 @@ function Sponsor_hall() {
 		
 
 
-      <Footer/>
 
     </div>
   );
