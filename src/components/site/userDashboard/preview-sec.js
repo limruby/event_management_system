@@ -10,7 +10,6 @@ const PdfPreview = ({user, account}) =>  {
 
     if(user.abstract!==undefined){
     var section = [];
-
     for (var i=0; i<user.abstract.length; i++){
         section.push(
             <div id="abstract_title">

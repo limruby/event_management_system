@@ -15,7 +15,7 @@ const PdfDownloader = ({rootElementId , downloadFileName}) => {
         var opt = {
           margin:       1,
           filename:    downloadFileName,
-          image:        { type: 'png', quality: 0.98 },
+          image:        { type: 'png', quality: 1.00 },
           html2canvas:  { scale: 1 },
           jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };

@@ -32,7 +32,6 @@ const history = useHistory();
         </div>
 
 
-      <Footer/>
 
     </div>
   );
