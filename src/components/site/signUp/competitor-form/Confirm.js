@@ -52,10 +52,8 @@ export class Confirm extends Component {
 
                 var  amount;
 
-                if(values.category === "Professional Innovator"){
-                                          
+                if(values.category === "Professional Innovator"){                     
                       amount= 390.00.toFixed(2);;
-                      
                 }
                 else if (values.category === "Young Innovator"){
                       amount= 290.00.toFixed(2);;
