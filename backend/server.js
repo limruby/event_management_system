@@ -16,13 +16,7 @@ app.use(function(req, res, next) {
 
 const port = process.env.PORT || 5000;
 
-<<<<<<< HEAD
 app.use(cors({origin: '*'}));
-=======
-
-
-app.use(cors());
->>>>>>> origin/alexia
 app.use(express.json({limit:'50mb'}));
 
 const uri =process.env.ATLAS_URI;
@@ -32,7 +26,6 @@ const connection = mongoose.connection;
 connection.once('open', ()=>{
 	console.log("MongoDB database connection established")
 })
-<<<<<<< HEAD
 app.get('/api/hello', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.send({ express: 'Hello From Express' });
@@ -43,9 +36,6 @@ app.get('/api/hello', function(req, res) {
 	  `I received your POST request. This is what you sent me: ${req.body.post}`,
 	);
   });
-=======
-
->>>>>>> origin/alexia
 //add routes
 const accountsRouter = require('./routes/accounts');
 app.use('/accounts', accountsRouter)
