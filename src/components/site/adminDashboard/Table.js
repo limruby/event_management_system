@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTable, useFilters, useSortBy } from "react-table";
+import { useTable, useFilters, useSortBy, useGlobalFilter } from "react-table";
 
 export default function Table({ columns, data }) {
   const [filterInput, setFilterInput] = useState("");
@@ -10,20 +10,23 @@ export default function Table({ columns, data }) {
     headerGroups,
     rows,
     prepareRow,
-    setFilter
+    setFilter,
+    setGlobalFilter
   } = useTable(
     {
       columns,
       data
     },
     useFilters,
+    useGlobalFilter,
     useSortBy
   );
 
   const handleFilterChange = e => {
     const value = e.target.value || undefined;
-    setFilter("show.name", value);
+    setGlobalFilter(value);
     setFilterInput(value);
+ 
   };
 
   // Render the UI for your table
