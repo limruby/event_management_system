@@ -33,7 +33,6 @@ bcrypt.hash('dinowex99admin', 10, function(err, hashedPassword){
     ],
         { ordered: false}
       
-
     ).then(function(){
         console.log("Account data inserted")  // Success
     }).catch(function(error){

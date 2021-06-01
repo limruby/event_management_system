@@ -26,9 +26,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        page-break-before: auto; 
-        page-break-after: auto; 
-        page-break-inside: avoid;
+        break-inside: avoid;
     }
 
     .preview-section #author p {
