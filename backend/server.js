@@ -6,12 +6,6 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-  });
-
 const port = process.env.PORT || 5000;
 
 app.use(cors({origin: '*'}));
@@ -24,16 +18,6 @@ const connection = mongoose.connection;
 connection.once('open', ()=>{
 	console.log("MongoDB database connection established")
 })
-app.get('/api/hello', function(req, res) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.send({ express: 'Hello From Express' });
-  });
-  app.post('/api/world', (req, res) => {
-	console.log(req.body);
-	res.send(
-	  `I received your POST request. This is what you sent me: ${req.body.post}`,
-	);
-  });
 //add routes
 const accountsRouter = require('./routes/accounts');
 app.use('/api/accounts', accountsRouter)

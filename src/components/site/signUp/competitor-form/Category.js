@@ -19,8 +19,9 @@ export class Profiles extends Component {
 
         const handleForm=(e)=>{
         e.preventDefault();
+        var amount="";
         // perform all neccassary validations
-            if (values.category ==""){
+            if (values.category === ""){
                 alert("Form not fill");
             }
             else{

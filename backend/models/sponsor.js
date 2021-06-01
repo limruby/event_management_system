@@ -35,10 +35,6 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
-  phone_no:{
-	type:String,
-	required:true
-  },
   company_name: {
     type: String,
     required: true
@@ -59,6 +55,10 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
+  company_pic_ic:{
+    type: String,
+    required: true
+  },
 
   company_logo:[subSchema],
   poster:[subSchema],
