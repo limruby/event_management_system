@@ -11,6 +11,7 @@ const accountSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+    unique:true
   }, 
   password: {
     type: String,
@@ -20,22 +21,18 @@ const accountSchema = new Schema({
   timestamps: true,
 });
 
-
-
-
 bcrypt.hash('dinowex99admin', 10, function(err, hashedPassword){
-    if(err){
-      res.json({
-        error:err
-      })
-    }
+    // if(err){
+    //   res.json({
+    //     error:err
+    //   })
+    // }
 
     Account.insertMany([
         { role: 'Admin', email: 'admin@dinowex.com', password:hashedPassword},
     ],
         { ordered: false}
       
-
     ).then(function(){
         console.log("Account data inserted")  // Success
     }).catch(function(error){

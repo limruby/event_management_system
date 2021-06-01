@@ -24,6 +24,7 @@ export class Profiles extends Component {
                 values.company_contact==""||
                 values.company_address==""||
                 values.company_website==""|| 
+                values.company_pic_ic ==""||
                 values.company_logo){
                 alert("Form not fill");
             }
@@ -46,7 +47,14 @@ export class Profiles extends Component {
                     <label htmlFor="company_pic_name"><span>*</span>Company Person In Charge (PIC)</label>
                     <input className="form-control" type='text' name='company_pic_name' id="company_pic_name"
                     placeholder='Full Name of PIC' required
-                    onChange={inputChange('company_pic_name')} value={values.company_company_pic_name} 
+                    onChange={inputChange('company_pic_name')} value={values.company_pic_name} 
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="company_pic_ic"><span>*</span>Company Person In Charge (PIC) IC Number</label>
+                    <input className="form-control" type='text' name='company_pic_ic' id="company_pic_ic"
+                    placeholder='IC Number' required
+                    onChange={inputChange('company_pic_ic')} value={values.company_pic_ic} 
                     />
                 </div>
                 <div className="form-group">

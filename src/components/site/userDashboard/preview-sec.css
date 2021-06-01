@@ -26,13 +26,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-<<<<<<< HEAD
         break-inside: avoid;
-=======
-        page-break-before: auto; 
-        page-break-after: auto; 
-        page-break-inside: avoid;
->>>>>>> origin/alexia
     }
 
     .preview-section #author p {
@@ -58,11 +52,6 @@
     .preview-section #body_content li {
         font-size: 11px;
         text-align: justify;
-<<<<<<< HEAD
         break-inside: avoid;
         list-style-type:none;
     }
-=======
-        list-style-type:none;
-    }
->>>>>>> origin/alexia

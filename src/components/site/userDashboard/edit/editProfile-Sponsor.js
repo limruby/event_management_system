@@ -19,7 +19,7 @@ const inputChange = input => e => {
         e.preventDefault();
     // perform all neccassary validations
           if (data.company_name === ""||data.company_pic_name ===""||data.company_contact ===""||data.company_address===""
-            ||data.company_website===""|| data.company_logo===""){
+            ||data.company_website===""|| data.company_logo==="" || data.company_pic_ic===""){
             alert("Form not fill");
         }
         else{
@@ -28,6 +28,7 @@ const inputChange = input => e => {
                 _id : data._id,
                 company_name : data.company_name,
                 company_pic_name : data.company_pic_name,
+                company_pic_ic: data.company_pic_ic,
                 company_contact : data.company_contact,
                 company_address : data.company_address,
                 company_website : data.company_website,
@@ -132,6 +133,13 @@ function displayLogo(){
                     <input className="form-control" type='text' name='company_pic_name' id="company_pic_name"
                     placeholder='Full Name of PIC' required
                     onChange={inputChange('company_pic_name')} value={data.company_pic_name} 
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="company_pic_ic"><span>*</span>IC of Person In Charge (PIC)</label>
+                    <input className="form-control" type='text' name='company_pic_ic' id="company_pic_ic"
+                    placeholder='Full Name of PIC' required
+                    onChange={inputChange('company_pic_ic')} value={data.company_pic_ic} 
                     />
                 </div>
                 <div className="form-group">
