@@ -55,6 +55,10 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
+  company_pic_ic:{
+    type: String,
+    required: true
+  },
 
   company_logo:[subSchema],
   poster:[subSchema],
