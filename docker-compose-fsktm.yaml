@@ -13,13 +13,14 @@ services:
       - traefik.docker.network=server
       - traefik.http.services.vexs_server.loadbalancer.server.port=5000
 
-      - traefik.http.routers.vexs_server.rule=Host(`vexsdev.getitqec.com`)
+      - traefik.http.routers.vexs_server.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_server.entrypoints=http
-      - traefik.http.routers.vexs_server.middlewares=redirect@file
-      - traefik.http.routers.vexs_server-secured.rule=Host(`vexsdev.getitqec.com`)
+      # - traefik.http.routers.vexs_server.middlewares=redirect@file
+      - traefik.http.routers.vexs_server-secured.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_server-secured.entrypoints=https
       - traefik.http.routers.vexs_server-secured.tls.certresolver=mytlschallenge
-      # - traefik.http.routers.vexs_server-secured.middlewares=cache-header@file
+      # - tls.certificates.certFile
+      - traefik.http.routers.vexs_server-secured.middlewares=cache-header@file
 
 networks:
   server:

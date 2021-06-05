@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+
+#   mongodb:
+#     image: mongo
+#     restart: always
+#     networks:
+#       - server
+#     ports:
+#       - 27017:27017 # unsecure port, might not be needed as secure port 2096 is accessible
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: user
+#       MONGO_INITDB_ROOT_PASSWORD: pass
+#     volumes:
+#       - ./mongo-volume:/data/db
+#       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+#     labels:
+#       - traefik.enable=true
+#       - traefik.backend=mongodb
+#       - traefik.tcp.routers.mongodb.rule=HostSNI(`url.for.db.domain`)
+#       - traefik.docker.network=server
+#       - traefik.tcp.routers.mongodb.entrypoints=mongo #mongo
+#       - traefik.tcp.routers.mongodb.service=mongodb
+#       - traefik.tcp.services.mongodb.loadbalancer.server.port=27017
+#     container_name: mongodb
+  
+  backend:
+    # build: .
+    # depends_on:
+    #   - mongodb
+    image: vexs/backend
+    restart: always
+    environment:
+        ATLAS_URI: mongodb://sudo:sudo@cluster0-shard-00-00.konox.mongodb.net:27017,cluster0-shard-00-01.konox.mongodb.net:27017,cluster0-shard-00-02.konox.mongodb.net:27017/db?ssl=true&replicaSet=atlas-irsy7d-shard-0&authSource=admin&retryWrites=true&w=majority
+        JSONWTK: h98asblj23hfjka
+    networks:
+      - server
+    ports:
+      - 5000:5000
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=server
+
+      - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
+      - traefik.http.routers.vexs_backend.service=vexs_backend
+      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend.entrypoints=https
+      - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
+      - traefik.http.routers.vexs_backend-unsecured.service=vexs_backend
+      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend-unsecured.entrypoints=http
+    container_name: backend
+
+networks:
+  server:
+    external: true
