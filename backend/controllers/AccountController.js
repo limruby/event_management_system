@@ -124,8 +124,22 @@ const update = (req, res, next)=>{
     }).catch(err => console.log(err)) 
 
   }
-
-
 }
 
-module.exports = {register, login, read, update}
+
+const readAdmin = (req, res, next)=>{
+  
+  Account.find({role: "Admin"},(err, accounts) => {
+      if (err) {
+          return res.status(400).json({ success: false, error: err })
+      }
+      if (!accounts) {
+          return res
+              .status(404)
+              .json({ success: false, error:err })
+      }
+      return res.status(200).json({ success: true, data: accounts })
+  }).catch(err => console.log(err))
+};
+
+module.exports = {register, login, read, update, readAdmin}

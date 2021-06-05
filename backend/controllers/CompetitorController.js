@@ -47,6 +47,7 @@ const read = (req, res, next)=>{
 
 const update = (req, res, next)=>{
 
+
   var updateCompetitor = {};
   if(req.body.name){
     updateCompetitor['name'] = req.body.name;
@@ -110,10 +111,22 @@ const update = (req, res, next)=>{
     }).catch(err => console.log(err))
  };
 
+const readAll = (req, res, next)=>{ 
+    Competitor.find({}, (err, competitors) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!competitors) {
+            return res
+                .status(404)
+                .json({ success: false, error: req.query.account_id })
+        }
+        return res.status(200).json({ success: true, data: competitors })
+    }).catch(err => console.log(err))
+ };
 
 
 
 
 
-
-module.exports = {create, read, update}
+module.exports = {create, read, update, readAll}

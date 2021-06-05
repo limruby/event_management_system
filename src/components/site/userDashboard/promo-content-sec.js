@@ -38,6 +38,7 @@ function displayPoster(){
       <ul>
         {displayVideo()}
       </ul>
+	  <hr/>
       <h4>Poster</h4>
       <ul>
         {displayPoster()}

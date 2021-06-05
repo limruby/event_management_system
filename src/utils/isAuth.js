@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode';
+import axiosInstance from './axiosConfig.js';
 
 export const isAuth = () => {
 
@@ -16,6 +17,25 @@ export const isAuth = () => {
 		}
 
     } else {
+        return false;
+    }
+}
+
+export const isAdmin = () => {
+
+    if (localStorage.getItem('role')) {
+        let role = localStorage.getItem('role');
+
+        if(role === "Admin"){
+            return true;            
+        }
+        else{
+            return false;
+        }
+
+       
+    } else {
+        
         return false;
     }
 }

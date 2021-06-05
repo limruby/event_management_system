@@ -14,12 +14,19 @@ export class SponsorForm extends Component {
         confirmPassword: '',
         company_name: '',
         company_pic_name: '',
+        company_pic_ic:'',
         company_contact: '',
         company_address: '',
         company_website:'',
         company_logo:'',        
         role: 'sponsor',
-        category:''
+        category:'',
+        amount:'',
+
+        cmpy_code : "AA04",
+        zone :"02",
+        product_ID :"149",
+        token :"Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq",
     };
 
     nextStep = () => {
@@ -33,9 +40,21 @@ export class SponsorForm extends Component {
     };
 
     inputChange = input => e => {
-        this.setState({
-            [input]: e.target.value
-        });
+        if(input === "category"){
+            this.setState({
+                [input]: e.target.value,
+                
+            });
+            this.setState({
+                ['amount']: ''
+            });
+        }
+        else {
+            this.setState({
+                [input]: e.target.value
+            });
+        }
+        
     };
 
     render() {
@@ -46,24 +65,41 @@ export class SponsorForm extends Component {
         confirmPassword,
         company_name,
         company_pic_name,
+        company_pic_ic,
         company_contact,
         company_address,
         company_website,
         company_logo,        
         role,
-        category} = this.state;
+        category,
+        amount,
+    
+        cmpy_code,
+        zone,
+        product_ID,
+        token,
+
+    } = this.state;
         const values = { 
         email,
         password,
         confirmPassword,
         company_name,
         company_pic_name,
+        company_pic_ic,
         company_contact,
         company_address,
         company_website,
         company_logo,        
         role,
-        category};
+        category,
+        amount,
+
+        cmpy_code,
+        zone,
+        product_ID,
+        token,
+    };
 
         switch (step) {
             case 1:

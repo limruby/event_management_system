@@ -17,6 +17,7 @@
     .preview-section #body_content p {
         font-size: 11px;
         text-align: justify;
+        break-inside: avoid;
     }
 
     .preview-section #body_content img,figcaption {
@@ -25,24 +26,32 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        break-inside: avoid;
     }
 
     .preview-section #author p {
-        font-size: 12px;
+        font-size: 11px;
         text-align: center;
     }
 
     .preview-section #aff p {
-        font-size: 12px;
+        font-size: 11px;
         text-align: left;
+    }
+    .preview-section #aff span {
+        font-size: 11px;
+        text-align: left;
+        font-style: italic;
     }
 
     .preview-section #keywords p {
-        font-size: 12px;
+        font-size: 11px;
         font-style: italic;
         text-align: left;
     }
     .preview-section #body_content li {
         font-size: 11px;
         text-align: justify;
+        break-inside: avoid;
+        list-style-type:none;
     }
