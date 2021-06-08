@@ -5,12 +5,12 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 export class Confirm extends Component {
 
     continue = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const { 
             values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
                 , no_of_team_members,members, phone_no}
         } = this.props;
-        this.props.nextStep();
+        
         var data = {
             role:"Competitor",
             email: email,
@@ -28,27 +28,43 @@ export class Confirm extends Component {
         axiosInstance.post('/api/accounts/signUp', data)
         .then(res=> {       
         if(res.data._id){
-        this.account_id = res.data._id;
-        data["account_id"] = this.account_id;
+            this.account_id = res.data._id;
+            data["account_id"] = this.account_id;
+        
         axiosInstance.post('/api/competitors/create', data)
         .then(res=>{
-        localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no))   
-        this.props.nextStep();
+            localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no)) 
 
-        const submitForm = (e) => {
 
-        }
+             this.setState({display1:'hide'});
+             this.setState({display2:'show'});     
+        
     });
  }
  else{
      alert('Email existed')
  }
-});};
+});
+};
 
     back = e => {
         e.preventDefault();
         this.props.prevStep();
     };
+
+     constructor(props) {
+        super(props);
+        this.state = {display1: 'show', display2: 'hide'};
+      }
+    
+ 
+
+     makePayment(){
+         console.log("PAY!")
+         document.getElementById("uitm_payment_form").submit();
+     }
+
+
 
     render() {
         const { values, inputChange } = this.props;
@@ -90,7 +106,7 @@ export class Confirm extends Component {
                 </ul> 
 
                 <br /><br />
-                <form className="list-group" id="makePayment" onSubmit={submitForm} action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
+                <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={values.ic_passport_number} hidden/>
                     <input type="text" name="ord_mercref" value= {"iidentex"+values.ic_passport_number} hidden/>
                     <input type="text" name="name" value={values.name} hidden/>
@@ -102,18 +118,27 @@ export class Confirm extends Component {
 
                     <input type="text" name="hash_value" value={hash_value}hidden/>
                     <input type="number" name="amount" value={amount} hidden />
-                <div className="row">    
+              
+                  </form>
+
+                   <div className="row">    
                     <div className="col-6">
                     <button className="btn btn-danger" onClick={this.back}>Back</button>
                     </div>
-                    <div className="col-6 text-right">
-                    <button className="btn btn-primary" name="submit" value="Make payment" onClick={this.continue}>Make Payment</button> 
-                    
-                    </div>
-                </div>
-                  
-                  </form>
 
+                    <div className="col-6">
+                        <div className={this.state.display1}> 
+                            <div className="text-right">
+                                <button className="btn btn-primary"  value="Make payment" onClick={this.continue}>Confirm</button>                     
+                            </div>
+                        </div>
+                        <div className={this.state.display2}> 
+                                <div className=" text-right">
+                                    <button className="btn btn-primary"  value="Make payment" onClick={this.makePayment}>Make Payment</button>                     
+                                </div>
+                        </div>
+                    </div>
+                 </div>
                 
             </div>
         )

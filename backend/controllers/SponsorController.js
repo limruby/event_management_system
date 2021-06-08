@@ -3,11 +3,12 @@ const Sponsor = require('../models/sponsor');
 var ObjectId = require('mongodb').ObjectId;
 
 const create = (req, res, next)=>{
-
+  
   const account_id = req.body.account_id;
   const category = req.body.category;
   const company_name = req.body.company_name;
   const company_pic_name = req.body.company_pic_name;
+  const company_pic_ic = req.body.company_pic_ic;
   const company_contact = req.body.company_contact;
   const company_address = req.body.company_address;
   const company_website = req.body.company_website;
@@ -17,7 +18,8 @@ const create = (req, res, next)=>{
     account_id, 
     category,
     company_name, 
-    company_pic_name, 
+    company_pic_name,
+    company_pic_ic, 
     company_contact, 
     company_address, 
     company_website, 
@@ -25,7 +27,7 @@ const create = (req, res, next)=>{
     });
 
     newSponsor.save()
-      .then(() => res.json('New Sponsor Created!'))
+      .then(() => res.json(newSponsor))
       .catch(err => res.status(400).json('Error: ' + err));
 };
 
@@ -89,4 +91,3 @@ const update = (req, res, next)=>{
      };
 
 module.exports = {create, read, update}
-
