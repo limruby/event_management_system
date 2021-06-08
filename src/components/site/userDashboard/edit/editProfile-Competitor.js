@@ -17,7 +17,7 @@ function EditProfile({data, setData}) {
         e.preventDefault();
     // perform all neccassary validations
         if (data.name ===""||data.affiliation===""||data.nric_passport_selection===""||data.nric_passport_no===""
-            ||data.address===""||data.gender===""){
+            ||data.address===""||data.gender===""||data.phone_no===""){
             alert("Form not fill");
         }
         else{
@@ -29,7 +29,8 @@ function EditProfile({data, setData}) {
                 nric_passport_selection : data.nric_passport_selection,
                 nric_passport_no : data.nric_passport_no,
                 address : data.address,
-                gender : data.gender
+                gender : data.gender,
+                phone_no : data.phone_no
             }
 
 
@@ -55,6 +56,12 @@ console.log(data);
                     <input type="text" className="form-control" name="name" id="name"
                     placeholder='Full Name (as per IC / Passport)' required                    
                     onChange={inputChange('name')} value={data.name} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone_no"><span>*</span>Contact Number</label>
+                    <input type="text" className="form-control" name="phone_no" id="phone_no"
+                    placeholder='Contact Number' required                    
+                    onChange={inputChange('phone_no')} value={data.phone_no} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="affiliation"><span>*</span>Affiliation</label>

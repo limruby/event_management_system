@@ -4,7 +4,6 @@ import Category from './Category';
 import Profiles from './Profiles';
 import TeamProfiles from './TeamProfiles';
 import Confirm from './Confirm';
-import Success from './Success';
 
 export class CompetitorForm extends Component {
     state = {
@@ -27,7 +26,7 @@ export class CompetitorForm extends Component {
         gender: '',
 
         
-        phone_no: "123123123",
+        phone_no: "",
         cmpy_code : "AA04",
         zone :"02",
         product_ID :"149",
@@ -135,10 +134,6 @@ export class CompetitorForm extends Component {
                         prevStep={this.prevStep}
                         values={values}
                     />
-                );
-            case 5:
-                return (
-                    <Success />
                 );
         }
     }

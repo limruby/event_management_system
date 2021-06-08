@@ -5,37 +5,45 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 export class Confirm extends Component {
 
     continue = async (e) => {
-        e.preventDefault();
-        // const { 
-        //     values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
-        //         , no_of_team_members,members, phone_no}
-        // } = this.props;
-        // this.props.nextStep();
-        // var amount="";
-        // var cmpy_code = "AA04";
-        // var zone ="02";
-        // var product_ID ="149";
-        // var token ="Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq";
-        // //var pusat_kos ="231000";
+        // e.preventDefault();
+        const { 
+            values: {email, password, confirmPassword, role, category , name, ic_passport_selection, ic_passport_number, affiliation, address, gender
+                , no_of_team_members,members, phone_no}
+        } = this.props;
+        this.props.nextStep();
+        var data = {
+            role:"Competitor",
+            email: email,
+            password: password,
+            name: name,
+            phone_no:phone_no,
+            category: category,
+            nric_passport_selection:ic_passport_selection,
+            nric_passport_no: ic_passport_number,
+            affiliation: affiliation,
+            address:address,
+            gender:gender
+        };
+// create account
+        axiosInstance.post('/api/accounts/signUp', data)
+        .then(res=> {       
+        if(res.data._id){
+        this.account_id = res.data._id;
+        data["account_id"] = this.account_id;
+        axiosInstance.post('/api/competitors/create', data)
+        .then(res=>{
+        localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no))   
+        this.props.nextStep();
 
-        // var hash_value = token + cmpy_code + zone + product_ID + amount;
+        const submitForm = (e) => {
 
-        // if(category === "Professional Innovator"){
-        //     this.setState = ({
-        //         hash_value,
-        //         amount: 390,
-        //       })
-        // }
-        // else if (category === "Young Innovator"){
-        //     this.setState = ({
-        //         hash_value,
-        //         amount: 390,
-        //       })
-        // }
-        // else if (category === "Junior Innovator"){
-        //     amount = 190.00;
-        // }
-    };
+        }
+    });
+ }
+ else{
+     alert('Email existed')
+ }
+});};
 
     back = e => {
         e.preventDefault();
@@ -59,17 +67,11 @@ export class Confirm extends Component {
                       amount= 290.00.toFixed(2);
                 }
                 else if (values.category === "Junior Innovator"){
-                      amount= 190.00.toFixed(2);
+                      amount= 1.00.toFixed(2);
                 }
-
-
-
-
-
-
             var sha1 = require('sha1');
-            var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);  
-            
+            var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount); 
+ 
         return (
             <div>
                 <h1>Confirmation</h1>
@@ -88,7 +90,7 @@ export class Confirm extends Component {
                 </ul> 
 
                 <br /><br />
-                <form className="list-group" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
+                <form className="list-group" id="makePayment" onSubmit={submitForm} action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={values.ic_passport_number} hidden/>
                     <input type="text" name="ord_mercref" value= {"iidentex"+values.ic_passport_number} hidden/>
                     <input type="text" name="name" value={values.name} hidden/>
@@ -105,7 +107,8 @@ export class Confirm extends Component {
                     <button className="btn btn-danger" onClick={this.back}>Back</button>
                     </div>
                     <div className="col-6 text-right">
-                        <input type="submit" className="btn btn-primary"name="submit" value="Make payment" />
+                    <button className="btn btn-primary" name="submit" value="Make payment" onClick={this.continue}>Make Payment</button> 
+                    
                     </div>
                 </div>
                   

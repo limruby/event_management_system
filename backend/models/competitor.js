@@ -100,6 +100,18 @@ const competitorSchema = new Schema({
     type: String,
     required: true
   },
+  receipt_no:{
+    type:String
+  },
+  amount:{
+    type:String
+  },
+  trans_date:{
+    type:String
+  },
+  status:{
+    type:String
+  },
 
   poster:[subSchema],
   achievements:[subSchema],

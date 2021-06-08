@@ -126,7 +126,6 @@ const update = (req, res, next)=>{
   }
 }
 
-
 const readAdmin = (req, res, next)=>{
   
   Account.find({role: "Admin"},(err, accounts) => {

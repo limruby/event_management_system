@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 import "../../../assets/css/agency.min.css";
-//import NavBar from './../navbar';
-
-import Footer from './../footer';
 import axiosInstance from '../../../utils/axiosConfig.js';
  
 function Login()
@@ -40,7 +37,14 @@ function Login()
     const redirect=()=>{
         window.location.href = '/user_dashboard';
     }
+    
+    var cmpy_code = "AA04"
+    var zone = "02"   
+    var token = "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq"
+    var product_ID = "149"
 
+    var sha1 = require('sha1');
+    var hash_value = sha1(token + cmpy_code + zone + product_ID);  
   return (
     <>
 
@@ -63,7 +67,7 @@ function Login()
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}/>
 
-                
+                    
                     <input className="submit-btn" type="submit" value="Login" />
 
                     <Link to="/sign_up">
@@ -72,6 +76,7 @@ function Login()
                         </p>
                     </Link>
                 </form>
+               
             </div>
 
         </div> 
