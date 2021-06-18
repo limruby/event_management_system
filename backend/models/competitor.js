@@ -106,6 +106,10 @@ const competitorSchema = new Schema({
   amount:{
     type:String
   },
+  bill_verify: {
+    type:String,
+    default: "false"
+  },
   trans_date:{
     type:String
   },

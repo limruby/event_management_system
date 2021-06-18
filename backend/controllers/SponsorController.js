@@ -78,7 +78,10 @@ const update = (req, res, next)=>{
     
       if(req.body.video){
         updateSponsor['video'] = req.body.video;
-      }          
+      }    
+       if(req.body.bill_verify){
+          updateCompetitor['bill_verify'] = req.body.bill_verify;
+        }      
     
         Sponsor.findByIdAndUpdate(req.body._id, updateSponsor, (err, sponsors) => {
             if (err) {
@@ -90,4 +93,19 @@ const update = (req, res, next)=>{
         }).catch(err => console.log(err))
      };
 
-module.exports = {create, read, update}
+const readAll = (req, res, next)=>{ 
+  Sponsor.find({}, (err, sponsors) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!sponsors) {
+      return res
+      .status(404)
+      .json({ success: false, error: req.query.account_id })
+    }
+    return res.status(200).json({ success: true, data: sponsors })
+  }).catch(err => console.log(err))
+};
+
+
+module.exports = {create, read, update, readAll}

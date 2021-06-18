@@ -103,7 +103,9 @@ const update = (req, res, next)=>{
   if(req.body.bookChapter){
     updateCompetitor['bookChapter'] = req.body.bookChapter;
   }
-   
+  if(req.body.bill_verify){
+    updateCompetitor['bill_verify'] = req.body.bill_verify;
+  }
 
 
     Competitor.findByIdAndUpdate(req.body._id, updateCompetitor, (err, competitors) => {
@@ -160,7 +162,5 @@ else{
  res.redirect('http://localhost:3000/payment_fail')
 }
 }
-
-
 
 module.exports = {create, read, update, readAll}
