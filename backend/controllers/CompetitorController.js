@@ -106,6 +106,9 @@ const update = (req, res, next)=>{
   if(req.body.bill_verify){
     updateCompetitor['bill_verify'] = req.body.bill_verify;
   }
+  if(req.body.receipt_no){
+    updateCompetitor['receipt_no'] = req.body.receipt_no;
+  }
 
 
     Competitor.findByIdAndUpdate(req.body._id, updateCompetitor, (err, competitors) => {

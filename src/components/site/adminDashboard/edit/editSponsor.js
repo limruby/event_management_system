@@ -10,7 +10,9 @@ function EditProfile() {
         company_contact:'',
         category:'',
         amount:'',
-        bill_verify:null
+        bill_verify:null,
+        receipt_no:''
+
     });
     const location = useLocation();
     const thePath = location.pathname;
@@ -50,7 +52,8 @@ else{
                  company_contact : data.company_contact,
                  category: data.category,
                  amount: data.amount,
-                 bill_verify: data.bill_verify
+                 bill_verify: data.bill_verify,
+                 receipt_no: data.receipt_no
              }
 
              axiosInstance.post("/api/sponsors/update", postData)
@@ -106,6 +109,12 @@ return(
                     placeholder='Contact Number' required
                     onChange={inputChange('company_contact')} value={data.company_contact} 
                     />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="receipt_no"><span>*</span>Receipt No</label>
+                    <input type="text" className="form-control" name="receipt_no" id="receipt_no"
+                    placeholder='receipt_no'                    
+                    onChange={inputChange('receipt_no')} value={data.receipt_no} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="bill_verify"><span>*</span>Payment Verify</label>

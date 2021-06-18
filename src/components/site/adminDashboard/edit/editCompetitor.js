@@ -11,7 +11,8 @@ function EditProfile() {
         address:'',
         gender:'',
         category:'',
-        bill_verify: false
+        bill_verify: false,
+        receipt_no: ''
     });
 
     const location = useLocation();
@@ -46,7 +47,8 @@ function EditProfile() {
             alert("Form not fill");
         }
         else{
-            ///////update to db /////////////
+            ///////update to db /////////////           
+
             var postData = {
                 _id : data._id,
                 name : data.name,
@@ -56,7 +58,8 @@ function EditProfile() {
                 address : data.address,
                 gender : data.gender,
                 category: data.category,
-                bill_verify: data.bill_verify
+                bill_verify: data.bill_verify,
+                receipt_no: data.receipt_no
             }
 
 
@@ -112,6 +115,15 @@ function EditProfile() {
                     placeholder='NRIC / Passport Number' required
                     onChange={inputChange('nric_passport_no')} value={data.nric_passport_no} />
                 </div>
+
+                <div className="form-group">
+                    <label htmlFor="receipt_no"><span>*</span>Receipt No</label>
+                    <input type="text" className="form-control" name="receipt_no" id="receipt_no"
+                    placeholder='receipt_no'                    
+                    onChange={inputChange('receipt_no')} value={data.receipt_no} />
+                </div>
+
+
                 <div className="form-group">
                     <label htmlFor="bill_verify"><span>*</span>Payment Verify</label>
                     <select className="form-control" id="bill_verify" required
