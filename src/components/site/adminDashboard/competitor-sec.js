@@ -8,8 +8,6 @@ function Competitor() {
 
   const [data, setData] = useState([]);
 
-  const [competitor_id, setId] = useState('');
-
   useEffect(() => {
 
 
@@ -28,15 +26,21 @@ function Competitor() {
   var token = "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq"
   var product_ID = "149"
   var sha1 = require('sha1');
-  var hash_value = sha1(token + cmpy_code + zone + product_ID + competitor_id);
-  var url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + competitor_id;
+  var url="";
+  var hash_value="";
 
 
   function uitmCheck(id){
-    setId(id);
-    hash_value = sha1(token + cmpy_code + zone + product_ID + competitor_id);
-    url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + competitor_id;
-    if(id !== " "){
+    hash_value = sha1(token + cmpy_code + zone + product_ID + id);
+    document.getElementById('hashValue'+id).value = hash_value;
+    url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;
+    document.getElementById("uitmUpdate"+id).action = url;
+    
+    submitForm(id);
+  }
+  
+  function submitForm(id){
+    if(id !==" "){
       document.forms["uitmUpdate"+id].submit();
     }
   }
@@ -69,8 +73,8 @@ function Competitor() {
             Header: 'Check Status',
             Cell: data => (     
               <div>
-                <form className="list-group" id={`uitmUpdate${data.row.original.nric_passport_no}`} action={url} method="POST">
-                    <input type="text" name="hash" value={hash_value} hidden/>
+                <form className="list-group" id={`uitmUpdate${data.row.original.nric_passport_no}`} method="POST">
+                    <input type="text" name="hash_value" id={`hashValue${data.row.original.nric_passport_no}`} hidden/>
                 </form>        
                 <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.nric_passport_no)}}>
                   Check
