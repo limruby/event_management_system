@@ -40,7 +40,12 @@ function Login()
                 localStorage.setItem('token', res.data.token); 
                 localStorage.setItem('user_id', JSON.stringify(res.data.result._id));
 
-            if(res.data.result.role === "Competitor"){
+            if(res.data.result.role==="Admin"){
+                    localStorage.setItem('role', res.data.result.role);  
+                    localStorage.setItem('token', res.data.token);                     
+                    window.location.href = '/admin_dashboard';
+                }
+            else if(res.data.result.role==="Competitor"){
                 console.log(res.data.result.role)
                 var comp_account_id = localStorage.getItem('user_id')
                 axiosInstance.get('/api/competitors/read', {params:{account_id:comp_account_id}})
