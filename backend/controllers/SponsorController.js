@@ -3,11 +3,12 @@ const Sponsor = require('../models/sponsor');
 var ObjectId = require('mongodb').ObjectId;
 
 const create = (req, res, next)=>{
-
+  
   const account_id = req.body.account_id;
   const category = req.body.category;
   const company_name = req.body.company_name;
   const company_pic_name = req.body.company_pic_name;
+  const company_pic_ic = req.body.company_pic_ic;
   const company_contact = req.body.company_contact;
   const company_address = req.body.company_address;
   const company_website = req.body.company_website;
@@ -17,7 +18,8 @@ const create = (req, res, next)=>{
     account_id, 
     category,
     company_name, 
-    company_pic_name, 
+    company_pic_name,
+    company_pic_ic, 
     company_contact, 
     company_address, 
     company_website, 
@@ -25,7 +27,7 @@ const create = (req, res, next)=>{
     });
 
     newSponsor.save()
-      .then(() => res.json('New Sponsor Created!'))
+      .then(() => res.json(newSponsor))
       .catch(err => res.status(400).json('Error: ' + err));
 };
 
@@ -76,7 +78,13 @@ const update = (req, res, next)=>{
     
       if(req.body.video){
         updateSponsor['video'] = req.body.video;
-      }          
+      }    
+      if(req.body.bill_verify){
+        updateCompetitor['bill_verify'] = req.body.bill_verify;
+      }     
+      if(req.body.receipt_no){
+        updateCompetitor['receipt_no'] = req.body.receipt_no;
+      } 
     
         Sponsor.findByIdAndUpdate(req.body._id, updateSponsor, (err, sponsors) => {
             if (err) {
@@ -88,5 +96,19 @@ const update = (req, res, next)=>{
         }).catch(err => console.log(err))
      };
 
-module.exports = {create, read, update}
+const readAll = (req, res, next)=>{ 
+  Sponsor.find({}, (err, sponsors) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!sponsors) {
+      return res
+      .status(404)
+      .json({ success: false, error: req.query.account_id })
+    }
+    return res.status(200).json({ success: true, data: sponsors })
+  }).catch(err => console.log(err))
+};
 
+
+module.exports = {create, read, update, readAll}

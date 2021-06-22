@@ -1,27 +1,54 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
+import React, {useState, useEffect} from 'react';
+import {Link, useLocation} from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
-function EditProfile({data, setData}) {
+function EditProfile() {
+    const [data, setData] = useState({
+        name:'',
+        affiliation:'',
+        nric_passport_selection:'',
+        nric_passport_no:'',
+        address:'',
+        gender:'',
+        category:'',
+        bill_verify: false,
+        receipt_no: ''
+    });
 
-/////////////////////get login data (REPLACE THIS) ////////////////
+    const location = useLocation();
+    const thePath = location.pathname;
+    const user_id = thePath.substring(thePath.indexOf('/', 2) + 1, thePath.lastIndexOf('/'));
+    const string = '"'+ user_id +'"'
+    
+    useEffect(() => {
+        axiosInstance.get("/api/competitors/read", {params:{account_id:string}})
+        .then(function(response) {
+          setData(response.data.data);
+        }).catch(function(error) {
+          console.log(error); })
+    }, [string])
+       
+          
+    
     const inputChange = input => e => {
+        
         setData({
             ...data,
             [input]: e.target.value
-        });
+        });       
     };
+
 
     const handleForm=(e)=>{
         e.preventDefault();
     // perform all neccassary validations
         if (data.name ===""||data.affiliation===""||data.nric_passport_selection===""||data.nric_passport_no===""
-            ||data.address===""||data.gender===""||data.phone_no===""){
+            ||data.address===""||data.gender===""){
             alert("Form not fill");
         }
         else{
-            ///////update to db /////////////
+            ///////update to db /////////////           
+
             var postData = {
                 _id : data._id,
                 name : data.name,
@@ -30,25 +57,26 @@ function EditProfile({data, setData}) {
                 nric_passport_no : data.nric_passport_no,
                 address : data.address,
                 gender : data.gender,
-                phone_no : data.phone_no
+                category: data.category,
+                bill_verify: data.bill_verify,
+                receipt_no: data.receipt_no
             }
 
 
             axiosInstance.post("/api/competitors/update", postData)
             .then(function(response) {
-              window.location.href = '/user_dashboard';
+              window.location.href = '/admin_dashboard';
             }).catch(function(error) {
               console.log(error);
             })
         }
     }
-console.log(data);
 /////////////////////////////////////////////////////////////
 
     return(
         <>
         <form onSubmit={handleForm}>
-        <div className="form-container">
+        <div className="edit-form-container" style={{marginTop:"5%", marginBottom:"5%"}}>
                 <h1 className="mb-5">Edit Profile Info</h1>
 
                 <div className="form-group">
@@ -58,10 +86,14 @@ console.log(data);
                     onChange={inputChange('name')} value={data.name} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone_no"><span>*</span>Contact Number</label>
-                    <input type="text" className="form-control" name="phone_no" id="phone_no"
-                    placeholder='Contact Number' required                    
-                    onChange={inputChange('phone_no')} value={data.phone_no} />
+                    <label htmlFor="category"><span>*</span>Category</label>
+                    <select className="form-control" id="category" required
+                    onChange={inputChange('category')} value={data.category} >
+                        <option value="">Please select</option>
+                        <option value="Professional Innovator">Professional Innovator</option>
+                        <option value="Junior Innovator">Junior Innovator</option>
+                        <option value="Young Innovator">Young Innovator</option>
+                    </select> 
                 </div>
                 <div className="form-group">
                     <label htmlFor="affiliation"><span>*</span>Affiliation</label>
@@ -83,27 +115,29 @@ console.log(data);
                     placeholder='NRIC / Passport Number' required
                     onChange={inputChange('nric_passport_no')} value={data.nric_passport_no} />
                 </div>
+
                 <div className="form-group">
-                    <label htmlFor="address"><span>*</span>Address</label>
-                    <textarea className="form-control" id="address" cols="30" rows="7"
-                    onChange={inputChange('address')} value={data.address} 
-                    ></textarea>
+                    <label htmlFor="receipt_no"><span>*</span>Receipt No</label>
+                    <input type="text" className="form-control" name="receipt_no" id="receipt_no"
+                    placeholder='receipt_no'                    
+                    onChange={inputChange('receipt_no')} value={data.receipt_no} />
                 </div>
+
+
                 <div className="form-group">
-                    <label htmlFor="gender_id"><span>*</span>Gender</label>
-                    <select className="form-control" id="gender_id" required
-                    onChange={inputChange('gender')} value={data.gender} >
+                    <label htmlFor="bill_verify"><span>*</span>Payment Verify</label>
+                    <select className="form-control" id="bill_verify" required
+                    onChange={inputChange('bill_verify')} value={data.bill_verify} >
                         <option value="">Please select</option>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                    </select>
+                        <option value="false">Payment NOT success</option>
+                        <option value="true">Payment Verify</option>
+                    </select> 
                 </div>
-        
 
                 <br />
 
-                <div className="col-4 btn-group">
-                    <Link to="/user_dashboard">
+                <div className="btn-group">
+                    <Link to="/admin_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>
                     <input className="btn btn-primary" type="submit" value="Update" />

@@ -62,3 +62,14 @@ input {
   border: 1px solid #ddd;
   box-shadow: none;
 }
+.table-button{
+  margin:5px;
+  cursor: pointer;
+}
+.pagination-btn{
+  margin:2% 0%;
+}
+.pagination-btn button{
+  background-color: #28A745 !important;
+}
+

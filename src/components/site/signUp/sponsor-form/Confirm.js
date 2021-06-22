@@ -4,12 +4,13 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 export class Confirm extends Component {
     continue = async (e) => {
         e.preventDefault();
-   {/*     const { 
+   {     const { 
             values: {
                 email, 
                 password,
                 company_name, 
                 company_pic_name, 
+                company_pic_ic,
                 company_contact, 
                 company_address, 
                 company_website, 
@@ -23,6 +24,7 @@ export class Confirm extends Component {
             password: password,
             company_name: company_name,
             company_pic_name: company_pic_name,
+            company_pic_ic: company_pic_ic,
             company_address:company_address,
             company_contact: company_contact,
             company_website: company_website,
@@ -30,7 +32,7 @@ export class Confirm extends Component {
         };
         var account_id="";
 
-        axiosInstance.post('/accounts/signUp', data)
+        axiosInstance.post('/api/accounts/signUp', data)
             .then(res=> {
                
                  
@@ -38,10 +40,16 @@ export class Confirm extends Component {
                 this.account_id = res.data._id;
                 data["account_id"] = this.account_id;
 
-                axiosInstance.post('/sponsors/create', data)
+                axiosInstance.post('/api/sponsors/create', data)
                 .then(res=>{
-                    console.log(res.data)
-                    this.props.nextStep();
+                    
+                    localStorage.setItem("account_id", JSON.stringify(this.account_id)) 
+                    localStorage.setItem("company_pic_ic", JSON.stringify(res.data.company_pic_ic)) 
+
+
+                 this.setState({display1:'hide'});
+                 this.setState({display2:'show'});
+
                 });
              }
              else{
@@ -49,13 +57,27 @@ export class Confirm extends Component {
              }
 
         });
-       */}                             
+       }                             
        
     };
     back = e => {
         e.preventDefault();
         this.props.prevStep();
     };
+
+
+     constructor(props) {
+        super(props);
+        this.state = {display1: 'show', display2: 'hide'};
+      }
+    
+ 
+
+     makePayment(){
+         console.log("PAY!")
+         document.getElementById("uitm_payment_form").submit();
+     }
+
 
     render() {
         const { values, inputChange } = this.props;
@@ -94,7 +116,7 @@ export class Confirm extends Component {
                 </ul>
 
                 <br /><br />
-                <form className="list-group" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
+                <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={values.company_pic_name} hidden/>
                     <input type="text" name="ord_mercref" value= {"iidentex"+values.company_pic_name} hidden/>
                     <input type="text" name="name" value={values.company_pic_name} hidden/>
@@ -107,15 +129,26 @@ export class Confirm extends Component {
                     <input type="text" name="hash_value" value={hash_value} hidden/>
                     <input type="number" name="amount" value={parseFloat(amount).toFixed(2)}  hidden/>
                     
-                <div className="row">
-                    <div className="col-6">
-                        <button className="btn btn-danger" onClick={this.back}>Back</button>
-                    </div>
-                    <div className="col-6 text-right">
-                    <input type="submit" className="btn btn-primary"name="submit" value="Make payment" />
-                    </div>
-                </div>
+                
                 </form>
+                <div className="row">    
+                    <div className="col-6">
+                    <button className="btn btn-danger" onClick={this.back}>Back</button>
+                    </div>
+
+                    <div className="col-6">
+                        <div className={this.state.display1}> 
+                            <div className="text-right">
+                                <button className="btn btn-primary"  value="Make payment" onClick={this.continue}>Confirm</button>                     
+                            </div>
+                        </div>
+                        <div className={this.state.display2}> 
+                                <div className=" text-right">
+                                    <button className="btn btn-primary"  value="Make payment" onClick={this.makePayment}>Make Payment</button>                     
+                                </div>
+                        </div>
+                    </div>
+                 </div>
             </div>
         )
     }

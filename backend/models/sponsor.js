@@ -59,6 +59,22 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   },
+  receipt_no:{
+    type:String
+  },
+  amount:{
+    type:String
+  },
+  bill_verify: {
+    type:String,
+    default: 'false'
+  },
+  trans_date:{
+    type:String
+  },
+  status:{
+    type:String
+  },
 
   company_logo:[subSchema],
   poster:[subSchema],
