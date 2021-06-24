@@ -74,8 +74,26 @@ const update = (req, res, next)=>{
     updateCompetitor['gender'] = req.body.gender;
   }
  
-  if(req.body.address){
-    updateCompetitor['address'] = req.body.address;
+  if(req.body.address_1){
+    updateCompetitor['address_1'] = req.body.address_1;
+  }
+
+  if(req.body.address_2){
+    updateCompetitor['address_2'] = req.body.address_2;
+  }
+
+  if(req.body.postcode){
+    updateCompetitor['postcode'] = req.body.postcode;
+  }
+
+  if(req.body.city){
+    updateCompetitor['city'] = req.body.city;
+  }
+  if(req.body.state){
+    updateCompetitor['state'] = req.body.state;
+  }
+  if(req.body.country){
+    updateCompetitor['country'] = req.body.country;
   }
 
   if(req.body.members){
@@ -135,35 +153,5 @@ const readAll = (req, res, next)=>{
     }).catch(err => console.log(err))
  };
 
- const pay = (req, res, next) => {
-  // extract POST data from billplz
-  var url = req.protocol + '://' + req.get('host') + req.originalUrl;
-  var res_string = url.split('?');
-  var queryString=res_string[1];
-  const params = qs.parse(queryString)
- //  console.log(params)
- 
-// do a validation
-const billplzId = "billplzid" + params['billplz[id]'];
-  const billplzPaidAt = "billplzpaid_at" + params['billplz[paid_at]'];
-  const billplzPaid = "billplzpaid" + params['billplz[paid]'];
-  const combineString = billplzId +  "|" + billplzPaidAt +  "|" + billplzPaid;
-  var hash = CryptoJS.HmacSHA256(combineString, "S-B3mEu_juz3G2q2IlEfYmmw").toString();
- //  console.log(billplzPaid)
- //  console.log(params['billplz[paid]'])
- //  console.log(params['billplz[x_signature]'] == hash)
- //  console.log(params['billplz[x_signature]'])
- //  console.log(hash);
-//isPaid?
-if(params['billplz[paid]'] === "true" && params['billplz[x_signature]'] === hash){
- localStorage.setItem('bill_id',params['billplz[id]'])
- localStorage.setItem('bill_paid_at',params['billplz[paid_at]'])
- localStorage.setItem('bill_status', params['billplz[paid]'])
- res.redirect('http://localhost:3000/payment_success');
-}
-else{
- res.redirect('http://localhost:3000/payment_fail')
-}
-}
 
 module.exports = {create, read, update, readAll}

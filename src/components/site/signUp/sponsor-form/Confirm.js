@@ -4,61 +4,70 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 export class Confirm extends Component {
     continue = async (e) => {
         e.preventDefault();
-   {     const { 
-            values: {
-                email, 
-                password,
-                company_name, 
-                company_pic_name, 
-                company_pic_ic,
-                company_contact, 
-                company_address, 
-                company_website, 
-                category
+        {
+            const {
+                values: {
+                    email,
+                    password,
+                    company_name,
+                    company_pic_name,
+                    company_pic_ic,
+                    company_contact,
+                    address_1,
+                    address_2,
+                    postcode,
+                    city,
+                    state,
+                    company_website,
+                    category
                 }
-        } = this.props;
+            } = this.props;
 
-        var data = {
-            role:"Sponsor",
-            email: email,
-            password: password,
-            company_name: company_name,
-            company_pic_name: company_pic_name,
-            company_pic_ic: company_pic_ic,
-            company_address:company_address,
-            company_contact: company_contact,
-            company_website: company_website,
-            category: category
-        };
-        var account_id="";
+            var data = {
+                role: "Sponsor",
+                email: email,
+                password: password,
+                company_name: company_name,
+                company_pic_name: company_pic_name,
+                company_pic_ic: company_pic_ic,
+                address1: address_1,
+                address_2: address_2,
+                postcode: postcode,
+                city: city,
+                state: state,
+                company_contact: company_contact,
+                company_website: company_website,
+                category: category
+            };
+            var account_id = "";
 
-        axiosInstance.post('/api/accounts/signUp', data)
-            .then(res=> {
-               
-                 
-            if(res.data._id){
-                this.account_id = res.data._id;
-                data["account_id"] = this.account_id;
-
-                axiosInstance.post('/api/sponsors/create', data)
-                .then(res=>{
-                    
-                    localStorage.setItem("account_id", JSON.stringify(this.account_id)) 
-                    localStorage.setItem("company_pic_ic", JSON.stringify(res.data.company_pic_ic)) 
+            axiosInstance.post('/api/accounts/signUp', data)
+                .then(res => {
 
 
-                 this.setState({display1:'hide'});
-                 this.setState({display2:'show'});
+                    if (res.data._id) {
+                        this.account_id = res.data._id;
+                        data["account_id"] = this.account_id;
+
+                        axiosInstance.post('/api/sponsors/create', data)
+                            .then(res => {
+
+                                localStorage.setItem("account_id", JSON.stringify(this.account_id))
+                                localStorage.setItem("company_pic_ic", JSON.stringify(res.data.company_pic_ic))
+
+
+                                this.setState({ display1: 'hide' });
+                                this.setState({ display2: 'show' });
+
+                            });
+                    }
+                    else {
+                        alert('Email existed')
+                    }
 
                 });
-             }
-             else{
-                 alert('Email existed')
-             }
+        }
 
-        });
-       }                             
-       
     };
     back = e => {
         e.preventDefault();
@@ -66,38 +75,43 @@ export class Confirm extends Component {
     };
 
 
-     constructor(props) {
+    constructor(props) {
         super(props);
-        this.state = {display1: 'show', display2: 'hide'};
-      }
-    
- 
+        this.state = { display1: 'show', display2: 'hide' };
+    }
 
-     makePayment(){
-         console.log("PAY!")
-         document.getElementById("uitm_payment_form").submit();
-     }
+
+
+    makePayment() {
+        console.log("PAY!")
+        document.getElementById("uitm_payment_form").submit();
+    }
 
 
     render() {
         const { values, inputChange } = this.props;
-        const { 
-            values: {email, 
+        const {
+            values: { email,
                 password,
-                company_name, 
-                company_pic_name, 
+                company_name,
+                company_pic_name,
                 company_pic_ic,
-                company_contact, 
-                company_address, 
-                company_website, 
+                company_contact,
+                address1,
+                address_2,
+                postcode,
+                city,
+                state,
+                company_website,
                 category,
                 amount
             }
         } = this.props;
-        
-    var sha1 = require('sha1');
-    var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + ".00");  
-    console.log(company_contact)
+
+        var sha1 = require('sha1');
+        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + ".00");
+        console.log(company_contact)
+        var uitmpay_address = values.address_1 + values.address_2 + values.postcode + values.city + values.state
 
         return (
             <div>
@@ -108,7 +122,13 @@ export class Confirm extends Component {
                     <li className="list-group-item">IC: {values.company_pic_ic}</li>
                     <li className="list-group-item">Email: {values.email}</li>
                     <li className="list-group-item">Phone Number: {values.company_contact}</li>
-                    <li className="list-group-item">Company Address: {values.company_address}</li>
+                    <li className="list-group-item">Company Address:
+                        {values.address_1}
+                        {values.address_2}
+                        {values.postcode}
+                        {values.city}
+                        {values.state}
+                    </li>
                     <li className="list-group-item">Company Website: {values.company_website}</li>
                     <li className="list-group-item">Selected Category: {values.category}</li>
                     <li className="list-group-item">Sponsor Amount: RM {values.amount}.00</li>
@@ -117,38 +137,38 @@ export class Confirm extends Component {
 
                 <br /><br />
                 <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                    <input type="text" name="userid" value={values.company_pic_name} hidden/>
-                    <input type="text" name="ord_mercref" value= {"iidentex"+values.company_pic_name} hidden/>
-                    <input type="text" name="name" value={values.company_pic_name} hidden/>
-                    <input type="text" name="ic" value={values.company_pic_ic} hidden/>
-                    <input type="text" name="email" value={values.email}  hidden/>
-                    <input type="text" name="phone" value={values.company_contact}  hidden/>
-                    <input type="text" name="designation" value={values.company_pic_name} hidden/>
-                    <input type="text" name="address" value={values.company_address}  hidden/>
+                    <input type="text" name="userid" value={values.company_pic_name} hidden />
+                    <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden />
+                    <input type="text" name="name" value={values.company_pic_name} hidden />
+                    <input type="text" name="ic" value={values.company_pic_ic.toString()} hidden />
+                    <input type="text" name="email" value={values.email} hidden />
+                    <input type="text" name="phone" value={values.company_contact} hidden />
+                    <input type="text" name="designation" value={values.company_pic_name} hidden />
+                    <input type="text" name="address" value={uitmpay_address} hidden />
 
-                    <input type="text" name="hash_value" value={hash_value} hidden/>
-                    <input type="number" name="amount" value={parseFloat(amount).toFixed(2)}  hidden/>
-                    
-                
+                    <input type="text" name="hash_value" value={hash_value} hidden />
+                    <input type="number" name="amount" value={parseFloat(amount).toFixed(2)} hidden />
+
+
                 </form>
-                <div className="row">    
+                <div className="row">
                     <div className="col-6">
-                    <button className="btn btn-danger" onClick={this.back}>Back</button>
+                        <button className="btn btn-danger" onClick={this.back}>Back</button>
                     </div>
 
                     <div className="col-6">
-                        <div className={this.state.display1}> 
+                        <div className={this.state.display1}>
                             <div className="text-right">
-                                <button className="btn btn-primary"  value="Make payment" onClick={this.continue}>Confirm</button>                     
+                                <button className="btn btn-primary" value="Make payment" onClick={this.continue}>Confirm</button>
                             </div>
                         </div>
-                        <div className={this.state.display2}> 
-                                <div className=" text-right">
-                                    <button className="btn btn-primary"  value="Make payment" onClick={this.makePayment}>Make Payment</button>                     
-                                </div>
+                        <div className={this.state.display2}>
+                            <div className=" text-right">
+                                <button className="btn btn-primary" value="Make payment" onClick={this.makePayment}>Make Payment</button>
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         )
     }

@@ -30,7 +30,8 @@ function Competitor() {
   var hash_value="";
 
 
-  function uitmCheck(id){
+  function uitmCheck(input_id){
+    var id = input_id.toString()
     hash_value = sha1(token + cmpy_code + zone + product_ID + id);
     document.getElementById('hashValue'+id).value = hash_value;
     url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;

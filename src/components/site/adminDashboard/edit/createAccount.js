@@ -10,10 +10,15 @@ function CreateAccount() {
         name:'default',
         affiliation:'default',
         nric_passport_selection:'NRIC',
-        nric_passport_no:'000000000000',
+        nric_passport_no: 123456789,
         phone_no:'0123456789',
         gender:'male',
-        address:'default'
+        address_1:'default',
+        address_2:'default',
+        postcode:12345,
+        city:'default',
+        state:'default',
+        country:'default'
     }
 
     var sponsorData = {
@@ -21,7 +26,7 @@ function CreateAccount() {
         category:'default',
         company_name:'default',
         company_pic_name:'default',
-        company_pic_ic:'000000000000',
+        company_pic_ic: 123456789,
         company_contact:'0123456789',
         company_address:'default',
         company_website:'default',

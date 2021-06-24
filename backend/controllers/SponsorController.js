@@ -63,8 +63,26 @@ const update = (req, res, next)=>{
       if(req.body.company_contact){
         updateSponsor['company_contact'] = req.body.company_contact;
       }
-      if(req.body.company_address){
-        updateSponsor['company_address'] = req.body.company_address;
+      if(req.body.address_1){
+        updateSponsor['address_1'] = req.body.address_1;
+      }
+    
+      if(req.body.address_2){
+        updateSponsor['address_2'] = req.body.address_2;
+      }
+    
+      if(req.body.postcode){
+        updateSponsor['postcode'] = req.body.postcode;
+      }
+    
+      if(req.body.city){
+        updateSponsor['city'] = req.body.city;
+      }
+      if(req.body.state){
+        updateSponsor['state'] = req.body.state;
+      }
+      if(req.body.country){
+        updateSponsor['country'] = req.body.country;
       }
       if(req.body.company_website){
         updateSponsor['company_website'] = req.body.company_website;
@@ -80,10 +98,10 @@ const update = (req, res, next)=>{
         updateSponsor['video'] = req.body.video;
       }    
       if(req.body.bill_verify){
-        updateCompetitor['bill_verify'] = req.body.bill_verify;
+        updateSponsor['bill_verify'] = req.body.bill_verify;
       }     
       if(req.body.receipt_no){
-        updateCompetitor['receipt_no'] = req.body.receipt_no;
+        updateSponsor['receipt_no'] = req.body.receipt_no;
       } 
     
         Sponsor.findByIdAndUpdate(req.body._id, updateSponsor, (err, sponsors) => {

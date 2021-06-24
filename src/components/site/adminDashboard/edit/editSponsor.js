@@ -7,7 +7,7 @@ function EditProfile() {
     const [data, setData] = useState({
         company_name:'',
         company_pic_name:'',
-        company_contact:'',
+        company_contact: 123456789,
         category:'',
         amount:'',
         bill_verify:null,
@@ -105,7 +105,7 @@ return(
                 </div>
                 <div className="form-group">
                     <label htmlFor="company_contact"><span>*</span>Contact Number</label>
-                    <input className="form-control" type='text' name='company_contact' id="company_contact"
+                    <input className="form-control" type='Number' name='company_contact' id="company_contact"
                     placeholder='Contact Number' required
                     onChange={inputChange('company_contact')} value={data.company_contact} 
                     />
