@@ -11,7 +11,12 @@ const create = (req, res, next)=>{
   const nric_passport_no = req.body.nric_passport_no;
   const phone_no = req.body.phone_no;
   const gender = req.body.gender;
-  const address = req.body.address;
+  const address_1 = req.body.address_1;  
+  const address_2 = req.body.address_2;
+  const postcode = req.body.postcode;
+  const city = req.body.city;
+  const state = req.body.state;
+  const country = req.body.country;
 
 
     const newCompetitor = new Competitor({
@@ -21,7 +26,12 @@ const create = (req, res, next)=>{
       affiliation,
       nric_passport_selection,
       nric_passport_no,
-      address,
+      address_1,
+      address_2,
+      postcode,
+      city,
+      state,
+      country,
       gender,
       phone_no
     });

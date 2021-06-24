@@ -24,6 +24,7 @@ export class Confirm extends Component {
                 postcode,
                 city,
                 state,
+                country,
             }
         } = this.props;
 
@@ -37,11 +38,12 @@ export class Confirm extends Component {
             nric_passport_selection: ic_passport_selection,
             nric_passport_no: ic_passport_number,
             affiliation: affiliation,
-            address1: address_1,
+            address_1: address_1,
             address_2: address_2,
             postcode: postcode,
             city: city,
             state: state,
+            country:country,
             gender: gender
         };
         // create account
@@ -102,7 +104,13 @@ export class Confirm extends Component {
         }
         var sha1 = require('sha1');
         var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
-        var uitmpay_address = values.address_1 + values.address_2 + values.postcode + values.city + values.state
+        var uitmpay_address = 
+        values.address_1 + "," +
+        values.address_2 + "," +
+        values.postcode + "," +
+        values.city + "," +
+        values.state+ "," +
+        values.country
 
         return (
             <div>
@@ -118,11 +126,12 @@ export class Confirm extends Component {
                     <li class="list-group-item">Phone Number: {values.phone_no}</li>
                     <li class="list-group-item">
                         Address:
-                        {values.address_1}
-                        {values.address_2}
-                        {values.postcode}
-                        {values.city}
-                        {values.state}
+                        {values.address_1}, 
+                        {values.address_2}, 
+                        {values.postcode}, 
+                        {values.city}, 
+                        {values.state}, 
+                        {values.country}
 
                     </li>
                     <li class="list-group-item">Gender: {values.gender}</li>
@@ -131,7 +140,7 @@ export class Confirm extends Component {
 
                 <br /><br />
                 <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                    <input type="text" name="userid" value={values.ic_passport_number.toString()} hidden />
+                    <input type="text" name="userid" value={values.ic_passport_number} hidden />
                     <input type="text" name="ord_mercref" value={"iidentex" + values.ic_passport_number} hidden />
                     <input type="text" name="name" value={values.name} hidden />
                     <input type="text" name="ic" value={values.ic_passport_number} hidden />

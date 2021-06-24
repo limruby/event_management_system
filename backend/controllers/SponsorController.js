@@ -9,10 +9,15 @@ const create = (req, res, next)=>{
   const company_name = req.body.company_name;
   const company_pic_name = req.body.company_pic_name;
   const company_pic_ic = req.body.company_pic_ic;
-  const company_contact = req.body.company_contact;
-  const company_address = req.body.company_address;
+  const company_contact = req.body.company_contact;  
   const company_website = req.body.company_website;
   const company_logo = req.body.company_logo;
+  const address_1 = req.body.address_1;  
+  const address_2 = req.body.address_2;
+  const postcode = req.body.postcode;
+  const city = req.body.city;
+  const state = req.body.state;
+  const country = req.body.country;
 
     const newSponsor = new Sponsor({
     account_id, 
@@ -20,10 +25,15 @@ const create = (req, res, next)=>{
     company_name, 
     company_pic_name,
     company_pic_ic, 
-    company_contact, 
-    company_address, 
+    company_contact,     
     company_website, 
-    company_logo
+    company_logo,
+    address_1,
+      address_2,
+      postcode,
+      city,
+      state,
+      country,
     });
 
     newSponsor.save()

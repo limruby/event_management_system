@@ -18,6 +18,7 @@ export class Confirm extends Component {
                     postcode,
                     city,
                     state,
+                    country,
                     company_website,
                     category
                 }
@@ -30,11 +31,12 @@ export class Confirm extends Component {
                 company_name: company_name,
                 company_pic_name: company_pic_name,
                 company_pic_ic: company_pic_ic,
-                address1: address_1,
+                address_1: address_1,
                 address_2: address_2,
                 postcode: postcode,
                 city: city,
                 state: state,
+                country,
                 company_contact: company_contact,
                 company_website: company_website,
                 category: category
@@ -102,6 +104,7 @@ export class Confirm extends Component {
                 postcode,
                 city,
                 state,
+                country,
                 company_website,
                 category,
                 amount
@@ -111,7 +114,13 @@ export class Confirm extends Component {
         var sha1 = require('sha1');
         var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + ".00");
         console.log(company_contact)
-        var uitmpay_address = values.address_1 + values.address_2 + values.postcode + values.city + values.state
+        var uitmpay_address = 
+        values.address_1 + "," +
+        values.address_2 + "," +
+        values.postcode + "," +
+        values.city + "," +
+        values.state+ "," +
+        values.country
 
         return (
             <div>
@@ -123,11 +132,12 @@ export class Confirm extends Component {
                     <li className="list-group-item">Email: {values.email}</li>
                     <li className="list-group-item">Phone Number: {values.company_contact}</li>
                     <li className="list-group-item">Company Address:
-                        {values.address_1}
-                        {values.address_2}
-                        {values.postcode}
-                        {values.city}
-                        {values.state}
+                        {values.address_1},
+                        {values.address_2},
+                        {values.postcode},
+                        {values.city},
+                        {values.state},
+                        {values.country}
                     </li>
                     <li className="list-group-item">Company Website: {values.company_website}</li>
                     <li className="list-group-item">Selected Category: {values.category}</li>

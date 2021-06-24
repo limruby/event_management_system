@@ -27,6 +27,7 @@ export class CompetitorForm extends Component {
         postcode:null,
         city:'',
         state:'',
+        country:'',
         gender: '',
 
         phone_no: null,
@@ -70,6 +71,7 @@ export class CompetitorForm extends Component {
             postcode,
             city,
             state,
+            country,
             gender,
             amount,
             cmpy_code,
@@ -92,6 +94,7 @@ export class CompetitorForm extends Component {
             address_2,
             postcode,
             city,
+            country,
             state,
             gender,
             amount,
