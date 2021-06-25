@@ -17,11 +17,13 @@ const create = (req, res, next)=>{
   const city = req.body.city;
   const state = req.body.state;
   const country = req.body.country;
+  const amount = req.body.amount;
 
 
     const newCompetitor = new Competitor({
       account_id, 
       category,
+      amount,
       name,
       affiliation,
       nric_passport_selection,
@@ -162,6 +164,6 @@ const readAll = (req, res, next)=>{
         return res.status(200).json({ success: true, data: competitors })
     }).catch(err => console.log(err))
  };
-
+ 
 
 module.exports = {create, read, update, readAll}

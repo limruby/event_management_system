@@ -152,15 +152,15 @@ function EditProfile({ data, setData }) {
           </div>
           <div className="form-group">
             <label htmlFor="company_pic_ic"><span>*</span>IC of Person In Charge (PIC)</label>
-            <input className="form-control" type='number' name='company_pic_ic' id="company_pic_ic"
-              placeholder='Full Name of PIC' required
+            <input className="form-control" type='text' name='company_pic_ic' id="company_pic_ic"
+              placeholder='Full Name of PIC' required pattern="[0-9]{12}"
               onChange={inputChange('company_pic_ic')} value={data.company_pic_ic}
             />
           </div>
           <div className="form-group">
             <label htmlFor="company_contact"><span>*</span>Contact Number</label>
-            <input className="form-control" type='number' name='company_contact' id="company_contact"
-              placeholder='Contact Number' required
+            <input className="form-control" type='text' name='company_contact' id="company_contact"
+              placeholder='Contact Number' required pattern="[0-9]{11}"
               onChange={inputChange('company_contact')} value={data.company_contact}
             />
           </div>

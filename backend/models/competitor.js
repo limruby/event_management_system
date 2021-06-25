@@ -124,7 +124,8 @@ const competitorSchema = new Schema({
     type:String
   },
   amount:{
-    type:String
+    type:String,
+    required: true
   },
   bill_verify: {
     type:String,

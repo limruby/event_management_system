@@ -21,7 +21,7 @@ export class Profiles extends Component {
         const handleForm=(e)=>{
         e.preventDefault();
         // perform all neccassary validations
-            if (values.category === "" || values.amount===""){
+            if (values.category === ""){
                 alert("Form not fill");
             }
             else{
@@ -30,31 +30,31 @@ export class Profiles extends Component {
         }
 
 
-        function amount () {
-            var section = [];
-            if(values.category === "Bronze Package"){
-                section.push(
-                <div>
-                <input type="range" min={500} max={999} defaultValue={500} className="slider" id="bronze" onChange={inputChange('amount')}/>
-                <p>{values.amount}</p>
-                </div>
-                )}
-            else if(values.category === "Silver Package"){
-                section.push(
-                    <div>
-                <input type="range" min={1000} max={2999} defaultValue={1000} className="slider" id="silver" onChange={inputChange('amount')}/>
-                <p>{values.amount}</p>
-                </div>
-                )}
-            else if(values.category === "Gold Package"){
-                section.push(
-                <div>
-                <input type="range" min={3000} max={4999} defaultValue={3000} className="slider" id="gold" onChange={inputChange('amount')}/>
-                <p>{values.amount}</p>
-                </div>
-                )}
-                return section;
-        }
+        // function amount () {
+        //     var section = [];
+        //     if(values.category === "Bronze Package"){
+        //         section.push(
+        //         <div>
+        //         <input type="range" min={500} max={999} defaultValue={500} className="slider" id="bronze" onChange={inputChange('amount')}/>
+        //         <p>{values.amount}</p>
+        //         </div>
+        //         )}
+        //     else if(values.category === "Silver Package"){
+        //         section.push(
+        //             <div>
+        //         <input type="range" min={1000} max={2999} defaultValue={1000} className="slider" id="silver" onChange={inputChange('amount')}/>
+        //         <p>{values.amount}</p>
+        //         </div>
+        //         )}
+        //     else if(values.category === "Gold Package"){
+        //         section.push(
+        //         <div>
+        //         <input type="range" min={3000} max={4999} defaultValue={3000} className="slider" id="gold" onChange={inputChange('amount')}/>
+        //         <p>{values.amount}</p>
+        //         </div>
+        //         )}
+        //         return section;
+        // }
 
 
         return (
@@ -71,9 +71,8 @@ export class Profiles extends Component {
                         <option value="Bronze Package">Bronze Package</option>
                     </select>
 
-                    <label htmlFor="amount"><span>*</span>Amount</label>
                     
-                    {amount()}
+                    {/* {amount()} */}
                         
                 
                    

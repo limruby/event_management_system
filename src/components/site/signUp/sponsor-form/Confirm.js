@@ -20,7 +20,8 @@ export class Confirm extends Component {
                     state,
                     country,
                     company_website,
-                    category
+                    category,
+                    amount
                 }
             } = this.props;
 
@@ -39,10 +40,21 @@ export class Confirm extends Component {
                 country,
                 company_contact: company_contact,
                 company_website: company_website,
-                category: category
+                category: category,
+                amount: amount
             };
             var account_id = "";
-
+            console.log(category)
+            if (category === "Gold Package") {
+                data["amount"] = 4000.00.toFixed(2);
+            }
+            else if (category === "Silver Package") {
+                data["amount"] = 3000.00.toFixed(2);
+            }
+            else if (category === "Bronze Package") {
+                data["amount"] = 2000.00.toFixed(2);
+                console.log(data["amount"])
+            }
             axiosInstance.post('/api/accounts/signUp', data)
                 .then(res => {
 
@@ -92,28 +104,21 @@ export class Confirm extends Component {
 
     render() {
         const { values, inputChange } = this.props;
-        const {
-            values: { email,
-                password,
-                company_name,
-                company_pic_name,
-                company_pic_ic,
-                company_contact,
-                address1,
-                address_2,
-                postcode,
-                city,
-                state,
-                country,
-                company_website,
-                category,
-                amount
-            }
-        } = this.props;
+       
+        var amount;
+        if (values.category === "Gold Package") {
+            amount = 4000.00.toFixed(2);
+        }
+        else if (values.category === "Silver Package") {
+            amount = 3000.00.toFixed(2);
+        }
+        else if (values.category === "Bronze Package") {
+           amount = 2000.00.toFixed(2);
 
+        }
         var sha1 = require('sha1');
-        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + ".00");
-        console.log(company_contact)
+        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
+        
         var uitmpay_address = 
         values.address_1 + "," +
         values.address_2 + "," +
@@ -141,14 +146,14 @@ export class Confirm extends Component {
                     </li>
                     <li className="list-group-item">Company Website: {values.company_website}</li>
                     <li className="list-group-item">Selected Category: {values.category}</li>
-                    <li className="list-group-item">Sponsor Amount: RM {values.amount}.00</li>
+                    <li className="list-group-item">Sponsor Amount: RM {amount}</li>
 
                 </ul>
 
                 <br /><br />
                 <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={values.company_pic_name} hidden />
-                    <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden />
+                    {/* <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden /> */}
                     <input type="text" name="name" value={values.company_pic_name} hidden />
                     <input type="text" name="ic" value={values.company_pic_ic.toString()} hidden />
                     <input type="text" name="email" value={values.email} hidden />
@@ -157,7 +162,7 @@ export class Confirm extends Component {
                     <input type="text" name="address" value={uitmpay_address} hidden />
 
                     <input type="text" name="hash_value" value={hash_value} hidden />
-                    <input type="number" name="amount" value={parseFloat(amount).toFixed(2)} hidden />
+                    <input type="number" name="amount" value={amount} hidden />
 
 
                 </form>

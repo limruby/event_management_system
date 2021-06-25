@@ -70,7 +70,7 @@ function Login()
             }
                 
 
-            // redirect();
+             redirect();
             }
             else{
                 alert("Email or password not match.")

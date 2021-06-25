@@ -45,6 +45,7 @@ if(user.company_logo){
               {user.postcode},
               {user.city},
               {user.state},
+              {user.country}
               </p>
           </li>
         </ul>
@@ -75,7 +76,8 @@ if(user.company_logo){
               {user.address_2},
               {user.postcode},
               {user.city},
-              {user.state},          
+              {user.state}, 
+              {user.country}         
             </p>
           </li>
           <li>

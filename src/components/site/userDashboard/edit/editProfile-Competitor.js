@@ -57,6 +57,35 @@ function EditProfile({ data, setData }) {
                 })
         }
     }
+    function displayInput(){
+        var section=[];
+        if(data.nric_passport_selection==="NRIC"){
+            section.push( <input
+                        className="form-control"
+                        type='text'
+                        name='nric_passport_no'
+                        id="nric_passport_no"
+                        placeholder='NRIC (Without dash) '
+                        required
+                        pattern="[0-9]{12}"
+                        onChange={
+                            inputChange('ic_passport_no')}
+                        value={data.nric_passport_no} />)
+        }
+        else if(data.nric_passport_selection==="PASSPORT NUMBER"){
+            section.push( <input
+                        className="form-control"
+                        type='text'
+                        name='nric_passport_no'
+                        id="nric_passport_no"
+                        placeholder='Passport Number '
+                        required
+                        onChange={
+                            inputChange('nric_passport_no')}
+                        value={data.nric_passport_no} />)
+        }
+        return section;
+    }
     console.log(data);
     /////////////////////////////////////////////////////////////
 
@@ -86,17 +115,9 @@ function EditProfile({ data, setData }) {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="nric_passport_selection"><span>*</span>NRIC / Passport Number</label>
-                        <select className="form-control" id="nric_passport_selection" required
-                            onChange={inputChange('nric_passport_selection')} value={data.nric_passport_selection} >
-                            <option value="">Please select</option>
-                            <option value="NRIC">NRIC</option>
-                            <option value="PASSPORT NUMBER">Passport Number</option>
-                        </select>
+                        <label htmlFor="ic_passport_selection"><span>NRIC/ Passport Selection: </span>{data.nric_passport_selection}</label>
                         <br />
-                        <input className="form-control" type='number' name='nric_passport_no' id="nric_passport_no"
-                            placeholder='NRIC / Passport Number' required
-                            onChange={inputChange('nric_passport_no')} value={data.nric_passport_no} />
+                        {displayInput()}     
                     </div>
                     <div className="form-group">
                         <label htmlFor="address_1"><span>*</span>Address Line 1</label>
@@ -144,6 +165,10 @@ function EditProfile({ data, setData }) {
                             <option value="Selangor">Selangor</option>
                             <option value="Terengganu">Terengganu</option>
                         </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="country"><span>Country: </span>{data.country}</label>
+                        <br />    
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender_id"><span>*</span>Gender</label>

@@ -13,7 +13,7 @@ const [tempData, setTemp] = useState({
     tempEmail: ""
 });
 const showUpload=(e)=>{
-    if(data.members.length < 4){
+    
         e.preventDefault();
     if (tempData.tempName!=="" && tempData.tempAff!=="" && tempData.tempEmail!==""){
       data.members.push({'name':tempData.tempName,'affiliation':tempData.tempAff, 'email':tempData.tempEmail})   
@@ -44,7 +44,6 @@ const showUpload=(e)=>{
         }
       }
  
-    }   
 }
 var obj =[];
   const deleteFile = (element,index) => e => {
@@ -125,8 +124,6 @@ const inputChange = (element, index) => e => {
 ///////display forms//////
     function displayMembers(){
         var section = [];
-        if(data.members==null||data.members[0]==null||data.members.length<4){
-        
             section.push(
                 <div>
                     <div className="form-group">
@@ -149,7 +146,7 @@ const inputChange = (element, index) => e => {
                 </div>  
                 </div>
             );
-        }
+   
      if(data.members!==undefined) {
         for (var i=0; i<data.members.length; i++){
         section.push(

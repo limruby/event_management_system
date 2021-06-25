@@ -18,10 +18,12 @@ const create = (req, res, next)=>{
   const city = req.body.city;
   const state = req.body.state;
   const country = req.body.country;
+  const amount = req.body.amount;
 
     const newSponsor = new Sponsor({
     account_id, 
     category,
+    amount,
     company_name, 
     company_pic_name,
     company_pic_ic, 

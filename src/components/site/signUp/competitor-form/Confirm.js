@@ -6,6 +6,7 @@ export class Confirm extends Component {
 
     continue = async (e) => {
         e.preventDefault();
+        
         const {
             values: {
                 email,
@@ -13,6 +14,7 @@ export class Confirm extends Component {
                 confirmPassword,
                 role,
                 category,
+                amount,
                 name,
                 ic_passport_selection,
                 ic_passport_number,
@@ -26,8 +28,9 @@ export class Confirm extends Component {
                 state,
                 country,
             }
+            
         } = this.props;
-
+        
         var data = {
             role: "Competitor",
             email: email,
@@ -35,6 +38,7 @@ export class Confirm extends Component {
             name: name,
             phone_no: phone_no,
             category: category,
+            // amount:amountTemp,
             nric_passport_selection: ic_passport_selection,
             nric_passport_no: ic_passport_number,
             affiliation: affiliation,
@@ -46,6 +50,17 @@ export class Confirm extends Component {
             country:country,
             gender: gender
         };
+
+        if (category === "Professional Innovator") {
+            data["amount"] = 350.00.toFixed(2);
+        }
+        else if (category === "Young Innovator") {
+            data["amount"] = 290.00.toFixed(2);
+        }
+        else if (category === "Junior Innovator") {
+            data["amount"] = 1.00.toFixed(2);
+            console.log(data["amount"])
+        }
         // create account
         axiosInstance.post('/api/accounts/signUp', data)
             .then(res => {
@@ -141,7 +156,7 @@ export class Confirm extends Component {
                 <br /><br />
                 <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={values.ic_passport_number} hidden />
-                    <input type="text" name="ord_mercref" value={"iidentex" + values.ic_passport_number} hidden />
+                    {/* <input type="text" name="ord_mercref" value={"iidentex"} hidden /> */}
                     <input type="text" name="name" value={values.name} hidden />
                     <input type="text" name="ic" value={values.ic_passport_number} hidden />
                     <input type="text" name="email" value={values.email} hidden />
