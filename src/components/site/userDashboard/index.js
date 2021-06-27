@@ -13,10 +13,11 @@ import ResearchTeam from './research-team-sec';
  
 import PdfAbstract from './pdf-abstract-bookChapter';
 import Preview from './preview-sec';
+import Receipt from './receipt-sec';
  
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab, Nav, Row, Col,Card} from "react-bootstrap";
-import {FaEdit,FaCertificate,FaBook,FaRegBookmark} from 'react-icons/fa';
+import {FaEdit,FaCertificate,FaBook,FaRegBookmark, FaReceipt} from 'react-icons/fa';
 import {BsPeopleCircle,BsFiles,BsBookHalf} from "react-icons/bs";
  
 function UserDashboard() {
@@ -103,6 +104,9 @@ function UserDashboard() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Research-Team"><FaRegBookmark size={20}/> Research Team</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Receipt"><FaReceipt size={20}/> Receipt</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20}/> Certificate</Nav.Link>
@@ -255,7 +259,18 @@ function UserDashboard() {
 			</Card.Body>
         </Card>
                 </Tab.Pane>
- 
+                <Tab.Pane eventKey="Receipt">
+		<Card>
+			<Card.Body>
+                  <div className="sec-container">
+                    <h2> Download Receipt</h2>    
+                   
+                    <Receipt user={user}/>
+                   
+                  </div>  
+			</Card.Body>
+        </Card>
+                </Tab.Pane>
                 <Tab.Pane eventKey="Cert">
 		<Card>
 			<Card.Body>

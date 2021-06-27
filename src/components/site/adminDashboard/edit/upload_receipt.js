@@ -12,44 +12,6 @@ function UploadReceipt() {
     const user_id = thePath.substring(thePath.indexOf('/', 2) + 1, thePath.lastIndexOf('/'));
     const string = '"' + user_id + '"'
 
-    useEffect(() => {
-        axiosInstance.get("/api/competitors/read", { params: { account_id: string } })
-            .then(function (response) {
-                setData(response.data.data);
-            }).catch(function (error) {
-                console.log(error);
-            })
-    }, [string])
-
-    // const inputChange = input => e => {
-
-    //     setData({
-    //         ...data,
-    //         [input]: e.target.value
-    //     });
-    // };
-
-    const handleForm = (e) => {
-        e.preventDefault();
-        // perform all neccassary validations
-        if (data.receipt=== null ) {
-            alert("Please upload the receipt!");
-        }
-        else {
-            ///////update to db /////////////           
-
-            var postData = {
-                _id: user_id,
-                receipt: data.receipt
-            }
-            axiosInstance.post("/api/competitors/update", postData)
-                .then(function (response) {
-                    window.location.href = '/admin_dashboard';
-                }).catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
     const uploadReceiptHandler = (element, index) => e => {
         if (element == 'receipt') {
             let selectedFile = e.target.files;
@@ -79,8 +41,27 @@ function UploadReceipt() {
             }
         }
     }
+    const handleForm = (e) => {
+        e.preventDefault();
+        // perform all neccassary validations
+        if (data.receipt === null) {
+            alert("Please upload the receipt!");
+        }
+        else {
+            ///////update to db /////////////           
 
-
+            var postData = {
+                _id: user_id,
+                receipt: data.receipt
+            }
+            axiosInstance.post("/api/competitors/update", postData)
+                .then(function (response) {
+                    window.location.href = '/admin_dashboard';
+                }).catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
     return (
         <>
             <form onSubmit={handleForm}>
@@ -92,11 +73,11 @@ function UploadReceipt() {
                         <input type="file" onChange={uploadReceiptHandler('receipt', 0)} />
                     </div>
                     <div className="btn-group">
-                    <Link to="/admin_dashboard">
-                        <button className="btn btn-danger back-btn">Back</button>
-                    </Link>
-                    <input className="btn btn-primary" type="submit" value="Update" />
-                </div>
+                        <Link to="/admin_dashboard">
+                            <button className="btn btn-danger back-btn">Back</button>
+                        </Link>
+                        <input className="btn btn-primary" type="submit" value="Update" />
+                    </div>
                 </div>
             </form>
 

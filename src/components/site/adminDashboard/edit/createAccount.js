@@ -18,7 +18,7 @@ function CreateAccount() {
         postcode:12345,
         city:'default',
         state:'default',
-        country:'default'
+        country:'default',
     }
 
     var sponsorData = {
@@ -51,6 +51,24 @@ function CreateAccount() {
                 ...data,
                  [input]: e.target.value,
                 'category' : ""
+            });
+        }
+        if(input === "category"){
+            var amount;
+
+        if (e.target.value === "Professional Innovator") {
+            amount = 350.00.toFixed(2);
+        }
+        else if (e.target.value === "Young Innovator") {
+            amount = 290.00.toFixed(2);
+        }
+        else if (e.target.value === "Junior Innovator") {
+            amount = 1.00.toFixed(2);
+        }
+            setData({
+                ...data,
+                 [input]: e.target.value,
+                'amount' : amount
             });
         }
 
@@ -102,6 +120,7 @@ function CreateAccount() {
                 if(data.role === "Competitor"){
                     compData["category"] = data.category;
                     compData["account_id"] = response.data._id
+                    compData["amount"] = data.amount
                     axiosInstance.post("/api/competitors/create", compData)
                     .then(function(response){
                         window.location.href = '/admin_dashboard';
@@ -112,6 +131,7 @@ function CreateAccount() {
                 else if(data.role === "Sponsor"){
                     sponsorData["category"] = data.category;
                     sponsorData["account_id"] = response.data._id
+                    compData["amount"] = data.amount
                     axiosInstance.post("/api/sponsors/create", sponsorData)
                     .then(function(response){
                         window.location.href = '/admin_dashboard';
