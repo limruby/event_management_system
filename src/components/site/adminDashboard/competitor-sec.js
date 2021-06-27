@@ -94,6 +94,16 @@ function Competitor() {
 
             )
           },
+          {
+            Header: 'Upload Receipt',
+            Cell: data => (
+              <Link to={`admin_dashboard/${data.row.original.account_id}/upload_receipt`}>
+                <button className="btn btn-success" >
+                  Upload
+                </button></Link>
+
+            )
+          },
         ],
       },
 
@@ -106,7 +116,7 @@ function Competitor() {
 
 
     return (
-      <div className="App">    
+      <div className="App" id="competitor">    
         <Table columns={columns} data={data} />
       </div>
     );

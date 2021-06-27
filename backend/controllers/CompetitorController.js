@@ -18,6 +18,7 @@ const create = (req, res, next)=>{
   const state = req.body.state;
   const country = req.body.country;
   const amount = req.body.amount;
+  const receipt = req.body.receipt;
 
 
     const newCompetitor = new Competitor({
@@ -35,7 +36,8 @@ const create = (req, res, next)=>{
       state,
       country,
       gender,
-      phone_no
+      phone_no, 
+      receipt
     });
 
     newCompetitor.save()
@@ -139,7 +141,9 @@ const update = (req, res, next)=>{
   if(req.body.receipt_no){
     updateCompetitor['receipt_no'] = req.body.receipt_no;
   }
-
+  if(req.body.receipt){
+    updateCompetitor['receipt'] = req.body.receipt;
+  }
 
     Competitor.findByIdAndUpdate(req.body._id, updateCompetitor, (err, competitors) => {
         if (err) {

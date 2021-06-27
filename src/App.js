@@ -24,9 +24,6 @@ const queryClient = new QueryClient()
 
 const AdminRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    
-    
-    
       isAdmin()
         ?  <Component {...props} />     //true
         :  <Redirect to='/page_not_found' />
@@ -69,6 +66,7 @@ function App() {
         <AdminRoute exact path='/admin_dashboard/:id/edit_profile_sponsor'  component={AdminEditDetails}/> 
         <AdminRoute exact path='/admin_dashboard/:id/edit_profile_competitor'  component={AdminEditDetails}/> 
         <AdminRoute exact path='/admin_dashboard/create_profile'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/upload_receipt'  component={AdminEditDetails}/>
 
 		    <Route exact path='/eventLobby'  component={eventLobby}/>  
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 

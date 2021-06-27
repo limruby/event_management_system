@@ -96,7 +96,7 @@ const sponsorSchema = new Schema({
   status:{
     type:String
   },
-
+  receipt:[subSchema],
   company_logo:[subSchema],
   poster:[subSchema],
   video:[videoSchema],

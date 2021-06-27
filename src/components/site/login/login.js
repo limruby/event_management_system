@@ -56,21 +56,19 @@ function Login()
                 console.log(hash_value)
                 document.getElementById("uitm_payment_form").action = url;
                 // document.getElementById("uitm_payment_form").submit();
-                
+                redirect();
             });
             }
-            if(res.data.result.role === "Sponsor"){
+            else if(res.data.result.role === "Sponsor"){
                 console.log(res.data.result.role)
                 var sponsor_account_id = localStorage.getItem('user_id')
                 axiosInstance.get('/api/sponsors/read', {params:{account_id:sponsor_account_id}})
                 .then(res=>{
                 user_id = res.data.company_pic_ic
                 url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + user_id
+                redirect();
             });
             }
-                
-
-             redirect();
             }
             else{
                 alert("Email or password not match.")
