@@ -7,10 +7,10 @@ function EditProfile() {
         name: '',
         affiliation: '',
         nric_passport_selection: '',
-        nric_passport_no: 123456789,
+        nric_passport_no: '',
         gender: '',
         category: '',
-        bill_verify: false,
+        bill_verify: '',
         receipt_no: ''
     });
 
@@ -65,7 +65,6 @@ function EditProfile() {
                 receipt_no: data.receipt_no
             }
 
-
             axiosInstance.post("/api/competitors/update", postData)
                 .then(function (response) {
                     window.location.href = '/admin_dashboard';
@@ -114,7 +113,7 @@ function EditProfile() {
                             <option value="PASSPORT NUMBER">Passport Number</option>
                         </select>
                         <br />
-                        <input className="form-control" type='number' name='nric_passport_no' id="nric_passport_no"
+                        <input className="form-control" type='text' name='nric_passport_no' id="nric_passport_no"
                             placeholder='NRIC / Passport Number' required
                             onChange={inputChange('nric_passport_no')} value={data.nric_passport_no} />
                     </div>
@@ -132,8 +131,9 @@ function EditProfile() {
                         <select className="form-control" id="bill_verify" required
                             onChange={inputChange('bill_verify')} value={data.bill_verify} >
                             <option value="">Please select</option>
-                            <option value="false">Payment NOT success</option>
-                            <option value="true">Payment Verify</option>
+                            <option value="fail">Payment Fail</option>
+                            <option value="pending">Pending</option>
+                            <option value="success">Payment Success</option>
                         </select>
                     </div>
 

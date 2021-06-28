@@ -88,7 +88,7 @@ const sponsorSchema = new Schema({
   },
   bill_verify: {
     type:String,
-    default: 'false'
+    default: 'pending'
   },
   trans_date:{
     type:String
