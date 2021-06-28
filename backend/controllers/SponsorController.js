@@ -19,6 +19,7 @@ const create = (req, res, next)=>{
   const state = req.body.state;
   const country = req.body.country;
   const amount = req.body.amount;
+  const receipt = req.body.receipt;
 
     const newSponsor = new Sponsor({
     account_id, 
@@ -30,6 +31,7 @@ const create = (req, res, next)=>{
     company_contact,     
     company_website, 
     company_logo,
+    receipt,
     address_1,
       address_2,
       postcode,
@@ -114,6 +116,9 @@ const update = (req, res, next)=>{
       }     
       if(req.body.receipt_no){
         updateSponsor['receipt_no'] = req.body.receipt_no;
+      } 
+      if(req.body.receipt){
+        updateSponsor['receipt'] = req.body.receipt;
       } 
     
         Sponsor.findByIdAndUpdate(req.body._id, updateSponsor, (err, sponsors) => {

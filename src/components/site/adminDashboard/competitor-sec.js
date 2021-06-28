@@ -97,7 +97,7 @@ function Competitor() {
           {
             Header: 'Upload Receipt',
             Cell: data => (
-              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt`}>
+              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt_competitor`}>
                 <button className="btn btn-success" >
                   Upload
                 </button></Link>

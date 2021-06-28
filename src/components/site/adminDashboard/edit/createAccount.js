@@ -30,6 +30,12 @@ function CreateAccount() {
         company_contact:'0123456789',
         company_address:'default',
         company_website:'default',
+        address_1:'default',
+        address_2:'default',
+        postcode:12345,
+        city:'default',
+        state:'default',
+        country:'default',
     }
 
     const [data, setData] = useState({
@@ -64,6 +70,16 @@ function CreateAccount() {
         }
         else if (e.target.value === "Junior Innovator") {
             amount = 1.00.toFixed(2);
+        }
+        if (e.target.value === "Gold Package") {
+            amount = 4000.00.toFixed(2);
+        }
+        else if (e.target.value === "Silver Package") {
+            amount = 3000.00.toFixed(2);
+        }
+        else if (e.target.value === "Bronze Package") {
+           amount = 2000.00.toFixed(2);
+
         }
             setData({
                 ...data,
@@ -131,7 +147,7 @@ function CreateAccount() {
                 else if(data.role === "Sponsor"){
                     sponsorData["category"] = data.category;
                     sponsorData["account_id"] = response.data._id
-                    compData["amount"] = data.amount
+                    sponsorData["amount"] = data.amount
                     axiosInstance.post("/api/sponsors/create", sponsorData)
                     .then(function(response){
                         window.location.href = '/admin_dashboard';

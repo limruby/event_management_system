@@ -86,6 +86,9 @@ function UserDashboard() {
               <Nav.Link eventKey="Promo-Content"><BsFiles size={20}/> Promotional Content</Nav.Link>
             </Nav.Item>
             <Nav.Item>
+              <Nav.Link eventKey="Receipt"><FaReceipt size={20}/> Receipt</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20}/> Certificate</Nav.Link>
             </Nav.Item>
           </Nav>
@@ -265,7 +268,7 @@ function UserDashboard() {
                   <div className="sec-container">
                     <h2> Download Receipt</h2>    
                    
-                    <Receipt user={user}/>
+                    <Receipt user={user} role={account.role}/>
                    
                   </div>  
 			</Card.Body>

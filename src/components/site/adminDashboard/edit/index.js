@@ -7,7 +7,8 @@ import EditPassword from './editPassword.js';
 import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
 import CreateProfile from './createAccount.js';
-import UploadReceipt  from './upload_receipt.js';
+import UploadReceiptCompetitor  from './upload_receipt_competitor.js';
+import UploadReceiptSponsor  from './upload_receipt_sponsor.js';
 
 
 function FormNavigator() {
@@ -58,11 +59,20 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 
 		)			
 	}
-	else if (lastPath === 'upload_receipt'){		
+	else if (lastPath === 'upload_receipt_competitor'){		
 		return( 
 
 			<section className="section-container">
-				<UploadReceipt/>
+				<UploadReceiptCompetitor/>
+			</section>
+
+		)			
+	}
+	else if (lastPath === 'upload_receipt_sponsor'){		
+		return( 
+
+			<section className="section-container">
+				<UploadReceiptSponsor/>
 			</section>
 
 		)			
