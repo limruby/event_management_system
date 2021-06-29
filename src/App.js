@@ -16,6 +16,7 @@ import Footer from './components/site/footer';
 import AdminDashboard from './components/site/adminDashboard';
 import AdminEditDetails from './components/site/adminDashboard/edit';
 import PageNotFound from './components/PageNotFound.js';
+import Pending from './components/site/pending.js';
 
 
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
@@ -73,10 +74,11 @@ function App() {
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 
         <Route exact path='/competition_hall'  component={competition_hall}/>
 
+        <PrivateRoute exact path='/pending'  component={Pending}/>
         <Route component={PageNotFound} />
+        
       </Switch>
 	  <Footer/>
-      
 
     </Router>
     </QueryClientProvider>

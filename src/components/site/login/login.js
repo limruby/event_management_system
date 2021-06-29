@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './login.css';
 import "../../../assets/css/agency.min.css";
 import axiosInstance from '../../../utils/axiosConfig.js';
-import SectionChange from '../signUp/form_change';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -117,7 +116,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.data.bill_verify)
-                                    window.location.href = "/payment_fail"
+                                    window.location.href = "/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -146,7 +145,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.bill_verify)
-                                    window.location.href = "/payment_fail"
+                                    window.location.href = "/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -199,9 +198,7 @@ function Login() {
                     </form>
                     {display()}
                 </div>
-
             </div>
-
         </>
     )
 }

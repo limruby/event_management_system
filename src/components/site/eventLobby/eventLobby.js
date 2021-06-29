@@ -7,9 +7,6 @@ import sponsor_hall from "../../../assets/img/sponsor_hall.jpg";
 import competition_hall from "../../../assets/img/competition_hall.jpg";
 import {Image} from 'react-bootstrap';
 
-
-
-
 function EventLobby() {
 const history = useHistory();
   return (
@@ -28,11 +25,7 @@ const history = useHistory();
 					<p/>
                     <h3>Competition Hall</h3>     
             </div>
-
         </div>
-
-
-
     </div>
   );
 }

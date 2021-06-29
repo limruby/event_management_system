@@ -49,9 +49,11 @@ function UserDashboard() {
         }).catch(function(error) {
           console.log(error);
         })
+         
     }, [account_id]);
- 
-       
+    if(user.bill_verify === "pending"){
+      window.location.href="/pending"
+    } 
 //////////////////////////////////////////////////////////////////////////////////
  function welcome(role){
         switch(role){
@@ -75,6 +77,7 @@ function UserDashboard() {
  }
  
   function TabTitles(role){
+    
     switch(role){
       case 'Sponsor':
         return (
