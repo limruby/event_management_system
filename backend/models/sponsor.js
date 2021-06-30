@@ -39,10 +39,30 @@ const sponsorSchema = new Schema({
     type: String,
     required: true
   }, 
-  company_address: {
+  address_1: {
     type: String,
     required: true
   }, 
+  address_2: {
+    type: String,
+    required: true
+  },
+  postcode:{
+    type: String,
+    required: true
+  },
+  city:{
+    type: String,
+    required: true
+  },
+  state:{
+    type: String,
+    required: true
+  },
+  country:{
+    type: String,
+    required: true
+  },
   company_pic_name: {
     type: String,
     required: true
@@ -63,11 +83,12 @@ const sponsorSchema = new Schema({
     type:String
   },
   amount:{
-    type:String
+    type:String,
+    required: true
   },
   bill_verify: {
     type:String,
-    default: 'false'
+    default: 'pending'
   },
   trans_date:{
     type:String
@@ -75,7 +96,7 @@ const sponsorSchema = new Schema({
   status:{
     type:String
   },
-
+  receipt:[subSchema],
   company_logo:[subSchema],
   poster:[subSchema],
   video:[videoSchema],

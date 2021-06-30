@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosConfig.js';
 
-
 const Success = () => {
     
 var competitor_id = ""
@@ -55,5 +54,4 @@ var competitor_id = ""
             </div>
         )
 }
-
 export default Success;

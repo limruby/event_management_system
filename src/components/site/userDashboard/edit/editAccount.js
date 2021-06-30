@@ -34,7 +34,7 @@ function EditAccount({data, setData}) {
     return(
         <>
             <form onSubmit={handleForm}>
-            <div className="form-container">
+            <div className="edit-form-container">
                 <h1 className="mb-5">Edit Account Info</h1>
                 <div className="form-group">
                     <label htmlFor="email">Email Address </label>

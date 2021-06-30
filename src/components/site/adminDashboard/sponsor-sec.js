@@ -29,8 +29,8 @@ function Sponsor(){
   var url = '';
 
 
-  function uitmCheck(id){
-    
+  function uitmCheck(input_id){
+    var id = input_id.toString()
     hash_value = sha1(token + cmpy_code + zone + product_ID + id);
     document.getElementById('hashValue'+id).value = hash_value;
     url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;
@@ -98,7 +98,20 @@ function Sponsor(){
               </Link>
             )
           },
+          {
+            Header: 'Upload Receipt',
+            Cell: data => (
+              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt_sponsor`}>
+                <button className="btn btn-success" >
+                  Upload
+                </button></Link>
 
+            )
+          },
+          {
+            Header: 'Receipt Name',
+            accessor: 'receipt[0].name'
+          },
         ],
       },
 

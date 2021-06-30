@@ -49,7 +49,7 @@ const [user, setState] = useState({
     return(
         <>
             <form onSubmit={handleForm}>
-            <div className="form-container">
+            <div className="edit-form-container">
                 <h1 className="mb-5">Edit Password</h1>
                 <span>(Min 8 characters)</span>
                 <div className="form-group">
@@ -72,12 +72,12 @@ const [user, setState] = useState({
  
                 <br />
  
-                <div className="col-4 btn-group">
-                    <Link to="/user_dashboard">
-                        <button className="btn btn-danger back-btn">Back</button>
-                    </Link>
-                    <input className="btn btn-primary" type="submit" value="Update" />
-                </div>
+                <div className="btn-group">
+                        <Link to="/user_dashboard">
+                            <button className="btn btn-danger back-btn">Back</button>
+                        </Link>
+                        <input className="btn btn-primary" type="submit" value="Update" />
+                    </div>
             </div>
             </form>
          </>
