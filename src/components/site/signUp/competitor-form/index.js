@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AccountSetup from './AccountSetup';
 import Category from './Category';
 import Profiles from './Profiles';
-import TeamProfiles from './TeamProfiles';
 import Confirm from './Confirm';
 
 export class CompetitorForm extends Component {
@@ -144,6 +143,7 @@ export class CompetitorForm extends Component {
                     />
                 );
 
+                default:
         }
     }
 }

@@ -39,7 +39,7 @@ export class Profiles extends Component {
         }
 
         return (
-            <div>
+            <div className="form-container" style={{marginTop:"2%", marginBottom:"2%"}}>
                 <form onSubmit={handleForm}>
                     <h1 className="mb-5">Profile Details</h1>
                     <div className="form-group">
@@ -56,7 +56,7 @@ export class Profiles extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="company_pic_ic"><span>*</span>Company Person In Charge (PIC) IC Number</label>
+                        <label htmlFor="company_pic_ic"><span>*</span>Person In Charge (PIC) IC Number</label>
                         <input
                             className="form-control"
                             type='text'
@@ -80,25 +80,25 @@ export class Profiles extends Component {
                     <div className="form-group">
                         <label htmlFor="address_1"><span>*</span>Address Line 1</label>
                         <input className="form-control" type="text" id="address"
-                            onChange={inputChange('address_1')} value={values.address_1} placeholder="address line 1" required
+                            onChange={inputChange('address_1')} value={values.address_1} placeholder="Address line 1" required
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="address_2"><span>*</span>Address Line 2</label>
                         <input className="form-control" type="text" id="address_2"
-                            onChange={inputChange('address_2')} value={values.address_2} placeholder="address line 2" required
+                            onChange={inputChange('address_2')} value={values.address_2} placeholder="Address line 2" required
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="postcode"><span>*</span>Postcode</label>
                         <input className="form-control" type="text" id="postcode"
-                            onChange={inputChange('postcode')} value={values.postcode} placeholder="postcode" required
+                            onChange={inputChange('postcode')} value={values.postcode} placeholder="Postcode" required
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="city"><span>*</span>City</label>
                         <input className="form-control" type="text" id="city"
-                            onChange={inputChange('city')} value={values.city} placeholder="city" required
+                            onChange={inputChange('city')} value={values.city} placeholder="City" required
                         />
                     </div>
                     <div className="form-group">

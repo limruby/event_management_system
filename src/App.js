@@ -40,7 +40,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
   return (

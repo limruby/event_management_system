@@ -10,7 +10,7 @@ function Footer(){
 			<div className="row align-items-center">
 				<div className="col-md-4">
 					<span className="copyright">
-						Copyright &copy; DInoWex2021 | <a href="https://www.fsktm.edu.my">FSKTM</a> | <a href="https://www.um.edu.my">UM</a>
+					©  IIIDentEx2021 by Faculty of Dentistry
 					</span>
 				</div>
 
@@ -21,22 +21,22 @@ function Footer(){
 				<div className="col-md-4">
 					<ul className="list-inline quicklinks social-buttons">
 						<li className="list-inline-item">
-						<a href="https://www.facebook.com/DInoWex.FSKTM">
+						<a href="https://www.facebook.com/iiidentex2021">
 						<i className="fa fa-facebook-f"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href="https://www.instagram.com/dinowexofficial/">
+						<a href="https://www.instagram.com/iiidentex2021">
 						<i className="fa fa-instagram"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href = "mailto: dinowex-list@um.edu.my">
+						<a href = "mailto: iiidentex@gmail.com">
 						<i className="fa fa-envelope"></i>
 						</a>
 						</li>
 						<li className="list-inline-item">
-						<a href="tel:+603-7967 6313">
+						<a href="tel:+603-6126 6284">
 						<i className="fa fa-phone"></i>
 						</a>
 						</li>

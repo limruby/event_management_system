@@ -54,10 +54,10 @@ function AdminDashboard() {
 								</Tab.Pane>
 
 
-								<Tab.Pane eventKey="Competitor">
+								<Tab.Pane eventKey="Competitor" id="competitor">
 									<Card>
 										<Card.Body>
-											<div className="sec-container">			                   
+											<div className="sec-container" >			                   
 												<h2> Competitor Profile </h2>    
 												<Competitor />
 											</div> 

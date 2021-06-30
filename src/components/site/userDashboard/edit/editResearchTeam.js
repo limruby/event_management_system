@@ -141,7 +141,7 @@ const inputChange = (element, index) => e => {
                         <input type="text" className="form-control" name="email" id="email"
                         onChange={inputChange('email', 0)} value={tempData.tempEmail} />
                     </div>
-                    <div>
+                    <div style={{margin:"2% 0%"}}>
                     <button onClick={showUpload} className="btn btn-primary">Add</button>
                 </div>  
                 </div>
@@ -150,7 +150,7 @@ const inputChange = (element, index) => e => {
      if(data.members!==undefined) {
         for (var i=0; i<data.members.length; i++){
         section.push(
-            <div>    
+          <div className="member-box">  
                 <p><b>Team Member {i+1}</b></p>
                        <p>{data.members[i].name}</p>
                        <p>{data.members[i].affiliation}</p>
@@ -170,14 +170,14 @@ const inputChange = (element, index) => e => {
 	return(
 		<>
             <form onSubmit={handleForm}>
-			<div className="form-container">
+            <div className="edit-form-container">
                 <h5>Team Members</h5>
                 
                	{displayMembers()} 
                                
               
 
-                <div className="col-4 btn-group">
+                <div className="btn-group">
                     <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axiosInstance from '../../../utils/axiosConfig.js';
  
 import {Link} from 'react-router-dom';
-import './userDashboard.css';
+import '../../../assets/css/agency.min.css';
  
 import Profile from './profile-sec';
 import PromoContent from './promo-content-sec';

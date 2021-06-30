@@ -67,7 +67,7 @@ function EditProfile() {
 
             axiosInstance.post("/api/competitors/update", postData)
                 .then(function (response) {
-                    window.location.href = '/admin_dashboard';
+                    window.location.href = '/admin_dashboard#competitor';
                 }).catch(function (error) {
                     console.log(error);
                 })
@@ -78,7 +78,7 @@ function EditProfile() {
     return (
         <>
             <form onSubmit={handleForm}>
-                <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
+            <div className="edit-form-container" style={{marginTop:"5%", marginBottom:"5%"}}>
                     <h1 className="mb-5">Edit Profile Info</h1>
 
                     <div className="form-group">
@@ -121,7 +121,7 @@ function EditProfile() {
                     <div className="form-group">
                         <label htmlFor="receipt_no"><span>*</span>Receipt No</label>
                         <input type="text" className="form-control" name="receipt_no" id="receipt_no"
-                            placeholder='receipt_no'
+                            placeholder='Receipt Number'
                             onChange={inputChange('receipt_no')} value={data.receipt_no} />
                     </div>
 
