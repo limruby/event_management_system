@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditProfile() {
+    localStorage.setItem("activeKeys", "Competitor")
     const [data, setData] = useState({
         name: '',
         affiliation: '',

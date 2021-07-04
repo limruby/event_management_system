@@ -123,7 +123,14 @@ function UserDashboard() {
         return '';
     }
   }
- 
+  var activeKeys = ""
+	if (localStorage.getItem("activeKeys")) {
+		activeKeys = localStorage.getItem("activeKeys");
+		localStorage.removeItem("activeKeys")
+	}
+	else {
+		activeKeys = "Account-Profiles"
+	}
  
   return (
    <>
@@ -131,7 +138,7 @@ function UserDashboard() {
     {welcome(account.role)}
  
    <div className="wrapper">
-       <Tab.Container id="left-tabs-example" defaultActiveKey="Account-Profiles">
+       <Tab.Container id="left-tabs-example" defaultActiveKey={activeKeys}>
           <Row>
             <Col sm={3} className="sidebar-wrapper">
                

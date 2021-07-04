@@ -6,7 +6,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 function EditAccount({ data, setData }) {
 
-
+  localStorage.setItem("activeKeys", "Competition-Material");
   const [tempData, setTemp] = useState({
     tempPoster: [],
     tempVidName: "",

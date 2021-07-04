@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function UploadReceipt() {
+    localStorage.setItem("activeKeys", "Sponsor")
     const [data, setData] = useState({
         receipt: []
     });

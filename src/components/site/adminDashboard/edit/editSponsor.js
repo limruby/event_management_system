@@ -4,6 +4,7 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 
 
 function EditProfile() {
+    localStorage.setItem("activeKeys", "Sponsor")
     const [data, setData] = useState({
         company_name: '',
         company_pic_name: '',
