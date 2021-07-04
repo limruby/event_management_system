@@ -5,7 +5,7 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 import { FaTrashAlt } from 'react-icons/fa';
 
 function EditTeam({data, setData}) {
-
+  localStorage.setItem("activeKeys", "Research-Team");
 /////////////////////get login user (REPLACE THIS) ////////////////
 const [tempData, setTemp] = useState({
 	tempName : "",

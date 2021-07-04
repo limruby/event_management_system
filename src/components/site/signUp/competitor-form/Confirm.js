@@ -56,7 +56,7 @@ export class Confirm extends Component {
             data["amount"] = 290.00.toFixed(2);
         }
         else if (category === "Junior Innovator") {
-            data["amount"] = 1.00.toFixed(2);
+            data["amount"] = 190.00.toFixed(2);
             console.log(data["amount"])
         }
         // create account

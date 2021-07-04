@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditAbstract({data, setData}) {
-
+    localStorage.setItem("activeKeys", "Abstract");
     console.log(data.abstract)
     const inputChange = input => e => {
 

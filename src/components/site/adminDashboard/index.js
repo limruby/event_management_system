@@ -26,14 +26,21 @@ function AdminDashboard() {
 			);
 
 		}
-
+		var activeKeys = ""
+		if (localStorage.getItem("activeKeys")) {
+			activeKeys = localStorage.getItem("activeKeys");
+			localStorage.removeItem("activeKeys")
+		}
+		else {
+			activeKeys = "Account"
+		}
 
 	return (
 
 		<div>
     <div className="welcome-box"><h1>Welcome Admin!</h1></div>
 			<div className="wrapper">
-				<Tab.Container id="left-tabs-example" defaultActiveKey="Account">
+				<Tab.Container id="left-tabs-example" defaultActiveKey={activeKeys}>
 					<Row>
 						<Col sm={3} className="sidebar-wrapper">
 							{TabTitles()}
