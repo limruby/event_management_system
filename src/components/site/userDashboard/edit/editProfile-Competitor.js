@@ -20,14 +20,14 @@ function EditProfile({ data, setData }) {
             data.name === "" ||
             data.affiliation === "" ||
             data.nric_passport_selection === "" ||
-            data.nric_passport_no === null ||
+            data.nric_passport_no === "" ||
             data.address_1 === "" ||
             data.address_2 === "" ||
-            data.postcode === null ||
+            data.postcode === "" ||
             data.city === "" ||
             data.state === "" ||
             data.gender === "" ||
-            data.phone_no === null
+            data.phone_no === ""
         ) {
             alert("Form not fill");
         }
@@ -39,11 +39,11 @@ function EditProfile({ data, setData }) {
                 affiliation: data.affiliation,
                 nric_passport_selection: data.nric_passport_selection,
                 nric_passport_no: data.nric_passport_no,
-                address_1: data.address_1 === "",
-                address_2: data.address_2 === "",
-                postcode: data.postcode === "",
-                city: data.city === "",
-                state: data.state === "",
+                address_1: data.address_1,
+                address_2: data.address_2,
+                postcode: data.postcode,
+                city: data.city,
+                state: data.state,
                 gender: data.gender,
                 phone_no: data.phone_no
             }
@@ -69,7 +69,7 @@ function EditProfile({ data, setData }) {
                         required
                         pattern="[0-9]{12}"
                         onChange={
-                            inputChange('ic_passport_no')}
+                            inputChange('nric_passport_no')}
                         value={data.nric_passport_no} />)
         }
         else if(data.nric_passport_selection==="PASSPORT NUMBER"){
