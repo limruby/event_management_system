@@ -47,7 +47,7 @@ function EditProfile() {
             data.name === "" ||
             data.affiliation === "" ||
             data.nric_passport_selection === "" ||
-            data.nric_passport_no === ""||
+            data.nric_passport_no === "" ||
             data.gender === "") {
             alert("Form not fill");
         }
@@ -79,7 +79,7 @@ function EditProfile() {
     return (
         <>
             <form onSubmit={handleForm}>
-            <div className="edit-form-container" style={{marginTop:"5%", marginBottom:"5%"}}>
+                <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
                     <h1 className="mb-5">Edit Profile Info</h1>
 
                     <div className="form-group">
@@ -106,17 +106,7 @@ function EditProfile() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="nric_passport_selection"><span>*</span>NRIC / Passport Number</label>
-                        <select className="form-control" id="nric_passport_selection" required
-                            onChange={inputChange('nric_passport_selection')} value={data.nric_passport_selection} >
-                            <option value="">Please select</option>
-                            <option value="NRIC">NRIC</option>
-                            <option value="PASSPORT NUMBER">Passport Number</option>
-                        </select>
-                        <br />
-                        <input className="form-control" type='text' name='nric_passport_no' id="nric_passport_no"
-                            placeholder='NRIC / Passport Number' required
-                            onChange={inputChange('nric_passport_no')} value={data.nric_passport_no} />
+                        <label htmlFor="nric_passport_selection"><span>*</span><span>{data.nric_passport_selection}</span>:  {data.nric_passport_no}</label>
                     </div>
 
                     <div className="form-group">

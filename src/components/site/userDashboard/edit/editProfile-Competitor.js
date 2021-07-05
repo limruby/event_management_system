@@ -103,8 +103,8 @@ function EditProfile({ data, setData }) {
                     </div>
                     <div className="form-group">
                         <label htmlFor="phone_no"><span>*</span>Contact Number</label>
-                        <input type="number" className="form-control" name="phone_no" id="phone_no"
-                            placeholder='Contact Number' required
+                        <input type="text" className="form-control" name="phone_no" id="phone_no"
+                            placeholder='Contact Number' required pattern="[0-9]{11}"
                             onChange={inputChange('phone_no')} value={data.phone_no} />
                     </div>
                     <div className="form-group">
@@ -133,7 +133,7 @@ function EditProfile({ data, setData }) {
                     </div>
                     <div className="form-group">
                         <label htmlFor="postcode"><span>*</span>Postcode</label>
-                        <input className="form-control" type="number" id="postcode"
+                        <input className="form-control" type="text" id="postcode"
                             onChange={inputChange('postcode')} value={data.postcode} placeholder="postcode" required
                         />
                     </div>
