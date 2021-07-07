@@ -106,7 +106,7 @@ function UserDashboard() {
               <Nav.Link eventKey="Competition-Material"><BsFiles size={20}/> Competition Material</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="Abstract"><FaBook size={20}/> Abstract</Nav.Link>
+              <Nav.Link eventKey="Abstract"><FaBook size={20}/> Abstract & Bookchapter</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Research-Team"><FaRegBookmark size={20}/> Research Team</Nav.Link>

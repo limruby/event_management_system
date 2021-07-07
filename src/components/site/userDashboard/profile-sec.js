@@ -39,6 +39,9 @@ if(user.company_logo){
             <p> {user.nric_passport_selection}: {user.nric_passport_no}</p>
           </li>
           <li>
+            <p> Contact Number: {user.phone_no}</p>
+          </li>
+          <li>
             <p> Address: 
               {user.address_1}, 
               {user.address_2},
