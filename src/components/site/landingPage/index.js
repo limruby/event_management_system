@@ -28,10 +28,8 @@ function LandingPage() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">Competition</h2>
+              <h2 className="section-heading text-uppercase">Participant Booth</h2>
               <h3 className="section-subheading text-muted">
-                3 category
-
               </h3>
 
             </div>
@@ -100,10 +98,8 @@ function LandingPage() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">Sponsorship</h2>
+              <h2 className="section-heading text-uppercase">Sponsor Booth</h2>
               <h3 className="section-subheading text-muted">
-                {/* Contact : <a href="mailto:sponsor_dinowex-list@um.edu.my">sponsor_dinowex-list@um.edu.my</a> */}
-
               </h3>
 
             </div>

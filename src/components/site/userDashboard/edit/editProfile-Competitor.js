@@ -104,7 +104,7 @@ function EditProfile({ data, setData }) {
                     <div className="form-group">
                         <label htmlFor="phone_no"><span>*</span>Contact Number</label>
                         <input type="text" className="form-control" name="phone_no" id="phone_no"
-                            placeholder='Contact Number' required pattern="[0-9]{11}"
+                            placeholder='Contact Number' required
                             onChange={inputChange('phone_no')} value={data.phone_no} />
                     </div>
                     <div className="form-group">

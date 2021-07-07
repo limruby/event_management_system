@@ -160,7 +160,7 @@ function EditProfile({ data, setData }) {
           <div className="form-group">
             <label htmlFor="company_contact"><span>*</span>Contact Number</label>
             <input className="form-control" type='text' name='company_contact' id="company_contact"
-              placeholder='Contact Number' required pattern="[0-9]{11}"
+              placeholder='Contact Number' required
               onChange={inputChange('company_contact')} value={data.company_contact}
             />
           </div>
