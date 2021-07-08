@@ -153,17 +153,17 @@ export class Confirm extends Component {
 
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                        <input type="text" name="userid" value={values.company_pic_name} hidden />
+                        <input type="text" name="userid" value={values.company_pic_name}  />
                         {/* <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden /> */}
-                        <input type="text" name="name" value={values.company_pic_name} hidden />
-                        <input type="text" name="ic" value={values.company_pic_ic.toString()} hidden />
-                        <input type="text" name="email" value={values.email} hidden />
-                        <input type="text" name="phone" value={values.company_contact} hidden />
-                        <input type="text" name="designation" value={values.company_pic_name} hidden />
-                        <input type="text" name="address" value={uitmpay_address} hidden />
+                        <input type="text" name="name" value={values.company_pic_name} />
+                        <input type="text" name="ic" value={values.company_pic_ic.toString()}  />
+                        <input type="text" name="email" value={values.email} />
+                        <input type="text" name="phone" value={values.company_contact} />
+                        <input type="text" name="designation" value={values.company_pic_name}  />
+                        <input type="text" name="address" value={uitmpay_address}  />
 
-                        <input type="text" name="hash_value" value={hash_value} hidden />
-                        <input type="number" name="amount" value={amount} hidden />
+                        <input type="text" name="hash_value" value={hash_value}  />
+                        <input type="number" name="amount" value={amount} />
 
 
                     </form>

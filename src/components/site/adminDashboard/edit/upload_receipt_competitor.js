@@ -68,7 +68,6 @@ function UploadReceipt() {
             <form onSubmit={handleForm}>
                 <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
                     <h1 className="mb-5">Upload Receipt</h1>
-
                     <div className="form-group">
                         <label htmlFor="receipt"><span>*</span>Upload Receipt</label><br />
                         <input type="file" onChange={uploadReceiptHandler('receipt', 0)} />

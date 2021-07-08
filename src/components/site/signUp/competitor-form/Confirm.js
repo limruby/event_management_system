@@ -136,7 +136,7 @@ export class Confirm extends Component {
                     </ul>
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                        <input type="text" name="userid" value={values.ic_passport_number} hidden />
+                        <input type="text" name="userid" value={values.ic_passport_number}  />
                         {/* <input type="text" name="ord_mercref" value={"iidentex"} hidden /> */}
                         <input type="text" name="name" value={values.name} hidden />
                         <input type="text" name="ic" value={values.ic_passport_number} hidden />

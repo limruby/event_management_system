@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import {isAuth, isAdmin} from './utils/isAuth'
+import {isAuth, isAdmin} from './utils/isAuth';
 
 import Landing from './components/site/landingPage';
 import SignIn from './components/site/login/login';
@@ -17,9 +17,9 @@ import AdminDashboard from './components/site/adminDashboard';
 import AdminEditDetails from './components/site/adminDashboard/edit';
 import PageNotFound from './components/PageNotFound.js';
 import Pending from './components/site/pending.js';
-
-
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+require('dotenv').config();
 
 const queryClient = new QueryClient()
 
@@ -44,15 +44,15 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
   return (
     <QueryClientProvider client={queryClient}>
-    <Router>
+    <Router basename={'/iiidentex_uitm'}>
     <Navbar isAuth={loggedIn} />
       <Switch>
         <Route exact path='/' component={Landing}/>
-        <Route exact path='/sign_in'  component={SignIn}/>
-        <Route exact path='/sign_up'  component={SignUp}/>  
+        <Route exact path={`${process.env.PUBLIC_URL}/sign_in`}  component={SignIn}/>
+        <Route exact path={`${process.env.PUBLIC_URL}/sign_up`}  component={SignUp}/>  
 
-        <PrivateRoute exact path='/user_dashboard'  component={UserDashboard}/>  
-        <PrivateRoute exact path='/user_dashboard/edit_account' component={EditUserDetails}/>
+        <PrivateRoute exact path={`${process.env.PUBLIC_URL}/user_dashboard`} component={UserDashboard}/>  
+        <PrivateRoute exact path={`${process.env.PUBLIC_URL}/user_dashboard/edit_account`} component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_password' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_profile' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_content' component={EditUserDetails}/>
