@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
-import './form.css';
+// import './form.css';
+import '../../../../assets/css/agency.min.css';
 
 import EditAccount from './editAccount.js';
 import EditPassword from './editPassword.js';
@@ -17,123 +18,123 @@ import EditBookChapter from './editBookChapter.js';
 function FormNavigator() {
 
 
-////////////////////get login user role /////////////////////
-  const [user, setUser]=useState([]);
-  const [account, setAccount]=useState([]);
-  const account_id = localStorage.getItem('user_id');
+	////////////////////get login user role /////////////////////
+	const [user, setUser] = useState([]);
+	const [account, setAccount] = useState([]);
+	const account_id = localStorage.getItem('user_id');
 
-  useEffect(() => {
-      axiosInstance.get("/api/competitors/read", {params:{account_id:account_id}})
-        .then(function(response) {
-          setUser(response.data.data);
-        }).catch(function(error) {
-          console.log(error);
-        });
-	axiosInstance.get("/api/sponsors/read", {params:{account_id:account_id}})
-        .then(function(response) {
-          setUser(response.data.data);
-        }).catch(function(error) {
-          console.log(error);
-        });
+	useEffect(() => {
+		axiosInstance.get("/api/competitors/read", { params: { account_id: account_id } })
+			.then(function (response) {
+				setUser(response.data.data);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		axiosInstance.get("/api/sponsors/read", { params: { account_id: account_id } })
+			.then(function (response) {
+				setUser(response.data.data);
+			}).catch(function (error) {
+				console.log(error);
+			});
 
-      axiosInstance.get("/api/accounts/read", {params:{account_id:account_id}})
-        .then(function(response) {
-          setAccount(response.data.data);
-        }).catch(function(error) {
-          console.log(error);
-        })
+		axiosInstance.get("/api/accounts/read", { params: { account_id: account_id } })
+			.then(function (response) {
+				setAccount(response.data.data);
+			}).catch(function (error) {
+				console.log(error);
+			})
 
-    },[]);
-//////////////////////////////////////////////////////////////////////////////////
-const location = useLocation();
-const thePath = location.pathname;
-const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
+	}, []);
+	//////////////////////////////////////////////////////////////////////////////////
+	const location = useLocation();
+	const thePath = location.pathname;
+	const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 
 
-	if(lastPath === 'edit_account'){
-		return( 
-		    <div className="form-main-container">
-				<EditAccount data={account} setData={setAccount}/>
-			</div>
+	if (lastPath === 'edit_account') {
+		return (
+			<section className="section-container">
+				<EditAccount data={account} setData={setAccount} />
+			</section>
 		)
 	}
-	else if(lastPath === 'edit_password'){
-		return( 
-		    <div className="form-main-container">
-				<EditPassword data={account} setData={setAccount}/>
-			</div>
+	else if (lastPath === 'edit_password') {
+		return (
+			<section className="section-container">
+				<EditPassword data={account} setData={setAccount} />
+			</section>
 		)
 	}
-	else if (account.role === 'Sponsor'){
-		switch(lastPath){
+	else if (account.role === 'Sponsor') {
+		switch (lastPath) {
 			case 'edit_profile':
-				return( 
-				    <div className="form-main-container">
-						<EditProfile_S data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditProfile_S data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			case 'edit_content':
-				return( 
-				    <div className="form-main-container">
-						<EditPromoContent data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditPromoContent data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			default:
-				
+
 		}
 	}
-	else if (account.role === 'Competitor'){
-		switch(lastPath){
+	else if (account.role === 'Competitor') {
+		switch (lastPath) {
 			case 'edit_profile':
-				return( 
-				    <div className="form-main-container">
-						<EditProfile_C data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditProfile_C data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			case 'edit_researchTeam':
-				return( 
-				    <div className="form-main-container">
-						<EditResearchTeam data={user} setData={setUser}/>
-					</div>
+				return (
+					<section className="section-container">
+						<EditResearchTeam data={user} setData={setUser} />
+					</section>
 				)
-			break;
+				break;
 
 			case 'edit_content':
-				return( 
-				    <div className="form-main-container">
-						<EditCompetitionMaterial data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditCompetitionMaterial data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			case 'edit_abstract':
-				return( 
-				    <div className="form-main-container">
-						<EditAbstract data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditAbstract data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			case 'edit_book_chapter':
-				return( 
-				    <div className="form-main-container">
-						<EditBookChapter data={user} setData={setUser}/>
+				return (
+					<div className="form-main-container">
+						<EditBookChapter data={user} setData={setUser} />
 					</div>
 				)
-			break;
+				break;
 
 			default:
-				
+
 		}
 	}
-	else{
-		return(
+	else {
+		return (
 			<></>
 		)
 	}

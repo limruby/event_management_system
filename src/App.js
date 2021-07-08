@@ -13,8 +13,10 @@ import sponsor_hall from './components/site/eventLobby/sponsor_hall/sponsor_hall
 import competition_hall from './components/site/eventLobby/competition_hall/competition_hall';
 import Navbar from './components/site/navbar';
 import Footer from './components/site/footer';
-//import AdminDashboard from './components/site/adminDashboard';
+import AdminDashboard from './components/site/adminDashboard';
+import AdminEditDetails from './components/site/adminDashboard/edit';
 import PageNotFound from './components/PageNotFound.js';
+import Pending from './components/site/pending.js';
 
 
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
@@ -23,9 +25,6 @@ const queryClient = new QueryClient()
 
 const AdminRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    
-    
-    
       isAdmin()
         ?  <Component {...props} />     //true
         :  <Redirect to='/page_not_found' />
@@ -40,7 +39,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           : <Component {...props} />
   )} />
 )
-
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
@@ -62,16 +60,24 @@ function App() {
         <PrivateRoute exact path='/user_dashboard/edit_abstract' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_book_chapter' component={EditUserDetails}/>
 
-        {/*<AdminRoute exact path='/admin_dashboard'  component={AdminDashboard}/>*/}
+        <AdminRoute exact path='/admin_dashboard'  component={AdminDashboard}/>
+        <AdminRoute exact path='/admin_dashboard/edit_account'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/edit_password'  component={AdminEditDetails}/> 
+        <AdminRoute exact path='/admin_dashboard/:id/edit_profile_sponsor'  component={AdminEditDetails}/> 
+        <AdminRoute exact path='/admin_dashboard/:id/edit_profile_competitor'  component={AdminEditDetails}/> 
+        <AdminRoute exact path='/admin_dashboard/create_profile'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/upload_receipt_competitor'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/upload_receipt_sponsor'  component={AdminEditDetails}/>
 
 		    <Route exact path='/eventLobby'  component={eventLobby}/>  
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 
         <Route exact path='/competition_hall'  component={competition_hall}/>
 
-        <Route exact path='/page_not_found' component={PageNotFound} />
+        <PrivateRoute exact path='/pending'  component={Pending}/>
+        <Route component={PageNotFound} />
+        
       </Switch>
 	  <Footer/>
-      
 
     </Router>
     </QueryClientProvider>

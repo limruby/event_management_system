@@ -39,7 +39,17 @@ if(user.company_logo){
             <p> {user.nric_passport_selection}: {user.nric_passport_no}</p>
           </li>
           <li>
-            <p> Address: {user.address}</p>
+            <p> Contact Number: {user.phone_no}</p>
+          </li>
+          <li>
+            <p> Address: 
+              {user.address_1}, 
+              {user.address_2},
+              {user.postcode},
+              {user.city},
+              {user.state},
+              {user.country}
+              </p>
           </li>
         </ul>
       </div>
@@ -64,7 +74,14 @@ if(user.company_logo){
             <p> Contact Number: {user.company_contact}</p>
           </li>
           <li>
-            <p> Company Address: {user.company_address}</p>
+            <p> Company Address: 
+              {user.address_1}, 
+              {user.address_2},
+              {user.postcode},
+              {user.city},
+              {user.state}, 
+              {user.country}         
+            </p>
           </li>
           <li>
             <p> Company Logo: </p>

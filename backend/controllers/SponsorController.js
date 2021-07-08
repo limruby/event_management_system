@@ -3,29 +3,45 @@ const Sponsor = require('../models/sponsor');
 var ObjectId = require('mongodb').ObjectId;
 
 const create = (req, res, next)=>{
-
+  
   const account_id = req.body.account_id;
   const category = req.body.category;
   const company_name = req.body.company_name;
   const company_pic_name = req.body.company_pic_name;
-  const company_contact = req.body.company_contact;
-  const company_address = req.body.company_address;
+  const company_pic_ic = req.body.company_pic_ic;
+  const company_contact = req.body.company_contact;  
   const company_website = req.body.company_website;
   const company_logo = req.body.company_logo;
+  const address_1 = req.body.address_1;  
+  const address_2 = req.body.address_2;
+  const postcode = req.body.postcode;
+  const city = req.body.city;
+  const state = req.body.state;
+  const country = req.body.country;
+  const amount = req.body.amount;
+  const receipt = req.body.receipt;
 
     const newSponsor = new Sponsor({
     account_id, 
     category,
+    amount,
     company_name, 
-    company_pic_name, 
-    company_contact, 
-    company_address, 
+    company_pic_name,
+    company_pic_ic, 
+    company_contact,     
     company_website, 
-    company_logo
+    company_logo,
+    receipt,
+    address_1,
+      address_2,
+      postcode,
+      city,
+      state,
+      country,
     });
 
     newSponsor.save()
-      .then(() => res.json('New Sponsor Created!'))
+      .then(() => res.json(newSponsor))
       .catch(err => res.status(400).json('Error: ' + err));
 };
 
@@ -61,8 +77,26 @@ const update = (req, res, next)=>{
       if(req.body.company_contact){
         updateSponsor['company_contact'] = req.body.company_contact;
       }
-      if(req.body.company_address){
-        updateSponsor['company_address'] = req.body.company_address;
+      if(req.body.address_1){
+        updateSponsor['address_1'] = req.body.address_1;
+      }
+    
+      if(req.body.address_2){
+        updateSponsor['address_2'] = req.body.address_2;
+      }
+    
+      if(req.body.postcode){
+        updateSponsor['postcode'] = req.body.postcode;
+      }
+    
+      if(req.body.city){
+        updateSponsor['city'] = req.body.city;
+      }
+      if(req.body.state){
+        updateSponsor['state'] = req.body.state;
+      }
+      if(req.body.country){
+        updateSponsor['country'] = req.body.country;
       }
       if(req.body.company_website){
         updateSponsor['company_website'] = req.body.company_website;
@@ -76,7 +110,16 @@ const update = (req, res, next)=>{
     
       if(req.body.video){
         updateSponsor['video'] = req.body.video;
-      }          
+      }    
+      if(req.body.bill_verify){
+        updateSponsor['bill_verify'] = req.body.bill_verify;
+      }     
+      if(req.body.receipt_no){
+        updateSponsor['receipt_no'] = req.body.receipt_no;
+      } 
+      if(req.body.receipt){
+        updateSponsor['receipt'] = req.body.receipt;
+      } 
     
         Sponsor.findByIdAndUpdate(req.body._id, updateSponsor, (err, sponsors) => {
             if (err) {
@@ -88,5 +131,19 @@ const update = (req, res, next)=>{
         }).catch(err => console.log(err))
      };
 
-module.exports = {create, read, update}
+const readAll = (req, res, next)=>{ 
+  Sponsor.find({}, (err, sponsors) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!sponsors) {
+      return res
+      .status(404)
+      .json({ success: false, error: req.query.account_id })
+    }
+    return res.status(200).json({ success: true, data: sponsors })
+  }).catch(err => console.log(err))
+};
 
+
+module.exports = {create, read, update, readAll}

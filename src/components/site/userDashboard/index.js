@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axiosInstance from '../../../utils/axiosConfig.js';
  
 import {Link} from 'react-router-dom';
-import './userDashboard.css';
+import '../../../assets/css/agency.min.css';
  
 import Profile from './profile-sec';
 import PromoContent from './promo-content-sec';
@@ -13,10 +13,11 @@ import ResearchTeam from './research-team-sec';
  
 import PdfAbstract from './pdf-abstract-bookChapter';
 import Preview from './preview-sec';
+import Receipt from './receipt-sec';
  
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab, Nav, Row, Col,Card} from "react-bootstrap";
-import {FaEdit,FaCertificate,FaBook,FaRegBookmark} from 'react-icons/fa';
+import {FaEdit,FaCertificate,FaBook,FaRegBookmark, FaReceipt} from 'react-icons/fa';
 import {BsPeopleCircle,BsFiles,BsBookHalf} from "react-icons/bs";
  
 function UserDashboard() {
@@ -48,9 +49,11 @@ function UserDashboard() {
         }).catch(function(error) {
           console.log(error);
         })
+         
     }, [account_id]);
- 
-       
+    if(user.bill_verify === "pending"){
+      window.location.href="/pending"
+    } 
 //////////////////////////////////////////////////////////////////////////////////
  function welcome(role){
         switch(role){
@@ -74,6 +77,7 @@ function UserDashboard() {
  }
  
   function TabTitles(role){
+    
     switch(role){
       case 'Sponsor':
         return (
@@ -83,6 +87,9 @@ function UserDashboard() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Promo-Content"><BsFiles size={20}/> Promotional Content</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Receipt"><FaReceipt size={20}/> Receipt</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20}/> Certificate</Nav.Link>
@@ -99,10 +106,13 @@ function UserDashboard() {
               <Nav.Link eventKey="Competition-Material"><BsFiles size={20}/> Competition Material</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="Abstract"><FaBook size={20}/> Abstract</Nav.Link>
+              <Nav.Link eventKey="Abstract"><FaBook size={20}/> Abstract & Bookchapter</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Research-Team"><FaRegBookmark size={20}/> Research Team</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Receipt"><FaReceipt size={20}/> Receipt</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20}/> Certificate</Nav.Link>
@@ -113,7 +123,14 @@ function UserDashboard() {
         return '';
     }
   }
- 
+  var activeKeys = ""
+	if (localStorage.getItem("activeKeys")) {
+		activeKeys = localStorage.getItem("activeKeys");
+		localStorage.removeItem("activeKeys")
+	}
+	else {
+		activeKeys = "Account-Profiles"
+	}
  
   return (
    <>
@@ -121,7 +138,7 @@ function UserDashboard() {
     {welcome(account.role)}
  
    <div className="wrapper">
-       <Tab.Container id="left-tabs-example" defaultActiveKey="Account-Profiles">
+       <Tab.Container id="left-tabs-example" defaultActiveKey={activeKeys}>
           <Row>
             <Col sm={3} className="sidebar-wrapper">
                
@@ -255,7 +272,18 @@ function UserDashboard() {
 			</Card.Body>
         </Card>
                 </Tab.Pane>
- 
+                <Tab.Pane eventKey="Receipt">
+		<Card>
+			<Card.Body>
+                  <div className="sec-container">
+                    <h2> Download Receipt</h2>    
+                   
+                    <Receipt user={user} role={account.role}/>
+                   
+                  </div>  
+			</Card.Body>
+        </Card>
+                </Tab.Pane>
                 <Tab.Pane eventKey="Cert">
 		<Card>
 			<Card.Body>

@@ -3,7 +3,6 @@ import AccountSetup from './AccountSetup';
 import Category from './Category';
 import Profiles from './Profiles';
 import Confirm from './Confirm';
-import Success from './Success';
 
 export class SponsorForm extends Component {
     state = {
@@ -14,19 +13,24 @@ export class SponsorForm extends Component {
         confirmPassword: '',
         company_name: '',
         company_pic_name: '',
-        company_pic_ic:'',
-        company_contact: '',
-        company_address: '',
-        company_website:'',
-        company_logo:'',        
+        company_pic_ic: null,
+        company_contact: null,
+        address_1: '',
+        address_2:'',
+        postcode:null,
+        city:'',
+        state:'',
+        country:'',
+        company_website: '',
+        company_logo: '',
         role: 'sponsor',
-        category:'',
-        amount:'',
+        category: '',
+        amount: '',
 
-        cmpy_code : "AA04",
-        zone :"02",
-        product_ID :"149",
-        token :"Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq",
+        cmpy_code: "AA04",
+        zone: "02",
+        product_ID: "149",
+        token: "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq",
     };
 
     nextStep = () => {
@@ -40,10 +44,10 @@ export class SponsorForm extends Component {
     };
 
     inputChange = input => e => {
-        if(input === "category"){
+        if (input === "category") {
             this.setState({
                 [input]: e.target.value,
-                
+
             });
             this.setState({
                 ['amount']: ''
@@ -54,52 +58,62 @@ export class SponsorForm extends Component {
                 [input]: e.target.value
             });
         }
-        
+
     };
 
     render() {
         const { step } = this.state;
-        const { 
-        email,
-        password,
-        confirmPassword,
-        company_name,
-        company_pic_name,
-        company_pic_ic,
-        company_contact,
-        company_address,
-        company_website,
-        company_logo,        
-        role,
-        category,
-        amount,
-    
-        cmpy_code,
-        zone,
-        product_ID,
-        token,
+        const {
+            email,
+            password,
+            confirmPassword,
+            company_name,
+            company_pic_name,
+            company_pic_ic,
+            company_contact,
+            address_1,
+            address_2,
+            postcode,
+            city,
+            state,
+            country,
+            company_website,
+            company_logo,
+            role,
+            category,
+            amount,
 
-    } = this.state;
-        const values = { 
-        email,
-        password,
-        confirmPassword,
-        company_name,
-        company_pic_name,
-        company_pic_ic,
-        company_contact,
-        company_address,
-        company_website,
-        company_logo,        
-        role,
-        category,
-        amount,
+            cmpy_code,
+            zone,
+            product_ID,
+            token,
 
-        cmpy_code,
-        zone,
-        product_ID,
-        token,
-    };
+        } = this.state;
+        const values = {
+            email,
+            password,
+            confirmPassword,
+            company_name,
+            company_pic_name,
+            company_pic_ic,
+            company_contact,
+            address_1,
+            address_2,
+            postcode,
+            city,
+            state,
+            country,
+            company_website,
+            company_logo,
+            role,
+            category,
+            amount,
+
+            cmpy_code,
+            zone,
+            product_ID,
+            token,
+        };
 
         switch (step) {
             case 1:
@@ -111,14 +125,14 @@ export class SponsorForm extends Component {
                     />
                 );
             case 2:
-                return(
+                return (
                     <Category
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         inputChange={this.inputChange}
                         values={values}
                     />
-                    )
+                )
 
             case 3:
                 return (
@@ -136,10 +150,6 @@ export class SponsorForm extends Component {
                         prevStep={this.prevStep}
                         values={values}
                     />
-                );
-            case 5:
-                return (
-                    <Success />
                 );
         }
     }

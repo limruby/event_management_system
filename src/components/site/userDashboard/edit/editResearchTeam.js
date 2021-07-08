@@ -5,7 +5,7 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 import { FaTrashAlt } from 'react-icons/fa';
 
 function EditTeam({data, setData}) {
-
+  localStorage.setItem("activeKeys", "Research-Team");
 /////////////////////get login user (REPLACE THIS) ////////////////
 const [tempData, setTemp] = useState({
 	tempName : "",
@@ -13,7 +13,7 @@ const [tempData, setTemp] = useState({
     tempEmail: ""
 });
 const showUpload=(e)=>{
-    if(data.members.length < 4){
+    
         e.preventDefault();
     if (tempData.tempName!=="" && tempData.tempAff!=="" && tempData.tempEmail!==""){
       data.members.push({'name':tempData.tempName,'affiliation':tempData.tempAff, 'email':tempData.tempEmail})   
@@ -44,7 +44,6 @@ const showUpload=(e)=>{
         }
       }
  
-    }   
 }
 var obj =[];
   const deleteFile = (element,index) => e => {
@@ -125,8 +124,6 @@ const inputChange = (element, index) => e => {
 ///////display forms//////
     function displayMembers(){
         var section = [];
-        if(data.members==null||data.members[0]==null||data.members.length<4){
-        
             section.push(
                 <div>
                     <div className="form-group">
@@ -144,16 +141,16 @@ const inputChange = (element, index) => e => {
                         <input type="text" className="form-control" name="email" id="email"
                         onChange={inputChange('email', 0)} value={tempData.tempEmail} />
                     </div>
-                    <div>
+                    <div style={{margin:"2% 0%"}}>
                     <button onClick={showUpload} className="btn btn-primary">Add</button>
                 </div>  
                 </div>
             );
-        }
+   
      if(data.members!==undefined) {
         for (var i=0; i<data.members.length; i++){
         section.push(
-            <div>    
+          <div className="member-box">  
                 <p><b>Team Member {i+1}</b></p>
                        <p>{data.members[i].name}</p>
                        <p>{data.members[i].affiliation}</p>
@@ -173,14 +170,14 @@ const inputChange = (element, index) => e => {
 	return(
 		<>
             <form onSubmit={handleForm}>
-			<div className="form-container">
+            <div className="edit-form-container">
                 <h5>Team Members</h5>
                 
                	{displayMembers()} 
                                
               
 
-                <div className="col-4 btn-group">
+                <div className="btn-group">
                     <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>
