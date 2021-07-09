@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import logo from "../../../assets/img/IIIDentEx2021 Logo-white-01.webp";
+import logoUitm from "../../../assets/img/IIIDentEx2021 Logo-white-01.webp";
+import logo from "../../../assets/img/Dinowex.png";
 import "../../../assets/css/agency.min.css";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { isAuth, isAdmin } from '../../../utils/isAuth'
@@ -41,7 +41,7 @@ const Navigationbar = props => {
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = '/';
+    window.location.href = '/iiidentex_uitm';
   };
 
   window.addEventListener('resize', showButton);
@@ -52,9 +52,11 @@ const Navigationbar = props => {
       <IconContext.Provider value={{ color: '#000' }}>
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logo} height="50px" width="200px" alt="" />
-          </Link></Navbar.Brand>
+          <Navbar.Brand href="#home"> 
+          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+            <img src={logoUitm} height="50px" width="200px" alt="" />
+          </Link>
+         </Navbar.Brand>
           <Nav className="ml-auto">
 
             <div className="menu-icon" onClick={handleClick}>
@@ -63,7 +65,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Nav.Link href="/">Home</Nav.Link>
+                <Link to='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -75,11 +77,15 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Nav.Link href="/admin_dashboard">AdminDashboard</Nav.Link>
+                <Link to='/admin_dashboard'>AdminDashboard</Link>
               </li>
               <li className="nav-item">
-                <Nav.Link onClick={logout}>Log Out</Nav.Link>
+                <Link onClick={logout}>Log Out</Link>
               </li>
+              <li>
+              {/* <a href="http://localhost:3000" className="nav-href"><p>To Dinowex</p></a> */}
+              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+              </li>            
             </ul>
 
           </Nav>
@@ -97,7 +103,7 @@ const Navigationbar = props => {
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logo} height="50px" width="200px" alt="" />
+            <img src={logoUitm} height="50px" width="200px" alt="" />
           </Link></Navbar.Brand>
           <Nav className="ml-auto">
 
@@ -107,7 +113,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
+                <Link to='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -119,10 +125,13 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to ={`${process.env.PUBLIC_URL}/user_dashboard`}>UserDashboard</Link>
+                <Link to='user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
-                <Nav.Link onClick={logout}>Log Out</Nav.Link>
+                <Link onClick={logout}>Log Out</Link>
+              </li>
+              <li>
+              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
               </li>
             </ul>
 
@@ -140,7 +149,7 @@ const Navigationbar = props => {
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logo} height="50px" width="200px" alt="" />
+            <img src={logoUitm} height="50px" width="200px" alt="" />
           </Link></Navbar.Brand>
           <Nav className="ml-auto">
 
@@ -150,7 +159,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to ="/">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -162,10 +171,13 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-              <Link to ='/sign_up'>Registration</Link>
+                <Link to='/sign_up'>Registration</Link>
               </li>
               <li className="nav-item">
-              <Link to ='/sign_in'>Sign In</Link>
+                <Link to='/sign_in'>Sign In</Link>
+              </li>
+              <li>
+              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
               </li>
             </ul>
 

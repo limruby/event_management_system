@@ -93,7 +93,7 @@ function Login() {
                     if (res.data.result.role === "Admin") {
                         localStorage.setItem('role', res.data.result.role);
                         localStorage.setItem('token', res.data.token);
-                        window.location.href = '/admin_dashboard';
+                        window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }
                     else if (res.data.result.role === "Competitor") {
 
@@ -115,7 +115,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.data.bill_verify)
-                                    window.location.href = "/pending"
+                                    window.location.href = "/iiidentex_uitm/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -144,7 +144,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.bill_verify)
-                                    window.location.href = "/pending"
+                                    window.location.href = "/iiidentex_uitm/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -161,7 +161,7 @@ function Login() {
     }
 
     const redirect = () => {
-        window.location.href = '/user_dashboard';
+        window.location.href = '/iiidentex_uitm/user_dashboard';
     }
 
     return (
@@ -190,7 +190,7 @@ function Login() {
 
                             <Link to="/sign_up">
                                 <p>
-                                    <a href="/sign_up">Not register yet? Sign up here.</a>
+                                    Not register yet? Sign up here.
                                 </p>
                             </Link>
                         </form>
