@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+
+  mongodb_prod:
+    image: mongo
+    restart: always
+    networks:
+      - server
+    ports:
+      - 27017:27017 # local access
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+    container_name: mongodb_prod
+  
+  backend_prod:
+    # build: .
+    depends_on:
+      - mongodb_prod
+    image: iiidentex/backend
+    restart: always
+    environment:
+        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongodb_prod:27017/db?authSource=admin&readPreference=primary
+        JSONWTK: ${JSONWTK}
+    networks:
+      - server
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=server
+
+      - traefik.http.services.vexs_backend_prod.loadbalancer.server.port=5000
+      - traefik.http.routers.vexs_backend_prod.service=vexs_backend_prod
+      # - traefik.http.routers.vexs_backend_prod.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend_prod.rule=Host(`vexs.fsktm.um.edu.my`)
+      - traefik.http.routers.vexs_backend_prod.entrypoints=https
+      - traefik.http.routers.vexs_backend_prod.tls.certresolver=mytlschallenge
+      ### Not Secure ###
+      - traefik.http.routers.vexs_backend_prod-unsecured.service=vexs_backend_prod
+      # - traefik.http.routers.vexs_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`)
+      - traefik.http.routers.vexs_backend_prod-unsecured.entrypoints=http
+      # - traefik.http.routers.vexs_backend_prod-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
+    container_name: backend_prod
+
+networks:
+  server:
+    external: true

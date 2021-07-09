@@ -28,10 +28,10 @@ services:
     # build: .
     # depends_on:
     #   - mongodb
-    image: vexs/backend
+    image: iiidentex/backend
     restart: always
     environment:
-        ATLAS_URI: mongodb://sudo:sudo@cluster0-shard-00-00.konox.mongodb.net:27017,cluster0-shard-00-01.konox.mongodb.net:27017,cluster0-shard-00-02.konox.mongodb.net:27017/db?ssl=true&replicaSet=atlas-irsy7d-shard-0&authSource=admin&retryWrites=true&w=majority
+        ATLAS_URI: mongodb+srv://sudo:sudo@cluster0.konox.mongodb.net/iiidentex-db?retryWrites=true&w=majority
         JSONWTK: h98asblj23hfjka
     networks:
       - server
@@ -43,12 +43,16 @@ services:
 
       - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
       - traefik.http.routers.vexs_backend.service=vexs_backend
-      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      #- traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_backend.entrypoints=https
       - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
+      ### Not Secure ###
       - traefik.http.routers.vexs_backend-unsecured.service=vexs_backend
-      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      # - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`)
       - traefik.http.routers.vexs_backend-unsecured.entrypoints=http
+      # - traefik.http.routers.vexs_backend-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
     container_name: backend
 
 networks:
