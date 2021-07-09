@@ -31,7 +31,11 @@ app.use('/api/competitors', competitorsRouter)
 const sponsorsRouter = require('./routes/sponsors');
 app.use('/api/sponsors', sponsorsRouter)
 
+app.use(express.static(__dirname + "/public"));
+
+app.use((req, res, next) => {
+	res.sendFile(__dirname + "/public/index.html")})
+
 app.listen(port, () => {
 	console.log('Now starting at http://localhost:5000/api/hello');
 });
-
