@@ -123,7 +123,7 @@ export class Confirm extends Component {
                         <li class="list-group-item"><b>NRIC/Passport Number:</b> {values.ic_passport_number}</li>
                         <li class="list-group-item"><b>Phone Number:</b> {values.phone_no}</li>
                         <li class="list-group-item">
-                            <b>Address:</b> 
+                            <b>Address:</b>
                             {values.address_1},
                             {values.address_2},
                             {values.postcode},
@@ -136,7 +136,7 @@ export class Confirm extends Component {
                     </ul>
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                        <input type="text" name="userid" value={values.ic_passport_number}  />
+                        <input type="text" name="userid" value={values.ic_passport_number} hidden/>
                         {/* <input type="text" name="ord_mercref" value={"iidentex"} hidden /> */}
                         <input type="text" name="name" value={values.name} hidden />
                         <input type="text" name="ic" value={values.ic_passport_number} hidden />

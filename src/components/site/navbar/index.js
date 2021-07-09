@@ -139,7 +139,7 @@ const Navigationbar = props => {
       <IconContext.Provider value={{ color: '#000' }}>
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> <Link to={`${process.env.PUBLIC_URL}/`} className="navbar-logo" onClick={closeMobileMenu}>
+          <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
             <img src={logo} height="50px" width="200px" alt="" />
           </Link></Navbar.Brand>
           <Nav className="ml-auto">
@@ -150,7 +150,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to ={`${process.env.PUBLIC_URL}/`}>Home</Link>
+                <Link to ="/">Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -162,10 +162,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-              <Link to ={`${process.env.PUBLIC_URL}/sign_up`}>Registration</Link>
+              <Link to ='/sign_up'>Registration</Link>
               </li>
               <li className="nav-item">
-              <Link to ={`${process.env.PUBLIC_URL}/sign_in`}>Sign In</Link>
+              <Link to ='/sign_in'>Sign In</Link>
               </li>
             </ul>
 

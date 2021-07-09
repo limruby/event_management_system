@@ -48,11 +48,11 @@ function App() {
     <Navbar isAuth={loggedIn} />
       <Switch>
         <Route exact path='/' component={Landing}/>
-        <Route exact path={`${process.env.PUBLIC_URL}/sign_in`}  component={SignIn}/>
-        <Route exact path={`${process.env.PUBLIC_URL}/sign_up`}  component={SignUp}/>  
+        <Route exact path='/sign_in'  component={SignIn}/>
+        <Route exact path='/sign_up'  component={SignUp}/>  
 
-        <PrivateRoute exact path={`${process.env.PUBLIC_URL}/user_dashboard`} component={UserDashboard}/>  
-        <PrivateRoute exact path={`${process.env.PUBLIC_URL}/user_dashboard/edit_account`} component={EditUserDetails}/>
+        <PrivateRoute exact path='/user_dashboard' component={UserDashboard}/>  
+        <PrivateRoute exact path='/user_dashboard/edit_account' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_password' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_profile' component={EditUserDetails}/>
         <PrivateRoute exact path='/user_dashboard/edit_content' component={EditUserDetails}/>
