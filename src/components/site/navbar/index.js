@@ -78,7 +78,7 @@ const Navigationbar = props => {
                 <Link to ='/admin_dashboard'>AdminDashboard</Link>
               </li>
               <li className="nav-item">
-                <Nav.Link onClick={logout}>Log Out</Nav.Link>
+                <Link onClick={logout}>Log Out</Link>
               </li>
             </ul>
 
@@ -122,7 +122,7 @@ const Navigationbar = props => {
                 <Link to ='user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
-                <Nav.Link onClick={logout}>Log Out</Nav.Link>
+                <Link onClick={logout}>Log Out</Link>
               </li>
             </ul>
 
