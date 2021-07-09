@@ -1,3 +1,5 @@
+Low paid intern on staging
+
 # Virtual Event Management System
 
 To assist  organizations to reach global audiences by hosting online conferences, exhibitions and competitions.
