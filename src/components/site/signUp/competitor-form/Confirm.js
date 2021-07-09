@@ -100,7 +100,7 @@ export class Confirm extends Component {
             amount = 290.00.toFixed(2);
         }
         else if (values.category === "Junior Innovator") {
-            amount = 1.00.toFixed(2);
+            amount = 190.00.toFixed(2);
         }
         var sha1 = require('sha1');
         var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
