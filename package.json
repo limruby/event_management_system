@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "http://localhost:5000/iiidentex-uitm",
+  "homepage": "http://localhost:3000/iiidentex-uitm",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
@@ -42,7 +42,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-scroll": "^1.8.2",
-    "react-table":"^17.0.2",
+    "react-table":"^7.7.0",
     "sha1": "^1.1.1",
     "slate": "^0.63.0",
     "slate-react": "^0.63.0",
