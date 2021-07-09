@@ -44,7 +44,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("token"));
   return (
     <QueryClientProvider client={queryClient}>
-    <Router>
+    <Router basename={'/iiidentex_uitm'}>
     <Navbar isAuth={loggedIn} />
       <Switch>
         <Route exact path='/' component={Landing}/>
