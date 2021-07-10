@@ -81,7 +81,7 @@ function Login() {
             role: role
         }
 
-        axiosInstance.post('/api/accounts/login', data)
+        axiosInstance.post('/iiidentex_uitm/api/accounts/login', data)
             .then(res => {
 
 
@@ -98,7 +98,7 @@ function Login() {
                     else if (res.data.result.role === "Competitor") {
 
                         var comp_account_id = localStorage.getItem('user_id')
-                        axiosInstance.get('/api/competitors/read', { params: { account_id: comp_account_id } })
+                        axiosInstance.get('/iiidentex_uitm/api/competitors/read', { params: { account_id: comp_account_id } })
                             .then(res => {
                                 var address =
                                     res.data.data.address_1 + "," +
@@ -127,7 +127,7 @@ function Login() {
                     else if (res.data.result.role === "Sponsor") {
                         console.log(res.data.result.role)
                         var sponsor_account_id = localStorage.getItem('user_id')
-                        axiosInstance.get('/api/sponsors/read', { params: { account_id: sponsor_account_id } })
+                        axiosInstance.get('/iiidentex_uitm/api/sponsors/read', { params: { account_id: sponsor_account_id } })
                             .then(res => {
                                 var sponsorAddress =
                                     res.data.data.address_1 + "," +

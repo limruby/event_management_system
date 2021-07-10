@@ -55,7 +55,7 @@ export class Confirm extends Component {
                 data["amount"] = 2000.00.toFixed(2);
                 console.log(data["amount"])
             }
-            axiosInstance.post('/api/accounts/signUp', data)
+            axiosInstance.post('/iiidentex_uitm/api/accounts/signUp', data)
                 .then(res => {
 
 
@@ -63,7 +63,7 @@ export class Confirm extends Component {
                         this.account_id = res.data._id;
                         data["account_id"] = this.account_id;
 
-                        axiosInstance.post('/api/sponsors/create', data)
+                        axiosInstance.post('/iiidentex_uitm/api/sponsors/create', data)
                             .then(res => {
 
                                 localStorage.setItem("account_id", JSON.stringify(this.account_id))

@@ -21,7 +21,7 @@ function EditProfile() {
     const string = '"' + user_id + '"'
 
     useEffect(() => {
-        axiosInstance.get("/api/sponsors/read", { params: { account_id: string } })
+        axiosInstance.get("/iiidentex_uitm/api/sponsors/read", { params: { account_id: string } })
             .then(function (response) {
                 setData(response.data.data);
             }).catch(function (error) {
@@ -58,7 +58,7 @@ function EditProfile() {
                 receipt_no: data.receipt_no
             }
 
-            axiosInstance.post("/api/sponsors/update", postData)
+            axiosInstance.post("/iiidentex_uitm/api/sponsors/update", postData)
                 .then(function (response) {
                     window.location.href = '/admin_dashboard';
                 }).catch(function (error) {

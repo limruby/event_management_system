@@ -60,12 +60,12 @@ export class Confirm extends Component {
             console.log(data["amount"])
         }
         // create account
-        axiosInstance.post('/api/accounts/signUp', data)
+        axiosInstance.post('iiidentex_uitm/api/accounts/signUp', data)
             .then(res => {
                 if (res.data._id) {
                     this.account_id = res.data._id;
                     data["account_id"] = this.account_id;
-                    axiosInstance.post('/api/competitors/create', data)
+                    axiosInstance.post('/iiidentex_uitm/api/competitors/create', data)
                         .then(res => {
                             localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no))
                             this.setState({ display1: 'hide' });

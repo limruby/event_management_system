@@ -10,7 +10,7 @@ function Account(){
   useEffect(() => {
      
  
-      axiosInstance.get("/api/accounts/readAdmin")
+      axiosInstance.get("/iiidentex_uitm/api/accounts/readAdmin")
         .then(function(response) {
           setData(response.data.data);
         }).catch(function(error) {

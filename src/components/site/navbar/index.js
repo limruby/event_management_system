@@ -84,7 +84,7 @@ const Navigationbar = props => {
               </li>
               <li>
               {/* <a href="http://localhost:3000" className="nav-href"><p>To Dinowex</p></a> */}
-              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
               </li>            
             </ul>
 
@@ -131,7 +131,7 @@ const Navigationbar = props => {
                 <Link onClick={logout}>Log Out</Link>
               </li>
               <li>
-              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
               </li>
             </ul>
 
@@ -177,7 +177,7 @@ const Navigationbar = props => {
                 <Link to='/sign_in'>Sign In</Link>
               </li>
               <li>
-              <a href="http://localhost:3000"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
               </li>
             </ul>
 

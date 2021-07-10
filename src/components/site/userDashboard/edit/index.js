@@ -24,20 +24,20 @@ function FormNavigator() {
 	const account_id = localStorage.getItem('user_id');
 
 	useEffect(() => {
-		axiosInstance.get("/api/competitors/read", { params: { account_id: account_id } })
+		axiosInstance.get("/iiidentex_uitm/api/competitors/read", { params: { account_id: account_id } })
 			.then(function (response) {
 				setUser(response.data.data);
 			}).catch(function (error) {
 				console.log(error);
 			});
-		axiosInstance.get("/api/sponsors/read", { params: { account_id: account_id } })
+		axiosInstance.get("/iiidentex_uitm/api/sponsors/read", { params: { account_id: account_id } })
 			.then(function (response) {
 				setUser(response.data.data);
 			}).catch(function (error) {
 				console.log(error);
 			});
 
-		axiosInstance.get("/api/accounts/read", { params: { account_id: account_id } })
+		axiosInstance.get("/iiidentex_uitm/api/accounts/read", { params: { account_id: account_id } })
 			.then(function (response) {
 				setAccount(response.data.data);
 			}).catch(function (error) {

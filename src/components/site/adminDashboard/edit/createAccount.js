@@ -131,13 +131,13 @@ function CreateAccount() {
 
         else{
             ///////update to db /////////////
-            axiosInstance.post("/api/accounts/signUp", data)
+            axiosInstance.post("/iiidentex_uitm/api/accounts/signUp", data)
             .then(function(response) {
                 if(data.role === "Competitor"){
                     compData["category"] = data.category;
                     compData["account_id"] = response.data._id
                     compData["amount"] = data.amount
-                    axiosInstance.post("/api/competitors/create", compData)
+                    axiosInstance.post("/iiidentex_uitm/api/competitors/create", compData)
                     .then(function(response){
                         window.location.href = '/admin_dashboard';
                     }).catch(function(error){
@@ -148,7 +148,7 @@ function CreateAccount() {
                     sponsorData["category"] = data.category;
                     sponsorData["account_id"] = response.data._id
                     sponsorData["amount"] = data.amount
-                    axiosInstance.post("/api/sponsors/create", sponsorData)
+                    axiosInstance.post("/iiidentex_uitm/api/sponsors/create", sponsorData)
                     .then(function(response){
                         window.location.href = '/admin_dashboard';
                     }).catch(function(error){

@@ -50,7 +50,7 @@ function EditProfile({ data, setData }) {
         company_logo: data.company_logo
       }
 
-      axiosInstance.post("/api/sponsors/update", postData)
+      axiosInstance.post("/iiidentex_uitm/api/sponsors/update", postData)
         .then(function (response) {
           window.location.href = '/user_dashboard';
         }).catch(function (error) {

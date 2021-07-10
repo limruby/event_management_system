@@ -55,7 +55,7 @@ function UploadReceipt() {
                 _id: user_id,
                 receipt: data.receipt
             }
-            axiosInstance.post("/api/competitors/update", postData)
+            axiosInstance.post("/iiidentex_uitm/api/competitors/update", postData)
                 .then(function (response) {
                     window.location.href = '/admin_dashboard';
                 }).catch(function (error) {

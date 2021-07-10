@@ -9,7 +9,7 @@ var competitor_id = ""
         
         const string = localStorage.getItem('competitor_id').substring(1, localStorage.getItem('competitor_id').length-1);
         const competitor_id = {competitor_id:string};
-        axiosInstance.post('/api/competitors/updatePayment', competitor_id)
+        axiosInstance.post('/iiidentex_uitm/api/competitors/updatePayment', competitor_id)
         .then(
             res => {"COMPETITOR POST SUCCESS"}
         ).catch(err => {console.log(err)})
@@ -20,7 +20,7 @@ var competitor_id = ""
             console.log("SPONSOR payment_success PAGE "+string)
             const sponsor_id = {sponsor_id:string};
             console.log("Payment success"+ sponsor_id)
-            axiosInstance.post('/api/sponsors/updatePayment', sponsor_id)
+            axiosInstance.post('/iiidentex_uitm/api/sponsors/updatePayment', sponsor_id)
             .then(
                 res => {"SPONSOR POST SUCCESS"}
             ).catch(err => {console.log(err)})

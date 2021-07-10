@@ -151,7 +151,7 @@ function EditAbstract({data, setData}) {
                 abstract : data.abstract
             }
             
-            axiosInstance.post("/api/competitors/update", postData)
+            axiosInstance.post("/iiidentex_uitm/api/competitors/update", postData)
             .then(function(response) {
               window.location.href = '/user_dashboard';
             }).catch(function(error) {

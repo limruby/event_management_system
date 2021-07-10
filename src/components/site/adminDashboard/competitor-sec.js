@@ -11,7 +11,7 @@ function Competitor() {
   useEffect(() => {
 
 
-    axiosInstance.get("/api/competitors/readAll")
+    axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
       .then(function (response) {
         setData(response.data.data);
       }).catch(function (error) {

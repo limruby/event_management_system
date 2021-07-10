@@ -10,7 +10,7 @@ function Sponsor(){
   useEffect(() => {
     
     
-    axiosInstance.get("/api/sponsors/readAll")
+    axiosInstance.get("/iiidentex_uitm/api/sponsors/readAll")
     .then(function(response) {
       setData(response.data.data);
     }).catch(function(error) {

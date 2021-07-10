@@ -175,7 +175,7 @@ function EditAccount({ data, setData }) {
       video: data.video
     }
 
-    axiosInstance.post("/api/sponsors/update", postData)
+    axiosInstance.post("/iiidentex_uitm/api/sponsors/update", postData)
       .then(function (response) {
         window.location.href = '/user_dashboard';
       }).catch(function (error) {
