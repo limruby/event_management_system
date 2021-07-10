@@ -615,11 +615,21 @@ ul.social-buttons li a:hover {
 }
 
 .navbar-logo>img {
-  width: 100px;
-  height:auto;
+  width: auto;
+  height: 60px;
   margin-top: -15px ;
+  margin-right: 50px;
 }
-
+.nav-href p{
+  color:#ffff;
+}
+.nav-href p:hover{
+  background-color: yellow;
+  color:#000;
+}
+.nav-href a:hover{
+  text-decoration: none;
+}
 .navbar-icon {
   margin-right: 0.5rem;
 }
