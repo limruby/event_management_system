@@ -20,16 +20,16 @@ connection.once('open', ()=>{
 })
 //add routes
 const accountsRouter = require('./routes/accounts');
-app.use('/iiidentex_uitm/api/accounts', accountsRouter)
+app.use('/api/accounts', accountsRouter)
 
 const rolesRouter = require('./routes/roles');
-app.use('/iiidentex_uitm/api/roles', rolesRouter)
+app.use('/api/roles', rolesRouter)
 
 const competitorsRouter = require('./routes/competitors');
-app.use('/iiidentex_uitm/api/competitors', competitorsRouter)
+app.use('/api/competitors', competitorsRouter)
 
 const sponsorsRouter = require('./routes/sponsors');
-app.use('/iiidentex_uitm/api/sponsors', sponsorsRouter)
+app.use('/api/sponsors', sponsorsRouter)
 
 app.use('/iiidentex_uitm', express.static(__dirname + "/public"));
 
