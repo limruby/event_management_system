@@ -77,13 +77,14 @@ function Sponsor(){
           {
             Header: 'Check Status',
             Cell: data => (     
-              <div>                    
-              <a className="btn btn-success"  
-              href="https://fpg.uitm.edu.my/iiidentex/uitmpay" 
-              target="_blank" 
-              rel="noreferrer" >
-                Check</a>  
-              </div>
+              <div>
+              <form className="list-group" id={`uitmUpdate${data.row.original.nric_passport_no}`} method="POST">
+                  <input type="text" name="hash_value" id={`hashValue${data.row.original.nric_passport_no}`} hidden/>
+              </form>        
+              <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.nric_passport_no)}}>
+                Check
+              </button>
+            </div>
 
             )
           },
