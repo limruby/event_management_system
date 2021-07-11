@@ -41,7 +41,7 @@ const Navigationbar = props => {
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = '/iiidentex_uitm';
+    window.location.href = '/iiidentex_uitm/';
   };
 
   window.addEventListener('resize', showButton);

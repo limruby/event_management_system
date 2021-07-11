@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "http://vexs.fsktm.um.edu.my/iiidentex_uitm",
+  "homepage": "http://vexs.fsktm.um.edu.my/iiidentex_uitm/",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
@@ -25,7 +25,6 @@
     "html-react-parser": "^1.2.6",
     "html2pdf.js": "^0.9.3",
     "jsonwebtoken": "^8.5.1",
-    "jspdf": "^2.3.1",
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.12.8",
     "multer": "^1.4.2",
@@ -35,7 +34,6 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.2",
-    "react-html2pdf": "^1.0.1",
     "react-icons": "^4.2.0",
     "react-query": "^3.16.0",
     "react-router-dom": "^5.2.0",
