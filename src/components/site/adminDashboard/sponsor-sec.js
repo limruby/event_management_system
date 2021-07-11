@@ -77,13 +77,12 @@ function Sponsor(){
           {
             Header: 'Check Status',
             Cell: data => (     
-              <div>
-                <form className="list-group" id={`uitmUpdate${data.row.original.company_pic_ic}`} method="POST">
-                    <input type="text" name="hash_value" id={`hashValue${data.row.original.company_pic_ic}`} hidden/>
-                </form>        
-                <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.company_pic_ic)}}>
-                  Check
-                </button>
+              <div>                    
+              <a className="btn btn-success"  
+              href="https://fpg.uitm.edu.my/iiidentex/uitmpay" 
+              target="_blank" 
+              rel="noreferrer" >
+                Check</a>  
               </div>
 
             )

@@ -20,7 +20,7 @@ connection.once('open', ()=>{
 })
 //add routes
 const accountsRouter = require('./routes/accounts');
-app.use('iiidentex_uitm/api/accounts', accountsRouter)
+app.use('/iiidentex_uitm/api/accounts', accountsRouter)
 
 const rolesRouter = require('./routes/roles');
 app.use('/iiidentex_uitm/api/roles', rolesRouter)

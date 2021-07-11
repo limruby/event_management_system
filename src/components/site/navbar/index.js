@@ -65,7 +65,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to='/'>Home</Link>
+                <Link className="btn" to='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -77,10 +77,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to='/admin_dashboard'>AdminDashboard</Link>
+                <Link className="btn" to='/admin_dashboard'>AdminDashboard</Link>
               </li>
               <li className="nav-item">
-                <Link onClick={logout}>Log Out</Link>
+                <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
               <li>
               {/* <a href="http://localhost:3000" className="nav-href"><p>To Dinowex</p></a> */}
@@ -102,7 +102,8 @@ const Navigationbar = props => {
       <IconContext.Provider value={{ color: '#000' }}>
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+          <Navbar.Brand href="#home"> 
+          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
             <img src={logoUitm} height="50px" width="200px" alt="" />
           </Link></Navbar.Brand>
           <Nav className="ml-auto">
@@ -113,7 +114,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to='/'>Home</Link>
+                <Link className="btn" to='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -125,10 +126,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to='user_dashboard'>UserDashboard</Link>
+                <Link className="btn" to='user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
-                <Link onClick={logout}>Log Out</Link>
+                <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
               <li>
               <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
@@ -148,7 +149,8 @@ const Navigationbar = props => {
       <IconContext.Provider value={{ color: '#000' }}>
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+          <Navbar.Brand href="#home"> 
+          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
             <img src={logoUitm} height="50px" width="200px" alt="" />
           </Link></Navbar.Brand>
           <Nav className="ml-auto">
@@ -159,7 +161,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to="/">Home</Link>
+                <Link className="btn" to="/">Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -171,10 +173,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to='/sign_up'>Registration</Link>
+                <Link className="btn" to='/sign_up'>Registration</Link>
               </li>
               <li className="nav-item">
-                <Link to='/sign_in'>Sign In</Link>
+                <Link className="btn" to='/sign_in'>Sign In</Link>
               </li>
               <li>
               <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
