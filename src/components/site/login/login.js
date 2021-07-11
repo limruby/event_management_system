@@ -86,13 +86,13 @@ function Login() {
         axiosInstance.post('/iiidentex_uitm/api/accounts/login', data)
             .then(res => {
 
-
                 localStorage.clear();
                 if (res.data.auth === true) {
                     localStorage.setItem('token', res.data.token);
                     localStorage.setItem('user_id', JSON.stringify(res.data.result._id));
                     setRole(res.data.result.role)
                     if (res.data.result.role === "Admin") {
+                        localStorage.setItem('email', res.data.result.email);
                         localStorage.setItem('role', res.data.result.role);
                         localStorage.setItem('token', res.data.token);
                         window.location.href = '/iiidentex_uitm/admin_dashboard';

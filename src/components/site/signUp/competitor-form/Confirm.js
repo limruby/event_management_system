@@ -70,7 +70,6 @@ export class Confirm extends Component {
                             localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no))
                             this.setState({ display1: 'hide' });
                             this.setState({ display2: 'show' });
-
                         });
                 }
                 else {

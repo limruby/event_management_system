@@ -9,7 +9,11 @@ import Sponsor from './sponsor-sec';
 import './table.css'
 
 function AdminDashboard() {
+var adminEmail= localStorage.getItem('email')
 
+if(adminEmail !== "admin@iiidentex.com"){
+	window.location.href = '/iiidentex_uitm/page_not_found'
+}
 	function TabTitles() {
 		return (
 			<Nav variant="pills" className="flex-column">
@@ -38,7 +42,7 @@ function AdminDashboard() {
 	return (
 
 		<div>
-			<div className="welcome-box"><h1>Welcome Admin!</h1></div>
+			<div className="welcome-box"><h1>Welcome IIIDenTex 2021 Admin!</h1></div>
 			<div className="wrapper">
 				<Tab.Container id="left-tabs-example" defaultActiveKey={activeKeys}>
 					<Row>
