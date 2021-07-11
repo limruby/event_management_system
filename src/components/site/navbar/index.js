@@ -63,7 +63,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to ='/'>Home</Link>
+                <Link className="btn" to ='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -75,10 +75,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to ='/admin_dashboard'>AdminDashboard</Link>
+                <Link className="btn" to ='/admin_dashboard'>AdminDashboard</Link>
               </li>
               <li className="nav-item">
-                <Link onClick={logout}>Log Out</Link>
+                <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
             </ul>
 
@@ -107,7 +107,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to='/'>Home</Link>
+                <Link className="btn" to='/'>Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -119,10 +119,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link to ='user_dashboard'>UserDashboard</Link>
+                <Link className="btn" to ='user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
-                <Link onClick={logout}>Log Out</Link>
+                <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
             </ul>
 
@@ -150,7 +150,7 @@ const Navigationbar = props => {
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
-                <Link to ="/">Home</Link>
+                <Link className="btn" to ="/">Home</Link>
               </li>
               {/* <li className="nav-item">
                 <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
@@ -162,10 +162,10 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-              <Link to ='/sign_up'>Registration</Link>
+              <Link className="btn" to ='/sign_up'>Registration</Link>
               </li>
               <li className="nav-item">
-              <Link to ='/sign_in'>Sign In</Link>
+              <Link className="btn" to ='/sign_in'>Sign In</Link>
               </li>
             </ul>
 
