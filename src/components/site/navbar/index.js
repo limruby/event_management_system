@@ -119,7 +119,7 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link className="btn" to ='user_dashboard'>UserDashboard</Link>
+                <Link className="btn" to ='/user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
                 <Link className="btn" onClick={logout}>Log Out</Link>
