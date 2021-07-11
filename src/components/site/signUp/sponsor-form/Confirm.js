@@ -117,7 +117,7 @@ export class Confirm extends Component {
 
         }
         var sha1 = require('sha1');
-        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
+        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + "iiidentex");
 
         var uitmpay_address =
             values.address_1 + "," +
@@ -154,7 +154,7 @@ export class Confirm extends Component {
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                         <input type="text" name="userid" value={values.company_pic_name}  />
-                        {/* <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden /> */}
+                        <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                         <input type="text" name="name" value={values.company_pic_name} />
                         <input type="text" name="ic" value={values.company_pic_ic.toString()}  />
                         <input type="text" name="email" value={values.email} />

@@ -36,12 +36,13 @@ function Login() {
         var product_ID = "149"
 
         var sha1 = require('sha1');
-        var hash_value = sha1(token + cmpy_code + zone + product_ID + compData.amount);
-        var sponsor_hash_value = sha1(token + cmpy_code + zone + product_ID + sponsorData.amount);
+        var hash_value = sha1(token + cmpy_code + zone + product_ID + compData.amount + "iiidentex");
+        var sponsor_hash_value = sha1(token + cmpy_code + zone + product_ID + sponsorData.amount + "iiidentex");
         if (role === "Competitor") {
             section.push(
                 <form className="list-group" id="comp_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={compData.nric_passport_no} hidden />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                     <input type="text" name="name" value={compData.name} hidden />
                     <input type="text" name="ic" value={compData.nric_passport_no} hidden />
                     <input type="text" name="email" value={email} hidden />
@@ -58,6 +59,7 @@ function Login() {
             section.push(
                 <form className="list-group" id="sponsor_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={sponsorData.company_pic_name} hidden />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                     <input type="text" name="name" value={sponsorData.company_pic_name} hidden />
                     <input type="text" name="ic" value={sponsorData.company_pic_ic.toString()} hidden />
                     <input type="text" name="email" value={email} hidden />
