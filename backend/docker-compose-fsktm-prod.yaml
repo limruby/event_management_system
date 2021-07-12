@@ -6,8 +6,8 @@ services:
     restart: always
     networks:
       - server
-    ports:
-      - 27017:27017 # local access
+    #ports:
+    #  - 27017:27017 # local access
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
