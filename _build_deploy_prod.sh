@@ -8,7 +8,7 @@ rm -r ./build
 
 # build server
 cd ./backend
-sudo docker build -t iiidentex/backend . 
+sudo docker build -t iiidentex/backend_prod . 
 
 # deploy
 sudo docker-compose -f docker-compose-fsktm-prod.yaml up -d
