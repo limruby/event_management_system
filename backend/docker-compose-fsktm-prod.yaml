@@ -14,7 +14,7 @@ services:
     volumes:
       - ./mongo-volume:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
-    container_name: mongodb_prod
+    container_name: iiidentex_mongodb_prod
   
   iiidentex_backend_prod:
     # build: .
@@ -43,7 +43,7 @@ services:
       - traefik.http.routers.vexs_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/iiidentex/`)
       - traefik.http.routers.vexs_backend_prod-unsecured.entrypoints=http
       # - traefik.http.routers.vexs_backend_prod-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
-    container_name: backend_prod
+    container_name: iiidentex_backend_prod
 
 networks:
   server:
