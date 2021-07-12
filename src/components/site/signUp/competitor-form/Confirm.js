@@ -60,17 +60,16 @@ export class Confirm extends Component {
             console.log(data["amount"])
         }
         // create account
-        axiosInstance.post('/api/accounts/signUp', data)
+        axiosInstance.post('iiidentex_uitm/api/accounts/signUp', data)
             .then(res => {
                 if (res.data._id) {
                     this.account_id = res.data._id;
                     data["account_id"] = this.account_id;
-                    axiosInstance.post('/api/competitors/create', data)
+                    axiosInstance.post('/iiidentex_uitm/api/competitors/create', data)
                         .then(res => {
                             localStorage.setItem("competitor_ic", JSON.stringify(res.data.nric_passport_no))
                             this.setState({ display1: 'hide' });
                             this.setState({ display2: 'show' });
-
                         });
                 }
                 else {
@@ -100,10 +99,10 @@ export class Confirm extends Component {
             amount = 290.00.toFixed(2);
         }
         else if (values.category === "Junior Innovator") {
-            amount = 1.00.toFixed(2);
+            amount = 190.00.toFixed(2);
         }
         var sha1 = require('sha1');
-        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
+        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + "iiidentex");
         var uitmpay_address =
             values.address_1 + "," +
             values.address_2 + "," +
@@ -123,7 +122,7 @@ export class Confirm extends Component {
                         <li class="list-group-item"><b>NRIC/Passport Number:</b> {values.ic_passport_number}</li>
                         <li class="list-group-item"><b>Phone Number:</b> {values.phone_no}</li>
                         <li class="list-group-item">
-                            <b>Address:</b> 
+                            <b>Address:</b>
                             {values.address_1},
                             {values.address_2},
                             {values.postcode},
@@ -136,8 +135,8 @@ export class Confirm extends Component {
                     </ul>
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                        <input type="text" name="userid" value={values.ic_passport_number} hidden />
-                        {/* <input type="text" name="ord_mercref" value={"iidentex"} hidden /> */}
+                        <input type="text" name="userid" value={values.ic_passport_number} hidden/>
+                        <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                         <input type="text" name="name" value={values.name} hidden />
                         <input type="text" name="ic" value={values.ic_passport_number} hidden />
                         <input type="text" name="email" value={values.email} hidden />

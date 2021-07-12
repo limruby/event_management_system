@@ -55,7 +55,7 @@ export class Confirm extends Component {
                 data["amount"] = 2000.00.toFixed(2);
                 console.log(data["amount"])
             }
-            axiosInstance.post('/api/accounts/signUp', data)
+            axiosInstance.post('/iiidentex_uitm/api/accounts/signUp', data)
                 .then(res => {
 
 
@@ -63,7 +63,7 @@ export class Confirm extends Component {
                         this.account_id = res.data._id;
                         data["account_id"] = this.account_id;
 
-                        axiosInstance.post('/api/sponsors/create', data)
+                        axiosInstance.post('/iiidentex_uitm/api/sponsors/create', data)
                             .then(res => {
 
                                 localStorage.setItem("account_id", JSON.stringify(this.account_id))
@@ -117,7 +117,7 @@ export class Confirm extends Component {
 
         }
         var sha1 = require('sha1');
-        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount);
+        var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + "iiidentex");
 
         var uitmpay_address =
             values.address_1 + "," +
@@ -154,16 +154,16 @@ export class Confirm extends Component {
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                         <input type="text" name="userid" value={values.company_pic_name} hidden />
-                        {/* <input type="text" name="ord_mercref" value={"iidentex" + values.company_pic_name} hidden /> */}
-                        <input type="text" name="name" value={values.company_pic_name} hidden />
-                        <input type="text" name="ic" value={values.company_pic_ic.toString()} hidden />
-                        <input type="text" name="email" value={values.email} hidden />
-                        <input type="text" name="phone" value={values.company_contact} hidden />
-                        <input type="text" name="designation" value={values.company_pic_name} hidden />
+                        <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
+                        <input type="text" name="name" value={values.company_pic_name} hidden/>
+                        <input type="text" name="ic" value={values.company_pic_ic.toString()}  hidden/>
+                        <input type="text" name="email" value={values.email} hidden/>
+                        <input type="text" name="phone" value={values.company_contact} hidden/>
+                        <input type="text" name="designation" value={values.company_pic_name}  hidden/>
                         <input type="text" name="address" value={uitmpay_address} hidden />
 
-                        <input type="text" name="hash_value" value={hash_value} hidden />
-                        <input type="number" name="amount" value={amount} hidden />
+                        <input type="text" name="hash_value" value={hash_value}hidden />
+                        <input type="number" name="amount" value={amount} hidden/>
 
 
                     </form>

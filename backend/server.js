@@ -20,22 +20,22 @@ connection.once('open', ()=>{
 })
 //add routes
 const accountsRouter = require('./routes/accounts');
-app.use('/api/accounts', accountsRouter)
+app.use('/iiidentex_uitm/api/accounts', accountsRouter)
 
 const rolesRouter = require('./routes/roles');
-app.use('/api/roles', rolesRouter)
+app.use('/iiidentex_uitm/api/roles', rolesRouter)
 
 const competitorsRouter = require('./routes/competitors');
-app.use('/api/competitors', competitorsRouter)
+app.use('/iiidentex_uitm/api/competitors', competitorsRouter)
 
 const sponsorsRouter = require('./routes/sponsors');
-app.use('/api/sponsors', sponsorsRouter)
+app.use('/iiidentex_uitm/api/sponsors', sponsorsRouter)
 
-app.use(express.static(__dirname + "/public"));
+app.use('/iiidentex_uitm', express.static(__dirname + "/public"));
 
-app.use((req, res, next) => {
-	res.sendFile(__dirname + "/public/index.html")})
+app.use('/iiidentex_uitm', (req, res, next) => {
+		res.sendFile(__dirname + "/public/index.html")});
 
 app.listen(port, () => {
-	console.log('Now starting at http://localhost:5000/api/hello');
+	console.log('Now starting at http://vexs.fsktm.um.edu.my/api/hello');
 });

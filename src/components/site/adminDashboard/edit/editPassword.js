@@ -34,7 +34,7 @@ const handleForm=(e)=>{
     }
     else{
             ///////update to db /////////////
-            axiosInstance.post("/api/accounts/update", user)
+            axiosInstance.post("/iiidentex_uitm/api/accounts/update", user)
             .then(function(response) {
                 window.location.href = '/admin_dashboard';
             }).catch(function(error) {

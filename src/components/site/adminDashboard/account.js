@@ -11,7 +11,7 @@ function Account() {
   useEffect(() => {
 
 
-    axiosInstance.get("/api/accounts/readAll")
+    axiosInstance.get("/iiidentex_uitm/api/accounts/readAll")
     .then(function (response) {
       setData(response.data.data);
     }).catch(function (error) {

@@ -36,12 +36,13 @@ function Login() {
         var product_ID = "149"
 
         var sha1 = require('sha1');
-        var hash_value = sha1(token + cmpy_code + zone + product_ID + compData.amount);
-        var sponsor_hash_value = sha1(token + cmpy_code + zone + product_ID + sponsorData.amount);
+        var hash_value = sha1(token + cmpy_code + zone + product_ID + compData.amount + "iiidentex");
+        var sponsor_hash_value = sha1(token + cmpy_code + zone + product_ID + sponsorData.amount + "iiidentex");
         if (role === "Competitor") {
             section.push(
                 <form className="list-group" id="comp_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={compData.nric_passport_no} hidden />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                     <input type="text" name="name" value={compData.name} hidden />
                     <input type="text" name="ic" value={compData.nric_passport_no} hidden />
                     <input type="text" name="email" value={email} hidden />
@@ -58,6 +59,7 @@ function Login() {
             section.push(
                 <form className="list-group" id="sponsor_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
                     <input type="text" name="userid" value={sponsorData.company_pic_name} hidden />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
                     <input type="text" name="name" value={sponsorData.company_pic_name} hidden />
                     <input type="text" name="ic" value={sponsorData.company_pic_ic.toString()} hidden />
                     <input type="text" name="email" value={email} hidden />
@@ -81,9 +83,8 @@ function Login() {
             role: role
         }
 
-        axiosInstance.post('/api/accounts/login', data)
+        axiosInstance.post('/iiidentex_uitm/api/accounts/login', data)
             .then(res => {
-
 
                 localStorage.clear();
                 if (res.data.auth === true) {
@@ -91,14 +92,15 @@ function Login() {
                     localStorage.setItem('user_id', JSON.stringify(res.data.result._id));
                     setRole(res.data.result.role)
                     if (res.data.result.role === "Admin") {
+                        localStorage.setItem('email', res.data.result.email);
                         localStorage.setItem('role', res.data.result.role);
                         localStorage.setItem('token', res.data.token);
-                        window.location.href = '/admin_dashboard';
+                        window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }
                     else if (res.data.result.role === "Competitor") {
 
                         var comp_account_id = localStorage.getItem('user_id')
-                        axiosInstance.get('/api/competitors/read', { params: { account_id: comp_account_id } })
+                        axiosInstance.get('/iiidentex_uitm/api/competitors/read', { params: { account_id: comp_account_id } })
                             .then(res => {
                                 var address =
                                     res.data.data.address_1 + "," +
@@ -115,7 +117,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.data.bill_verify)
-                                    window.location.href = "/pending"
+                                    window.location.href = "/iiidentex_uitm/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -127,7 +129,7 @@ function Login() {
                     else if (res.data.result.role === "Sponsor") {
                         console.log(res.data.result.role)
                         var sponsor_account_id = localStorage.getItem('user_id')
-                        axiosInstance.get('/api/sponsors/read', { params: { account_id: sponsor_account_id } })
+                        axiosInstance.get('/iiidentex_uitm/api/sponsors/read', { params: { account_id: sponsor_account_id } })
                             .then(res => {
                                 var sponsorAddress =
                                     res.data.data.address_1 + "," +
@@ -144,7 +146,7 @@ function Login() {
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.bill_verify)
-                                    window.location.href = "/pending"
+                                    window.location.href = "/iiidentex_uitm/pending"
 
                                 }
                                 else if (res.data.data.bill_verify === "success") {
@@ -161,7 +163,7 @@ function Login() {
     }
 
     const redirect = () => {
-        window.location.href = '/user_dashboard';
+        window.location.href = '/iiidentex_uitm/user_dashboard';
     }
 
     return (
@@ -190,7 +192,7 @@ function Login() {
 
                             <Link to="/sign_up">
                                 <p>
-                                    <a href="/sign_up">Not register yet? Sign up here.</a>
+                                    Not register yet? Sign up here.
                                 </p>
                             </Link>
                         </form>

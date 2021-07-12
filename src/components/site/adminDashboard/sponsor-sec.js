@@ -10,7 +10,7 @@ function Sponsor(){
   useEffect(() => {
     
     
-    axiosInstance.get("/api/sponsors/readAll")
+    axiosInstance.get("/iiidentex_uitm/api/sponsors/readAll")
     .then(function(response) {
       setData(response.data.data);
     }).catch(function(error) {
@@ -78,13 +78,13 @@ function Sponsor(){
             Header: 'Check Status',
             Cell: data => (     
               <div>
-                <form className="list-group" id={`uitmUpdate${data.row.original.company_pic_ic}`} method="POST">
-                    <input type="text" name="hash_value" id={`hashValue${data.row.original.company_pic_ic}`} hidden/>
-                </form>        
-                <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.company_pic_ic)}}>
-                  Check
-                </button>
-              </div>
+              <form className="list-group" id={`uitmUpdate${data.row.original.nric_passport_no}`} method="POST">
+                  <input type="text" name="hash_value" id={`hashValue${data.row.original.nric_passport_no}`} hidden/>
+              </form>        
+              <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.nric_passport_no)}}>
+                Check
+              </button>
+            </div>
 
             )
           },
