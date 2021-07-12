@@ -23,7 +23,7 @@ services:
     image: iiidentex/backend_prod
     restart: always
     environment:
-        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongodb_prod:27017/db?authSource=admin&readPreference=primary
+        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@iiidentex_mongodb_prod:27017/db?authSource=admin&readPreference=primary
         JSONWTK: ${JSONWTK}
     networks:
       - server
