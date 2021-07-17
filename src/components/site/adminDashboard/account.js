@@ -22,7 +22,7 @@ function Account() {
 
   function deleteAccount(account_id) {
 
-    axiosInstance.get("/api/accounts/deleteOne",  { params: { account_id: account_id } })
+    axiosInstance.get("/iiidentex_uitm/api/accounts/deleteOne",  { params: { account_id: account_id } })
     .then(function (response) {
        window.location.reload();
     }).catch(function (error) {

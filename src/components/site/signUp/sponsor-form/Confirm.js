@@ -55,6 +55,10 @@ export class Confirm extends Component {
                 data["amount"] = 2000.00.toFixed(2);
                 console.log(data["amount"])
             }
+            else if (category === "Exhibitor") {
+                data["amount"] = 500.00.toFixed(2);
+                console.log(data["amount"])
+            }
             axiosInstance.post('/iiidentex_uitm/api/accounts/signUp', data)
                 .then(res => {
 
@@ -114,7 +118,8 @@ export class Confirm extends Component {
         }
         else if (values.category === "Bronze Package") {
             amount = 2000.00.toFixed(2);
-
+        }else if (values.category === "Exhibitor") {
+            amount = 500.00.toFixed(2);
         }
         var sha1 = require('sha1');
         var hash_value = sha1(values.token + values.cmpy_code + values.zone + values.product_ID + amount + "iiidentex");

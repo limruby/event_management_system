@@ -21,33 +21,6 @@ export class Profiles extends Component {
                 this.continue(e);
             }
         }
-
-        // function amount () {
-        //     var section = [];
-        //     if(values.category === "Bronze Package"){
-        //         section.push(
-        //         <div>
-        //         <input type="range" min={500} max={999} defaultValue={500} className="slider" id="bronze" onChange={inputChange('amount')}/>
-        //         <p>{values.amount}</p>
-        //         </div>
-        //         )}
-        //     else if(values.category === "Silver Package"){
-        //         section.push(
-        //             <div>
-        //         <input type="range" min={1000} max={2999} defaultValue={1000} className="slider" id="silver" onChange={inputChange('amount')}/>
-        //         <p>{values.amount}</p>
-        //         </div>
-        //         )}
-        //     else if(values.category === "Gold Package"){
-        //         section.push(
-        //         <div>
-        //         <input type="range" min={3000} max={4999} defaultValue={3000} className="slider" id="gold" onChange={inputChange('amount')}/>
-        //         <p>{values.amount}</p>
-        //         </div>
-        //         )}
-        //         return section;
-        // }
-
         return (
             <section className="section-container">
                 <div className="form-container">
@@ -60,6 +33,7 @@ export class Profiles extends Component {
                             <option value="Gold Package">Gold Package</option>
                             <option value="Silver Package">Silver Package</option>
                             <option value="Bronze Package">Bronze Package</option>
+                            <option value="Exhibitor">Exhibitor</option>
                         </select>
                         {/* {amount()} */}
                     </div>

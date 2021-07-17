@@ -79,8 +79,10 @@ function CreateAccount() {
         }
         else if (e.target.value === "Bronze Package") {
            amount = 2000.00.toFixed(2);
-
         }
+        else if (e.target.value === "Exhibitor") {
+            amount = 500.00.toFixed(2);
+         }
             setData({
                 ...data,
                  [input]: e.target.value,
@@ -115,6 +117,7 @@ function CreateAccount() {
                             <option value="Gold Package">Gold Package</option>
                             <option value="Silver Package">Silver Package</option>
                             <option value="Bronze Package">Bronze Package</option>
+                            <option value="Exhibitor">Exhibitor</option>
                         </select> 
                     </div>
             )
