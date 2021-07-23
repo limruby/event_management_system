@@ -31,6 +31,9 @@ app.use('/iiidentex_uitm/api/competitors', competitorsRouter)
 const sponsorsRouter = require('./routes/sponsors');
 app.use('/iiidentex_uitm/api/sponsors', sponsorsRouter)
 
+const cartRouter = require('./routes/cart');
+app.use('/iiidentex_uitm/api/cart', cartRouter)
+
 app.use('/iiidentex_uitm', express.static(__dirname + "/public"));
 
 app.use('/iiidentex_uitm', (req, res, next) => {
