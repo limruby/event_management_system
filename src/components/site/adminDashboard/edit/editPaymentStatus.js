@@ -4,11 +4,8 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditPaymentStatus() {
     localStorage.setItem("activeKeys", "Order")
-    const account_id = localStorage.getItem('user_id');
     
     const [data, setData] = useState({
-        bill_status: 'N/A',
-        bill_id: ''
     }); 
     const location = useLocation();
     const thePath = location.pathname;
@@ -16,9 +13,9 @@ function EditPaymentStatus() {
     const string = '"'+ cart_id +'"'
 
     useEffect(() => {
-        axiosInstance.get("/iiidentex_uitm/api/cart/userReadCart", { params: { account_id:string} })
+        axiosInstance.get("/iiidentex_uitm/api/cart/readOrder", { params: { _id:string} })
             .then(function (response) {
-                setData(response.data.data);
+                setData(response.data.data[0]);
             }).catch(function (error) {
                 console.log(error);
             })
@@ -51,7 +48,6 @@ function EditPaymentStatus() {
                 <div className="edit-form-container">
                 <div className="form-group">
                     <label htmlFor="bill_status"><span>*</span>Payment Verify</label>
-                    <p>{data.bill_id}</p>
                     <select className="form-control" id="bill_status" required
                         onChange={inputChange('bill_status')} value={data.bill_status} >         
                         <option value="">Please select</option>

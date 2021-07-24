@@ -26,7 +26,7 @@ function Cart({ data, setData, user }) {
             }
             setMedalSubtotal(medalQuantity * medalPrice)
             setBookSubtotal(bookQuantity * bookPrice + firstpurchase)
-            total = medalQuantity * medalPrice + bookQuantity * bookPrice + firstpurchase
+            total = (medalQuantity * medalPrice + bookQuantity * bookPrice + firstpurchase).toFixed(2)
             setPrice(total)
             console.log("Medal Quantity:" + medalQuantity + "Total Price" + price)
             console.log("Book Quantity:" + bookQuantity + "Total Price" + price)
@@ -40,11 +40,6 @@ function Cart({ data, setData, user }) {
             console.log("Empty")
         }
     }, [bookQuantity, data.first_purchase, medalQuantity, price]);
-
-    function makePayment() {
-        console.log("PAY!")
-
-    }
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -67,14 +62,12 @@ function Cart({ data, setData, user }) {
                             first_purchase: "false"
                         }
                         axiosInstance.post("/iiidentex_uitm/api/competitors/update", status)
-                            .then(function (response) {
-                                document.getElementById("uitm_payment_form").submit();
+                            .then(function (response) {                               
                             }).catch(function (error) {
                                 console.log(error);
                             })
                     }
-                    alert("Order confirmed, please wait for the billing invoice.")
-                    window.location.href = '/user_dashboard';
+                    document.getElementById("uitm_payment_form").submit();
                 }).catch(function (error) {
                     console.log(error);
                 })
@@ -85,13 +78,7 @@ function Cart({ data, setData, user }) {
 
     var sha1 = require('sha1');
     var hash_value = sha1(token + cmpy_code + zone + product_ID + price + "iiidentex");
-    var uitmpay_address = `${data.address_1} 
-        + ${data.address_2} 
-        + ${data.postcode} 
-        + ${data.city} 
-        + ${data.state} 
-        + ${data.country}`
-
+    var uitmpay_address = data.address_1 + "," + data.address_2 + "," +  data.postcode + "," +data.city + "," + data.state + "," + data.country
     return (
         <div>
             <div className="order-btn">
@@ -150,12 +137,12 @@ function Cart({ data, setData, user }) {
                 </table>
                 <p></p>
                 {/* <button class="btn btn-primary order-btn" onClick={handleForm}>Order</button> */}
-                <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                    <input type="text" name="userid" value={data.ic_passport_number} />
-                    <input type="text" name="ord_mercref" value={"iiidentex_product"} />
+                <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST" hidden>
+                    <input type="text" name="userid" value={data.nric_passport_no} />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} />
                     <input type="text" name="name" value={data.name} />
-                    <input type="text" name="ic" value={data.ic_passport_number} />
-                    <input type="text" name="email" value={data.email} />
+                    <input type="text" name="ic" value={data.nric_passport_no} />
+                    <input type="text" name="email" value={user.email} />
                     <input type="text" name="phone" value={data.phone_no} />
                     <input type="text" name="designation" value={data.affiliation} />
                     <input type="text" name="address" value={uitmpay_address} />

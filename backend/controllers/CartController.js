@@ -88,4 +88,19 @@ const userReadCart = (req, res, next)=>{
   }).catch(err => console.log(err))
 };
 
-module.exports = {addToCart, cancelCart, readCart, updateCart, userReadCart}
+const readOrder = (req, res, next)=>{ 
+  var order_id = JSON.parse(req.query._id);
+  Cart.find({_id: ObjectId(order_id)}, (err, cart) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!cart) {
+      return res
+      .status(404)
+      .json({ success: false })
+    }
+    return res.status(200).json({ success: true, data: cart })
+  }).catch(err => console.log(err))
+};
+
+module.exports = {addToCart, cancelCart, readCart, updateCart, userReadCart, readOrder}
