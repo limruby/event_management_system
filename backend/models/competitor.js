@@ -137,6 +137,9 @@ const competitorSchema = new Schema({
   status:{
     type:String
   },
+  first_purchase:{
+    type: String
+  },
   receipt:[subSchema],
   poster:[subSchema],
   achievements:[subSchema],

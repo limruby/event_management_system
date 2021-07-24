@@ -6,6 +6,7 @@ import EditAccount from './editAccount.js';
 import EditPassword from './editPassword.js';
 import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
+import EditPaymentStatus from './editPaymentStatus.js';
 import CreateProfile from './createAccount.js';
 import UploadReceiptCompetitor  from './upload_receipt_competitor.js';
 import UploadReceiptSponsor  from './upload_receipt_sponsor.js';
@@ -57,6 +58,13 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				<CreateProfile/>
 			</section>
 
+		)			
+	}
+	else if (lastPath === 'edit_order_status'){		
+		return( 
+			<section className="section-container">
+				<EditPaymentStatus/>
+			</section>
 		)			
 	}
 	else if (lastPath === 'upload_receipt_competitor'){		

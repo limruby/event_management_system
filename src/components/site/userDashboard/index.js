@@ -10,6 +10,7 @@ import CompetitionMaterial from './competition-material-sec';
 import Abstract from './abstract-sec';
 import BookChapter from './book-chapter-sec';
 import ResearchTeam from './research-team-sec';
+import Cart from './cart-sec'
 
 import PdfAbstract from './pdf-abstract-bookChapter';
 import Preview from './preview-sec';
@@ -17,7 +18,7 @@ import Receipt from './receipt-sec';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
-import { FaEdit, FaCertificate, FaBook, FaRegBookmark, FaReceipt } from 'react-icons/fa';
+import { FaEdit, FaCertificate, FaBook, FaRegBookmark, FaReceipt, FaMedal } from 'react-icons/fa';
 import { BsPeopleCircle, BsFiles, BsBookHalf } from "react-icons/bs";
 
 function UserDashboard() {
@@ -26,7 +27,6 @@ function UserDashboard() {
   const [user, setUser] = useState([]);
   const [account, setAccount] = useState([]);
   const account_id = localStorage.getItem('user_id');
-
 
   useEffect(() => {
     axiosInstance.get("/iiidentex_uitm/api/competitors/read", { params: { account_id: account_id } })
@@ -116,6 +116,9 @@ function UserDashboard() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20} /> Certificate</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Cart"><FaMedal size={20} /> Products</Nav.Link>
             </Nav.Item>
           </Nav>
         );
@@ -296,7 +299,15 @@ function UserDashboard() {
                     </Card.Body>
                   </Card>
                 </Tab.Pane>
-
+                <Tab.Pane eventKey="Cart">
+                  <Card>
+                    <Card.Body>
+                      <div className="sec-container">                                     
+                          <Cart data={user} setData={setUser} user={account}/>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Tab.Pane>
               </Tab.Content>
             </Col>
 

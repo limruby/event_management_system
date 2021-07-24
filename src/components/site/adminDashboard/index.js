@@ -1,11 +1,12 @@
 import React from 'react';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
-import { FaCertificate } from 'react-icons/fa';
+import { FaCertificate, FaMedal } from 'react-icons/fa';
 import { BsPeopleCircle, BsFiles } from "react-icons/bs";
 
 import Account from './account';
 import Competitor from './competitor-sec';
 import Sponsor from './sponsor-sec';
+import Order from './order-sec';
 import './table.css'
 
 function AdminDashboard() {
@@ -25,6 +26,9 @@ if(adminEmail !== "admin@iiidentex.com"){
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link eventKey="Sponsor"><FaCertificate size={20} /> Sponsor</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link eventKey="Order"><FaMedal size={20} /> Order</Nav.Link>
 				</Nav.Item>
 			</Nav>
 		);
@@ -77,6 +81,16 @@ if(adminEmail !== "admin@iiidentex.com"){
 											<div className="sec-container">
 												<h2> Sponsor Profile</h2>
 												<Sponsor />
+											</div>
+										</Card.Body>
+									</Card>
+								</Tab.Pane>
+								<Tab.Pane eventKey="Order">
+									<Card>
+										<Card.Body>
+											<div className="sec-container">
+												<h2>Medal & Bookchapter Order</h2>
+												<Order />
 											</div>
 										</Card.Body>
 									</Card>
