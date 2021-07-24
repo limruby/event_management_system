@@ -10,6 +10,11 @@ function Cart({ data, setData, user }) {
     const [bookSubtotal, setBookSubtotal] = useState(0)
     const [price, setPrice] = useState(0)
 
+    var cmpy_code = "AA04"
+    var zone = "02"
+    var product_ID = "149"
+    var token = "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq"
+
     useEffect(() => {
         if (medalQuantity > 0 || bookQuantity > 0) {
             var medalPrice = 50;
@@ -36,6 +41,11 @@ function Cart({ data, setData, user }) {
         }
     }, [bookQuantity, data.first_purchase, medalQuantity, price]);
 
+    function makePayment() {
+        console.log("PAY!")
+
+    }
+
     const handleForm = (e) => {
         e.preventDefault();
         var postData = {
@@ -58,7 +68,7 @@ function Cart({ data, setData, user }) {
                         }
                         axiosInstance.post("/iiidentex_uitm/api/competitors/update", status)
                             .then(function (response) {
-
+                                document.getElementById("uitm_payment_form").submit();
                             }).catch(function (error) {
                                 console.log(error);
                             })
@@ -72,6 +82,16 @@ function Cart({ data, setData, user }) {
             alert("Your cart is empty!")
         }
     }
+
+    var sha1 = require('sha1');
+    var hash_value = sha1(token + cmpy_code + zone + product_ID + price + "iiidentex");
+    var uitmpay_address = `${data.address_1} 
+        + ${data.address_2} 
+        + ${data.postcode} 
+        + ${data.city} 
+        + ${data.state} 
+        + ${data.country}`
+
     return (
         <div>
             <div className="order-btn">
@@ -129,6 +149,19 @@ function Cart({ data, setData, user }) {
                     </tbody>
                 </table>
                 <p></p>
+                {/* <button class="btn btn-primary order-btn" onClick={handleForm}>Order</button> */}
+                <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
+                    <input type="text" name="userid" value={data.ic_passport_number} />
+                    <input type="text" name="ord_mercref" value={"iiidentex_product"} />
+                    <input type="text" name="name" value={data.name} />
+                    <input type="text" name="ic" value={data.ic_passport_number} />
+                    <input type="text" name="email" value={data.email} />
+                    <input type="text" name="phone" value={data.phone_no} />
+                    <input type="text" name="designation" value={data.affiliation} />
+                    <input type="text" name="address" value={uitmpay_address} />
+                    <input type="text" name="hash_value" value={hash_value} />
+                    <input type="number" name="amount" value={price} />
+                </form>
                 <button class="btn btn-primary order-btn" onClick={handleForm}>Order</button>
             </div>
             <p></p>
