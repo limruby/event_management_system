@@ -89,6 +89,7 @@ function EditProfile() {
                             <option value="Gold Package">Gold Package</option>
                             <option value="Silver Package">Silver Package</option>
                             <option value="Bronze Package">Bronze Package</option>
+                            <option value="Exhibitor">Exhibitor</option>
                         </select>
                     </div>
                     <div className="form-group">
@@ -108,7 +109,7 @@ function EditProfile() {
                     <div className="form-group">
                         <label htmlFor="company_contact"><span>*</span>Contact Number</label>
                         <input className="form-control" type='text' name='company_contact' id="company_contact"
-                            placeholder='Contact Number' required pattern="[0-9]{11}"
+                            placeholder='Contact Number' required pattern="[0-9]{10,11}"
                             onChange={inputChange('company_contact')} value={data.company_contact}
                         />
                     </div>

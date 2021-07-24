@@ -19,7 +19,7 @@ const create = (req, res, next)=>{
   const country = req.body.country;
   const amount = req.body.amount;
   const receipt = req.body.receipt;
-
+  const first_purchase = "true";
 
     const newCompetitor = new Competitor({
       account_id, 
@@ -37,7 +37,8 @@ const create = (req, res, next)=>{
       country,
       gender,
       phone_no, 
-      receipt
+      receipt,
+      first_purchase
     });
 
     newCompetitor.save()
@@ -144,6 +145,10 @@ const update = (req, res, next)=>{
   if(req.body.receipt){
     updateCompetitor['receipt'] = req.body.receipt;
   }
+  if(req.body.first_purchase){
+    updateCompetitor['first_purchase'] = req.body.first_purchase;
+  }
+
 
     Competitor.findByIdAndUpdate(req.body._id, updateCompetitor, (err, competitors) => {
         if (err) {

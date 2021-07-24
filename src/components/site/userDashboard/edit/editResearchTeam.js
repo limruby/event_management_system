@@ -178,7 +178,7 @@ const inputChange = (element, index) => e => {
               
 
                 <div className="btn-group">
-                    <Link to="/iiidentex_uitm/user_dashboard">
+                    <Link to="/user_dashboard">
                         <button className="btn btn-danger back-btn">Back</button>
                     </Link>
                     <input className="btn btn-primary" type="submit" value="Update" />

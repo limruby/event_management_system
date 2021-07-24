@@ -68,6 +68,7 @@ function App() {
         <AdminRoute exact path='/admin_dashboard/create_profile'  component={AdminEditDetails}/>
         <AdminRoute exact path='/admin_dashboard/:id/upload_receipt_competitor'  component={AdminEditDetails}/>
         <AdminRoute exact path='/admin_dashboard/:id/upload_receipt_sponsor'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/edit_order_status'  component={AdminEditDetails}/>
 
 		    <Route exact path='/eventLobby'  component={eventLobby}/>  
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 

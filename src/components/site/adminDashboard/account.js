@@ -20,6 +20,15 @@ function Account() {
 
   }, []);
 
+  function deleteAccount(account_id) {
+
+    axiosInstance.get("/iiidentex_uitm/api/accounts/deleteOne",  { params: { account_id: account_id } })
+    .then(function (response) {
+       window.location.reload();
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
 
   const columns = React.useMemo(
     () => [
@@ -44,6 +53,19 @@ function Account() {
           Edit
 
           </button></Link>
+          )
+      },
+      {
+        Header: 'Delete',
+        accessor: 'delete',
+        Cell: data => (
+          
+          <button className="btn btn-danger" 
+            type="button" 
+            onClick={() => {window.confirm("Are you sure you want to delete this account?") && deleteAccount(data.row.original._id)}}
+          >
+          Delete
+          </button>
           )
       },
 
