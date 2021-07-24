@@ -24,7 +24,7 @@ services:
 #       - traefik.tcp.services.mongodb.loadbalancer.server.port=27017
 #     container_name: mongodb
   
-  backend:
+  iiidentex_backend:
     # build: .
     # depends_on:
     #   - mongodb
@@ -35,8 +35,8 @@ services:
         JSONWTK: h98asblj23hfjka
     networks:
       - server
-    ports:
-      - 5000:5000
+    #ports:
+    #  - 5000:5000
     labels:
       - traefik.enable=true
       - traefik.docker.network=server
@@ -44,16 +44,16 @@ services:
       - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
       - traefik.http.routers.vexs_backend.service=vexs_backend
       #- traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
-      - traefik.http.routers.vexs_backend.rule=Host(`vexs.fsktm.um.edu.my`)
+      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
       - traefik.http.routers.vexs_backend.entrypoints=https
       - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
       ### Not Secure ###
       - traefik.http.routers.vexs_backend-unsecured.service=vexs_backend
       # - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
-      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexs.fsktm.um.edu.my`)
+      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
       - traefik.http.routers.vexs_backend-unsecured.entrypoints=http
       # - traefik.http.routers.vexs_backend-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
-    container_name: backend
+    container_name: iiidentex_backend
 
 networks:
   server:
