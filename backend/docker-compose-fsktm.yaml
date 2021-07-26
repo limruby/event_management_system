@@ -41,18 +41,18 @@ services:
       - traefik.enable=true
       - traefik.docker.network=server
 
-      - traefik.http.services.vexs_backend.loadbalancer.server.port=5000
-      - traefik.http.routers.vexs_backend.service=vexs_backend
-      #- traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
-      - traefik.http.routers.vexs_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
-      - traefik.http.routers.vexs_backend.entrypoints=https
-      - traefik.http.routers.vexs_backend.tls.certresolver=mytlschallenge
+      - traefik.http.services.iiidentex_backend.loadbalancer.server.port=5000
+      - traefik.http.routers.iiidentex_backend.service=iiidentex_backend
+      #- traefik.http.routers.iiidentex_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.iiidentex_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
+      - traefik.http.routers.iiidentex_backend.entrypoints=https
+      - traefik.http.routers.iiidentex_backend.tls.certresolver=mytlschallenge
       ### Not Secure ###
-      - traefik.http.routers.vexs_backend-unsecured.service=vexs_backend
-      # - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
-      - traefik.http.routers.vexs_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
-      - traefik.http.routers.vexs_backend-unsecured.entrypoints=http
-      # - traefik.http.routers.vexs_backend-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
+      - traefik.http.routers.iiidentex_backend-unsecured.service=iiidentex_backend
+      # - traefik.http.routers.iiidentex_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
+      - traefik.http.routers.iiidentex_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
+      - traefik.http.routers.iiidentex_backend-unsecured.entrypoints=http
+      # - traefik.http.routers.iiidentex_backend-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
     container_name: iiidentex_backend
 
 networks:
