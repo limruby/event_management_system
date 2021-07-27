@@ -57,7 +57,7 @@ function UploadReceipt() {
             }
             axiosInstance.post("/iiidentex_uitm/api/competitors/update", postData)
                 .then(function (response) {
-                    window.location.href = '/admin_dashboard';
+                    window.location.href = '/iiidentex_uitm/admin_dashboard';
                 }).catch(function (error) {
                     console.log(error);
                 })

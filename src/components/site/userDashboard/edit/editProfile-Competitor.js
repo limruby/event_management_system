@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditProfile({ data, setData }) {
-
+    localStorage.setItem("activeKeys", "Account-Profiles");
     /////////////////////get login data (REPLACE THIS) ////////////////
     const inputChange = input => e => {
         setData({
