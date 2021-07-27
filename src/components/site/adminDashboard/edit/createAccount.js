@@ -142,7 +142,7 @@ function CreateAccount() {
                     compData["amount"] = data.amount
                     axiosInstance.post("/iiidentex_uitm/api/competitors/create", compData)
                     .then(function(response){
-                        window.location.href = '/admin_dashboard';
+                        window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }).catch(function(error){
                         console.log(error)
                     })
@@ -153,7 +153,7 @@ function CreateAccount() {
                     sponsorData["amount"] = data.amount
                     axiosInstance.post("/iiidentex_uitm/api/sponsors/create", sponsorData)
                     .then(function(response){
-                        window.location.href = '/admin_dashboard';
+                        window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }).catch(function(error){
                         console.log(error)
                     })

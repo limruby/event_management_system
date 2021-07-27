@@ -21,7 +21,7 @@ function EditAccount({data, setData}) {
             ///////update to db /////////////
             axiosInstance.post("/iiidentex_uitm/api/accounts/update", data)
             .then(function(response) {
-              window.location.href = '/user_dashboard';
+              window.location.href = '/iiidentex_uitm/admin_dashboard';
             }).catch(function(error) {
               console.log(error);
             })

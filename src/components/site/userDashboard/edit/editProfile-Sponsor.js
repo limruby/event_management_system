@@ -6,7 +6,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 
 function EditProfile({ data, setData }) {
-
+  localStorage.setItem("activeKeys", "Account-Profiles");
   /////////////////////get login user (REPLACE THIS) ////////////////
   const inputChange = input => e => {
     setData({
