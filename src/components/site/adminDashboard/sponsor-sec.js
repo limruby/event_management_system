@@ -31,7 +31,7 @@ function Sponsor(){
 
   function uitmCheck(input_id){
     var id = input_id.toString()
-    hash_value = sha1(token + cmpy_code + zone + product_ID + id);
+    hash_value = sha1(token + cmpy_code + zone + product_ID + id + "iiidentex");
     document.getElementById('hashValue'+id).value = hash_value;
     url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;
     document.getElementById("uitmUpdate"+id).action = url;

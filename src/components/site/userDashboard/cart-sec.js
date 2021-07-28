@@ -22,7 +22,7 @@ function Cart({ data, setData, user }) {
             var total = 0
             var firstpurchase = 0
             if (data.first_purchase === "true" && bookQuantity > 0) {
-                firstpurchase = 30
+                firstpurchase = 80
             }
             setMedalSubtotal(medalQuantity * medalPrice)
             setBookSubtotal(bookQuantity * bookPrice + firstpurchase)
