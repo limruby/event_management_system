@@ -10,7 +10,6 @@ function Competitor() {
 
   useEffect(() => {
 
-
     axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
       .then(function (response) {
         setData(response.data.data);
@@ -19,8 +18,6 @@ function Competitor() {
       })
   }, []);
 
-
-
   var cmpy_code = "AA04"
   var zone = "02"   
   var token = "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq"
@@ -28,7 +25,6 @@ function Competitor() {
   var sha1 = require('sha1');
   var url="";
   var hash_value="";
-
 
   function uitmCheck(input_id){
     var id = input_id.toString()
