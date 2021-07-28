@@ -10,7 +10,6 @@ function Competitor() {
 
   useEffect(() => {
 
-
     axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
       .then(function (response) {
         setData(response.data.data);
@@ -18,8 +17,6 @@ function Competitor() {
         console.log(error);
       })
   }, []);
-
-
 
   var cmpy_code = "AA04"
   var zone = "02"   
@@ -29,10 +26,9 @@ function Competitor() {
   var url="";
   var hash_value="";
 
-
   function uitmCheck(input_id){
     var id = input_id.toString()
-    hash_value = sha1(token + cmpy_code + zone + product_ID + id + "iiidentex");
+    hash_value = sha1(token + cmpy_code + zone + product_ID + id);
     document.getElementById('hashValue'+id).value = hash_value;
     url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;
     document.getElementById("uitmUpdate"+id).action = url;

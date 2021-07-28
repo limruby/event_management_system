@@ -28,10 +28,10 @@ function Sponsor(){
   var hash_value = '';
   var url = '';
 
-
   function uitmCheck(input_id){
     var id = input_id.toString()
-    hash_value = sha1(token + cmpy_code + zone + product_ID + id + "iiidentex");
+    console.log(input_id)
+    hash_value = sha1(token + cmpy_code + zone + product_ID + id);
     document.getElementById('hashValue'+id).value = hash_value;
     url = "https://uitmpay.uitm.edu.my/api/payment/AA04/02/149/" + id;
     document.getElementById("uitmUpdate"+id).action = url;
@@ -78,10 +78,10 @@ function Sponsor(){
             Header: 'Check Status',
             Cell: data => (     
               <div>
-              <form className="list-group" id={`uitmUpdate${data.row.original.nric_passport_no}`} method="POST">
-                  <input type="text" name="hash_value" id={`hashValue${data.row.original.nric_passport_no}`} hidden/>
+              <form className="list-group" id={`uitmUpdate${data.row.original.company_pic_ic}`} method="POST">
+                  <input type="text" name="hash_value" id={`hashValue${data.row.original.company_pic_ic}`} hidden/>
               </form>        
-              <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.nric_passport_no)}}>
+              <button className="btn btn-success" onClick={() =>{uitmCheck(data.row.original.company_pic_ic)}}>
                 Check
               </button>
             </div>
