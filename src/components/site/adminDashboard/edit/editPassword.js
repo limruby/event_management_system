@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditPassword() {
-
+    localStorage.setItem("activeKeys", "Account")
 /////////////////////get login user (REPLACE THIS) ////////////////
 const [user, setState] = useState({
     _id: '',
