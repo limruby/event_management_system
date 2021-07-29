@@ -9,9 +9,7 @@ const Receipt = ({user,role}) =>  {
         const imageBuffer = Buffer.from(user.receipt[0].source.data); 
             section.push(
                 <li>
-                <img src={imageBuffer} alt={user.receipt[0].name} title={user.receipt[0].name}/>
-                <br></br>
-                <a download={user.receipt[0].name} href={imageBuffer} title="Download">Download</a>
+                <a download={user.receipt[0].name} href={imageBuffer} title="Download">{user.receipt[0].name}</a>
                 </li>
             );
         }

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function EditAccount({data, setData}) {
-
+    localStorage.setItem("activeKeys", "Account")
     const inputChange = input => e => {
         setData({
             ...data,

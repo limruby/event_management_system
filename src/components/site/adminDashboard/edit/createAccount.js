@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
 
 function CreateAccount() {
-
+    localStorage.setItem("activeKeys", "Account")
     var compData ={
         account_id:'',
         category:'default',
