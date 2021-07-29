@@ -6,8 +6,10 @@ function Cart({ data, setData, user }) {
     localStorage.setItem("activeKeys", "Cart")
     const [medalQuantity, setMedal] = useState(0)
     const [bookQuantity, setBook] = useState(0)
+    const [bookOnlyQuantity, setBookOnly] = useState(0)
     const [medalSubtotal, setMedalSubtotal] = useState(0)
     const [bookSubtotal, setBookSubtotal] = useState(0)
+    const [bookOnlySubtotal, setBookOnlySubtotal] = useState(0)
     const [price, setPrice] = useState(0)
 
     var cmpy_code = "AA04"
@@ -16,9 +18,10 @@ function Cart({ data, setData, user }) {
     var token = "Yb0V3AJkfDqVsJX1K7Hvuj7vPnDFyp8ZFZytBAN6sgGTtas7Fq"
 
     useEffect(() => {
-        if (medalQuantity > 0 || bookQuantity > 0) {
+        if (medalQuantity > 0 || bookQuantity > 0 ||  bookOnlyQuantity > 0) {
             var medalPrice = 50;
             var bookPrice = 70;
+            var bookOnlyPrice = 70;
             var total = 0
             var firstpurchase = 0
             if (data.first_purchase === "true" && bookQuantity > 0) {
@@ -26,20 +29,24 @@ function Cart({ data, setData, user }) {
             }
             setMedalSubtotal(medalQuantity * medalPrice)
             setBookSubtotal(bookQuantity * bookPrice + firstpurchase)
-            total = (medalQuantity * medalPrice + bookQuantity * bookPrice + firstpurchase).toFixed(2)
+            setBookOnlySubtotal(bookOnlyQuantity * bookOnlyPrice)
+            total = (medalQuantity * medalPrice + bookOnlyQuantity * bookOnlyPrice + bookQuantity * bookPrice + firstpurchase).toFixed(2)
             setPrice(total)
-            console.log("Medal Quantity:" + medalQuantity + "Total Price" + price)
-            console.log("Book Quantity:" + bookQuantity + "Total Price" + price)
+            // console.log("Medal Quantity:" + medalQuantity + "Total Price" + price)
+            // console.log("Book Quantity:" + bookQuantity + "Total Price" + price)
+            console.log("Book Only Quantity:" + bookOnlyQuantity + "Total Price" + price)
         } else {
             setMedal(0)
             setBook(0)
+            setBookOnly(0)
             setMedalSubtotal(0)
             setBookSubtotal(0)
+            setBookOnlySubtotal(0)
             total = 0
             setPrice(total)
             console.log("Empty")
         }
-    }, [bookQuantity, data.first_purchase, medalQuantity, price]);
+    }, [bookOnlyQuantity, bookQuantity, data.first_purchase, medalQuantity, price]);
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -47,6 +54,7 @@ function Cart({ data, setData, user }) {
             account_id: user._id,
             medalQuantity: medalQuantity,
             bookQuantity: bookQuantity,
+            bookOnlyQuantity: bookOnlyQuantity,
             total_price: price,
             bill_status: 'N/A',
             email: user.email,
@@ -122,8 +130,24 @@ function Cart({ data, setData, user }) {
                                     <button className="btn btn-danger cart-button" onClick={() => setBook(bookQuantity - 1)}>-</button>
                                 </div>
                             </td>
-                            <td className="table-center-text">RM 100 (First purchase) <br></br>RM 70 (Subsequent purchase)</td>
+                            <td className="table-center-text">RM 150 (First purchase) <br></br>RM 70 (Subsequent purchase)</td>
                             <td className="table-center-text">RM {bookSubtotal}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div className="cart-info table-center-text">
+                                    Book Only
+                                </div>
+                            </td>
+                            <td>
+                                <div className="cart-quantity">
+                                    <button className="btn btn-primary cart-button" onClick={() => setBookOnly(bookOnlyQuantity + 1)}>+</button>
+                                    <p className="cart-selected-quantity">{bookOnlyQuantity}</p>
+                                    <button className="btn btn-danger cart-button" onClick={() => setBookOnly(bookOnlyQuantity - 1)}>-</button>
+                                </div>
+                            </td>
+                            <td className="table-center-text">RM 70 </td>
+                            <td className="table-center-text">RM {bookOnlySubtotal}</td>
                         </tr>
                         <tr>
                             <td></td>
