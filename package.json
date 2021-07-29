@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "http://vexs.fsktm.um.edu.my/iiidentex_uitm/",
+  "homepage": "https://vexs.fsktm.um.edu.my/iiidentex_uitm/",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
