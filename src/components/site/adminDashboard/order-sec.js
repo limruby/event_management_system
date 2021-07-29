@@ -34,8 +34,12 @@ function Order(){
             accessor: 'medalQuantity',
           },
           {
-            Header: 'Book Quantity',
+            Header: 'Bookchapter Quantity',
             accessor: 'bookQuantity',
+          },
+          {
+            Header: 'Book Quantity',
+            accessor: 'bookOnlyQuantity',
           },
           {
             Header: 'Total Price',
