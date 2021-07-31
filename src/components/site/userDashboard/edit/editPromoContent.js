@@ -196,7 +196,7 @@ function EditAccount({ data, setData }) {
 
           <hr />
 
-          <h5>Video<i className="caution"> (*Max 5)</i></h5>
+          <h5>Video<i className="caution"> (*Max 5) URL Format:"https://www.youtube.com/watch?v=XXXXXXXXXXX"</i></h5>
           {displayVideoForm()}
 
           <br />
