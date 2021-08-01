@@ -13,27 +13,6 @@ function EditAccount({ data, setData }) {
     tempVidPath: ""
   });
 
-  console.log(data)
-  //load result to input field value
-  // function checkExist(element, index){
-  //     var value="";
-  //     if(data.videos!=undefined){
-  //     if(data.videos[index]==null){
-  //         value = ' ';
-  //     }
-  //     else{
-  //         if(element=='name'){
-  //            value = data.videos[index].name;
-  //         }
-  //         else if(element=='path'){
-  //             value = data.videos[index].path;
-  //         }
-  //     }
-  //     return value;
-  //   }
-  // }
-
-
   ///////display forms//////
   //poster form
   function displayPosterForm() {
@@ -331,7 +310,7 @@ function EditAccount({ data, setData }) {
             {displayGrantForm()}
           </div>
           <hr />
-          <h5>Video<i className="caution"> (*Max 1)</i></h5>
+          <h5>Video<i className="caution"> (*Max 1) URL Format:"https://www.youtube.com/watch?v=XXXXXXXXXXX"</i></h5>
           {displayVideoForm()}
 
 
