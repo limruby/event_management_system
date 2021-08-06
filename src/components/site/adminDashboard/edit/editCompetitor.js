@@ -12,7 +12,8 @@ function EditProfile() {
         gender: '',
         category: '',
         bill_verify: '',
-        receipt_no: ''
+        receipt_no: '',
+        first_purchase:''
     });
 
     const location = useLocation();
@@ -63,7 +64,8 @@ function EditProfile() {
                 gender: data.gender,
                 category: data.category,
                 bill_verify: data.bill_verify,
-                receipt_no: data.receipt_no
+                receipt_no: data.receipt_no,
+                first_purchase: data.first_purchase
             }
 
             axiosInstance.post("/iiidentex_uitm/api/competitors/update", postData)
@@ -125,6 +127,15 @@ function EditProfile() {
                             <option value="fail">Payment Fail</option>
                             <option value="pending">Pending</option>
                             <option value="success">Payment Success</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="first_purchase"><span>*</span>Bookchapter First Purchase<span> True:RM150, False:RM70</span></label>
+                        <select className="form-control" id="first_purchase" required
+                            onChange={inputChange('first_purchase')} value={data.first_purchase} >
+                            <option value="">Please select</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
                         </select>
                     </div>
 
