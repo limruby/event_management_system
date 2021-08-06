@@ -67,6 +67,10 @@ function Competitor() {
             accessor: 'bill_verify'
           },
           {
+            Header: 'Bookchapter First Purchase',
+            accessor: 'first_purchase'
+          },
+          {
             Header: 'Check Status',
             Cell: data => (     
               <div>
