@@ -25,10 +25,18 @@ function Login() {
         company_contact: "",
         amount: ""
     })
+    //Competitor
+    const [visitorData, setVisitorData] = useState({
+        nric_passport_no: "",
+        name: "",
+        contact: "",
+        amount: ""
+    })
 
     function display() {
         var user_id = compData.nric_passport_no
         var sponsor_id = sponsorData.company_pic_ic
+        var visitor_id = visitorData.nric_passport_no
         var section = []
         var cmpy_code = "AA04"
         var zone = "02"
@@ -38,6 +46,7 @@ function Login() {
         var sha1 = require('sha1');
         var hash_value = sha1(token + cmpy_code + zone + product_ID + compData.amount + "iiidentex");
         var sponsor_hash_value = sha1(token + cmpy_code + zone + product_ID + sponsorData.amount + "iiidentex");
+        var visitor_hash_value = sha1(token + cmpy_code + zone + product_ID + visitorData.amount + "iiidentex");
         if (role === "Competitor") {
             section.push(
                 <form className="list-group" id="comp_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
@@ -69,6 +78,23 @@ function Login() {
 
                     <input type="text" name="hash_value" value={sponsor_hash_value} hidden />
                     <input type="number" name="amount" value={sponsorData.amount} hidden />
+                </form>
+            )
+        }
+        else if (role === "Visitor") {
+            section.push(
+                <form className="list-group" id="visitor_uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
+                    <input type="text" name="userid" value={visitorData.name} hidden />
+                    <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
+                    <input type="text" name="name" value={visitorData.name} hidden />
+                    <input type="text" name="ic" value={visitorData.nric_passport_no.toString()} hidden />
+                    <input type="text" name="email" value={email} hidden />
+                    <input type="text" name="phone" value={visitorData.contact} hidden />
+                    <input type="text" name="designation" value={visitorData.name} hidden />
+                    <input type="text" name="address" value={address} hidden />
+
+                    <input type="text" name="hash_value" value={visitor_hash_value} hidden />
+                    <input type="number" name="amount" value={visitorData.amount} hidden />
                 </form>
             )
         }
@@ -142,6 +168,35 @@ function Login() {
                                 setSponsorData(res.data.data)
                                 if (res.data.data.bill_verify === "fail") {
                                     document.getElementById("sponsor_uitm_payment_form").submit()
+
+                                }
+                                else if (res.data.data.bill_verify === "pending") {
+                                    console.log(res.data.bill_verify)
+                                    window.location.href = "/iiidentex_uitm/pending"
+
+                                }
+                                else if (res.data.data.bill_verify === "success") {
+                                    console.log(res.data.bill_verify)
+                                    redirect()
+                                }
+                            });
+                    }
+                    else if (res.data.result.role === "Visitor") {
+                        console.log(res.data.result.role)
+                        var visitor_account_id = localStorage.getItem('user_id')
+                        axiosInstance.get('/iiidentex_uitm/api/visitors/read', { params: { account_id: visitor_account_id } })
+                            .then(res => {
+                                var visitorAddress =
+                                    res.data.data.address_1 + "," +
+                                    res.data.data.address_2 + "," +
+                                    res.data.data.postcode + "," +
+                                    res.data.data.city + "," +
+                                    res.data.data.state + "," +
+                                    res.data.data.country
+                                setAddress(visitorAddress)
+                                setVisitorData(res.data.data)
+                                if (res.data.data.bill_verify === "fail") {
+                                    document.getElementById("visitor_uitm_payment_form").submit()
 
                                 }
                                 else if (res.data.data.bill_verify === "pending") {

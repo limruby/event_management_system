@@ -4,13 +4,9 @@ import axiosInstance from '../../../utils/axiosConfig';
 import { Link } from 'react-router-dom';
 
 function Account() {
-
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
-
-
     axiosInstance.get("/iiidentex_uitm/api/accounts/readAll")
     .then(function (response) {
       setData(response.data.data);
@@ -21,7 +17,6 @@ function Account() {
   }, []);
 
   function deleteAccount(account_id) {
-
     axiosInstance.get("/iiidentex_uitm/api/accounts/deleteOne",  { params: { account_id: account_id } })
     .then(function (response) {
        window.location.reload();
@@ -49,9 +44,7 @@ function Account() {
         Cell: data => (
           <Link to={`/admin_dashboard/${data.row.original._id}/edit_password`}>
           <button className="btn btn-success" >
-
           Edit
-
           </button></Link>
           )
       },
@@ -68,29 +61,20 @@ function Account() {
           </button>
           )
       },
-
       ],
     },
-
-
     ],
     []
     )
-
-
 
  return (
     <div className="App">
       <Link to='/admin_dashboard/create_profile'>
         <button className="btn btn-danger" style={{marginBottom:"2%"}}>
-
           Create New Account
-
         </button></Link>
       <Table columns={columns} data={data} />
     </div>
   );
-
   }
-
   export default Account;
