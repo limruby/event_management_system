@@ -22,9 +22,6 @@ connection.once('open', ()=>{
 const accountsRouter = require('./routes/accounts');
 app.use('/iiidentex_uitm/api/accounts', accountsRouter)
 
-const rolesRouter = require('./routes/roles');
-app.use('/iiidentex_uitm/api/roles', rolesRouter)
-
 const competitorsRouter = require('./routes/competitors');
 app.use('/iiidentex_uitm/api/competitors', competitorsRouter)
 

@@ -6,10 +6,12 @@ import EditAccount from './editAccount.js';
 import EditPassword from './editPassword.js';
 import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
+import EditProfile_V from './editVisitor.js';
 import EditPaymentStatus from './editPaymentStatus.js';
 import CreateProfile from './createAccount.js';
 import UploadReceiptCompetitor  from './upload_receipt_competitor.js';
 import UploadReceiptSponsor  from './upload_receipt_sponsor.js';
+import UploadReceiptVisitor from './upload_receipt_visitor.js'
 
 
 function FormNavigator() {
@@ -35,6 +37,13 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				<EditPassword/>
 			</section>
 
+		)
+	}
+	else if (lastPath === 'edit_profile_visitor'){
+		return( 
+		<div className="form-main-container">
+			<EditProfile_V/>
+		</div>
 		)
 	}
 	else if (lastPath === 'edit_profile_sponsor'){
@@ -81,6 +90,15 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 
 			<section className="section-container">
 				<UploadReceiptSponsor/>
+			</section>
+
+		)			
+	}
+	else if (lastPath === 'upload_receipt_visitor'){		
+		return( 
+
+			<section className="section-container">
+				<UploadReceiptVisitor/>
 			</section>
 
 		)			

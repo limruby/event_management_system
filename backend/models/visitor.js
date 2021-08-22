@@ -3,24 +3,38 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const subSchema = new Schema({
+  name: {
+    type: String,
+    required: false
+  },
+  source: {
+    type: Buffer,
+    required: false
+  }
+});
 
 const visitorSchema = new Schema({
   account_id:{
     type: [{ type: Schema.Types.ObjectId, ref: 'Account'}],
     required: true
   },
-  category: {
+  name: {
     type: String,
     required: true
   }, 
-  visitor_name: {
+  nric_passport_selection: {
     type: String,
     required: true
   }, 
-  visitor_ic:{
+  nric_passport_no: {
     type: String,
     required: true
-  },
+  }, 
+  contact: {
+    type: String,
+    required: true
+  }, 
   address_1: {
     type: String,
     required: true
@@ -45,10 +59,6 @@ const visitorSchema = new Schema({
     type: String,
     required: true
   },
-  visitor_contact: {
-    type: String,
-    required: true
-  }, 
   receipt_no:{
     type:String
   },
@@ -66,6 +76,9 @@ const visitorSchema = new Schema({
   status:{
     type:String
   },
+  receipt:[subSchema],
+  certificate:[subSchema],
+  
 }, {
   timestamps: true,
 });

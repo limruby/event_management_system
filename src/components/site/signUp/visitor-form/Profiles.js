@@ -19,15 +19,16 @@ export class Profiles extends Component {
             e.preventDefault();
             // perform all neccassary validations
             if (
-                values.visitor_name === "" ||
-                values.visitor_contact === null ||
+                values.name === "" ||
+                values.contact === null ||
                 values.address_1 === "" ||
                 values.address_2 === "" ||
                 values.postcode === "" ||
                 values.city === "" ||
                 values.state === "" ||
                 values.country === "" ||
-                values.visitor_ic === null
+                values.nric_passport_selection === "" ||
+                values.nric_passport_no === null
                 ) {
                 alert("Form not fill");
             }
@@ -37,30 +38,32 @@ export class Profiles extends Component {
         }
         function displayInput() {
             var section = [];
-            if (values.ic_passport_selection === "NRIC") {
-                section.push(<input
+            if (values.nric_passport_selection === "NRIC") {
+                section.push(
+                <input
                     className="form-control"
                     type='text'
-                    name='ic_passport_number'
-                    id="ic_passport_number"
+                    name='nric_passport_no'
+                    id="nric_passport_no"
                     placeholder='NRIC (Without dash) '
                     required
                     pattern="[0-9]{12}"
                     onChange={
-                        inputChange('ic_passport_number')}
-                    value={values.ic_passport_number} />)
+                        inputChange('nric_passport_no')}
+                    value={values.nric_passport_no} />)
             }
-            else if (values.ic_passport_selection === "PASSPORT NUMBER") {
-                section.push(<input
+            else if (values.nric_passport_selection === "PASSPORT NUMBER") {
+                section.push(
+                <input
                     className="form-control"
                     type='text'
-                    name='ic_passport_number'
-                    id="ic_passport_number"
+                    name='nric_passport_no'
+                    id="nric_passport_no"
                     placeholder='Passport Number '
                     required
                     onChange={
-                        inputChange('ic_passport_number')}
-                    value={values.ic_passport_number} />)
+                        inputChange('nric_passport_no')}
+                    value={values.nric_passport_no} />)
             }
             return section;
         }
@@ -70,15 +73,15 @@ export class Profiles extends Component {
                 <form onSubmit={handleForm}>
                     <h1 className="mb-5">Profile Details</h1>
                     <div className="form-group">
-                        <label htmlFor="visitor_name"><span>*</span> Full Name (as per IC) </label>
-                        <input type="text" className="form-control" name="visitor_name" id="visitor_name"
+                        <label htmlFor="name"><span>*</span> Full Name (as per IC) </label>
+                        <input type="text" className="form-control" name="name" id="name"
                             placeholder='Full Name (as per IC / Passport)' required
-                            onChange={inputChange('visitor_name')} value={values.visitor_name} />
+                            onChange={inputChange('name')} value={values.name} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="ic_passport_selection"><span>*</span>NRIC / Passport Number</label>
-                        <select className="form-control" id="ic_passport_selection" required
-                            onChange={inputChange('ic_passport_selection')} value={values.ic_passport_selection} >
+                        <label htmlFor="nric_passport_selection"><span>*</span>NRIC / Passport Number</label>
+                        <select className="form-control" id="nric_passport_selection" required
+                            onChange={inputChange('nric_passport_selection')} value={values.nric_passport_selection} >
                             <option value="">Please select</option>
                             <option value="NRIC">NRIC</option>
                             <option value="PASSPORT NUMBER">Passport Number</option>
@@ -87,10 +90,10 @@ export class Profiles extends Component {
                         {displayInput()}
                     </div>
                     <div className="form-group">
-                        <label htmlFor="visitor_contact"><span>*</span>Contact Number</label>
-                        <input className="form-control" type='text' name='visitor_contact' id="visitor_contact"
-                            placeholder='Phone Number (Without dash)' required pattern="[0-9]{10,11}"
-                            onChange={inputChange('visitor_contact')} value={values.visitor_contact}
+                        <label htmlFor="contact"><span>*</span>Contact Number</label>
+                        <input className="form-control" type='text' name='contact' id="contact"
+                            placeholder='Phone Number (Without dash)' required pattern='[0-9]{10,20}'
+                            onChange={inputChange('contact')} value={values.contact}
                         />
                     </div>
 

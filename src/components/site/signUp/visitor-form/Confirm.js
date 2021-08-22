@@ -9,9 +9,10 @@ export class Confirm extends Component {
                 values: {
                     email,
                     password,
-                    visitor_name,
-                    visitor_ic,
-                    visitor_contact,
+                    name,
+                    nric_passport_selection,
+                    nric_passport_no,
+                    contact,
                     address_1,
                     address_2,
                     postcode,
@@ -26,21 +27,21 @@ export class Confirm extends Component {
                 role: "Visitor",
                 email: email,
                 password: password,
-                visitor_name: visitor_name,
-                visitor_ic: visitor_ic,
+                name: name,
+                nric_passport_selection : nric_passport_selection,
+                nric_passport_no : nric_passport_no,
                 address_1: address_1,
                 address_2: address_2,
                 postcode: postcode,
                 city: city,
                 state: state,
-                country,
-                visitor_contact: visitor_contact,
+                country: country,
+                contact: contact,
                 amount: 30
             };
             var account_id = "";
             axiosInstance.post('/iiidentex_uitm/api/accounts/signUp', data)
                 .then(res => {
-
 
                     if (res.data._id) {
                         this.account_id = res.data._id;
@@ -48,10 +49,8 @@ export class Confirm extends Component {
 
                         axiosInstance.post('/iiidentex_uitm/api/visitors/create', data)
                             .then(res => {
-
                                 localStorage.setItem("account_id", JSON.stringify(this.account_id))
-                                localStorage.setItem("visitor_ic", JSON.stringify(res.data.visitor_ic))
-
+                                localStorage.setItem("nric_passport_no", JSON.stringify(res.data.nric_passport_no))
 
                                 this.setState({ display1: 'hide' });
                                 this.setState({ display2: 'show' });
@@ -61,7 +60,6 @@ export class Confirm extends Component {
                     else {
                         alert('Email existed')
                     }
-
                 });
         }
 
@@ -71,13 +69,10 @@ export class Confirm extends Component {
         this.props.prevStep();
     };
 
-
     constructor(props) {
         super(props);
         this.state = { display1: 'show', display2: 'hide' };
     }
-
-
 
     makePayment() {
         console.log("PAY!")
@@ -106,10 +101,10 @@ export class Confirm extends Component {
                 <div className="form-container" >
                     <h1>Confirmation</h1>
                     <ul className="list-group">
-                        <li className="list-group-item"><b>Full Name:</b> {values.visitor_name}</li>
-                        <li className="list-group-item"><b>IC:</b> {values.visitor_ic}</li>
+                        <li className="list-group-item"><b>Full Name:</b> {values.name}</li>
+                        <li className="list-group-item"><b>IC:</b> {values.nric_passport_no}</li>
                         <li className="list-group-item"><b>Email:</b> {values.email}</li>
-                        <li className="list-group-item"><b>Phone Number:</b> {values.visitor_contact}</li>
+                        <li className="list-group-item"><b>Phone Number:</b> {values.contact}</li>
                         <li className="list-group-item"><b>Address:</b>
                             {values.address_1}, 
                             {values.address_2},
@@ -124,13 +119,13 @@ export class Confirm extends Component {
 
                     <br /><br />
                     <form className="list-group" id="uitm_payment_form" action="https://uitmpay.uitm.edu.my/otherservices/products/AA04/02/149" method="POST">
-                        <input type="text" name="userid" value={values.visitor_name} hidden />
+                        <input type="text" name="userid" value={values.name} hidden />
                         <input type="text" name="ord_mercref" value={"iiidentex"} hidden />
-                        <input type="text" name="name" value={values.visitor_name} hidden/>
-                        <input type="text" name="ic" value={values.visitor_ic.toString()}  hidden/>
+                        <input type="text" name="name" value={values.name} hidden/>
+                        <input type="text" name="ic" value={values.nric_passport_no.toString()}  hidden/>
                         <input type="text" name="email" value={values.email} hidden/>
-                        <input type="text" name="phone" value={values.visitor_contact} hidden/>
-                        <input type="text" name="designation" value={values.visitor_name}  hidden/>
+                        <input type="text" name="phone" value={values.contact} hidden/>
+                        <input type="text" name="designation" value={values.name}  hidden/>
                         <input type="text" name="address" value={uitmpay_address} hidden />
 
                         <input type="text" name="hash_value" value={hash_value}hidden />
