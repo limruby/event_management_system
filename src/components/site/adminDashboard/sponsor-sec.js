@@ -4,12 +4,9 @@ import {Link} from 'react-router-dom';
 import axiosInstance from '../../../utils/axiosConfig';
 
 function Sponsor(){
-
   const [data, setData]=useState([]);
   
-  useEffect(() => {
-    
-    
+  useEffect(() => { 
     axiosInstance.get("/iiidentex_uitm/api/sponsors/readAll")
     .then(function(response) {
       setData(response.data.data);

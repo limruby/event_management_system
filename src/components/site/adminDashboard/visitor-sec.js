@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import axiosInstance from '../../../utils/axiosConfig';
 import axios from 'axios';
 
-function Competitor() {
+function Visitor() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
 
-    axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
+    axiosInstance.get("/iiidentex_uitm/api/visitors/readAll")
       .then(function (response) {
         setData(response.data.data);
       }).catch(function (error) {
@@ -50,12 +50,12 @@ function Competitor() {
         columns: [
 
           {
-            Header: 'Category',
-            accessor: 'category',
-          },
-          {
             Header: 'Name',
             accessor: 'name',
+          },
+          {
+            Header: 'Contact Number',
+            accessor: 'contact',
           },
           {
             Header: 'Bill ID',
@@ -64,10 +64,6 @@ function Competitor() {
           {
             Header: 'Bill Verify',
             accessor: 'bill_verify'
-          },
-          {
-            Header: 'Bookchapter First Purchase',
-            accessor: 'first_purchase'
           },
           {
             Header: 'Check Status',
@@ -86,7 +82,7 @@ function Competitor() {
           {
             Header: 'Edit',
             Cell: data => (
-              <Link to={`admin_dashboard/${data.row.original.account_id}/edit_profile_competitor`}>
+              <Link to={`admin_dashboard/${data.row.original.account_id}/edit_profile_visitor`}>
                 <button className="btn btn-success" >
                   Edit
                 </button></Link>
@@ -94,9 +90,9 @@ function Competitor() {
             )
           },
           {
-            Header: 'Upload Receipt',
+            Header: 'Upload Receipt & Cert',
             Cell: data => (
-              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt_competitor`}>
+              <Link to={`admin_dashboard/${data.row.original.account_id}/upload_receipt_visitor`}>
                 <button className="btn btn-success" >
                   Upload
                 </button></Link>
@@ -106,6 +102,10 @@ function Competitor() {
           {
             Header: 'Receipt Name',
             accessor: 'receipt[0].name'
+          },
+          {
+            Header: 'Cert Name',
+            accessor: 'certificate[0].name'
           },
         ],
       },
@@ -126,4 +126,4 @@ function Competitor() {
 
     }
 
-    export default Competitor;
+    export default Visitor;

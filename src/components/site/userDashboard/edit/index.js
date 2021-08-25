@@ -8,6 +8,7 @@ import EditAccount from './editAccount.js';
 import EditPassword from './editPassword.js';
 import EditProfile_C from './editProfile-Competitor.js';
 import EditProfile_S from './editProfile-Sponsor.js';
+import EditProfile_V from './editProfile-Visitor.js';
 import EditResearchTeam from './editResearchTeam.js';
 import EditPromoContent from './editPromoContent.js';
 import EditCompetitionMaterial from './editCompetitionMaterial.js';
@@ -31,6 +32,12 @@ function FormNavigator() {
 				console.log(error);
 			});
 		axiosInstance.get("/iiidentex_uitm/api/sponsors/read", { params: { account_id: account_id } })
+			.then(function (response) {
+				setUser(response.data.data);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		axiosInstance.get("/iiidentex_uitm/api/visitors/read", { params: { account_id: account_id } })
 			.then(function (response) {
 				setUser(response.data.data);
 			}).catch(function (error) {
@@ -79,6 +86,20 @@ function FormNavigator() {
 				return (
 					<div className="form-main-container">
 						<EditPromoContent data={user} setData={setUser} />
+					</div>
+				)
+				break;
+
+			default:
+
+		}
+	}
+	else if (account.role === 'Visitor') {
+		switch (lastPath) {
+			case 'edit_profile':
+				return (
+					<div className="form-main-container">
+						<EditProfile_V data={user} setData={setUser} />
 					</div>
 				)
 				break;
