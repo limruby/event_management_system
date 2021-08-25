@@ -1,10 +1,9 @@
 const Profiles = ({user,role}) =>  {
-
 function display(){
 var section =[];
 if(user.company_logo){
 
-    for (var i=0; i<user.company_logo.length; i++){
+for (var i=0; i<user.company_logo.length; i++){
 	const imageBuffer = Buffer.from(user.company_logo[0].source.data); 
         section.push(
             <li>
@@ -15,10 +14,8 @@ if(user.company_logo){
     }
 	}else{
 	console.log("no data");
-	
 	}
     return section;
-
   }
    
   if(role === 'Competitor'){
@@ -49,8 +46,6 @@ if(user.company_logo){
      );
    }
   else if(role === 'Sponsor'){
-
-
     return (       
       <div>
         <ul>
@@ -75,6 +70,23 @@ if(user.company_logo){
           </li>
           <li>
             <p> Company Website URL: <a href={user.company_website}>{user.company_website}</a></p>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+  else if(role === 'Visitor'){
+    return (       
+      <div>
+        <ul>
+          <li>
+            <p> Full Name: {user.name} </p>
+          </li>
+          <li>
+            <p> Contact Number: {user.contact}</p>
+          </li>
+          <li>
+          <p> Address: {user.address_1}, {user.address_2}, {user.postcode}, {user.city}, {user.state}, {user.country}  </p>
           </li>
         </ul>
       </div>

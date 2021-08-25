@@ -41,17 +41,16 @@ const create = (req, res, next)=>{
       .catch(err => res.status(400).json('Error: ' + err));
 };
 
-
 const read = (req, res, next)=>{
-  var _id = JSON.parse(req.query._id);
-  Visitor.findOne({_id: ObjectId(_id)}, (err, visitors) => {
+  var account_id = JSON.parse(req.query.account_id);
+  Visitor.findOne({account_id: ObjectId(account_id)}, (err, visitors) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
         if (!visitors) {
             return res
                 .status(404)
-                .json({ success: false, error: req.query._id })
+                .json({ success: false, error: req.query.account_id })
         }
         return res.status(200).json({ success: true, data: visitors })
     }).catch(err => console.log(err))

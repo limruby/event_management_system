@@ -3,7 +3,6 @@ import axiosInstance from '../../../../src/utils/axiosConfig.js';
 import OrderHistory from './order-history-sec.js'
 
 function Cart({ data, setData, user }) {
-    localStorage.setItem("activeKeys", "Cart")
     const [medalQuantity, setMedal] = useState(0)
     const [bookQuantity, setBook] = useState(0)
     const [bookOnlyQuantity, setBookOnly] = useState(0)
@@ -70,7 +69,8 @@ function Cart({ data, setData, user }) {
                             first_purchase: "false"
                         }
                         axiosInstance.post("/iiidentex_uitm/api/competitors/update", status)
-                            .then(function (response) {                               
+                            .then(function (response) {      
+                                localStorage.setItem("activeKeys", "Cart")                         
                             }).catch(function (error) {
                                 console.log(error);
                             })
