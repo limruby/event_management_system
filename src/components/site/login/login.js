@@ -182,8 +182,8 @@ function Login() {
                             });
                     }
                     else if (res.data.result.role === "Visitor") {
-                        console.log(res.data.result.role)
                         var visitor_account_id = localStorage.getItem('user_id')
+                        console.log(visitor_account_id)
                         axiosInstance.get('/iiidentex_uitm/api/visitors/read', { params: { account_id: visitor_account_id } })
                             .then(res => {
                                 var visitorAddress =
@@ -197,12 +197,10 @@ function Login() {
                                 setVisitorData(res.data.data)
                                 if (res.data.data.bill_verify === "fail") {
                                     document.getElementById("visitor_uitm_payment_form").submit()
-
                                 }
                                 else if (res.data.data.bill_verify === "pending") {
                                     console.log(res.data.bill_verify)
                                     window.location.href = "/iiidentex_uitm/pending"
-
                                 }
                                 else if (res.data.data.bill_verify === "success") {
                                     console.log(res.data.bill_verify)

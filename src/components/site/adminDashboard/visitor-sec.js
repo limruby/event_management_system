@@ -92,7 +92,7 @@ function Visitor() {
           {
             Header: 'Upload Receipt & Cert',
             Cell: data => (
-              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt_visitor`}>
+              <Link to={`admin_dashboard/${data.row.original.account_id}/upload_receipt_visitor`}>
                 <button className="btn btn-success" >
                   Upload
                 </button></Link>

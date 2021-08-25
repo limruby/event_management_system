@@ -17,11 +17,11 @@ function EditProfile() {
     const thePath = location.pathname;
     const user_id = thePath.substring(thePath.indexOf('/', 2) + 1, thePath.lastIndexOf('/'));
     const string = '"' + user_id + '"'
-
+    console.log( user_id)
     useEffect(() => {
         axiosInstance.get("/iiidentex_uitm/api/visitors/read", { params: { account_id: string } })
             .then(function (response) {
-                setData(response.data.data);
+                setData(response.data.data);            
             }).catch(function (error) {
                 console.log(error);
             })

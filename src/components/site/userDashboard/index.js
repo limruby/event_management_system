@@ -15,6 +15,7 @@ import Cart from './cart-sec'
 import PdfAbstract from './pdf-abstract-bookChapter';
 import Preview from './preview-sec';
 import Receipt from './receipt-sec';
+import Cert from './cert-sec';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
@@ -42,14 +43,18 @@ function UserDashboard() {
       }).catch(function (error) {
         console.log(error);
       });
-
+    axiosInstance.get("/iiidentex_uitm/api/visitors/read", { params: { account_id: account_id } })
+      .then(function (response) {
+        setUser(response.data.data);
+      }).catch(function (error) {
+        console.log(error);
+      })
     axiosInstance.get("/iiidentex_uitm/api/accounts/read", { params: { account_id: account_id } })
       .then(function (response) {
         setAccount(response.data.data);
       }).catch(function (error) {
         console.log(error);
       })
-
   }, [account_id]);
   if (user.bill_verify === "pending") {
     window.location.href = "/iiidentex_uitm/pending"
@@ -68,6 +73,13 @@ function UserDashboard() {
           <div className="row-username">
             <p>Welcome {user.name}</p>
           </div>);
+
+      case 'Visitor':
+        return (
+          <div className="row-username">
+            <p>Welcome {user.name}</p>
+          </div>);
+
       default:
         return (
           <div className="row-username">
@@ -122,6 +134,20 @@ function UserDashboard() {
             </Nav.Item>
           </Nav>
         );
+      case 'Visitor':
+        return (
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="Account-Profiles"><BsPeopleCircle size={20} /> Profiles</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Receipt"><FaReceipt size={20} /> Receipt</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Cert"><FaCertificate size={20} /> Certificate</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        );
       default:
         return '';
     }
@@ -137,24 +163,16 @@ function UserDashboard() {
 
   return (
     <>
-
       {welcome(account.role)}
-
       <div className="wrapper">
         <Tab.Container id="left-tabs-example" defaultActiveKey={activeKeys}>
           <Row>
             <Col sm={3} className="sidebar-wrapper">
-
               {TabTitles(account.role)}
-
             </Col>
-
-
             <Col sm={9}>
               <Tab.Content>
-
                 <Tab.Pane eventKey="Account-Profiles">
-
                   <Card>
                     <Card.Body>
                       <div className="sec-container">
@@ -175,9 +193,7 @@ function UserDashboard() {
                       </div>
                     </Card.Body>
                   </Card>
-
                   <p />
-
                   <Card>
                     <Card.Body>
                       <div className="sec-container">
@@ -189,9 +205,7 @@ function UserDashboard() {
                       </div>
                     </Card.Body>
                   </Card>
-
                 </Tab.Pane>
-
                 <Tab.Pane eventKey="Promo-Content">
                   <Card>
                     <Card.Body>
@@ -292,9 +306,7 @@ function UserDashboard() {
                     <Card.Body>
                       <div className="sec-container">
                         <h2> Download Certification</h2>
-
-                        <h5>Coming Soon</h5>
-
+                        <Cert user ={user} role={account.role}/>
                       </div>
                     </Card.Body>
                   </Card>
@@ -302,8 +314,8 @@ function UserDashboard() {
                 <Tab.Pane eventKey="Cart">
                   <Card>
                     <Card.Body>
-                      <div className="sec-container">                                     
-                          <Cart data={user} setData={setUser} user={account}/>
+                      <div className="sec-container">
+                        <Cart data={user} setData={setUser} user={account} />
                       </div>
                     </Card.Body>
                   </Card>
@@ -313,13 +325,8 @@ function UserDashboard() {
 
           </Row>
         </Tab.Container>
-
       </div>
-
-
-
-
-    </>
+   </>
   );
 
 }

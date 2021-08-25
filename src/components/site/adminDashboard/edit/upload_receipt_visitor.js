@@ -14,9 +14,8 @@ function UploadReceipt() {
     const thePath = location.pathname;
     const user_id = thePath.substring(thePath.indexOf('/', 2) + 1, thePath.lastIndexOf('/'));
     const string = '"' + user_id + '"'
-    console.log(user_id)
     useEffect(() => {
-        axiosInstance.get("/iiidentex_uitm/api/visitors/read", { params: { _id: string } })
+        axiosInstance.get("/iiidentex_uitm/api/visitors/read", { params: { account_id: string } })
             .then(function (response) {
                 setData(response.data.data);
             }).catch(function (error) {
@@ -28,21 +27,18 @@ function UploadReceipt() {
         var section = [];
         if (data.receipt == null || data.receipt[0] == null) {
             section.push(
-                <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
-                    <h1 className="mb-5">Upload Receipt</h1>
-                    <div className="form-group">
-                        <label htmlFor="receipt"><span>*</span>Upload Receipt</label><br />
-                        <input type="file" onChange={uploadReceiptHandler('receipt', 0)} />
-                    </div>
+                <div className="form-group" style={{ paddingBottom: "5%" }}>
+                    <h1 className="mb-5">Upload Receipt<span>*</span></h1>
+                    <input type="file" onChange={uploadReceiptHandler('receipt', 0)} />
                 </div>
             );
         }
         else {
             section.push(
-                <div>
-                    <p>{data.receipt[0].name}
-                        <button className="deleteBtn" type="button" onClick={deleteFile('receipt', 0)}> <FaTrashAlt /></button>
-                    </p>
+                <div className="member-box">
+                    <h1 className="mb-5">Receipt</h1>
+                    <p>{data.receipt[0].name}</p>
+                    <button className="deleteBtn" type="button" onClick={deleteFile('receipt', 0)}> <FaTrashAlt /></button>
                 </div>
             )
         }
@@ -52,21 +48,18 @@ function UploadReceipt() {
         var section = [];
         if (data.certificate == null || data.certificate[0] == null) {
             section.push(
-                <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
-                    <h1 className="mb-5">Upload Certificate</h1>
-                    <div className="form-group">
-                        <label htmlFor="certificate"><span>*</span>Upload Certificate</label><br />
-                        <input type="file" onChange={uploadCertHandler('certificate', 0)} />
-                    </div>
+                <div className="form-group" style={{ paddingBottom: "5%" }}>
+                    <h1 className="mb-5">Upload Certificate<span>*</span></h1>
+                    <input type="file" onChange={uploadCertHandler('certificate', 0)} />
                 </div>
             );
         }
         else {
             section.push(
-                <div>
-                    <p>{data.certificate[0].name}
-                        <button className="deleteBtn" type="button" onClick={deleteFile('certificate', 0)}> <FaTrashAlt /></button>
-                    </p>
+                <div className="member-box">
+                    <h1 className="mb-5">Certificate</h1>
+                    <p>{data.certificate[0].name}</p>
+                    <button className="deleteBtn" type="button" onClick={deleteFile('certificate', 0)}> <FaTrashAlt /></button>
                 </div>
             )
         }
@@ -75,6 +68,7 @@ function UploadReceipt() {
     //////action performed//////
     var obj = [];
     const deleteFile = (element, index) => e => {
+        if((window.confirm('Are you sure you wish to delete this item?'))){
         if (element === 'receipt') {
             let obj = data.receipt;
             obj.splice(index, 1);
@@ -87,6 +81,7 @@ function UploadReceipt() {
             ...data,
 
         });
+    }
     }
     const uploadReceiptHandler = (element, index) => e => {
         let selectedFile = e.target.files;
@@ -141,7 +136,7 @@ function UploadReceipt() {
         e.preventDefault();
         ///////update to db /////////////   
         var postData = {
-            _id: user_id,
+            _id: data._id,
             receipt: data.receipt,
             certificate: data.certificate
         }
@@ -155,13 +150,15 @@ function UploadReceipt() {
     return (
         <>
             <form onSubmit={handleForm}>
-                {displayReceiptForm()}
-                {displayCertForm()}
-                <div className="btn-group">
-                    <Link to="/admin_dashboard">
-                        <button className="btn btn-danger back-btn">Back</button>
-                    </Link>
-                    <input className="btn btn-primary" type="submit" value="Update" />
+                <div className="edit-form-container" style={{ marginTop: "5%", marginBottom: "5%" }}>
+                    {displayReceiptForm()}
+                    {displayCertForm()}
+                    <div className="btn-group">
+                        <Link to="/admin_dashboard">
+                            <button className="btn btn-danger back-btn">Back</button>
+                        </Link>
+                        <input className="btn btn-primary" type="submit" value="Update" />
+                    </div>
                 </div>
             </form>
         </>
