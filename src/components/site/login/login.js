@@ -183,7 +183,6 @@ function Login() {
                     }
                     else if (res.data.result.role === "Visitor") {
                         var visitor_account_id = localStorage.getItem('user_id')
-                        console.log(visitor_account_id)
                         axiosInstance.get('/iiidentex_uitm/api/visitors/read', { params: { account_id: visitor_account_id } })
                             .then(res => {
                                 var visitorAddress =

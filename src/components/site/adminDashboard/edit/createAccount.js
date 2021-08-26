@@ -102,8 +102,6 @@ function CreateAccount() {
                 'amount' : amount
             });
         }
-
-
     };
 
     function displayCategory(){
