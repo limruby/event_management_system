@@ -37,6 +37,19 @@ function CreateAccount() {
         state:'default',
         country:'default',
     }
+    var visitorData ={
+        account_id:'',
+        name:'default',
+        nric_passport_selection:'NRIC',
+        nric_passport_no: 123456789,
+        contact :'0123456789',
+        address_1:'default',
+        address_2:'default',
+        postcode:12345,
+        city:'default',
+        state:'default',
+        country:'default'
+    }
 
     const [data, setData] = useState({
         email:'',
@@ -89,8 +102,6 @@ function CreateAccount() {
                 'amount' : amount
             });
         }
-
-
     };
 
     function displayCategory(){
@@ -158,6 +169,16 @@ function CreateAccount() {
                         console.log(error)
                     })
                 }
+                else if(data.role === "Visitor"){
+                    visitorData["account_id"] = response.data._id
+                    visitorData["amount"] = 30
+                    axiosInstance.post("/iiidentex_uitm/api/visitors/create", visitorData)
+                    .then(function(response){
+                        window.location.href = '/iiidentex_uitm/admin_dashboard';
+                    }).catch(function(error){
+                        console.log(error)
+                    })
+                }
             }).catch(function(error) {
                 console.log(error);
             })
@@ -193,6 +214,7 @@ function CreateAccount() {
                         <option value="">Please select</option>
                         <option value="Competitor">Competitor</option>
                         <option value="Sponsor">Sponsor</option>
+                        <option value="Visitor">Visitor</option>
                         {/* <option value="Speaker">Speaker</option>
                         <option value="Judge">Judge</option> */}
                     </select> 
