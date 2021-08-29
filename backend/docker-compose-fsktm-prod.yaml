@@ -64,7 +64,7 @@ services:
       - traefik.http.routers.iiidentex_backend_prod_insecure.service=iiidentex_backend_prod_insecure
       - traefik.http.routers.iiidentex_backend_prod_insecure.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
       - traefik.http.routers.iiidentex_backend_prod_insecure.entrypoints=http
-    container_name: iiidentex_backend_prod
+    container_name: iiidentex_backend_prod_insecure
 
 networks:
   server:
