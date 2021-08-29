@@ -40,9 +40,30 @@ services:
       ### Not Secure ###
       # - traefik.http.routers.iiidentex_backend_prod-unsecured.service=iiidentex_backend_prod
       # - traefik.http.routers.iiidentex_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/api/`)
-      - traefik.http.routers.iiidentex_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
-      - traefik.http.routers.iiidentex_backend_prod-unsecured.entrypoints=http
-      - traefik.http.routers.iiidentex_backend_prod-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
+      # - traefik.http.routers.iiidentex_backend_prod-unsecured.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
+      # - traefik.http.routers.iiidentex_backend_prod-unsecured.entrypoints=http
+      # - traefik.http.routers.iiidentex_backend_prod-unsecured.middlewares=redirect@file # uncomment to enable ssl when 443 is ready
+    container_name: iiidentex_backend_prod
+  
+  iiidentex_backend_prod_insecure:
+    # build: .
+    depends_on:
+      - iiidentex_mongodb_prod
+    image: iiidentex/backend_prod_insecure
+    restart: always
+    environment:
+        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@iiidentex_mongodb_prod:27017/db?authSource=admin&readPreference=primary
+        JSONWTK: ${JSONWTK}
+    networks:
+      - server
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=server
+
+      - traefik.http.services.iiidentex_backend_prod_insecure.loadbalancer.server.port=5000
+      - traefik.http.routers.iiidentex_backend_prod_insecure.service=iiidentex_backend_prod_insecure
+      - traefik.http.routers.iiidentex_backend_prod_insecure.rule=Host(`vexs.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
+      - traefik.http.routers.iiidentex_backend_prod_insecure.entrypoints=http
     container_name: iiidentex_backend_prod
 
 networks:
