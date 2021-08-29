@@ -10,9 +10,9 @@ rm -r ./build
 cd ./backend
 sudo docker build -t iiidentex/backend_prod . 
 
+cd ../
 # build insecure web
 rm -r ./backend/public
-npm install
 npm run build:insecure
 cp -r build ./backend/public
 rm -r ./build
