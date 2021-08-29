@@ -52,7 +52,7 @@
     "server": "nodemon server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:insecure": "env-cmd -f ./.insecure.env && npm run-script build"
+    "build:insecure": "env-cmd -f ./.insecure.env npm run-script build"
   },
   "eslintConfig": {
     "extends": [
