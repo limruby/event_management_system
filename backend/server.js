@@ -34,6 +34,12 @@ app.use('/iiidentex_uitm/api/visitors', visitorsRouter)
 const cartRouter = require('./routes/cart');
 app.use('/iiidentex_uitm/api/cart', cartRouter)
 
+const judgeRouter = require('./routes/judge');
+app.use('/iiidentex_uitm/api/judge', judgeRouter)
+
+const forumRouter = require('./routes/forum');
+app.use('/iiidentex_uitm/api/forum', forumRouter)
+
 app.use('/iiidentex_uitm', express.static(__dirname + "/public"));
 
 app.use('/iiidentex_uitm', (req, res, next) => {

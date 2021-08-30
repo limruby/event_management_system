@@ -10,7 +10,10 @@ import UserDashboard from './components/site/userDashboard';
 import EditUserDetails from './components/site/userDashboard/edit';
 import eventLobby from './components/site/eventLobby/eventLobby';
 import sponsor_hall from './components/site/eventLobby/sponsor_hall/sponsor_hall';
+import sponsor_booth from './components/site/eventLobby/sponsor_hall/sponsor_booth';
 import competition_hall from './components/site/eventLobby/competition_hall/competition_hall';
+import competition_booth from './components/site/eventLobby/competition_hall/comp_booth'
+import report from './components/site/eventLobby/competition_hall/report-sec'
 import Navbar from './components/site/navbar';
 import Footer from './components/site/footer';
 import AdminDashboard from './components/site/adminDashboard';
@@ -74,7 +77,10 @@ function App() {
 
 		    <Route exact path='/eventLobby'  component={eventLobby}/>  
         <Route exact path='/sponsor_hall'  component={sponsor_hall}/> 
+        <Route exact path='/sponsor_booth/:id'  component={sponsor_booth}/> 
         <Route exact path='/competition_hall'  component={competition_hall}/>
+        <Route exact path='/competition_booth/:id'  component={competition_booth}/>
+        <Route exact path='/report'  component={report}/>
 
         <PrivateRoute exact path='/pending'  component={Pending}/>
         <Route component={PageNotFound} />
