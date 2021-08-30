@@ -20,6 +20,7 @@ const create = (req, res, next)=>{
   const amount = req.body.amount;
   const receipt = req.body.receipt;
   const first_purchase = "true";
+  const certificate = req.body.certificate;
 
     const newCompetitor = new Competitor({
       account_id, 
@@ -38,6 +39,7 @@ const create = (req, res, next)=>{
       gender,
       phone_no, 
       receipt,
+      certificate,
       first_purchase
     });
 
@@ -144,6 +146,9 @@ const update = (req, res, next)=>{
   }
   if(req.body.receipt){
     updateCompetitor['receipt'] = req.body.receipt;
+  }
+  if(req.body.certificate){
+    updateCompetitor['certificate'] = req.body.certificate;
   }
   if(req.body.first_purchase){
     updateCompetitor['first_purchase'] = req.body.first_purchase;

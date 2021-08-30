@@ -94,9 +94,9 @@ function Competitor() {
             )
           },
           {
-            Header: 'Upload Receipt',
+            Header: 'Upload Receipt & Cert',
             Cell: data => (
-              <Link to={`admin_dashboard/${data.row.original._id}/upload_receipt_competitor`}>
+              <Link to={`admin_dashboard/${data.row.original.account_id}/upload_receipt_competitor`}>
                 <button className="btn btn-success" >
                   Upload
                 </button></Link>
@@ -106,6 +106,10 @@ function Competitor() {
           {
             Header: 'Receipt Name',
             accessor: 'receipt[0].name'
+          },
+          {
+            Header: 'Cert Name',
+            accessor: 'certificate[0].name'
           },
         ],
       },
