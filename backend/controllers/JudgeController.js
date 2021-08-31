@@ -1,8 +1,6 @@
 const Judge = require('../models/judge');
 var ObjectId = require('mongodb').ObjectId;
 require('dotenv').config();
-// var LocalStorage = require('node-localstorage').LocalStorage,
-// localStorage = new LocalStorage('./scratch');
 
 const create = (req, res, next)=>{
 
@@ -117,9 +115,6 @@ const update = (req, res, next)=>{
   if(req.body.poster){
     updateJudge['poster'] = req.body.poster;
   }
-
-
-
 
   Judge.findByIdAndUpdate(req.body._id, updateJudge, (err, judge) => {
     if (err) {

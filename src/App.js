@@ -65,6 +65,7 @@ function App() {
 
         <AdminRoute exact path='/admin_dashboard'  component={AdminDashboard}/>
         <AdminRoute exact path='/admin_dashboard/edit_account'  component={AdminEditDetails}/>
+        <AdminRoute exact path='/admin_dashboard/:id/assign_project_title'  component={AdminEditDetails}/>
         <AdminRoute exact path='/admin_dashboard/:id/edit_password'  component={AdminEditDetails}/> 
         <AdminRoute exact path='/admin_dashboard/:id/edit_profile_sponsor'  component={AdminEditDetails}/> 
         <AdminRoute exact path='/admin_dashboard/:id/edit_profile_competitor'  component={AdminEditDetails}/> 
