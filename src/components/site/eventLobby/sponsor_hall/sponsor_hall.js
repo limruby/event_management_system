@@ -132,7 +132,7 @@ function Sponsor_hall() {
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#fff" }}>
+      <div className="column" style={{ backgroundColor: "#fff" }}>
         <div className="sponsor">
           <h1>Featured Sponsor</h1>
           <div>{displayGoldSponsor()}</div>

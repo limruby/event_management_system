@@ -250,7 +250,7 @@ function Sponsor_booth() {
     <header className="masthead comp-background">
       <div className="container">
         <div className="intro-text">
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="intro-heading">
               {displayTitle()}
               {displayLogo()}
