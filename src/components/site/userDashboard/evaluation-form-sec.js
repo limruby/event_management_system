@@ -1,25 +1,63 @@
-import React from 'react';
-import PdfDownloader from './../../PdfDownloader';
+import React, { useState, useEffect } from "react";
+import Table from './Table.js';
+import { Link } from 'react-router-dom';
+import axiosInstance from '../../../utils/axiosConfig.js';
 
-const Evaluation_Form = ({user}) =>  {
-  function displayMembers(){
-    var section = [];
+function Evaluation_Form() {
+  const [data, setData] = useState([]);
+  const [comp, setComp] = useState([]);
+  const [assigned, setAssigned] = useState([])
+  const account_id = localStorage.getItem('user_id');
+  
+  useEffect(() => {
+    axiosInstance.get("/iiidentex_uitm/api/judge/read", { params: { account_id: account_id } })
+      .then(function (response) {
+        setData(response.data.data);
+      }).catch(function (error) {
+        console.log(error);
+      })
+    axiosInstance.get("/iiidentex_uitm/api/evaluation/read", { params: { judge_id: data._id } })
+      .then(function (response) {
+        setAssigned(response.data.data)
+      }).catch(function (error) {
+        console.log(error);
+      })
 
-    
-    return section;  
-  }
+  }, [account_id, data._id])
 
-  return (       
+  
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Assigned Competitor',
+        columns: [
+          {
+            Header: 'Competitor Name',
+            accessor: 'competitor_name'
+          },
+          {
+            Header: 'Booth',
+            Cell: assigned => (
+              <Link to={`/competition_booth/${assigned.competitor_id}`}>
+                <button className="btn btn-success" >
+                  Visit
+                </button></Link>
+            )
+          },
+        ],
+      },
+    ],
+    []
+  )
+
+  return (
     <div>
       <div>
-        {displayMembers()}
-      </div> 
-    </div>  
+        <Table columns={columns} data={assigned} />
+      </div>
+    </div>
   );
- 
+
 }
-
-
-
 
 export default Evaluation_Form;

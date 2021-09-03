@@ -16,6 +16,7 @@ const create = (req, res, next)=>{
   const city = req.body.city;
   const state = req.body.state;
   const country = req.body.country;
+  const poster = req.body.poster;
   
 
   const newJudge = new Judge({
@@ -31,6 +32,7 @@ const create = (req, res, next)=>{
     city,
     state,
     country,
+    poster
   });
 
   newJudge.save()
@@ -126,8 +128,5 @@ const update = (req, res, next)=>{
   }).catch(err => console.log(err))
 };
 
-
-
-
-  module.exports = {create, read, readAll, update}
+module.exports = {create, read, readAll, update}
 

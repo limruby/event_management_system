@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from '../../../../utils/axiosConfig';
+import "./../../../../assets/css/agency.min.css";
 import { useLocation } from "react-router-dom";
 import { BsPeopleCircle } from "react-icons/bs";
 
@@ -54,7 +55,7 @@ function Sponsor_booth() {
       comment_date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate()
     }
     if (comment !== null) {
-      axiosInstance.post("/api/forum/create", postData)
+      axiosInstance.post("/iiidentex_uitm/api/forum/create", postData)
         .then(function (response) {
           location.reload()
         }).catch(function (error) {

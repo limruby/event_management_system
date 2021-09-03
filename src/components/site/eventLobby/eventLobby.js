@@ -34,23 +34,41 @@ function EventLobby() {
 
       <div>
         <div className="img-container">
-          <div onClick={() => history.push("/sponsor_hall")} className="sponsors-hall">
-            SPONSORS HALL<span className="sponsors-arrow"></span>
-          </div>
-
-
-          <div onClick={() => history.push("/speakers")} className="speakers">
+        <div className="sponsors-dropdown sponsors-hall">
+          SPONSORS HALL<span className="sponsors-arrow"></span>
+            <div className="sponsors-dropdown-content">            
+                <a href="/sponsor_hall">DINOWEX</a><span className="sponsors-dropdown-arrow"></span>
+                <a href="/iiidentex_uitm/sponsor_hall">IIIDENTEX</a><span className="sponsors-dropdown-arrow"></span>             
+            </div>
+        </div>
+        
+            <div className="speakers-dropdown speakers">
             <span className="speakers-arrow"></span>SPEAKERS
-          </div>
+            <div className="speakers-dropdown-content">
 
-          <div onClick={() => history.push("/competition_hall")} className="competitors-hall">
-            COMPETITORS HALL<span className="competitors-arrow"></span>
-          </div>
+                {/* <span className="speakers-dropdown-arrow"></span>DINOWEX */}
+                <span className="speakers-dropdown-arrow"></span>N/A
 
-          <a href="https://www.google.com" className="youtube-event">
+            </div>
+            </div>
+
+            <div className="competitors-dropdown competitors-hall">
+                COMPETITORS HALL<span className="competitors-arrow"></span>
+                <div className="competitors-dropdown-content">
+              
+                <a href="/competition_hall">DINOWEX</a><span className="competitors-dropdown-arrow"></span>
+                <a href="/iiidentex_uitm/competition_hall">IIIDENTEX</a><span className="competitors-dropdown-arrow"></span>
+              
+                </div>
+            </div>
+            <div className="youtube-dropdown youtube-event">
             <span className="youtube-event-arrow"></span>YOUTUBE - EVENT
-          </a>
-          <Image src={eventlobby} height="100%" width="100%" alt="" responsive />
+            <div className="youtube-dropdown-content">
+                {/* <span className="youtube-dropdown-arrow"></span>DINOWEX */}
+                <span className="youtube-dropdown-arrow"></span>N/A
+            </div>
+            </div>           
+            <Image src={eventlobby} height="100%" width="100%" alt="" responsive />
         </div>
       </div>
     </div>

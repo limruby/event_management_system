@@ -16,6 +16,7 @@ import PdfAbstract from './pdf-abstract-bookChapter';
 import Preview from './preview-sec';
 import Receipt from './receipt-sec';
 import Cert from './cert-sec';
+import Evaluation from './evaluation-form-sec';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
@@ -38,6 +39,12 @@ function UserDashboard() {
       });
 
     axiosInstance.get("/iiidentex_uitm/api/sponsors/read", { params: { account_id: account_id } })
+      .then(function (response) {
+        setUser(response.data.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    axiosInstance.get("/iiidentex_uitm/api/judge/read", { params: { account_id: account_id } })
       .then(function (response) {
         setUser(response.data.data);
       }).catch(function (error) {
@@ -73,7 +80,11 @@ function UserDashboard() {
           <div className="row-username">
             <p>Welcome {user.name}</p>
           </div>);
-
+      case 'Judge':
+        return (
+          <div className="row-username">
+            <p>Welcome {user.title} {user.name}</p>
+          </div>);
       case 'Visitor':
         return (
           <div className="row-username">
@@ -145,6 +156,17 @@ function UserDashboard() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="Cert"><FaCertificate size={20} /> Certificate</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        );
+      case 'Judge':
+        return (
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="Account-Profiles"><BsPeopleCircle size={20} /> Profiles</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Evaluation-Table"><FaBook size={20} /> Evaluation Table</Nav.Link>
             </Nav.Item>
           </Nav>
         );
@@ -306,7 +328,7 @@ function UserDashboard() {
                     <Card.Body>
                       <div className="sec-container">
                         <h2> Download Certification</h2>
-                        <Cert user ={user} role={account.role}/>
+                        <Cert user={user} role={account.role} />
                       </div>
                     </Card.Body>
                   </Card>
@@ -320,13 +342,22 @@ function UserDashboard() {
                     </Card.Body>
                   </Card>
                 </Tab.Pane>
+                <Tab.Pane eventKey="Evaluation-Table">
+                  <Card>
+                    <Card.Body>
+                      <div className="sec-container">
+                        <Evaluation data={user} setData={setUser} user={account} />
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Tab.Pane>
               </Tab.Content>
             </Col>
 
           </Row>
         </Tab.Container>
       </div>
-   </>
+    </>
   );
 
 }

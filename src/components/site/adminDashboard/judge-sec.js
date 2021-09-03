@@ -28,8 +28,12 @@ function Judge() {
             accessor: 'name',
           },
           {
+            Header: 'Email',
+            accessor: 'email',
+          },
+          {
             Header: 'Contact Number',
-            accessor: 'contact',
+            accessor: 'phone_no',
           },
           {
             Header: 'Assign',

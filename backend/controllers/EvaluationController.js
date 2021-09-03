@@ -24,7 +24,6 @@ const create = (req, res, next)=>{
 
 const read = (req, res, next)=>{
   var judge_id = req.query.judge_id;
-  console.log(judge_id)
   Evaluation.find({judge_id: judge_id}, (err, evaluation) => {
     if (err) {
       return res.status(400).json({ success: false, error: err })

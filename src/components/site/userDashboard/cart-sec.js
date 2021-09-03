@@ -31,9 +31,6 @@ function Cart({ data, setData, user }) {
             setBookOnlySubtotal(bookOnlyQuantity * bookOnlyPrice)
             total = (medalQuantity * medalPrice + bookOnlyQuantity * bookOnlyPrice + bookQuantity * bookPrice + firstpurchase).toFixed(2)
             setPrice(total)
-            // console.log("Medal Quantity:" + medalQuantity + "Total Price" + price)
-            // console.log("Book Quantity:" + bookQuantity + "Total Price" + price)
-            console.log("Book Only Quantity:" + bookOnlyQuantity + "Total Price" + price)
         } else {
             setMedal(0)
             setBook(0)
@@ -43,7 +40,6 @@ function Cart({ data, setData, user }) {
             setBookOnlySubtotal(0)
             total = 0
             setPrice(total)
-            console.log("Empty")
         }
     }, [bookOnlyQuantity, bookQuantity, data.first_purchase, medalQuantity, price]);
 

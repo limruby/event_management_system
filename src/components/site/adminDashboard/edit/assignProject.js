@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axiosInstance from '../../../../utils/axiosConfig.js';
+import { FaTrashAlt } from 'react-icons/fa';
 
 function AssignProject() {
     localStorage.setItem("activeKeys", "Judge")
@@ -22,13 +22,13 @@ function AssignProject() {
             }).catch(function (error) {
                 console.log(error);
             })
-        axiosInstance.get("/iiidentex_uitm/api/judge/read", {params:{account_id:string}})
+        axiosInstance.get("/iiidentex_uitm/api/judge/read", { params: { account_id: string } })
             .then(function (response) {
                 setJudge(response.data.data);
             }).catch(function (error) {
                 console.log(error);
             })
-        axiosInstance.get("/iiidentex_uitm/api/evaluation/read", {params:{judge_id:judge._id}})
+        axiosInstance.get("/iiidentex_uitm/api/evaluation/read", { params: { judge_id: judge._id } })
             .then(function (response) {
                 setPair(response.data.data)
             }).catch(function (error) {
@@ -36,7 +36,16 @@ function AssignProject() {
             })
     }, [judge._id, string])
 
+    function deletePair(_id) {
+        console.log(pair)
+        axiosInstance.get("/iiidentex_uitm/api/evaluation/deletePair",  { params: { _id: _id } })
+        .then(function (response) {
+        }).catch(function (error) {
+          console.log(error);
+        })
+      }
     const inputChange = input => e => {
+
         setComp({
             ...comp,
             [input]: e.target.value
@@ -62,16 +71,19 @@ function AssignProject() {
     }
     function displayPair() {
         var section = []
-        for(var i =0; i<pair.length; i++){
-        section.push(
-           <li>{pair[i].competitor_name}</li>
-        )       
+        for (var i = 0; i < pair.length; i++) {
+            section.push(
+                <div>
+                    <li>{pair[i].competitor_name}</li>
+                    <button className="deleteBtn" type="button" onClick={() => {window.confirm("Are you sure you want to remove from the list?") && deletePair(pair._id)}}> <FaTrashAlt /></button>
+                </div>
+            )
+        }
+        return section;
     }
-    return section;
-}
     const handleForm = (e) => {
         // perform all neccassary validations
-        var tempComp;  
+        var tempComp;
         for (var j = 0; j < competitor.length; j++) {
             if (competitor[j]._id === comp.competitor_id) {
                 tempComp = competitor[j]
@@ -84,40 +96,37 @@ function AssignProject() {
             competitor_name: tempComp.name
         }
         axiosInstance.post("/iiidentex_uitm/api/evaluation/create", postData)
-            .then(function (response) {              
+            .then(function (response) {
             }).catch(function (error) {
                 console.log(error)
-            })   
+            })
     }
 
-return (
-    <div className="edit-form-container">
-        <form onSubmit={handleForm}>
-        <h1>{judge.name}</h1>
-            {displayCompetitors()}
-            <div className="row">
-                <div className="col-6">
-                    <Link to="/admin_dashboard">
-                        <button className="btn btn-danger">Back</button>
-                    </Link>
+    return (
+        <div className="edit-form-container">
+            <form onSubmit={handleForm}>
+                <h1>Judge: {judge.title} {judge.name}</h1>
+                {displayCompetitors()}
+                <div className="row">
+                    <div className="col-6">
+                        <Link to="/admin_dashboard">
+                            <button className="btn btn-danger">Back</button>
+                        </Link>
+                    </div>
+                    <div className="col-6 text-right">
+                        <input className="btn btn-primary" type="submit" value="Assign" />
+                    </div>
                 </div>
-                <div className="col-6 text-right">
-                    <input className="btn btn-primary" type="submit" value="Create" />
-                </div>
-
-            </div>
-        </form>
-        <table>
-  <tr>
-    <th>{judge.name}</th>
-    <th>Competitor</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td>{displayPair()}</td>
-  </tr>
-  </table>
-    </div>
-)
+            </form>
+            <table>
+                <tr>
+                    <th>Competitor Name</th>
+                </tr>
+                <tr>
+                    <td>{displayPair()}</td>
+                </tr>
+            </table>
+        </div>
+    )
 }
 export default AssignProject;
