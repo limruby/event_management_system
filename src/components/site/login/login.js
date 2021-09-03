@@ -213,7 +213,7 @@ function Login() {
                             localStorage.setItem('name', response.data.data.title + " " + response.data.data.name);
                             localStorage.setItem('token', res.data.token); 
                             localStorage.setItem('user_id', JSON.stringify(res.data.result._id));                              
-                            window.location.href = '/user_dashboard';
+                            window.location.href = '/iiidentex_uitm/user_dashboard';
                         })
                     }                           
                 }

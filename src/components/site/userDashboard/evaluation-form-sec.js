@@ -24,7 +24,6 @@ function Evaluation_Form() {
       })
 
   }, [account_id, data._id])
-
   
   const columns = React.useMemo(
     () => [
@@ -37,11 +36,11 @@ function Evaluation_Form() {
           },
           {
             Header: 'Booth',
-            Cell: assigned => (
-              <Link to={`/competition_booth/${assigned.competitor_id}`}>
-                <button className="btn btn-success" >
+            accessor: 'competitor_acc_id',
+            Cell: ({row, value}) => (
+              <Link className= "btn btn-success" to={`/competition_booth/${value}`}>
                   Visit
-                </button></Link>
+               </Link>
             )
           },
         ],

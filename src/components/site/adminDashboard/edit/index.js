@@ -8,6 +8,7 @@ import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
 import EditProfile_V from './editVisitor.js';
 import EditPaymentStatus from './editPaymentStatus.js';
+import InsertLink from './insertLink';
 import CreateProfile from './createAccount.js';
 import AssignProject from './assignProject.js';
 import UploadReceiptCompetitor  from './upload_receipt_competitor.js';
@@ -108,6 +109,13 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 		return( 
 			<section className="section-container">
 				<AssignProject/>
+			</section>
+		)			
+	}
+	else if (lastPath === 'insert_evaluation_form_link'){		
+		return( 
+			<section className="section-container">
+				<InsertLink/>
 			</section>
 		)			
 	}

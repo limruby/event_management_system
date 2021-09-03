@@ -5,6 +5,7 @@ import axiosInstance from '../../../utils/axiosConfig';
 
 function Judge() {
   const [data, setData] = useState([]);
+  const [link, setLink] = useState([])
 
   useEffect(() => {
 
@@ -14,12 +15,18 @@ function Judge() {
       }).catch(function (error) {
         console.log(error);
       })
+    axiosInstance.get("/iiidentex_uitm/api/formLink/read")
+      .then(function (response) {
+        setLink(response.data.data);
+      }).catch(function (error) {
+        console.log(error);
+      })
   }, []);
 
   const columns = React.useMemo(
     () => [
-    {
-  
+      {
+
         Header: 'Profile',
         columns: [
 
@@ -51,12 +58,14 @@ function Judge() {
     // []
   )
 
-    return (
-      <div className="App" id="competitor">  
-        <Table columns={columns} data={data} />
-      </div>
-    );
+  return (
+    <div className="App" id="competitor">
+      <button className="btn btn-primary" onClick={() => window.location.href = '/iiidentex_uitm/admin_dashboard/insert_evaluation_form_link'}>Add form link</button>
+      <div><a href={link.evaluation_form}> Evaluation Form</a></div>
+      <Table columns={columns} data={data} />
+    </div>
+  );
 
-    }
+}
 
-    export default Judge;
+export default Judge;

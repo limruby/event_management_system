@@ -1,5 +1,4 @@
 const Evaluation = require('../models/evaluation');
-var ObjectId = require('mongodb').ObjectId;
 require('dotenv').config();
 
 const create = (req, res, next)=>{
@@ -8,12 +7,14 @@ const create = (req, res, next)=>{
   const judge_name = req.body.judge_name;
   const competitor_id = req.body.competitor_id;
   const competitor_name = req.body.competitor_name;
+  const competitor_acc_id = req.body.competitor_acc_id;
 
   const newEvaluation = new Evaluation({
     judge_id,
     judge_name,
     competitor_id,
-    competitor_name
+    competitor_name,
+    competitor_acc_id
   });
 
   newEvaluation.save()
@@ -67,6 +68,9 @@ const update = (req, res, next)=>{
   }
   if(req.body.competitor_name){
     updateEvaluation['competitor_name'] = req.body.competitor_name;
+  }
+  if(req.body.competitor_acc_id){
+    updateEvaluation['competitor_acc_id'] = req.body.competitor_acc_id;
   }
 
   Evaluation.findByIdAndUpdate(req.body._id, updateEvaluation, (err, evaluation) => {

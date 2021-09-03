@@ -36,10 +36,11 @@ function AssignProject() {
             })
     }, [judge._id, string])
 
+    
     function deletePair(_id) {
-        console.log(pair)
         axiosInstance.get("/iiidentex_uitm/api/evaluation/deletePair",  { params: { _id: _id } })
         .then(function (response) {
+            window.location.reload();
         }).catch(function (error) {
           console.log(error);
         })
@@ -69,13 +70,16 @@ function AssignProject() {
         )
         return section;
     }
+   
     function displayPair() {
         var section = []
         for (var i = 0; i < pair.length; i++) {
+            var tempPair = pair[i]
+            console.log(tempPair._id)
             section.push(
                 <div>
                     <li>{pair[i].competitor_name}</li>
-                    <button className="deleteBtn" type="button" onClick={() => {window.confirm("Are you sure you want to remove from the list?") && deletePair(pair._id)}}> <FaTrashAlt /></button>
+                    <button className="deleteBtn" type="button" onClick={() => {window.confirm("Are you sure you want to remove from the list?") && deletePair(tempPair._id)}}> <FaTrashAlt /></button>
                 </div>
             )
         }
@@ -93,7 +97,8 @@ function AssignProject() {
             judge_id: judge._id,
             judge_name: judge.name,
             competitor_id: comp.competitor_id,
-            competitor_name: tempComp.name
+            competitor_name: tempComp.name,
+            competitor_acc_id: tempComp.account_id.toString()
         }
         axiosInstance.post("/iiidentex_uitm/api/evaluation/create", postData)
             .then(function (response) {

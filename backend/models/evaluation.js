@@ -14,6 +14,10 @@ const evaluationSchema = new Schema({
     type: String,
     required: true,
   },
+  competitor_acc_id:{
+    type: String,
+    required: true,
+  },
   competitor_name:{
     type: String,
     required: true,

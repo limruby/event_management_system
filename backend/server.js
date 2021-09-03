@@ -43,12 +43,15 @@ app.use('/iiidentex_uitm/api/forum', forumRouter)
 const evaluationRouter = require('./routes/evaluation');
 app.use('/iiidentex_uitm/api/evaluation', evaluationRouter)
 
+const formLinkRouter = require('./routes/formLink');
+app.use('/iiidentex_uitm/api/formLink', formLinkRouter)
+
 app.use('/iiidentex_uitm', express.static(__dirname + "/public"));
 
 app.use('/iiidentex_uitm', (req, res, next) => {
 	res.sendFile(__dirname + "/public/index.html")
 });
 
-app.listen(port, () => {
-	console.log('Now starting at https://vexs.fsktm.um.edu.my/api/hello');
-});
+// app.listen(port, () => {
+// 	console.log('Now starting at https://vexs.fsktm.um.edu.my/api/hello');
+// });
