@@ -73,8 +73,8 @@ const Navigationbar = props => {
                 show={show}
                 onMouseEnter={showDropdown}
                 onMouseLeave={hideDropdown}>
-                  <NavDropdown.Item><Link className="btn" to='/sponsor_hall'>Sponsor Hall</Link></NavDropdown.Item>
-                  <NavDropdown.Item ><Link className="btn" to='/competition_hall'>Competition Hall</Link></NavDropdown.Item>
+                  <NavDropdown.Item href='/sponsor_hall'><a className="btn" >Sponsor Hall</a></NavDropdown.Item>
+                  <NavDropdown.Item href='/competition_hall'><a className="btn" >Competition Hall</a></NavDropdown.Item>
                 </NavDropdown>
             </li>
               <li className="nav-item">
