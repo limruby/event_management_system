@@ -75,10 +75,9 @@ function AssignProject() {
         var section = []
         for (var i = 0; i < pair.length; i++) {
             var tempPair = pair[i]
-            console.log(tempPair._id)
             section.push(
-                <div>
-                    <li>{pair[i].competitor_name}</li>
+                <div className="displayPair">
+                    <p>{pair[i].competitor_name}</p>
                     <button className="deleteBtn" type="button" onClick={() => {window.confirm("Are you sure you want to remove from the list?") && deletePair(tempPair._id)}}> <FaTrashAlt /></button>
                 </div>
             )

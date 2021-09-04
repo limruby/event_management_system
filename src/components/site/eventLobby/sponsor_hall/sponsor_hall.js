@@ -144,7 +144,7 @@ function Sponsor_hall() {
           <div className="sponsor-category">{displaySilverSponsor()}</div>
         </div>
 
-        <div className="sponsor" style={{ marginBottom: "5%" }}>
+        <div className="sponsor" style={{ paddingBottom: "5%" }}>
           <h1>Bronze Sponsor</h1>
           <div className="sponsor-category">{displayBronzeSponsor()}</div>
         </div>

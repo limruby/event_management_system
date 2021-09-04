@@ -17,12 +17,21 @@ function Judge() {
       })
     axiosInstance.get("/iiidentex_uitm/api/formLink/read")
       .then(function (response) {
-        setLink(response.data.data);
+        setLink(response.data.data);  
       }).catch(function (error) {
         console.log(error);
       })
   }, []);
 
+  function displayLink(){
+    var section = []
+    for(var i =0; i<link.length; i++){
+      section.push(
+        <a href={link[i].evaluation_form}> Evaluation Form</a>
+      )
+    }
+    return section;
+  }
   const columns = React.useMemo(
     () => [
       {
@@ -52,6 +61,15 @@ function Judge() {
 
             )
           },
+          {
+            Header: 'Edit',
+            Cell: data => (
+              <Link to={`admin_dashboard/${data.row.original.account_id}/edit_profile_judge`}>
+                <button className="btn btn-success" >
+                  Edit
+                </button></Link>
+            )
+          },
         ],
       },
     ],
@@ -61,7 +79,7 @@ function Judge() {
   return (
     <div className="App" id="competitor">
       <button className="btn btn-primary" onClick={() => window.location.href = '/iiidentex_uitm/admin_dashboard/insert_evaluation_form_link'}>Add form link</button>
-      <div><a href={link.evaluation_form}> Evaluation Form</a></div>
+      <div className="member-box">{displayLink()}</div>
       <Table columns={columns} data={data} />
     </div>
   );

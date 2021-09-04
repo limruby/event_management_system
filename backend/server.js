@@ -52,6 +52,6 @@ app.use('/iiidentex_uitm', (req, res, next) => {
 	res.sendFile(__dirname + "/public/index.html")
 });
 
-// app.listen(port, () => {
-// 	console.log('Now starting at https://vexs.fsktm.um.edu.my/api/hello');
-// });
+app.listen(port, () => {
+	console.log('Now starting at https://vexs.fsktm.um.edu.my/api/hello');
+});

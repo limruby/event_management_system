@@ -7,6 +7,7 @@ import EditPassword from './editPassword.js';
 import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
 import EditProfile_V from './editVisitor.js';
+import EditProfile_J from './editJudge.js';
 import EditPaymentStatus from './editPaymentStatus.js';
 import InsertLink from './insertLink';
 import CreateProfile from './createAccount.js';
@@ -60,6 +61,13 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 		<div className="form-main-container">
 			<EditProfile_C/>
 		</div>
+		)			
+	}
+	else if (lastPath === 'edit_profile_judge'){		
+		return( 
+			<section className="section-container">
+				<EditProfile_J/>
+			</section>
 		)			
 	}
 	else if (lastPath === 'create_profile'){		
