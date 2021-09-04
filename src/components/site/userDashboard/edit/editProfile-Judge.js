@@ -113,7 +113,7 @@ function EditProfile({ data, setData }) {
 
             axiosInstance.post("/iiidentex_uitm/api/judge/update", postData)
                 .then(function (response) {
-                    window.location.href = '/user_dashboard';
+                    window.location.href = '/iiidentex_uitm/user_dashboard';
                 }).catch(function (error) {
                     console.log(error);
                 })

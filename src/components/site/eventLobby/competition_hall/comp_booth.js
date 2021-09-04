@@ -59,7 +59,6 @@ function Competition_booth() {
     if (comment !== null) {
       axiosInstance.post("/iiidentex_uitm/api/forum/create", postData)
         .then(function (response) {
-          //  window.location.href = '/competition_booth/:id';
           location.reload(true);
 
         }).catch(function (error) {
