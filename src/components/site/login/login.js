@@ -206,7 +206,16 @@ function Login() {
                                     redirect()
                                 }
                             });
-                    }
+                    }else if(res.data.result.role==="Judge"){
+                        var judge_id = JSON.stringify(res.data.result._id) 
+                        axiosInstance.get("/iiidentex_uitm/api/judge/read", {params:{account_id:judge_id}})
+                        .then(function(response) {
+                            localStorage.setItem('name', response.data.data.title + " " + response.data.data.name);
+                            localStorage.setItem('token', res.data.token); 
+                            localStorage.setItem('user_id', JSON.stringify(res.data.result._id));                              
+                            window.location.href = '/iiidentex_uitm/user_dashboard';
+                        })
+                    }                           
                 }
                 else {
                     alert("Email or password not match.")

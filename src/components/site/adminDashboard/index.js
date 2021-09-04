@@ -1,11 +1,12 @@
 import React from 'react';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
-import { FaCertificate, FaMedal, FaUser } from 'react-icons/fa';
+import { FaCertificate, FaMarker, FaMedal, FaUser } from 'react-icons/fa';
 import { BsPeopleCircle, BsFiles } from "react-icons/bs";
 
 import Account from './account';
 import Competitor from './competitor-sec';
 import Sponsor from './sponsor-sec';
+import Judge from './judge-sec';
 import Visitor from './visitor-sec';
 import Order from './order-sec';
 import './table.css'
@@ -27,6 +28,9 @@ if(adminEmail !== "admin@iiidentex.com"){
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link eventKey="Sponsor"><FaCertificate size={20} /> Sponsor</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link eventKey="Judge"><FaMarker size={20} /> Judge</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link eventKey="Visitor"><FaUser size={20} /> Visitor</Nav.Link>
@@ -86,6 +90,16 @@ if(adminEmail !== "admin@iiidentex.com"){
 											<div className="sec-container">
 												<h2> Sponsor Profile</h2>
 												<Sponsor />
+											</div>
+										</Card.Body>
+									</Card>
+								</Tab.Pane>
+								<Tab.Pane eventKey="Judge">
+									<Card>
+										<Card.Body>
+											<div className="sec-container">
+												<h2>List of Judges</h2>
+												<Judge />
 											</div>
 										</Card.Body>
 									</Card>

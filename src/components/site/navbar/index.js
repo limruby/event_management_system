@@ -5,6 +5,7 @@ import logo from "../../../assets/img/Dinowex.png";
 import "../../../assets/css/agency.min.css";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { isAuth, isAdmin } from '../../../utils/isAuth'
@@ -67,15 +68,15 @@ const Navigationbar = props => {
               <li className="nav-item">
                 <Link className="btn" to='/'>Home</Link>
               </li>
-              {/* <li className="nav-item">
-                <NavDropdown title="Event Lobby" id="basic-nav-dropdown" onToggle={() => { window.location.href = '/eventLobby'}}
+              <li className="nav-item">
+                <NavDropdown title="Event Lobby" id="basic-nav-dropdown" className="btn" onToggle={() => { window.location.href = '/iiidentex_uitm/eventLobby'}}
                 show={show}
                 onMouseEnter={showDropdown}
                 onMouseLeave={hideDropdown}>
-                  <NavDropdown.Item href="/sponsor_hall" >Sponsor Hall</NavDropdown.Item>
-                  <NavDropdown.Item href="/competition_hall">Competition Hall</NavDropdown.Item>
+                  <NavDropdown.Item href='/sponsor_hall'><a className="btn" >Sponsor Hall</a></NavDropdown.Item>
+                  <NavDropdown.Item href='/competition_hall'><a className="btn" >Competition Hall</a></NavDropdown.Item>
                 </NavDropdown>
-            </li> */}
+            </li>
               <li className="nav-item">
                 <Link className="btn" to='/admin_dashboard'>AdminDashboard</Link>
               </li>
@@ -126,7 +127,7 @@ const Navigationbar = props => {
                 </NavDropdown>
             </li> */}
               <li className="nav-item">
-                <Link className="btn" to='user_dashboard'>UserDashboard</Link>
+                <Link className="btn" to='/user_dashboard'>UserDashboard</Link>
               </li>
               <li className="nav-item">
                 <Link className="btn" onClick={logout}>Log Out</Link>

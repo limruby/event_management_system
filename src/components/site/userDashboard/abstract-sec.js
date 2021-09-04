@@ -3,8 +3,6 @@
 
 const AbstractContent = ({user}) =>  {
 
-  console.log(user);
-
   function displayTitle(){
 
     if(user.abstract!==undefined){
