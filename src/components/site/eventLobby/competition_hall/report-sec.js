@@ -9,21 +9,25 @@ import PdfDownloader from '../../../PdfDownloader';
 function FullReport() {
     let fromReport = useLocation();
     let data = fromReport.state.data;
+    let reportTitle = "report";
 
     function displayTitle() {
         if (data.abstract !== undefined) {
-            var section = [];
-            for (var i = 0; i < data.abstract.length; i++) {
-                section.push(
-                    <div id="abstract_title">
-                        <h1>
-                            <b>{data.abstract[0].title}</b>
-                        </h1>
-                    </div>
-                );
-            }
+            if (data.abstract[0] !== undefined) {
+                reportTitle = data.abstract[0].title;
+                var section = [];
+                for (var i = 0; i < data.abstract.length; i++) {
+                    section.push(
+                        <div id="abstract_title">
+                            <h1>
+                                <b>{data.abstract[0].title}</b>
+                            </h1>
+                        </div>
+                    );
+                }
             return section;
         }
+    }
     }
 
 
@@ -183,7 +187,7 @@ function FullReport() {
 
 
     return (
-        <div className ="edit-form-container" style={{marginTop:"2%", marginBottom:"2%"}}>
+        <div className="edit-form-container" style={{ marginTop: "2%", marginBottom: "2%" }}>
             <div className="page" id="downloadPdf">
                 <div className="preview-section">
                     {displayTitle()}
@@ -197,7 +201,7 @@ function FullReport() {
                     {displayReference()}
                 </div>
             </div>
-            <PdfDownloader rootElementId="downloadPdf" downloadFileName={data.abstract[0].title} />
+            <PdfDownloader rootElementId="downloadPdf" downloadFileName={reportTitle} />
         </div>
     );
 }

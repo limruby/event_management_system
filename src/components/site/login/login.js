@@ -117,9 +117,9 @@ function Login() {
                     localStorage.setItem('token', res.data.token);
                     localStorage.setItem('user_id', JSON.stringify(res.data.result._id));
                     setRole(res.data.result.role)
+                    localStorage.setItem('role', res.data.result.role);
                     if (res.data.result.role === "Admin") {
                         localStorage.setItem('email', res.data.result.email);
-                        localStorage.setItem('role', res.data.result.role);
                         localStorage.setItem('token', res.data.token);
                         window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }
@@ -137,6 +137,7 @@ function Login() {
                                     res.data.data.country
                                 setAddress(address)
                                 setCompData(res.data.data)
+                                localStorage.setItem('name', res.data.data.name)
                                 if (res.data.data.bill_verify === "fail") {
                                     document.getElementById("comp_uitm_payment_form").submit()
 
@@ -153,7 +154,6 @@ function Login() {
                             });
                     }
                     else if (res.data.result.role === "Sponsor") {
-                        console.log(res.data.result.role)
                         var sponsor_account_id = localStorage.getItem('user_id')
                         axiosInstance.get('/iiidentex_uitm/api/sponsors/read', { params: { account_id: sponsor_account_id } })
                             .then(res => {
@@ -166,6 +166,7 @@ function Login() {
                                     res.data.data.country
                                 setAddress(sponsorAddress)
                                 setSponsorData(res.data.data)
+                                localStorage.setItem('name', res.data.data.company_name)
                                 if (res.data.data.bill_verify === "fail") {
                                     document.getElementById("sponsor_uitm_payment_form").submit()
 
@@ -194,6 +195,7 @@ function Login() {
                                     res.data.data.country
                                 setAddress(visitorAddress)
                                 setVisitorData(res.data.data)
+                                localStorage.setItem('name', res.data.data.name)
                                 if (res.data.data.bill_verify === "fail") {
                                     document.getElementById("visitor_uitm_payment_form").submit()
                                 }

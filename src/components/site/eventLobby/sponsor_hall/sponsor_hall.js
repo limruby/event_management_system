@@ -39,7 +39,7 @@ function Sponsor_hall() {
             section.push(
               <div className="col-md-12">
                 <Link to={`/sponsor_booth/${sponsor.account_id}`}>
-                  <img width="60%" height="auto" src={imageBuffer} alt={sponsor.company_logo[0].name} />
+                  <img width="500px" height="auto" src={imageBuffer} alt={sponsor.company_logo[0].name} />
                 </Link>
               </div>
             );

@@ -116,7 +116,7 @@ function Cart({ data, setData, user }) {
                         <tr>
                             <td>
                                 <div className="cart-info table-center-text">
-                                    BookChapter
+                                Book Chapter Submission <br></br>(Inclusive 1 Copy of Book) : RM 150
                                 </div>
                             </td>
                             <td>
