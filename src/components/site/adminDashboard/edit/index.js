@@ -7,8 +7,11 @@ import EditPassword from './editPassword.js';
 import EditProfile_C from './editCompetitor.js';
 import EditProfile_S from './editSponsor.js';
 import EditProfile_V from './editVisitor.js';
+import EditProfile_J from './editJudge.js';
 import EditPaymentStatus from './editPaymentStatus.js';
+import InsertLink from './insertLink';
 import CreateProfile from './createAccount.js';
+import AssignProject from './assignProject.js';
 import UploadReceiptCompetitor  from './upload_receipt_competitor.js';
 import UploadReceiptSponsor  from './upload_receipt_sponsor.js';
 import UploadReceiptVisitor from './upload_receipt_visitor.js'
@@ -60,6 +63,13 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 		</div>
 		)			
 	}
+	else if (lastPath === 'edit_profile_judge'){		
+		return( 
+			<section className="section-container">
+				<EditProfile_J/>
+			</section>
+		)			
+	}
 	else if (lastPath === 'create_profile'){		
 		return( 
 
@@ -101,6 +111,20 @@ const lastPath = thePath.substring(thePath.lastIndexOf('/') + 1);
 				<UploadReceiptVisitor/>
 			</section>
 
+		)			
+	}
+	else if (lastPath === 'assign_project_title'){		
+		return( 
+			<section className="section-container">
+				<AssignProject/>
+			</section>
+		)			
+	}
+	else if (lastPath === 'insert_evaluation_form_link'){		
+		return( 
+			<section className="section-container">
+				<InsertLink/>
+			</section>
 		)			
 	}
 	else{

@@ -1,21 +1,6 @@
-import React, {useState, useEffect} from 'react';
-
-
 const CompetitionMaterial = ({user}) =>  {
 
- 
-console.log(user);
-
 function displayPoster(){
-
-  // if(user.poster!=undefined){  //after mount
-  //     if(user.poster.length){
-  //       return (<p>{user.poster[0].name}</p>)
-  //     }
-  //     else{
-  //       return (<p>empty</p>)
-  //     }
-  // }  
 
   if(user.poster){
     var section = [];
@@ -28,16 +13,12 @@ function displayPoster(){
         );
     }
     return section;
-
   }
-
 }
-
 
 function displayAchievement(){
   if(user.achievements){
     var section = [];
-
     for (var i=0; i<user.achievements.length; i++){
         section.push(
             <li>
@@ -46,7 +27,6 @@ function displayAchievement(){
         );
     }
     return section;
-
   }
 }
 

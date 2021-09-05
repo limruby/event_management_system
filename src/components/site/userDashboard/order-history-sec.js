@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Table from './Table.js';
-import { Link } from 'react-router-dom';
 import axiosInstance from '../../../utils/axiosConfig';
 
 function Order() {
