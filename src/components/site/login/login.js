@@ -120,6 +120,7 @@ function Login() {
                     localStorage.setItem('role', res.data.result.role);
                     if (res.data.result.role === "Admin") {
                         localStorage.setItem('email', res.data.result.email);
+                        localStorage.setItem('name', res.data.result.role);
                         localStorage.setItem('token', res.data.token);
                         window.location.href = '/iiidentex_uitm/admin_dashboard';
                     }
