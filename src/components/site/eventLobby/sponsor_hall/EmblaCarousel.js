@@ -59,8 +59,11 @@ const EmblaCarousel = ({ slides }) => {
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__slide__inner">
+                <a href="https://www.um.edu.my">
                 <img className="embla__slide__img" height="300px" width="500px" src={mediaByIndex(index)} alt="" rounded responsive/>
-				<div className="sponsor_title">Company {index+1} </div>
+                </a>
+        <div className="sponsor_title">Company {index+1} </div>
+                
               </div>
             </div>
           ))}

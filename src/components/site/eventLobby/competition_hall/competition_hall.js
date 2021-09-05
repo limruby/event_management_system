@@ -1,18 +1,54 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import "./../../../../assets/css/agency.min.css";
-import Footer from './../../footer';
-import {Image} from 'react-bootstrap';
-import competition_hall from "./../../../../assets/img/competition_hall.jpg";
-
+import booth from "./../../../../assets/img/booth.PNG"
+import { Link } from 'react-router-dom';
+import axiosInstance from '../../../../utils/axiosConfig';
 
 function Competition_hall() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
+      .then(function (response) {
+        setData(response.data.data);
+      }).catch(function (error) {
+        console.log(error);
+      })
+  }, [data]);
+  function displayBooth() {
+    var section = [];
+    data.map((competitor, index) => (
+      section.push(
+        <Link className="col-md-4" to={`/competition_booth/${competitor.account_id}`}>
+          <img height="400px" width="400px" src={booth} alt="booth" />
+          <div className="booth-name">{competitor.name}</div>
+          <div className="booth-number">
+            <Link className="btn btn-primary" to={`/competition_booth/${competitor.account_id}`}>
+              <h3> Booth {index + 1} </h3></Link></div>
+        </Link>
+      ))
+    );
+    return section;
+  }
 
   return (
-    <div className="Competition_hall">
-  
 
-    </div>
+    <header className="masthead">
+      <div className="intro-text">
+        <div className="intro-lead-in">
+          <br></br>
+        </div>
+        <div className="row">
+          <div className="intro-heading col-xl-12">
+            Competition Hall
+          </div>
+        </div>
+      </div>
+
+      <div className="row" style={{ backgroundColor: "#fff", padding:"5% 0%" }}>
+        {displayBooth()}
+      </div>
+    </header>
   );
 }
 
