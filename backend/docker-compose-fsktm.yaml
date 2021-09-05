@@ -45,7 +45,7 @@ services:
       - traefik.http.routers.iiidentex_backend.service=iiidentex_backend
       # - traefik.http.routers.iiidentex_backend.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/iiidentex`)
       # - traefik.http.routers.iiidentex_backend.entrypoints=https
-      - traefik.http.routers.iiidentex_backend.tls.certresolver=mytlschallenge
+      # - traefik.http.routers.iiidentex_backend.tls.certresolver=mytlschallenge
       ### Not Secure ###
       # - traefik.http.routers.iiidentex_backend-unsecured.service=iiidentex_backend
       # - traefik.http.routers.iiidentex_backend-unsecured.rule=Host(`vexsdev.fsktm.um.edu.my`) && PathPrefix(`/api/`)
