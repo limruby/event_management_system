@@ -160,7 +160,7 @@ function EditProfile({ data, setData }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email"><span>*</span>Email</label>
+                        <label htmlFor="email"><span>*</span>Contact Email</label>
                         <input type="text" className="form-control" name="email" id="email"
                             placeholder='Email' required
                             onChange={inputChange('email')} value={data.email} />

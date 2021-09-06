@@ -44,7 +44,7 @@ function Judge() {
             accessor: 'name',
           },
           {
-            Header: 'Email',
+            Header: 'Contact Email',
             accessor: 'email',
           },
           {

@@ -120,6 +120,9 @@ const Profiles = ({ user, role }) => {
             <p>Contact number: {user.phone_no}</p>
           </li>
           <li>
+            <p>Contact email: {user.email}</p>
+          </li>
+          <li>
             <p> Company Address: {user.address_1}, {user.address_2}, {user.postcode}, {user.city}, {user.state}, {user.country}  </p>
           </li>
           <li>
