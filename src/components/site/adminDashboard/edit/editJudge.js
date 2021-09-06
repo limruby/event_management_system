@@ -76,7 +76,7 @@ function EditJudge() {
 
             axiosInstance.post("/iiidentex_uitm/api/judge/update", postData)
                 .then(function (response) {
-                    window.location.href = '/admin_dashboard';
+                    window.location.href = '/iiidentex_uitm/admin_dashboard';
                 }).catch(function (error) {
                     console.log(error);
                 })
@@ -119,7 +119,7 @@ function EditJudge() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email"><span>*</span>Email</label>
+                        <label htmlFor="email"><span>*</span>Contact Email</label>
                         <input type="text" className="form-control" name="email" id="email"
                             placeholder='Email' required
                             onChange={inputChange('email')} value={data.email} />
@@ -190,7 +190,7 @@ function EditJudge() {
                     <br />
 
                     <div className="btn-group">
-                        <Link to="/user_dashboard">
+                        <Link to="/admin_dashboard">
                             <button className="btn btn-danger back-btn">Back</button>
                         </Link>
                         <input className="btn btn-primary" type="submit" value="Update" />
