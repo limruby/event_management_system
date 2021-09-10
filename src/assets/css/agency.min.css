@@ -1189,7 +1189,7 @@ h3 {
 /*Start of competitor booth*/
 .booth-name {
   position: absolute;
-  top: 15%;
+  top: 9%;
   left: 48%;
   transform: translate(-50%, -50%);
   text-shadow: none !important;
@@ -1198,8 +1198,22 @@ h3 {
   border-color: #43ba7a;
   border-style: solid;
   border-radius: 5px;
-  width: 200px;
+  width: 300px;
   background-color: #43ba7a;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.booth-title{
+  position: absolute;
+  top: 40%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  text-shadow: none !important;
+  color: black;
+  font-size: 15px;
+  width: 220px;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 20px;
@@ -1207,10 +1221,14 @@ h3 {
 }
 .booth-number {
   position: absolute;
-  top: 77%;
-  left: 49%;
+  top: 78%;
+  left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: none !important;
+  
+}
+.booth-display-number{
+  background-color: #000 !important;
 }
 
 .competitor-category{
