@@ -20,6 +20,18 @@ function Competitor() {
     { label: 'State', key: 'state' },
     { label: 'Country', key: 'country' },
     { label: 'Payment', key: 'bill_status' },
+    { label: 'Abstract Title', key: 'abstract[0].title' },
+    { label: 'Abstract', key: 'abstract[0].content' },
+    { label: 'Keywords', key: 'abstract[0].keywords' },
+    { label: 'Introduction', key: 'bookChapter[0].introduction' },
+    { label: 'Content', key: 'bookChapter[0].content' },
+    { label: 'Conclusion', key: 'bookChapter[0].conclusion' },
+    { label: 'References', key: 'bookChapter[0].references' },
+    { label: 'Video Name', key: 'video[0].name' },
+    { label: 'Video URL', key: 'video[0].source' },
+    { label: 'Members Name', key: 'members[0].name' },
+    { label: 'Members Affiliation', key: 'members[0].affiliation' },
+    { label: 'Members Email', key: 'members[0].email' },
   ]
   const csvReport = {
     filename: 'IIIDentEX_Competitor_List.csv',
