@@ -53,10 +53,14 @@ function Evaluation_Form() {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Assigned Competitor',
+        Header: 'Assigned Competitor & Project Title',
         columns: [
           {
-            Header: 'Competitor Name',
+            Header: 'Project Title',
+            accessor: 'project_title'
+          },
+          {
+            Header: 'Team Leader',
             accessor: 'competitor_name'
           },
           {

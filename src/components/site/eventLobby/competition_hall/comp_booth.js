@@ -104,6 +104,7 @@ function Competition_booth() {
         }
       }
       else {
+        // eslint-disable-next-line no-redeclare
         for (var i = 0; i < data.poster.length; i++) {
           const imageBuffer = Buffer.from(data.poster[0].source.data);
           section.push(

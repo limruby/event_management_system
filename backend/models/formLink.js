@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 const formLinkSchema = new Schema({
   evaluation_form:{
     type: String,
-    required: true,
+  },
+  youtube_form:{
+    type: String,
   },
  
 }, {

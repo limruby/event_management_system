@@ -4,9 +4,11 @@ require('dotenv').config();
 const create = (req, res, next)=>{
 
   const evaluation_form = req.body.evaluation_form;
+  const youtube_form = req.body.youtube_form;
 
   const newLink = new Link({
-    evaluation_form
+    evaluation_form,
+    youtube_form
   });
 
   newLink.save()
@@ -51,6 +53,9 @@ const update = (req, res, next)=>{
   var updateLink = {};
   if(req.body.evaluation_form){
     updateLink['evaluation_form'] = req.body.evaluation_form;
+  }
+  if(req.body.youtube_form){
+    updateLink['youtube_form'] = req.body.youtube_form;
   }
 
   Link.findByIdAndUpdate(req.body._id, updateLink, (err, link) => {
