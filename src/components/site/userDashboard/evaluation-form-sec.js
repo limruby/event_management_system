@@ -32,24 +32,34 @@ function Evaluation_Form() {
   }, [account_id, data._id])
   function displayLink() {
     var section = []
-    if (link.length === 0) {
-        section.push(
-            <div className="member-box">
-               <p>Evaluation Form Coming Soon</p>
-            </div>
-        )
+    for(var i=0; i< link.length; i++){
+    if (link.length === 0) { //all blank
+      section.push(
+        <div className="member-box">
+          <p>Evaluation Form Coming Soon</p>
+        </div>
+      )
     }
-    else {
+    else { //something existed but this empty
+      if (link[0].evaluation_form === " " || link[0].evaluation_form === "") {
         section.push(
-            <div className="member-box">
-                <a href={link[0].evaluation_form}>Visit Evaluation Form</a>
-            </div>
+          <div className="member-box">
+            <p>Evaluation Form Coming Soon</p>
+          </div>
+            )       
+      }
+      else{
+        section.push(
+          <div className="member-box">
+          <p><a href={link[0].evaluation_form}> Go To Evaluation Form</a></p>
+          </div>
         )
+      }
     }
-
+  }
     return section
+  }
 
-}
   const columns = React.useMemo(
     () => [
       {
