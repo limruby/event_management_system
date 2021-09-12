@@ -53,13 +53,13 @@ function AssignProject() {
     }
 
     function displayCompetitors() {
-        var section = []
-        var listCompetitors = []
-        listCompetitors = competitor.map((competitor) => {
+        var section = [];
+        var listCompetitors = [];
+        competitor.map((competitor) => {
             if (competitor.abstract[0]) {
-                <option value={competitor._id}>{competitor.abstract[0].title}</option>
+                listCompetitors.push(<option value={competitor._id}>{competitor.abstract[0].title}</option>);
             }
-        });
+        })
         section.push(
             <div className="form-group">
                 <label htmlFor="project_title"><span>*</span>Project Title </label>
@@ -79,7 +79,7 @@ function AssignProject() {
             var tempPair = pair[i]
             section.push(
                 <div className="displayPair">
-                    <p>{pair[i].competitor_name}</p>
+                    <p>{pair[i].project_title}</p>
                     <button className="deleteBtn" type="button" onClick={() => { window.confirm("Are you sure you want to remove from the list?") && deletePair(tempPair._id) }}> <FaTrashAlt /></button>
                 </div>
             )
@@ -92,6 +92,9 @@ function AssignProject() {
         for (var j = 0; j < competitor.length; j++) {
             if (competitor[j]._id === comp.competitor_id) {
                 tempComp = competitor[j]
+            }
+            else{
+                console.log("handleform error")
             }
         }
         var postData = {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import logoUitm from "../../../assets/img/IIIDentEx2021 Logo-white-01.webp";
@@ -14,12 +15,8 @@ const Navigationbar = props => {
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
-
   const handleClick = () => setClick(!click);
-
   const closeMobileMenu = () => setClick(false);
-
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false)
@@ -49,34 +46,30 @@ const Navigationbar = props => {
 
   if (isAdmin() === true) {
     return (
-
       <IconContext.Provider value={{ color: '#000' }}>
-
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> 
-          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logoUitm} height="50px" width="200px" alt="" />
-          </Link>
-         </Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+              <img src={logoUitm} height="50px" width="200px" alt="" />
+            </Link>
+          </Navbar.Brand>
           <Nav className="ml-auto">
-
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
-
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
                 <Link className="btn" to='/'>Home</Link>
               </li>
               <li className="nav-item">
-                <NavDropdown title="Event Lobby" id="basic-nav-dropdown" className="btn" onToggle={() => { window.location.href = '/iiidentex_uitm/eventLobby'}}
-                show={show}
-                onMouseEnter={showDropdown}
-                onMouseLeave={hideDropdown}>
-                  <NavDropdown.Item href='/iiidentex_uitm/sponsor_hall'><a className="btn" >Sponsor Hall</a></NavDropdown.Item>
-                  <NavDropdown.Item href='/iiidentex_uitm/competition_hall'><a className="btn" >Competition Hall</a></NavDropdown.Item>
+                <NavDropdown title="Event Lobby" id="basic-nav-dropdown" className="btn" onToggle={() => { window.location.href = '/iiidentex_uitm/eventLobby' }}
+                  show={show}
+                  onMouseEnter={showDropdown}
+                  onMouseLeave={hideDropdown}>
+                  <NavDropdown.Item href='/iiidentex_uitm/sponsor_hall' className="btn">Sponsor Hall</NavDropdown.Item>
+                  <NavDropdown.Item href='/iiidentex_uitm/competition_hall' className="btn">Competition Hall</NavDropdown.Item>
                 </NavDropdown>
-            </li>
+              </li>
               <li className="nav-item">
                 <Link className="btn" to='/admin_dashboard'>AdminDashboard</Link>
               </li>
@@ -84,35 +77,28 @@ const Navigationbar = props => {
                 <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
               <li>
-              {/* <a href="http://localhost:3000" className="nav-href"><p>To Dinowex</p></a> */}
-              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
-              </li>            
+                {/* <a href="http://localhost:3000" className="nav-href"><p>To Dinowex</p></a> */}
+                <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{ marginLeft: "20px" }} /></a>
+              </li>
             </ul>
-
           </Nav>
         </Navbar>
       </IconContext.Provider>
-
     );
-
   }
 
   else if (isAuth() === true) {
     return (
-
       <IconContext.Provider value={{ color: '#000' }}>
-
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> 
-          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logoUitm} height="50px" width="200px" alt="" />
-          </Link></Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+              <img src={logoUitm} height="50px" width="200px" alt="" />
+            </Link></Navbar.Brand>
           <Nav className="ml-auto">
-
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
-
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
                 <Link className="btn" to='/'>Home</Link>
@@ -133,10 +119,9 @@ const Navigationbar = props => {
                 <Link className="btn" onClick={logout}>Log Out</Link>
               </li>
               <li>
-              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+                <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{ marginLeft: "20px" }} /></a>
               </li>
             </ul>
-
           </Nav>
         </Navbar>
       </IconContext.Provider>
@@ -146,20 +131,16 @@ const Navigationbar = props => {
 
   else {
     return (
-
       <IconContext.Provider value={{ color: '#000' }}>
-
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home"> 
-          <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
-            <img src={logoUitm} height="50px" width="200px" alt="" />
-          </Link></Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <Link to='/' className="navbar-logo" onClick={closeMobileMenu}>
+              <img src={logoUitm} height="50px" width="200px" alt="" />
+            </Link></Navbar.Brand>
           <Nav className="ml-auto">
-
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
-
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
               <li className="nav-item">
                 <Link className="btn" to="/">Home</Link>
@@ -180,16 +161,13 @@ const Navigationbar = props => {
                 <Link className="btn" to='/sign_in'>Sign In</Link>
               </li>
               <li>
-              <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{marginLeft:"20px"}} /></a>
+                <a href="http://vexs.fsktm.um.edu.my"><img src={logo} height="50px" width="auto" alt="Dinowex" title="Dinowex 2021" style={{ marginLeft: "20px" }} /></a>
               </li>
             </ul>
-
           </Nav>
         </Navbar>
       </IconContext.Provider>
     );
   }
-
 };
-
 export default Navigationbar;

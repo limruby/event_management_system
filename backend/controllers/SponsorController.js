@@ -63,9 +63,6 @@ const read = (req, res, next)=>{
     }).catch(err => console.log(err))
  };
 
-
-
-
 const update = (req, res, next)=>{
 
       var updateSponsor = {};

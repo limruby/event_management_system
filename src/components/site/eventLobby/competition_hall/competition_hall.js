@@ -17,6 +17,7 @@ function Competition_hall() {
   }, [data]);
   function displayBooth() {
     var section = [];
+    // eslint-disable-next-line array-callback-return
     data.map((competitor, index) => {
       if(competitor.abstract){
         if(competitor.abstract[0]){
