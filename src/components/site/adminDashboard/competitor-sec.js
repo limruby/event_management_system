@@ -20,6 +20,9 @@ function Competitor() {
     { label: 'State', key: 'state' },
     { label: 'Country', key: 'country' },
     { label: 'Payment', key: 'bill_status' },
+    { label: 'Abstract Title', key: 'abstract[0].title' },
+    { label: 'Video Name', key: 'video[0].name' },
+    { label: 'Video URL', key: 'video[0].source' },
   ]
   const csvReport = {
     filename: 'IIIDentEX_Competitor_List.csv',
@@ -60,8 +63,7 @@ function Competitor() {
       document.forms["uitmUpdate" + id].submit();
     }
   }
-
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const columns = React.useMemo(
     () => [
       {

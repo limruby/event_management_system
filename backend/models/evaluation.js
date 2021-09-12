@@ -22,6 +22,10 @@ const evaluationSchema = new Schema({
     type: String,
     required: true,
   },
+  project_title:{
+    type: String,
+    required: true,
+  },
   
 }, {
   timestamps: true,

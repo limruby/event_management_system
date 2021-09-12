@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import parse from 'html-react-parser';
 import '../../userDashboard/preview-sec.css';

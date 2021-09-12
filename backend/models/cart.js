@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const subSchema = new Schema({
+    name: {
+      type: String,
+      required: false
+    },
+    source: {
+      type: Buffer,
+      required: false
+    }
+  });
+
 const cartSchema = new Schema({
     account_id: {
         type: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
@@ -38,6 +49,7 @@ const cartSchema = new Schema({
     bill_status: {
         type: String,
     },
+    receipt: [subSchema]
 
 }, {
     timestamps: true,

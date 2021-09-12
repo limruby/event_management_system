@@ -8,13 +8,15 @@ const create = (req, res, next)=>{
   const competitor_id = req.body.competitor_id;
   const competitor_name = req.body.competitor_name;
   const competitor_acc_id = req.body.competitor_acc_id;
+  const project_title = req.body.project_title;
 
   const newEvaluation = new Evaluation({
     judge_id,
     judge_name,
     competitor_id,
     competitor_name,
-    competitor_acc_id
+    competitor_acc_id,
+    project_title,
   });
 
   newEvaluation.save()
@@ -71,6 +73,9 @@ const update = (req, res, next)=>{
   }
   if(req.body.competitor_acc_id){
     updateEvaluation['competitor_acc_id'] = req.body.competitor_acc_id;
+  }
+  if(req.body.project_title){
+    updateEvaluation['project_title'] = req.body.project_title;
   }
 
   Evaluation.findByIdAndUpdate(req.body._id, updateEvaluation, (err, evaluation) => {

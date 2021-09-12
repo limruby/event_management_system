@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab, Nav, Row, Col, Card } from "react-bootstrap";
-import { FaCertificate, FaMarker, FaMedal, FaUser } from 'react-icons/fa';
+import { FaCertificate, FaLink, FaMarker, FaMedal, FaUser } from 'react-icons/fa';
 import { BsPeopleCircle, BsFiles } from "react-icons/bs";
 
 import Account from './account';
@@ -9,6 +9,7 @@ import Sponsor from './sponsor-sec';
 import Judge from './judge-sec';
 import Visitor from './visitor-sec';
 import Order from './order-sec';
+import Links from './links-sec';
 import './table.css'
 
 function AdminDashboard() {
@@ -37,6 +38,9 @@ if(adminEmail !== "admin@iiidentex.com"){
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link eventKey="Order"><FaMedal size={20} /> Order</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link eventKey="Link"><FaLink size={20} /> Event Links </Nav.Link>
 				</Nav.Item>
 			</Nav>
 		);
@@ -124,6 +128,16 @@ if(adminEmail !== "admin@iiidentex.com"){
 										</Card.Body>
 									</Card>
 								</Tab.Pane>
+								<Tab.Pane eventKey="Link">
+									<Card>
+										<Card.Body>
+											<div className="sec-container">
+												<h2>Event Links</h2>
+												<Links />
+											</div>
+										</Card.Body>
+									</Card>
+								</Tab.Pane>
 							</Tab.Content>
 						</Col>
 					</Row>
@@ -132,5 +146,4 @@ if(adminEmail !== "admin@iiidentex.com"){
 		</div>
 	);
 }
-
 export default AdminDashboard;
