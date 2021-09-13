@@ -30,15 +30,6 @@ function Links() {
             Header: 'Live Event: Youtube',
             accessor: 'youtube_form',
           },
-          {
-            Header: 'Add Links',
-            Cell: data => (
-              <Link to='/admin_dashboard/insert_evaluation_form_link'>
-                <button className="btn btn-success" >
-                  Add
-                </button></Link>
-            )
-          },
         ],
       },
     ],
@@ -46,7 +37,13 @@ function Links() {
   )
   return (
     <div className="empty-container">
-       <Table columns={columns} data={data} /> 
+      <div className="member-box">
+      <Link to='/admin_dashboard/insert_evaluation_form_link'>
+        <button className="btn btn-success" >
+          Insert & Edit Links
+        </button></Link>
+        </div>
+      <Table columns={columns} data={data} />
     </div>
   );
 

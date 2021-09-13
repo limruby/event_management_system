@@ -38,7 +38,6 @@ export default function Table({ columns, data }) {
     const value = e.target.value || undefined;
     setGlobalFilter(value);
     setFilterInput(value);
- 
   };
  
   // Render the UI for your table
