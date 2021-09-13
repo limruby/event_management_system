@@ -4,6 +4,7 @@ import axiosInstance from '../../../../utils/axiosConfig.js';
 import { FaTrashAlt } from 'react-icons/fa';
 
 function InsertLink() {
+    localStorage.setItem("activeKeys", "Link")
     const [data, setData] = useState({
         evaluation_form: '',
         youtube_form: ''
@@ -112,7 +113,6 @@ function InsertLink() {
         }
         axiosInstance.post("/iiidentex_uitm/api/formLink/update", postData)
             .then(function (response) {
-                localStorage.setItem("activeKeys", "Link")
                 window.location.reload();
             }).catch(function (error) {
                 console.log(error);
