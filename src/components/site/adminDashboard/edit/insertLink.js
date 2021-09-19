@@ -77,7 +77,7 @@ function InsertLink() {
             if (link[0].youtube_form === " " || link[0].youtube_form === "") {
                 section.push(
                     <div className="form-group">
-                        <label htmlFor="youtube_form"><span>*</span>Evalution Form</label>
+                        <label htmlFor="youtube_form"><span>*</span>Youtube Form</label>
                         <input className="form-control" type="text" id="youtube_form"
                             onChange={inputChange('youtube_form')} placeholder="Insert form link"
                         />
