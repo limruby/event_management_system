@@ -14,7 +14,7 @@ function Competition_hall() {
       }).catch(function (error) {
         console.log(error);
       })
-  }, [data]);
+  }, []);
   function displayBooth() {
     var section = [];
     // eslint-disable-next-line array-callback-return
@@ -51,7 +51,6 @@ function Competition_hall() {
   }
 
   return (
-
     <header className="masthead">
       <div className="intro-text">
         <div className="intro-lead-in">
