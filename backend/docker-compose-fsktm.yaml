@@ -23,6 +23,20 @@ services:
 #       - traefik.tcp.routers.mongodb.service=mongodb
 #       - traefik.tcp.services.mongodb.loadbalancer.server.port=27017
 #     container_name: mongodb
+  iiidentex_mongodb_test:
+    image: mongo
+    restart: always
+    networks:
+      - server
+    # ports:
+    #  - 10217:27017 # local access
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+    container_name: iiidentex_mongodb_test
   
   iiidentex_backend:
     # build: .
@@ -31,11 +45,11 @@ services:
     image: iiidentex/backend
     restart: always
     depends_on:
-      - iiidentex_mongodb_prod
+      - iiidentex_mongodb_test
     environment:
         # ATLAS_URI: mongodb+srv://sudo:sudo@cluster0.konox.mongodb.net/iiidentex-db?retryWrites=true&w=majority
         # JSONWTK: h98asblj23hfjka
-        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@iiidentex_mongodb_prod:27017/db?authSource=admin&readPreference=primary
+        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@iiidentex_mongodb_test:27017/db?authSource=admin&readPreference=primary
         JSONWTK: ${JSONWTK}
     networks:
       - server
