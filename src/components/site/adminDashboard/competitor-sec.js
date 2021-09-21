@@ -35,7 +35,6 @@ function Competitor() {
     axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
       .then(function (response) {
         setData(response.data.data);
-        console.log(response.data.data)
       }).catch(function (error) {
         console.log(error);
       })
