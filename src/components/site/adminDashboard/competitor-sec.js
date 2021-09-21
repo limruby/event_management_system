@@ -125,14 +125,6 @@ function Competitor() {
 
             )
           },
-          {
-            Header: 'Receipt Name',
-            accessor: 'receipt[0].name'
-          },
-          {
-            Header: 'Cert Name',
-            accessor: 'certificate[0].name'
-          },
         ],
       },
 
