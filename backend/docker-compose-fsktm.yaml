@@ -30,9 +30,13 @@ services:
     #   - mongodb
     image: iiidentex/backend
     restart: always
+    depends_on:
+      - iiidentex_mongodb_prod
     environment:
-        ATLAS_URI: mongodb+srv://sudo:sudo@cluster0.konox.mongodb.net/iiidentex-db?retryWrites=true&w=majority
-        JSONWTK: h98asblj23hfjka
+        # ATLAS_URI: mongodb+srv://sudo:sudo@cluster0.konox.mongodb.net/iiidentex-db?retryWrites=true&w=majority
+        # JSONWTK: h98asblj23hfjka
+        ATLAS_URI: mongodb://${DB_USERNAME}:${DB_PASSWORD}@iiidentex_mongodb_prod:27017/db?authSource=admin&readPreference=primary
+        JSONWTK: ${JSONWTK}
     networks:
       - server
     #ports:
