@@ -35,6 +35,7 @@ function Competitor() {
     axiosInstance.get("/iiidentex_uitm/api/competitors/readAll")
       .then(function (response) {
         setData(response.data.data);
+        console.log(response.data.data)
       }).catch(function (error) {
         console.log(error);
       })
@@ -124,14 +125,6 @@ function Competitor() {
                 </button></Link>
 
             )
-          },
-          {
-            Header: 'Receipt Name',
-            accessor: 'receipt[0].name'
-          },
-          {
-            Header: 'Cert Name',
-            accessor: 'certificate[0].name'
           },
         ],
       },
